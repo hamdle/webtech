@@ -1,42 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>workout:.</title>
-<style>
-    body {
-        width: 35em;
-        margin: 0 auto;
-        font-family: Tahoma, Verdana, Arial, sans-serif;
-    }
-    ul {
-        padding: 0;
-    }
-    li {
-        list-style-type: none;
-    }
-    h1 {
-        border-bottom: 3px solid black;
-    }
-</style>
-</head>
-<body>
-<script>
-    function requestListener() {
-        $data = JSON.parse(this.responseText);
-        console.log($data);
-        document.getElementById('wo').innerHTML = $data['Eric'];
-    }
+    <head>
+        <title>wo</title>
+        <link href="css/styles.css" rel="stylesheet" type="text/css">
+    </head>
 
-    var req = new XMLHttpRequest();
-    req.addEventListener("load", requestListener);
-    req.open("GET", "https://ericmarty.dev/wo/api");
-    req.send();
-</script>
-<h1>wo</h1>
+    <body>
+        <script>
+            function requestListener() {
+                $data = JSON.parse(this.responseText);
+                console.log($data);
+                document.getElementById('wo').innerHTML = $data['Eric'];
+            }
 
-<p>Start workouts here.</p>
+            var req = new XMLHttpRequest();
+            req.addEventListener("load", requestListener);
+            req.open("GET", "http://stg.ericmarty.local/wo/api");
+            req.send();
+        </script>
 
-<div id="wo"></div>
-
-</body>
+        <?php include __DIR__.'/html/home.html'; ?>
+ 
+    </body>
 </html>

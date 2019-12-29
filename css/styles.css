@@ -1,0 +1,30 @@
+body {
+    font-family: Tahoma, Verdana, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.display__wrap {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: stretch;
+    align-items: center;
+}
+.left-display__wrap {
+    width: 300px;
+}
+.display__item {
+    text-align: center;
+    padding: 10px;
+}
+.center-display__wrap {
+    width: 440px;
+}
+.center-display__item {
+    padding: 10px;
+}
+.right-display__wrap {
+    width: 300px;
+}
