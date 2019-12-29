@@ -16,7 +16,7 @@ body {
     width: 300px;
 }
 .display__item {
-    text-align: center;
+    text-align: left;
     padding: 10px;
 }
 .center-display__wrap {
