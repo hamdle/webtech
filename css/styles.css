@@ -10,7 +10,7 @@ body {
     display: flex;
     flex-flow: row wrap;
     align-content: stretch;
-    align-items: center;
+    align-items: first baseline;
 }
 .left-display__wrap {
     width: 300px;

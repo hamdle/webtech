@@ -19,7 +19,7 @@
             req.send();
         </script>
 
-        <?php include __DIR__.'/html/home.html'; ?>
+        <?php include __DIR__.'/html/main.html'; ?>
  
     </body>
 </html>
