@@ -7,8 +7,7 @@
 
     <body>
         <script>
-            // TODO Generate workout and place it in the left display.
-            // TODO Generate a new workout if the Re-roll button is pressed.
+            //TODO Test a workout request.
         </script>
 
         <?php include dirname(__DIR__,1).'/html/workout.html'; ?>
