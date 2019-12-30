@@ -6,20 +6,31 @@
     </head>
 
     <body>
-        <script>
-            function requestListener() {
-                $data = JSON.parse(this.responseText);
-                console.log($data);
-                document.getElementById('wo').innerHTML = $data['Eric'];
-            }
-
-            var req = new XMLHttpRequest();
-            req.addEventListener("load", requestListener);
-            req.open("GET", "http://stg.ericmarty.local/wo/api");
-            req.send();
-        </script>
 
         <?php include __DIR__.'/html/main.html'; ?>
+
+        <script>
+            var loginElement = document.getElementById('login');
+            loginElement.onclick = login;
+
+            function login() {
+                var request = new XMLHttpRequest();
+                request.addEventListener("load", loginListener);
+                request.open("POST", "http://stg.ericmarty.local/wo/api/authenticate");
+                var requestData = JSON.stringify({email: "admin@localhost", password: "password"});
+                console.log(requestData);
+                console.log(JSON.parse(requestData));
+                request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                request.send(requestData);
+            }
+
+            function loginListener() {
+                responseData = JSON.parse(this.responseText);
+                console.log(responseData);
+                document.getElementById('login').outerHTML = 'Welcome, ' + responseData['Eric'];
+            }
+        </script>
+
  
     </body>
 </html>
