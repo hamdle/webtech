@@ -18,14 +18,13 @@
                 request.addEventListener("load", loginListener);
                 request.open("POST", "http://stg.ericmarty.local/wo/api/authenticate");
                 var requestData = JSON.stringify({email: "admin@localhost", password: "password"});
-                console.log(requestData);
-                console.log(JSON.parse(requestData));
                 request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 request.send(requestData);
             }
 
             function loginListener() {
                 responseData = JSON.parse(this.responseText);
+                console.log(this.status);
                 console.log(responseData);
                 document.getElementById('login').outerHTML = 'Welcome, ' + responseData['Eric'];
             }

@@ -15,7 +15,7 @@
 
             var request = new XMLHttpRequest();
             request.addEventListener("load", requestListener);
-            request.open("GET", "http://stg.ericmarty.local/wo/api/0/program");
+            request.open("GET", "http://stg.ericmarty.local/wo/api/0/program/new");
             request.send();
         </script>
 
