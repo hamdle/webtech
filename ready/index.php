@@ -9,18 +9,5 @@
         <?php include __DIR__.'/template.html'; ?>
 
         <script type="text/javascript" src="/wo/app/src/main.js"></script>
-        <script>
-            function requestListener() {
-                responseData = JSON.parse(this.responseText);
-                console.log(this.status);
-                console.log(responseData);
-                document.getElementById('program').outerHTML = 'Welcome, ' + responseData['program'];
-            }
-
-            var request = new XMLHttpRequest();
-            request.addEventListener("load", requestListener);
-            request.open("GET", "http://stg.ericmarty.local/wo/api/22/programs/new");
-            request.send();
-        </script>
     </body>
 </html>
