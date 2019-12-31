@@ -6,11 +6,11 @@
     </head>
 
     <body>
+
+        <?php include __DIR__.'/template.html'; ?>
+
         <script>
             //TODO Test a workout request.
         </script>
-
-        <?php include dirname(__DIR__,1).'/html/workout.html'; ?>
-
     </body>
 </html>
