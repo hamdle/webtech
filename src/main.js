@@ -37,8 +37,8 @@ function runIndex() {
         var request = new XMLHttpRequest();
         request.addEventListener("load", loginListener);
         request.open("POST", "http://stg.ericmarty.local/wo/api/authenticate");
-        //request.open("GET", "http://stg.ericmarty.local/wo/api/22/programs/new");
-        var requestData = JSON.stringify({email: "admin@localhost", password: "password"});
+        //var requestData = JSON.stringify({email: "admin@localhost.com", password: "password123"});
+        var requestData = JSON.stringify({id: "2"});
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         request.send(requestData);
     }
