@@ -38,7 +38,7 @@ function runIndex() {
         request.addEventListener("load", loginListener);
         request.open("POST", "http://stg.ericmarty.local/wo/api/authenticate");
         //var requestData = JSON.stringify({email: "admin@localhost.com", password: "password123"});
-        var requestData = JSON.stringify({id: "2"});
+        var requestData = JSON.stringify({id: "1"});
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         request.send(requestData);
     }
@@ -47,7 +47,8 @@ function runIndex() {
         responseData = JSON.parse(this.responseText);
         console.log(this.status);
         console.log(responseData);
-        document.getElementById('login').outerHTML = 'Welcome, ' + responseData['user'];
+        // TODO Add auth cookie.
+        document.getElementById('login').outerHTML = 'Welcome, <strong>' + responseData['user'] + '</strong>';
     }
 }
 
@@ -55,15 +56,16 @@ function runIndex() {
 function runReady() {
     // This request sends a simple GET request
     function requestListener() {
+        console.log(this.responseText);
         responseData = JSON.parse(this.responseText);
         console.log(this.status);
         console.log(responseData);
-        document.getElementById('program').outerHTML = 'Welcome, ' + responseData['program'];
+        document.getElementById('program').outerHTML = 'Workout for <strong>' + responseData['user']  + '</strong>' + responseData['workout_html'];
     }
 
     var request = new XMLHttpRequest();
     request.addEventListener("load", requestListener);
-    request.open("GET", "http://stg.ericmarty.local/wo/api/22/programs/new");
+    request.open("GET", "http://stg.ericmarty.local/wo/api/1/workouts/new");
     request.send();
 }
 
