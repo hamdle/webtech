@@ -1,18 +1,8 @@
-<div class="display__wrap">
-    <div class="left-display__wrap">
-        <div id="lhs" class="display__item"></div>
-    </div>
-
-    <div class="center-display__wrap">
-        <div id="main" class="center-display__item">
-            <h1>wo</h1>
-            <p><a href="/wo/app/ready">Start new</a>
-        </div>
-    </div>
-
-    <div class="right-display__wrap">
-        <div id="rhs" class="display__item">
-            <p><a href="#" id="login">Login</a>
-        </div>
-    </div>
+<div class="login__wrap">
+    <form class="login-form__wrap" method="post" action="http://stg.ericmarty.local/wo/api/login" name="login-form">
+        <div class="login-form__title">Login</div>
+        <input class="login-form__input login-form__user" autocapitalize="off" autocorrect="off" type="text" placeholder="Username" name="username" />
+        <input class="login-form__input login-form__pass" autocapitalize="off" autocorrect="off" type="password" placeholder="Password" name="password" />
+        <button class="login-form__button" type="submit">Login</button>
+    </form>
 </div>
