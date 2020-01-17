@@ -29,27 +29,34 @@ function run(uri, index) {
 
 // index.php
 function runIndex() {
-    var loginElement = document.getElementById('login');
-    loginElement.onclick = login;
+    window.addEventListener("load", function() {
+        function sendData() {
+            const request = new XMLHttpRequest();
 
-    function login() {
-        // This request sends a sample POST request, with data
-        var request = new XMLHttpRequest();
-        request.addEventListener("load", loginListener);
-        request.open("POST", "http://stg.ericmarty.local/wo/api/authenticate");
-        //var requestData = JSON.stringify({email: "admin@localhost.com", password: "password123"});
-        var requestData = JSON.stringify({id: "1"});
-        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        request.send(requestData);
-    }
+            const formData = new FormData(form);
 
-    function loginListener() {
-        responseData = JSON.parse(this.responseText);
-        console.log(this.status);
-        console.log(responseData);
-        // TODO Add auth cookie.
-        document.getElementById('login').outerHTML = 'Welcome, <strong>' + responseData['user'] + '</strong>';
-    }
+            request.addEventListener('load', function(event) {
+                console.log(event.target.responseText);
+            });
+
+            request.addEventListener('error', function(event) {
+                console.log('Error!');
+            });
+
+            request.open("POST", "http://stg.ericmarty.local/wo/api/login");
+
+            request.send(formData);
+        }
+
+        let form = document.getElementById('loginForm');
+
+        // Take over submit
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            sendData();
+        });
+    });
 }
 
 // /ready
