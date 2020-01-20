@@ -11,9 +11,10 @@ a {
 
 .header__button {
     padding: 0.5em 1em;
-    background-color: #fff;
+    background-color: #ef4928;
     border-radius: 3px;
     text-decoration: none;
+    color: #ffffff;
 }
 
 .login__body {
@@ -83,9 +84,7 @@ a {
 
 .header__login {
     padding: 1em;
-    background-color: #5d87cb;
-    color: #fff;
-    font-weight: bold;
+    background-color: #f9f9f9;
     display: flex;
     justify-content: flex-end;
 }
