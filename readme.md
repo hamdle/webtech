@@ -8,3 +8,10 @@ This is (1) the app. The app is the front-end of wo. It displays and posts the w
 
 The workout app posts to an API and is deployed by a custom-built auto deploy application.
 
+# theme
+
+### Colors
+
+Red #ef4928
+Blue #5d87cb
+Black #1c1c1c
