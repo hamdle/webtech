@@ -1,8 +1,23 @@
-<div class="login__wrap">
-    <form id="loginForm" class="login-form__wrap">
-        <div class="login-form__title">Login</div>
-        <input class="login-form__input login-form__user" autocapitalize="off" autocorrect="off" type="text" placeholder="Email" name="email" />
-        <input class="login-form__input login-form__pass" autocapitalize="off" autocorrect="off" type="password" placeholder="Password" name="password" />
-        <button class="login-form__button" type="submit">Login</button>
-    </form>
+<div class="login__body">
+    <header class="header__login">
+        <a class="header__button" href="/sign-up">Create account</a>
+    </header>
+    <div class="login__wrap">
+        <div class="login-form__wrap">
+            <form id="loginForm" class="login__form">
+                <h1 class="login__header">wo</h1>
+                <span class="login__desc">Workout app.</span>
+                <label class="login__title">Login</label>
+                <input class="login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Email" name="email" />
+                <label class="login__title">Password</label>
+                <input class="login__input" autocapitalize="off" autocorrect="off" type="password" placeholder="Password" name="password" />
+                <button class="login__button" type="submit">Login</button>
+            </form>
+            <p class="login__copy">Forgot email? <a href="#">Reset password</a>.</p>
+            <p class="login__copy">Looking to sign up? <a href="#">Create account</a>.</p>
+        </div>
+    </div>
+    <footer class="footer__login">
+        wo © 2020-Made in Portland
+    </footer>
 </div>
