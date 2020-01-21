@@ -7,6 +7,6 @@
     <body>
         <?php include __DIR__.'/template.html'; ?>
 
-        <script type="text/javascript" src="/wo/app/src/main.js"></script>
+        <script type="text/javascript" src="/src/main.js"></script>
     </body>
 </html>

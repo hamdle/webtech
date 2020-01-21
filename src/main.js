@@ -2,10 +2,12 @@
 //
 // This is the entry point for all Javascript code executed in the App.
 
+let siteUrl = "http://workout.local/api/";
+
 let routes = [ 
-    'wo/app/',
-    'wo/app/ready/',
-    'wo/app/workout/']
+    '',
+    'ready/',
+    'workout/']
 
 let path = location.pathname.substring(1)
 
@@ -43,7 +45,7 @@ function runIndex() {
                 console.log('Error!');
             });
 
-            request.open("POST", "http://stg.ericmarty.local/wo/api/login");
+            request.open("POST", siteUrl + 'login');
 
             request.send(formData);
         }
@@ -72,7 +74,7 @@ function runReady() {
 
     var request = new XMLHttpRequest();
     request.addEventListener("load", requestListener);
-    request.open("GET", "http://stg.ericmarty.local/wo/api/1/workouts/new");
+    request.open("GET", siteUrl + '1/workouts/new');
     request.send();
 }
 
