@@ -7,6 +7,7 @@ let siteUrl = "http://workout.local/api/";
 let routes = [ 
     '',
     'ready/',
+    'dashboard/',
     'workout/']
 
 let path = location.pathname.substring(1)
@@ -23,8 +24,11 @@ function run(uri, index) {
                 runReady()
                 break
             case 2:
-                runWorkout()
+                dashboard()
                 break
+            case 3:
+                runWorkout();
+                break;
         }
     }
 }
@@ -81,4 +85,26 @@ function runReady() {
 // /workout
 function runWorkout() {
     // TODO
+}
+
+function dashboard() {
+    window.addEventListener('load', function() {
+    const buttons = document.querySelectorAll('.menu__item');
+    for (var i = 0; i < buttons.length; i++) {
+        var btn = buttons[i];
+        /*btn.addEventListener('click', function() {
+            console.log('click');
+        });*/
+        btn.onmouseenter = function() {
+            if (!(event.target.children[0] === undefined)) {
+                event.target.children[0].className = "menu__tooltip--show";
+            }
+        };
+        btn.onmouseout = function() {
+            if (!(event.target.children[0] === undefined)) {
+                event.target.children[0].className = "menu__tooltip";
+            }
+        };
+    }
+    });
 }
