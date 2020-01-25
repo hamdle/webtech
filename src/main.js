@@ -95,7 +95,7 @@ function dashboard() {
         /*btn.addEventListener('click', function() {
             console.log('click');
         });*/
-        btn.onmouseenter = function() {
+        btn.onmouseover = function() {
             if (!(event.target.children[0] === undefined)) {
                 event.target.children[0].className = "menu__tooltip--show";
             }

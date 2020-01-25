@@ -141,13 +141,14 @@ a {
 .dash__menu {
     width: 70px;
     max-width: 70px;
-    background-color: #ef4928;
+    background-color: #1c1c1c;
+    color: #eeeeee;
 }
 
 .dash__opt {
     width: 350px;
-    background-color: #ef4928;
-    background-image: linear-gradient(to bottom, #ef4928, #ef4928, #dd4224, #e64626, #ef4928);
+    background-color: #1c1c1c;
+    background-image: linear-gradient(to bottom, #1c1c1c, #1c1c1c, #131212, #0d0d0d, #1c1c1c);
 }
 
 .dash__display {
