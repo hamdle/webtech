@@ -89,7 +89,7 @@ function runWorkout() {
 
 function dashboard() {
     window.addEventListener('load', function() {
-    const buttons = document.querySelectorAll('.menu__item');
+    const buttons = document.querySelectorAll('.menu__link');
     for (var i = 0; i < buttons.length; i++) {
         var btn = buttons[i];
         /*btn.addEventListener('click', function() {
