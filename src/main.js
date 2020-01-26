@@ -6,8 +6,7 @@ let siteUrl = "http://workout.local/api/";
 
 let routes = [ 
     '',
-    'ready/',
-    'dashboard/',
+    'start-a-workout/',
     'workout/']
 
 let path = location.pathname.substring(1)
@@ -21,10 +20,10 @@ function run(uri, index) {
                 runIndex()
                 break
             case 1:
-                runReady()
+                dashboard();
                 break
             case 2:
-                dashboard()
+                runReady()
                 break
             case 3:
                 runWorkout();
