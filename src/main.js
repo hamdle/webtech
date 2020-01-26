@@ -8,7 +8,9 @@ let routes = [
     '',
     'start-a-workout/',
     'explore-workouts/',
-    'about-exercises/']
+    'about-exercises/',
+    'settings/'
+]
 
 let path = location.pathname.substring(1)
 
@@ -29,6 +31,8 @@ function run(uri, index) {
             case 3:
                 startAWorkout();
                 break;
+            case 4:
+                startAWorkout();
         }
     }
 }
