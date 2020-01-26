@@ -297,9 +297,13 @@ a {
     text-decoration: none;
 }
 
+.opt__item {
+    list-style-type: none;
+}
+
 /* Routine */
 .opt__item--routine {
-
+    list-style-type: none;
 }
 
 .opt__link--routine {
