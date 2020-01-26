@@ -241,11 +241,11 @@ a {
 }
 
 .menu__link:hover {
-    color: #ef4928;
+    color: #e1634a; 
 }
 
 .menu__link--active {
-    color: #e1634a; 
+    color: #ef4928;
 }
 
 .menu__tooltip {
