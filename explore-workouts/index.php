@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Start a Workout - wo, Workout app.</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Explore Workouts - wo, Workout app.</title>
         <link href="../css/styles.css" rel="stylesheet" type="text/css">
     </head>
     <body>
