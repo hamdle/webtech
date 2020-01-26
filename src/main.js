@@ -7,7 +7,8 @@ let siteUrl = "http://workout.local/api/";
 let routes = [ 
     '',
     'start-a-workout/',
-    'workout/']
+    'explore-workouts/',
+    'about-exercises/']
 
 let path = location.pathname.substring(1)
 
@@ -20,13 +21,13 @@ function run(uri, index) {
                 runIndex()
                 break
             case 1:
-                dashboard();
+                startAWorkout();
                 break
             case 2:
-                runReady()
+                startAWorkout()
                 break
             case 3:
-                runWorkout();
+                startAWorkout();
                 break;
         }
     }
@@ -86,7 +87,7 @@ function runWorkout() {
     // TODO
 }
 
-function dashboard() {
+function startAWorkout() {
     window.addEventListener('load', function() {
     const buttons = document.querySelectorAll('.menu__link');
     for (var i = 0; i < buttons.length; i++) {
