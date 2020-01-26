@@ -26,7 +26,43 @@ a {
 }
 
 .fa-dumbbell:before {
-    content: "\f44b"; 
+    content: "\f44b";
+}
+
+.fa-chart-line:before {
+    content: "\f201";
+}
+
+.fa-chart-bar:before {
+    content: "\f080";
+}
+
+.fa-chart-area:before {
+    content: "\f1fe";
+}
+
+.fa-question:before {
+    content: "\f128";
+}
+
+.fa-info-circle:before {
+    content: "\f05a";
+}
+
+.fa-info:before {
+    content: "\f129";
+}
+
+.fa-clipboard-list:before {
+    content: "\f46d";
+}
+
+.fa-list-alt:before {
+    content: "\f022";
+}
+
+.fa-list-ul:before {
+    content: "\f0ca";
 }
 
 /* Login page */
@@ -197,6 +233,11 @@ a {
     width: 100%;
     color: #ffffff;
     text-decoration: none;
+    font-size: 1.4rem;
+}
+
+.menu__link:hover {
+    color: #ef4928;
 }
 
 .menu__tooltip {
