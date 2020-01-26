@@ -227,7 +227,7 @@ a {
     cursor: pointer;
     margin-bottom: 10px;
     text-align: center;
-    height: 36px;
+    height: 38px;
     padding-top: 15px;
     display: inline-block;
     width: 100%;
@@ -242,28 +242,30 @@ a {
 
 .menu__tooltip {
     display: none;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
     position: relative;
     right: -60px;
-    top: -25px;
+    top: -29px;
     width: 150px;
     color: white;
     height: auto;
     font-size: 0.9rem;
     text-align: left;
-    line-height: 20px;
+    line-height: 14px;
 }
 
 .menu__tooltip--show {
     display: inline-block;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
     position: relative;
     right: -60px;
-    top: -25px;
+    top: -29px;
     width: 200px;
     color: white;
     height: auto;
     font-size: 0.9rem;
     text-align: left;
-    line-height: 20px;
+    line-height: 14px;
 }
 
 .tooltip__copy {
