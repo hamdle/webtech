@@ -96,12 +96,14 @@ function dashboard() {
             console.log('click');
         });*/
         btn.onmouseover = function() {
-            if (!(event.target.children[0] === undefined)) {
+            if (!(event.target.children[0] === undefined) &&
+                event.target.children[0].className === 'menu__tooltip') {
                 event.target.children[0].className = "menu__tooltip--show";
             }
         };
         btn.onmouseout = function() {
-            if (!(event.target.children[0] === undefined)) {
+            if (!(event.target.children[0] === undefined) &&
+                event.target.children[0].className === 'menu__tooltip--show') {
                 event.target.children[0].className = "menu__tooltip";
             }
         };
