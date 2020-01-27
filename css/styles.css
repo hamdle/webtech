@@ -275,17 +275,21 @@ h2 {
     padding-top: 15px;
     display: inline-block;
     width: 100%;
-    color: #ffffff;
+    color: #ccc;
     text-decoration: none;
     font-size: 1.4rem;
 }
 
 .menu__link:hover {
-    color: #e1634a; 
+    color: #fff;
 }
 
 .menu__link--active {
     color: #ef4928;
+}
+
+.menu__link--active:hover {
+    color: #ee5435;
 }
 
 .menu__tooltip {
@@ -325,14 +329,14 @@ h2 {
 .opt__link {
     padding: 0.9rem 1em 0.9rem 2rem;
     line-height: 1.3;
-    color: #e1e1e1;
+    color: #ccc;
     text-decoration: none;
     display: block;
 }
 
 .opt__link:hover {
     background: #1c1c1c;
-    color: #ef4928;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -350,7 +354,7 @@ h2 {
 .opt__link--routine {
     padding: 0.9rem 1em 0.9rem 2rem;
     line-height: 1.3;
-    color: #e1e1e1;
+    color: #ccc;
     text-decoration: none;
     display: flex;
     justify-content: space-between;
@@ -358,7 +362,7 @@ h2 {
 
 .opt__link--routine:hover {
     background: #1c1c1c;
-    color: #ef4928;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -414,9 +418,14 @@ h2 {
 
 .opt-title__extra {
     font-size: 0.9rem;
-    color: #ffffff;
+    color: #ccc;
     display: flex;
     justify-content: flex-end;
+    cursor: pointer;
+}
+
+.opt-title__extra:hover {
+    color: #fff;
 }
 
 .opt-extra__action {
