@@ -212,6 +212,16 @@ h2 {
     max-width: 70px;
     background-color: #1c1c1c;
     color: #eeeeee;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dash__version {
+    text-align: center;
+    color: #646464;
+    margin-bottom: 1rem;
+    font-size: 0.7rem
 }
 
 .dash__opt {
@@ -240,7 +250,6 @@ h2 {
 
 .body__link:hover {
     color: #3d81aa;
-    background-color: #f0f0f0;
     padding: 3px 6px;
     border-radius: 15px;
 }
@@ -366,8 +375,13 @@ h2 {
 }
 
 .opt__note {
-    margin: 36px 8px 8px 32px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 36px 16px 8px 32px;
     color: #646464;
+    border-top: 1px solid #373333;
+    padding-top: 14px;
+    padding-left: 4px;
+    text-align: right;
 }
 
 .opt__title {
