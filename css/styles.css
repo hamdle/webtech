@@ -245,13 +245,12 @@ h2 {
 .body__link {
     text-decoration: none;
     transition: 0.3s;
-    padding: 0px 6px;
+    padding: 0px 3px;
 }
 
 .body__link:hover {
-    color: #3d81aa;
-    padding: 3px 6px;
-    border-radius: 15px;
+    color: #212121;
+    padding: 3px 3px;
 }
 
 .body-link__icon {
@@ -448,4 +447,33 @@ h2 {
     display: inline-block;
     text-decoration: none;
     text-align: center;
+}
+
+/* Table */
+
+.table {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.table__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #eee;
+    text-align: center;
+}
+
+.table__row--header {
+    border-bottom: 2px solid #e6e6e6;
+    font-weight: bold;
+}
+
+.table__row--odd {
+    background-color: #fdfdfd;
+}
+
+.table__col {
+    min-width: 100px;
 }
