@@ -9,7 +9,8 @@ let routes = [
     'start-a-workout/',
     'explore-workouts/',
     'about-exercises/',
-    'settings/'
+    'settings/',
+    'go/'
 ]
 
 let path = location.pathname.substring(1)
@@ -33,8 +34,27 @@ function run(uri, index) {
                 break;
             case 4:
                 startAWorkout();
+                break;
+            case 5:
+                go();
         }
     }
+}
+
+// go.php
+function go() {
+    function requestListener() {
+        console.log(this.responseText);
+        responseData = JSON.parse(this.responseText);
+        console.log(this.status);
+        console.log(responseData);
+        //document.getElementById('program').outerHTML = 'Workout for <strong>' + responseData['user']  + '</strong>' + responseData['workout_html'];
+    }
+
+    var request = new XMLHttpRequest();
+    request.addEventListener("load", requestListener);
+    request.open("GET", siteUrl + 'exercises');
+    request.send();
 }
 
 // index.php

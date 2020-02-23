@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Start a Workout - wo, Workout app.</title>
+        <title>Go - wo, Workout app.</title>
         <link href="../css/styles.css" rel="stylesheet" type="text/css">
     </head>
     <body>
