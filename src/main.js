@@ -7,8 +7,8 @@ let siteUrl = "http://workout.local/api/";
 let routes = [ 
     '',
     'start-a-workout/',
-    'explore-workouts/',
-    'about-exercises/',
+    'stats/',
+    'exercises/',
     'settings/',
     'go/'
 ]
@@ -21,21 +21,23 @@ function run(uri, index) {
     if (path == uri) {
         switch (index) {
             case 0: 
+                loadTooltips();
                 runIndex()
                 break
             case 1:
-                startAWorkout();
+                loadTooltips();
                 break
             case 2:
-                startAWorkout()
+                loadTooltips();
                 break
             case 3:
-                startAWorkout();
+                loadTooltips();
                 break;
             case 4:
-                startAWorkout();
+                loadTooltips();
                 break;
             case 5:
+                loadTooltips();
                 go();
         }
     }
@@ -125,12 +127,7 @@ function runReady() {
     request.send();
 }
 
-// /workout
-function runWorkout() {
-    // TODO
-}
-
-function startAWorkout() {
+function loadTooltips() {
     window.addEventListener('load', function() {
     const buttons = document.querySelectorAll('.menu__link');
     for (var i = 0; i < buttons.length; i++) {
