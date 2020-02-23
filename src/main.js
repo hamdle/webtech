@@ -44,11 +44,30 @@ function run(uri, index) {
 // go.php
 function go() {
     function requestListener() {
-        console.log(this.responseText);
-        responseData = JSON.parse(this.responseText);
-        console.log(this.status);
-        console.log(responseData);
-        //document.getElementById('program').outerHTML = 'Workout for <strong>' + responseData['user']  + '</strong>' + responseData['workout_html'];
+        if (this.status !== 200) {
+            var list = document.getElementById('exercise__list');
+            var par = document.createElement('p');
+            par.textContent = 'Error loading exercises.';
+            list.appendChild(par);
+            return;
+        }
+
+        exercises = JSON.parse(this.responseText);
+        console.log(exercises);
+
+        var list = document.getElementById('exercise__list');
+        var listItem = document.createElement('li');
+        var selectList = document.createElement('select');
+
+        list.appendChild(listItem);
+        listItem.appendChild(selectList);
+
+        exercises.forEach(function(item, index) {
+            var option = document.createElement('option');
+            option.value = item.title;
+            option.text = item.title;
+            selectList.appendChild(option);
+        });
     }
 
     var request = new XMLHttpRequest();
