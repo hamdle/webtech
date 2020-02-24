@@ -74,13 +74,15 @@ function go() {
         });
     }
 
+    // Get list of exercises from the Api.
     var request = new XMLHttpRequest();
     request.addEventListener("load", requestListener);
     request.open("GET", siteUrl + 'exercises');
     request.send();
 
     window.addEventListener("load", function() {
-        var add = document.getElementById('exercise__button');
+        // Create button to add new exercise to the routine.
+        var add = document.getElementById('exercise__button--add');
         add.addEventListener('click', function() {
             console.log('Add'); 
             var list = document.getElementById('exercise__list');
@@ -98,6 +100,16 @@ function go() {
                 option.setAttribute('data-sets', item.default_sets);
                 selectList.appendChild(option);
             });
+        });
+
+        // Remove exercises from the bottom of the routine..
+        var add = document.getElementById('exercise__button--remove');
+        add.addEventListener('click', function() {
+            var list = document.getElementById('exercise__list');
+            if (list.childNodes.length > 2 &&
+                list.childNodes[list.childNodes.length-1].nodeName === "LI") {
+                list.removeChild(list.childNodes[list.childNodes.length-1]);
+            }
         });
     });
 }
