@@ -45,7 +45,28 @@ function run(uri, index) {
 
 // go.php
 function go() {
-    function requestListener() {
+    // Get list of exercises from the Api.
+    var request = new XMLHttpRequest();
+    request.addEventListener("load", getExercisesListener);
+    request.open("GET", siteUrl + 'exercises');
+    request.send();
+
+    window.addEventListener("load", function() {
+        // Create button to add new exercise to the routine.
+        var add = document.getElementById('exercise__button--add');
+        add.addEventListener('click', addExerciseListener);
+
+        // Remove exercises from the bottom of the routine..
+        var remove = document.getElementById('exercise__button--remove');
+        remove.addEventListener('click', removeExerciseListener);
+       
+        // Setup Start button handler.
+        var start = document.getElementById('start__button');
+        start.addEventListener('click', startListener);
+    });
+   
+    // Request listeners.
+    function getExercisesListener() {
         if (this.status !== 200) {
             var list = document.getElementById('exercise__list');
             var par = document.createElement('p');
@@ -74,44 +95,35 @@ function go() {
         });
     }
 
-    // Get list of exercises from the Api.
-    var request = new XMLHttpRequest();
-    request.addEventListener("load", requestListener);
-    request.open("GET", siteUrl + 'exercises');
-    request.send();
+    function addExerciseListener() {
+        var list = document.getElementById('exercise__list');
+        var listItem = document.createElement('li');
+        var selectList = document.createElement('select');
 
-    window.addEventListener("load", function() {
-        // Create button to add new exercise to the routine.
-        var add = document.getElementById('exercise__button--add');
-        add.addEventListener('click', function() {
-            console.log('Add'); 
-            var list = document.getElementById('exercise__list');
-            var listItem = document.createElement('li');
-            var selectList = document.createElement('select');
+        list.appendChild(listItem);
+        listItem.appendChild(selectList);
 
-            list.appendChild(listItem);
-            listItem.appendChild(selectList);
-
-            exercises.forEach(function(item, index) {
-                var option = document.createElement('option');
-                option.value = item.title;
-                option.text = item.title;
-                option.setAttribute('data-id', item.id);
-                option.setAttribute('data-sets', item.default_sets);
-                selectList.appendChild(option);
-            });
+        exercises.forEach(function(item, index) {
+            var option = document.createElement('option');
+            option.value = item.title;
+            option.text = item.title;
+            option.setAttribute('data-id', item.id);
+            option.setAttribute('data-sets', item.default_sets);
+            selectList.appendChild(option);
         });
+    }
 
-        // Remove exercises from the bottom of the routine..
-        var add = document.getElementById('exercise__button--remove');
-        add.addEventListener('click', function() {
-            var list = document.getElementById('exercise__list');
-            if (list.childNodes.length > 2 &&
-                list.childNodes[list.childNodes.length-1].nodeName === "LI") {
-                list.removeChild(list.childNodes[list.childNodes.length-1]);
-            }
-        });
-    });
+    function removeExerciseListener() {
+        var list = document.getElementById('exercise__list');
+        if (list.childNodes.length > 2 &&
+            list.childNodes[list.childNodes.length-1].nodeName === "LI") {
+            list.removeChild(list.childNodes[list.childNodes.length-1]);
+        }
+    }
+
+    function startListener() {
+        console.log('start');
+    }
 }
 
 // index.php
