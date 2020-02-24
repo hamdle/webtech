@@ -68,6 +68,8 @@ function go() {
             var option = document.createElement('option');
             option.value = item.title;
             option.text = item.title;
+            option.setAttribute('data-id', item.id);
+            option.setAttribute('data-sets', item.default_sets);
             selectList.appendChild(option);
         });
     }
@@ -76,6 +78,28 @@ function go() {
     request.addEventListener("load", requestListener);
     request.open("GET", siteUrl + 'exercises');
     request.send();
+
+    window.addEventListener("load", function() {
+        var add = document.getElementById('exercise__button');
+        add.addEventListener('click', function() {
+            console.log('Add'); 
+            var list = document.getElementById('exercise__list');
+            var listItem = document.createElement('li');
+            var selectList = document.createElement('select');
+
+            list.appendChild(listItem);
+            listItem.appendChild(selectList);
+
+            exercises.forEach(function(item, index) {
+                var option = document.createElement('option');
+                option.value = item.title;
+                option.text = item.title;
+                option.setAttribute('data-id', item.id);
+                option.setAttribute('data-sets', item.default_sets);
+                selectList.appendChild(option);
+            });
+        });
+    });
 }
 
 // index.php
