@@ -49,13 +49,9 @@ function go() {
     Builder.init();
     Startbutton.init(startHandler);
 
-    function requestNewExercise() {
-        Workout.start();
-    }
-
     // Event handlers.
     function startHandler() {
-        requestNewExercise();
+        Workout.start();
     }
 }
 
