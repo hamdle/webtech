@@ -45,14 +45,12 @@ function run(uri, index) {
 
 // go.php
 function go() {
-    // TODO: Create Exercise component and init here.
-    var exercise = {'id': null};
+    Workout.init();
     Builder.init();
     Startbutton.init(startHandler);
 
     function requestNewExercise() {
-        // TODO: Exercise.start() or something similar.
-        console.log(exercise.id);
+        Workout.start();
     }
 
     // Event handlers.
