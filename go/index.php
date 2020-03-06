@@ -9,6 +9,7 @@
         <?php include __DIR__.'/template.html'; ?>
 
         <script type="text/javascript" src="../src/components/builder.js"></script>
+        <script type="text/javascript" src="../src/components/startbutton.js"></script>
         <script type="text/javascript" src="../src/main.js"></script>
     </body>
 </html>

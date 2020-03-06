@@ -46,6 +46,11 @@ function run(uri, index) {
 // go.php
 function go() {
     Builder.init();
+    Startbutton.init(startHandler);
+
+    function startHandler() {
+        console.log('start handler called.');
+    }
 }
 
 // index.php
