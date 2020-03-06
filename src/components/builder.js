@@ -13,7 +13,6 @@ var Builder = (function() {
         window.addEventListener("load", function() {
             loadAdd();
             loadRemove();
-            loadStart();
         });
     }
 
@@ -27,12 +26,6 @@ var Builder = (function() {
         // Remove exercises from the bottom of the routine..
         var remove = document.getElementById('exercise__button--remove');
         remove.addEventListener('click', removeHandler);
-    }
-
-    function loadStart() {
-        // Setup Start button handler.
-        var start = document.getElementById('start__button');
-        start.addEventListener('click', startHandler);
     }
 
     // Request handlers.
@@ -88,13 +81,6 @@ var Builder = (function() {
         if (list.childNodes.length > 2 &&
             list.childNodes[list.childNodes.length-1].nodeName === "LI") {
             list.removeChild(list.childNodes[list.childNodes.length-1]);
-        }
-    }
-
-    function startHandler() {
-        if (window.confirm("Are you ready to start the workout?")) {
-            var timer = document.getElementById('timer');
-            timer.innerHTML = new Date().getTime();
         }
     }
 
