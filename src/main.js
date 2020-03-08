@@ -48,10 +48,12 @@ function go() {
     Workout.init();
     Builder.init();
     Startbutton.init(startHandler);
+    Timer.init(document.getElementById('timer'));
 
     // Event handlers.
     function startHandler() {
         Workout.start();
+        Timer.start();
     }
 }
 
