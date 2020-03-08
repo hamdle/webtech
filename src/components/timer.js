@@ -33,6 +33,10 @@ var Timer = (function () {
     // Helper functions.
     function elapsed() {
         var current_time = new Date();
+
+        if (start_time === 0) {
+            return 0;
+        }
         var time_diff = current_time - start_time;
         elapsed_time = Math.round(time_diff / one_second);
 
