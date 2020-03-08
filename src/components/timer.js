@@ -19,6 +19,7 @@ var Timer = (function () {
         end_time = 0;
         elapsed_time = 0;
         element = elem;
+        updateHandler();
         setInterval(updateHandler, one_second);
     }
 
