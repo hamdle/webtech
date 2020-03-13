@@ -1,8 +1,7 @@
-
 /* 
  * Countdown component
  *
- * Maintain and display a timer that counts up from 0. 
+ * A reusable timer that, given an amount of time in seconds, counts down.
  *
  * Use Utils
  *
