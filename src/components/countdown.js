@@ -39,14 +39,6 @@ var Countdown = (function () {
         events.push(handler);
     }
 
-    function clear() {
-        if (interval_id != null) {
-            clearInterval(interval_id);
-            interval_id = null;
-            clearDisplay();
-        }
-    }
-
     // Helper functions.
     function calcValue() {
         if (reset) {
@@ -98,7 +90,7 @@ var Countdown = (function () {
 
     return {
         init: init,
-        addExpiredHandler: add,
+        add: add,
         start: start,
     };
 })();

@@ -49,11 +49,19 @@ function go() {
     Builder.init();
     Startbutton.init(startHandler);
     Timer.init(document.getElementById('timer'));
+    Countdown.init(document.getElementById('countdown'));
 
     // Event handlers.
     function startHandler() {
         Workout.start();
         Timer.start();
+        Countdown.add(nextExerciseHandler);
+        Countdown.start(5);
+    }
+
+    function nextExerciseHandler() {
+        console.log('load next exercise.');
+        Countdown.start(5);
     }
 }
 

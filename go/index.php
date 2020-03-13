@@ -13,6 +13,7 @@
         <script type="text/javascript" src="../src/components/startbutton.js"></script>
         <script type="text/javascript" src="../src/components/utilities.js"></script>
         <script type="text/javascript" src="../src/components/timer.js"></script>
+        <script type="text/javascript" src="../src/components/countdown.js"></script>
         <script type="text/javascript" src="../src/main.js"></script>
     </body>
 </html>
