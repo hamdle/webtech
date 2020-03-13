@@ -42,20 +42,16 @@ var Builder = (function() {
         console.log(exercises);
 
         var list = document.getElementById('exercise__list');
-        var listItem = document.createElement('li');
-        var selectList = document.createElement('select');
+        // Create warm-up item at the top
+        var warmupItem = document.createElement('li');
+        var warmupSelectList = document.createElement('select');
+        list.appendChild(warmupItem);
+        warmupItem.appendChild(warmupSelectList);
 
-        list.appendChild(listItem);
-        listItem.appendChild(selectList);
-
-        exercises.forEach(function(item, index) {
-            var option = document.createElement('option');
-            option.value = item.title;
-            option.text = item.title;
-            option.setAttribute('data-id', item.id);
-            option.setAttribute('data-sets', item.default_sets);
-            selectList.appendChild(option);
-        });
+        var warmupOption = document.createElement('option');
+        warmupOption.value = "warmup";
+        warmupOption.text = "Warm up";
+        warmupSelectList.appendChild(warmupOption);
     }
 
     function addHandler() {
