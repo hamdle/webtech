@@ -54,14 +54,16 @@ function go() {
     // Event handlers.
     function startHandler() {
         Workout.start();
+        Workoutron.init(document.getElementById('workoutron')); 
+        Workoutron.next();
         Timer.start();
         Countdown.add(nextExerciseHandler);
-        Countdown.start(5);
+        Countdown.start(10);
     }
 
     function nextExerciseHandler() {
         console.log('load next exercise.');
-        Countdown.start(5);
+        Workoutron.next();
     }
 }
 

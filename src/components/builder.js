@@ -49,7 +49,7 @@ var Builder = (function() {
         warmupItem.appendChild(warmupSelectList);
 
         var warmupOption = document.createElement('option');
-        warmupOption.value = "warmup";
+        warmupOption.value = "Warm up";
         warmupOption.text = "Warm up";
         warmupSelectList.appendChild(warmupOption);
     }
