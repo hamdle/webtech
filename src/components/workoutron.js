@@ -19,6 +19,8 @@ var Workoutron = (function () {
         var lis = $exercise_list.getElementsByTagName('li');
         var sel = lis[0].getElementsByTagName('select');
         console.log(sel[0].selectedOptions[0].value);
+        //console.log(sel[0].selectedOptions[0].text);
+        lis[0].parentNode.removeChild(lis[0])
     }
 
     return {
