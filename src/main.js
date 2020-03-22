@@ -50,9 +50,11 @@ function go() {
     Startbutton.init(startHandler);
     Timer.init(document.getElementById('timer'));
     Countdown.init(document.getElementById('countdown'));
-
+    Instructions.init(document.getElementById('instructions'));
+    
     // Event handlers.
     function startHandler() {
+        Instructions.hide();
         Workout.start();
         Workoutron.init(document.getElementById('workoutron'),
             document.getElementById('exercise__list'));

@@ -15,6 +15,7 @@
         <script type="text/javascript" src="../src/components/timer.js"></script>
         <script type="text/javascript" src="../src/components/countdown.js"></script>
         <script type="text/javascript" src="../src/components/workoutron.js"></script>
+        <script type="text/javascript" src="../src/components/instructions.js"></script>
         <script type="text/javascript" src="../src/main.js"></script>
     </body>
 </html>
