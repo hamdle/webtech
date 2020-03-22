@@ -1,16 +1,17 @@
 // Workout component
 var Workout = (function() {
     var xhr;
-    var id;
+    var workout;
 
     function load() {
-        id = null;
-        console.log(id);
+        workout = {
+            id: null
+        }
     }
 
     function getWorkout() {
         //TODO: Create a new workout using the Api.
-        console.log('start workout');
+        return workout;
     }
 
     return {

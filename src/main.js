@@ -62,7 +62,6 @@ function go() {
     }
 
     function nextExerciseHandler() {
-        console.log('load next exercise.');
         Workoutron.next();
     }
 }
