@@ -11,9 +11,9 @@ var Workoutron = (function () {
     var $exercise
 
     // Class Api.
-    function init(element, workout_element) {
+    function init(element, exercise_list) {
         $element = element
-        $exercise_list = document.getElementById('exercise__list')
+        $exercise_list = exercise_list
         $exercise = null
     }
 
@@ -30,7 +30,11 @@ var Workoutron = (function () {
             return
         }
 
-        var select = list_items[0].getElementsByTagName('select')[0]
+        var select = pop(list_items)
+        if (select === null) {
+            $exercise = null;
+            return;
+        }
 
         $exercise = {
             name: select.selectedOptions[0].value,
@@ -38,12 +42,19 @@ var Workoutron = (function () {
             sets: select.selectedOptions[0].getAttribute('data-sets'),
             rest_in_seconds: 60
         }
-
-        pop(list_items[0]);
     }
 
-    function pop(select) {
-        select.parentNode.removeChild(select)
+    function pop(list_items) {
+        var selects = list_items[0].getElementsByTagName('select')
+        if (selects.length === 0) {
+            return null
+        }
+
+        var select = selects[0]
+
+        list_items[0].parentNode.removeChild(list_items[0])
+
+        return select
     }
 
     function display() {
