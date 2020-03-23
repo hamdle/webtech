@@ -39,19 +39,6 @@ var Builder = (function() {
         }
 
         exercises = JSON.parse(this.responseText);
-        console.log(exercises);
-
-        var list = document.getElementById('exercise__list');
-        // Create warm-up item at the top
-        var warmupItem = document.createElement('li');
-        var warmupSelectList = document.createElement('select');
-        list.appendChild(warmupItem);
-        warmupItem.appendChild(warmupSelectList);
-
-        var warmupOption = document.createElement('option');
-        warmupOption.value = "Warm up";
-        warmupOption.text = "Warm up";
-        warmupSelectList.appendChild(warmupOption);
     }
 
     function addHandler() {
