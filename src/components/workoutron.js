@@ -58,12 +58,47 @@ var Workoutron = (function () {
     }
 
     function display() {
+        clear()
+
         if ($exercise === null) {
-            $element.innerHTML = "No exercise."
+            //$element.innerHTML = "<div id='finish' class='finish'>Done</div>"
+            var div_finish = document.createElement('div')
+            div_finish.id = 'workoutron__finish'
+            div_finish.className = 'workoutron__finish'
+            div_finish.innerHTML = 'Done'
+            $element.appendChild(div_finish)
             return
         }
 
-        $element.innerHTML = $exercise.name;
+        var div_label = document.createElement('div')
+        div_label.id = 'workoutron__exercise--label'
+        div_label.className = 'workoutron__exercise--label'
+        div_label.innerHTML = $exercise.name
+        $element.appendChild(div_label)
+
+
+        var div_input = document.createElement('div')
+        div_input.id = 'workoutron__exercise--input'
+        div_input.className = 'workoutron__exercise--input'
+        $element.appendChild(div_input)
+
+
+        var div_sets = document.createElement('div')
+        div_sets.id = 'workoutron__exercise--sets'
+        div_sets.className = 'workoutron__exercise--sets'
+        div_sets.innerHTML = $exercise.sets + 'x' + $exercise.id
+        div_input.appendChild(div_sets)
+
+        for (var i = 0; i < $exercise.sets; i++) {
+            var input = document.createElement('input')
+            div_input.appendChild(input)
+        }
+    }
+
+    function clear() {
+        while ($element.firstChild) {
+            $element.removeChild($element.firstChild)
+        }
     }
 
     return {
