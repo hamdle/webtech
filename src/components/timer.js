@@ -16,7 +16,7 @@ var Timer = (function () {
     // Class Api.
     function init(elem) {
         start_time = 0;
-        end_time = 0;
+        end_time = null;
         elapsed_time = 0;
         element = elem;
         updateHandler();
@@ -33,13 +33,15 @@ var Timer = (function () {
 
     // Helper functions.
     function elapsed() {
-        var current_time = new Date();
-
         if (start_time === 0) {
             return 0;
         }
-        var time_diff = current_time - start_time;
-        elapsed_time = Math.round(time_diff / one_second);
+
+        if (end_time === null) {
+            var current_time = new Date();
+            var time_diff = current_time - start_time;
+            elapsed_time = Math.round(time_diff / one_second);
+        }
 
         return elapsed_time;
     }

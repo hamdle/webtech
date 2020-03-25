@@ -6,6 +6,7 @@
  *
  * Use RoutineBuilder
  * Use Workout
+ * Use Timer
  *
  */
 var InputDisplay = (function () {
@@ -56,6 +57,7 @@ var InputDisplay = (function () {
         div_finish.innerHTML = 'Done'
         $element.appendChild(div_finish)
 
+        Timer.stop();
         Workout.complete()
     }
 
