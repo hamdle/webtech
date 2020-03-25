@@ -20,29 +20,40 @@ var InputDisplay = (function () {
     }
 
     function next() {
-        get()
+        getExercise()
         display()
     }
 
     // Helper functions
-    function get() {
-        $exercise = RoutineBuilder.pop();
+    function getExercise() {
+        $exercise = RoutineBuilder.pop()
     }
 
-
     function display() {
-        clear()
+        clearDisplay()
 
         if ($exercise === null) {
-            //$element.innerHTML = "<div id='finish' class='finish'>Done</div>"
-            var div_finish = document.createElement('div')
-            div_finish.id = $name + '__finish'
-            div_finish.className = $name + '__finish'
-            div_finish.innerHTML = 'Done'
-            $element.appendChild(div_finish)
-            return
+            displayDone()
+        } else {
+            displayExercise()
         }
+    }
 
+    function clearDisplay() {
+        while ($element.firstChild) {
+            $element.removeChild($element.firstChild)
+        }
+    }
+
+    function displayDone() {
+        var div_finish = document.createElement('div')
+        div_finish.id = $name + '__finish'
+        div_finish.className = $name + '__finish'
+        div_finish.innerHTML = 'Done'
+        $element.appendChild(div_finish)
+    }
+
+    function displayExercise() {
         var div_label = document.createElement('div')
         div_label.id = $name + '__exercise--label'
         div_label.className = $name + '__exercise--label'
@@ -65,12 +76,6 @@ var InputDisplay = (function () {
         for (var i = 0; i < $exercise.sets; i++) {
             var input = document.createElement('input')
             div_input.appendChild(input)
-        }
-    }
-
-    function clear() {
-        while ($element.firstChild) {
-            $element.removeChild($element.firstChild)
         }
     }
 
