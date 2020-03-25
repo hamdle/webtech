@@ -21,6 +21,9 @@ var InputDisplay = (function () {
     }
 
     function next() {
+        if ($exercise !== null) {
+            Workout.addExercise($exercise)
+        }
         getExercise()
         display()
     }

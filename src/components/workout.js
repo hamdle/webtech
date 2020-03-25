@@ -13,6 +13,7 @@ var Workout = (function() {
 
     function create() {
         //TODO: Create a new workout using the Api.
+        console.log('new workout created.');
     }
 
     function get() {
@@ -21,13 +22,19 @@ var Workout = (function() {
 
     function complete() {
         //TODO: Send completion time.
-        console.log('complete.');
+        console.log('workout complete.');
+    }
+
+    function addExercise(exercise) {
+        //TODO: Add a completed exercise to the workout.
+        console.log('exercise ' + $exercise.name + ' added.');
     }
 
     return {
         init: load,
         create: create,
         get: get,
-        complete: complete
+        complete: complete,
+        addExercise: addExercise
     };
 })();
