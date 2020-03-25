@@ -9,13 +9,17 @@ var Workout = (function() {
         }
     }
 
-    function getWorkout() {
+    function create() {
         //TODO: Create a new workout using the Api.
+    }
+
+    function get() {
         return workout;
     }
 
     return {
         init: load,
-        start: getWorkout
+        create: create,
+        get: get
     };
 })();

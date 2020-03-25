@@ -9,12 +9,12 @@
         <?php include __DIR__.'/template.html'; ?>
 
         <script type="text/javascript" src="../src/components/workout.js"></script>
-        <script type="text/javascript" src="../src/components/builder.js"></script>
+        <script type="text/javascript" src="../src/components/routinebuilder.js"></script>
         <script type="text/javascript" src="../src/components/startbutton.js"></script>
         <script type="text/javascript" src="../src/components/utilities.js"></script>
         <script type="text/javascript" src="../src/components/timer.js"></script>
         <script type="text/javascript" src="../src/components/countdown.js"></script>
-        <script type="text/javascript" src="../src/components/workoutron.js"></script>
+        <script type="text/javascript" src="../src/components/inputdisplay.js"></script>
         <script type="text/javascript" src="../src/components/instructions.js"></script>
         <script type="text/javascript" src="../src/main.js"></script>
     </body>

@@ -46,7 +46,7 @@ function run(uri, index) {
 // go.php
 function go() {
     Workout.init();
-    Builder.init();
+    RoutineBuilder.init(document.getElementById('exercise__list'));
     Startbutton.init(startHandler);
     Timer.init(document.getElementById('timer'));
     Countdown.init(document.getElementById('countdown'));
@@ -55,18 +55,17 @@ function go() {
     // Event handlers.
     function startHandler() {
         Instructions.hide();
-        Workout.start();
-        Workoutron.init(document.getElementById('workoutron'),
-            document.getElementById('exercise__list'));
-        Workoutron.next();
+        Workout.create();
+        InputDisplay.init(document.getElementById('inputdisplay'));
+        InputDisplay.next();
         Timer.start();
-        Countdown.add(nextExerciseHandler);
-        Countdown.start(3);
+        //Countdown.add(nextExerciseHandler);
+        //Countdown.start(3);
     }
 
-    function nextExerciseHandler() {
+    /*function nextExerciseHandler() {
         Workoutron.next();
-    }
+    }*/
 }
 
 // index.php

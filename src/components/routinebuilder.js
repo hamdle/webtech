@@ -1,8 +1,13 @@
-// Workout builder component
-var Builder = (function() {
+/*
+ * Workout builder component
+ *
+ */
+var RoutineBuilder = (function() {
     var xhr;
+    var $element;
 
-    function load() {
+    function load(element) {
+        $element = element;
         // Get list of exercises from the Api.
         xhr = new XMLHttpRequest();
         xhr.addEventListener("load", exerciseHandler);
@@ -28,13 +33,51 @@ var Builder = (function() {
         remove.addEventListener('click', removeHandler);
     }
 
+    function pop() {
+        var list_items = $element.getElementsByTagName('li')
+        if (list_items.length === 0) {
+            return null
+        }
+
+        var select = _pop(list_items)
+        if (select === null) {
+            return null
+        }
+
+        $exercise = {
+            name: select.selectedOptions[0].value,
+            id: select.selectedOptions[0].getAttribute('data-id'),
+            sets: select.selectedOptions[0].getAttribute('data-sets'),
+            rest_in_seconds: 60
+        }
+
+        return $exercise
+
+    }
+
+    // Helper functions
+    
+    // Pop the next exercise off the top of the routine which will
+    // delete the element off the page and return it
+    function _pop(list_items) {
+        var selects = list_items[0].getElementsByTagName('select')
+        if (selects.length === 0) {
+            return null
+        }
+
+        var select = selects[0]
+
+        list_items[0].parentNode.removeChild(list_items[0])
+
+        return select
+    }
+
     // Request handlers.
     function exerciseHandler() {
         if (this.status !== 200) {
-            var list = document.getElementById('exercise__list');
             var par = document.createElement('p');
             par.textContent = 'Error loading exercises.';
-            list.appendChild(par);
+            $element.appendChild(par);
             return;
         }
 
@@ -42,11 +85,10 @@ var Builder = (function() {
     }
 
     function addHandler() {
-        var list = document.getElementById('exercise__list');
         var listItem = document.createElement('li');
         var selectList = document.createElement('select');
 
-        list.appendChild(listItem);
+        $element.appendChild(listItem);
         listItem.appendChild(selectList);
 
         exercises.forEach(function(item, index) {
@@ -60,14 +102,14 @@ var Builder = (function() {
     }
 
     function removeHandler() {
-        var list = document.getElementById('exercise__list');
-        if (list.childNodes.length > 2 &&
-            list.childNodes[list.childNodes.length-1].nodeName === "LI") {
-            list.removeChild(list.childNodes[list.childNodes.length-1]);
+        if ($element.childNodes.length > 2 &&
+            $element.childNodes[$element.childNodes.length-1].nodeName === "LI") {
+            $element.removeChild($element.childNodes[$element.childNodes.length-1]);
         }
     }
 
     return {
-        init: load
+        init: load,
+        pop: pop
     };
 })();
