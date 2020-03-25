@@ -4,7 +4,8 @@
  * Consume an exercise from the list and provide an interface 
  * and display.
  *
- * Uses RoutineBuilder
+ * Use RoutineBuilder
+ * Use Workout
  *
  */
 var InputDisplay = (function () {
@@ -51,6 +52,8 @@ var InputDisplay = (function () {
         div_finish.className = $name + '__finish'
         div_finish.innerHTML = 'Done'
         $element.appendChild(div_finish)
+
+        Workout.complete()
     }
 
     function displayExercise() {

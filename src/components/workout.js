@@ -3,9 +3,11 @@ var Workout = (function() {
     var xhr;
     var workout;
 
-    function load() {
+    // Class Api.
+    function load(user_id) {
         workout = {
-            id: null
+            id: null,
+            user_id: user_id
         }
     }
 
@@ -17,9 +19,15 @@ var Workout = (function() {
         return workout;
     }
 
+    function complete() {
+        //TODO: Send completion time.
+        console.log('complete.');
+    }
+
     return {
         init: load,
         create: create,
-        get: get
+        get: get,
+        complete: complete
     };
 })();
