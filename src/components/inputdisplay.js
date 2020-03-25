@@ -77,6 +77,18 @@ var InputDisplay = (function () {
             var input = document.createElement('input')
             div_input.appendChild(input)
         }
+
+        var next_button = document.createElement('button')
+        next_button.id = $name + '__next-button'
+        next_button.innerHTML = 'Next'
+        $element.appendChild(next_button)
+
+        next_button.addEventListener('click', nextButtonHandler);
+    }
+
+    // Request handlers.
+    function nextButtonHandler() {
+        next()
     }
 
     return {
