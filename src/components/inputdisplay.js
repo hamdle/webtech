@@ -23,6 +23,12 @@ var InputDisplay = (function () {
 
     function next() {
         if ($exercise !== null) {
+            var reps = []
+            inputs = $element.getElementsByTagName('input')
+            for (var n = 0; n < inputs.length; n++) {
+                reps.push(inputs[n].value)
+            }
+            $exercise['reps'] = reps
             Workout.addExercise($exercise)
         }
         getExercise()
@@ -83,6 +89,8 @@ var InputDisplay = (function () {
 
         for (var i = 0; i < $exercise.sets; i++) {
             var input = document.createElement('input')
+            input.className = $name + '__textbox'
+            input.id = $name + '__textbox--' + i
             div_input.appendChild(input)
         }
 
