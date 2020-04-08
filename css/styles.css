@@ -437,11 +437,11 @@ h2 {
     margin-right: 8px;
 }
 
-.opt-button__wrap {
+.start-button__wrap {
     margin-top: 50px;
 }
 
-.opt__button {
+.start__button {
     color: #fff;
     background-color: #ef4928;
     border: 1px solid #ef4928;
@@ -453,6 +453,11 @@ h2 {
     display: inline-block;
     text-decoration: none;
     text-align: center;
+}
+
+.start__button--disabled {
+    background-color: #000;
+    color: #eee;
 }
 
 /* Table */

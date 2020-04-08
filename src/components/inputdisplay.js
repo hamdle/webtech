@@ -29,10 +29,10 @@ var InputDisplay = (function () {
                 reps.push(inputs[n].value)
             }
             $exercise['reps'] = reps
-            Workout.addExercise($exercise)
+            $exercise['sets'] = inputs.length
         }
         getExercise()
-        display()
+        displayAndUpdate()
     }
 
     // Helper functions
@@ -40,13 +40,15 @@ var InputDisplay = (function () {
         $exercise = RoutineBuilder.pop()
     }
 
-    function display() {
+    function displayAndUpdate() {
         clearDisplay()
 
         if ($exercise === null) {
             displayDone()
+            completeWorkout()
         } else {
             displayExercise()
+            updateWorkout()
         }
     }
 
@@ -63,6 +65,13 @@ var InputDisplay = (function () {
         div_finish.innerHTML = 'Done'
         $element.appendChild(div_finish)
 
+    }
+
+    function updateWorkout() {
+        Workout.addExercise($exercise);
+    }
+
+    function completeWorkout() {
         Timer.stop();
         Workout.complete()
     }

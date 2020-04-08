@@ -8,7 +8,9 @@ var Workout = (function() {
         $workout = {
             id: null,
             user_id: user_id,
-            start_time: null
+            start_time: null,
+            end_time: null,
+            exercises: []
         }
     }
 
@@ -25,13 +27,15 @@ var Workout = (function() {
 
     function complete() {
         //TODO: Send completion time.
+        $workout.end_time = new Date().getTime()
         console.log('workout complete.')
+        console.log($workout);
     }
 
     function addExercise(exercise) {
         //TODO: Add a completed exercise to the workout.
         console.log('exercise ' + exercise.name + ' added.')
-        console.log(exercise)
+        $workout.exercises.push(exercise)
     }
 
     return {

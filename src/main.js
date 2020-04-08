@@ -54,6 +54,7 @@ function go() {
     
     // Event handlers.
     function startHandler() {
+        Startbutton.disable();
         Instructions.hide();
         Workout.create();
         InputDisplay.init(document.getElementById('inputdisplay'));

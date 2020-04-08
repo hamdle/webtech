@@ -1,19 +1,22 @@
 // Startbutton component
 var Startbutton = (function() {
-    var xhr;
+    var $element
 
     function load(clickHandler) {
-        // TODO: Get a new exercise id for this workout from the Api.
-
-        window.addEventListener("load", startHandler);
+        window.addEventListener("load", startHandler)
 
         function startHandler() {
-            var start = document.getElementById('start__button');
-            start.addEventListener('click', clickHandler);
+            $element = document.getElementById('start__button')
+            $element.addEventListener('click', clickHandler)
         }
     }
 
+    function disable() {
+        $element.classList.add('start__button--disabled')    
+    }
+
     return {
-        init: load
+        init: load,
+        disable: disable
     };
 })();
