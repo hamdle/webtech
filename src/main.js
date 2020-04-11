@@ -3,6 +3,7 @@
 // This is the entry point for all Javascript code executed in the App.
 
 let siteUrl = "http://workout.local/api/";
+let site = "http://workout.local/";
 
 let routes = [ 
     '',
@@ -73,17 +74,28 @@ function go() {
 function runIndex() {
     window.addEventListener("load", function() {
         function sendData() {
-            const request = new XMLHttpRequest();
+            const $xhr = new XMLHttpRequest();
             const formData = new FormData(form);
 
-            request.addEventListener('load', function(event) {
-                console.log(event.target.responseText);
+            // TODO: Clean this up. Don't need both of thses.
+            $xhr.addEventListener('load', function(event) {
+                //console.log(event.target.responseText);
+                //window.location = site + 'go';
             });
-            request.addEventListener('error', function(event) {
+            $xhr.onreadystatechange = function() {
+                if ($xhr.readyState == XMLHttpRequest.DONE) {
+                    if (this.status == 200) {
+                        window.location = site + 'go';
+                    } else {
+                        console.log('login failed.');
+                    }
+                }
+            }
+            $xhr.addEventListener('error', function(event) {
                 console.log('Error!');
             });
-            request.open("POST", siteUrl + 'login');
-            request.send(formData);
+            $xhr.open("POST", siteUrl + 'login');
+            $xhr.send(formData);
         }
 
         let form = document.getElementById('loginForm');
