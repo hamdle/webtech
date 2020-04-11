@@ -74,19 +74,15 @@ function runIndex() {
     window.addEventListener("load", function() {
         function sendData() {
             const request = new XMLHttpRequest();
-
             const formData = new FormData(form);
 
             request.addEventListener('load', function(event) {
                 console.log(event.target.responseText);
             });
-
             request.addEventListener('error', function(event) {
                 console.log('Error!');
             });
-
             request.open("POST", siteUrl + 'login');
-
             request.send(formData);
         }
 

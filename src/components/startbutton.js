@@ -1,8 +1,10 @@
 // Startbutton component
 var Startbutton = (function() {
     var $element
+    var $handler
 
     function load(clickHandler) {
+        $handler = clickHandler
         window.addEventListener("load", startHandler)
 
         function startHandler() {
@@ -12,7 +14,8 @@ var Startbutton = (function() {
     }
 
     function disable() {
-        $element.classList.add('start__button--disabled')    
+        $element.classList.add('start__button--disabled')
+        $element.removeEventListener('click', $handler, false)
     }
 
     return {

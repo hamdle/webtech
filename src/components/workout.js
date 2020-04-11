@@ -6,8 +6,6 @@ var Workout = (function() {
     // Class Api.
     function load(user_id) {
         $workout = {
-            id: null,
-            user_id: user_id,
             start_time: null,
             end_time: null,
             exercises: []
@@ -15,10 +13,7 @@ var Workout = (function() {
     }
 
     function create() {
-        //TODO: Create a new workout using the Api.
-        console.log('new workout created.')
         $workout.start_time = new Date().getTime()
-        console.log($workout);
     }
 
     function get() {
@@ -26,14 +21,25 @@ var Workout = (function() {
     }
 
     function complete() {
-        //TODO: Send completion time.
         $workout.end_time = new Date().getTime()
-        console.log('workout complete.')
+
+        console.log('sending workout request');
         console.log($workout);
+
+        $xhr = new XMLHttpRequest();
+        $xhr.addEventListener('load', function(event) {
+            console.log(event.target.responseText);
+        });
+        $xhr.addEventListener('error', function(event) {
+            console.log('Error!');
+        });
+        $xhr.open("POST", siteUrl + 'workouts/new');
+
+        $xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        $xhr.send(JSON.stringify($workout));
     }
 
     function addExercise(exercise) {
-        //TODO: Add a completed exercise to the workout.
         console.log('exercise ' + exercise.name + ' added.')
         $workout.exercises.push(exercise)
     }

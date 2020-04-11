@@ -456,8 +456,10 @@ h2 {
 }
 
 .start__button--disabled {
-    background-color: #000;
-    color: #eee;
+    background-color: #2a2828;
+    color: #ccc;
+    border: 1px solid #1c1c1c;
+    cursor: default;
 }
 
 /* Table */
