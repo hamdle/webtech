@@ -15,7 +15,8 @@ var Workout = (function() {
     }
 
     function create() {
-        $workout.start = new Date().getTime()
+        // Record a linux timestamp.
+        $workout.start = Math.round(+new Date() / 1000);
     }
 
     function get() {
@@ -23,7 +24,8 @@ var Workout = (function() {
     }
 
     function complete() {
-        $workout.end = new Date().getTime()
+        // Record a linux timestamp.
+        $workout.end = Math.round(+new Date() / 1000);
 
         console.log('sending workout request');
         console.log($workout);
