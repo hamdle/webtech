@@ -100,7 +100,7 @@ var InputDisplay = (function () {
         var div_sets = document.createElement('div')
         div_sets.id = $name + '__exercise--sets'
         div_sets.className = $name + '__exercise--sets'
-        div_sets.innerHTML = $exercise.sets + 'x' + $exercise.id
+        div_sets.innerHTML = $exercise.sets + 'x' + $exercise.exercises_id
         div_input.appendChild(div_sets)
 
         for (var i = 0; i < $exercise.sets; i++) {

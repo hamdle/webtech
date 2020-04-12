@@ -43,7 +43,7 @@ var Workout = (function() {
     }
 
     function addExercise(exercise) {
-        console.log('exercise ' + exercise.name + ' added.')
+        console.log('exercise ' + exercise.exercises_id + ' added.')
         $workout.entries.push(exercise)
     }
 
