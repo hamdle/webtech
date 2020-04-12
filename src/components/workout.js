@@ -6,9 +6,12 @@ var Workout = (function() {
     // Class Api.
     function load(user_id) {
         $workout = {
-            start_time: null,
-            end_time: null,
-            exercises: []
+            user_id: null,
+            start: null,
+            end: null,
+            notes: null,
+            feel: null,
+            entries: []
         }
     }
 
@@ -41,7 +44,7 @@ var Workout = (function() {
 
     function addExercise(exercise) {
         console.log('exercise ' + exercise.name + ' added.')
-        $workout.exercises.push(exercise)
+        $workout.entries.push(exercise)
     }
 
     return {

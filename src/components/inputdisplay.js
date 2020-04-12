@@ -25,9 +25,16 @@ var InputDisplay = (function () {
         if ($exercise !== null) {
             var reps = []
             inputs = $element.getElementsByTagName('input')
+
             for (var n = 0; n < inputs.length; n++) {
-                reps.push(inputs[n].value)
+                var rep = {
+                    entries_id: null,
+                    amount: inputs[n].value
+                };
+                
+                reps.push(rep)
             }
+
             $exercise['reps'] = reps
             $exercise['sets'] = inputs.length
         }
