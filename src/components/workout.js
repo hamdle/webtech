@@ -44,7 +44,8 @@ var Workout = (function() {
     }
 
     function addExercise(exercise) {
-        console.log('exercise ' + exercise.exercises_id + ' added.')
+        console.log('exercise ' + exercise.name + ' added.')
+        delete exercise.name
         $workout.entries.push(exercise)
     }
 

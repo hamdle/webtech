@@ -45,7 +45,7 @@ var RoutineBuilder = (function() {
         }
 
         $exercise = {
-            //name: select.selectedOptions[0].value,
+            name: select.selectedOptions[0].value,
             exercises_id: select.selectedOptions[0].getAttribute('data-id'),
             sets: select.selectedOptions[0].getAttribute('data-sets'),
             reps: null,
