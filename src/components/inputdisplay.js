@@ -28,7 +28,6 @@ var InputDisplay = (function () {
 
             for (var n = 0; n < inputs.length; n++) {
                 var rep = {
-                    entries_id: null,
                     amount: inputs[n].value
                 };
                 

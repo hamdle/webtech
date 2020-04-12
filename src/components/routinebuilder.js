@@ -46,10 +46,7 @@ var RoutineBuilder = (function() {
 
         $exercise = {
             //name: select.selectedOptions[0].value,
-            //rest_in_seconds: 60
             exercises_id: select.selectedOptions[0].getAttribute('data-id'),
-            workout_id: null,
-            user_id: null,
             sets: select.selectedOptions[0].getAttribute('data-sets'),
             reps: null,
             feedback: null

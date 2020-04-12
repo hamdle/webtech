@@ -6,7 +6,6 @@ var Workout = (function() {
     // Class Api.
     function load(user_id) {
         $workout = {
-            user_id: null,
             start: null,
             end: null,
             notes: null,
@@ -16,7 +15,7 @@ var Workout = (function() {
     }
 
     function create() {
-        $workout.start_time = new Date().getTime()
+        $workout.start = new Date().getTime()
     }
 
     function get() {
@@ -24,7 +23,7 @@ var Workout = (function() {
     }
 
     function complete() {
-        $workout.end_time = new Date().getTime()
+        $workout.end = new Date().getTime()
 
         console.log('sending workout request');
         console.log($workout);
