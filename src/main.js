@@ -90,8 +90,23 @@ function runIndex() {
             $xhr.send(formData);
         }
 
+        function loginRedirect() {
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener("load", function(event) {
+                console.log(this.status);
+                if (this.status == 200) {
+                    window.location = site + '/go';
+                }
+            })
+            xhr.open("GET", siteApi + 'auth');
+            xhr.send();
+        }
+
         // Run on load.
         let form = document.getElementById('loginForm');
+        
+        // Redirect to /go if user is already logged in.
+        loginRedirect();
 
         // Handle login submit through Api.
         form.addEventListener("submit", function (event) {
