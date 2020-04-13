@@ -11,7 +11,6 @@ var Instructions = (function() {
     // Class Api.
     function init(element) {
         $element = element
-        $element.innerHTML = 'Build a Routine and hit Start to begin'
     }
 
     function hide() {
