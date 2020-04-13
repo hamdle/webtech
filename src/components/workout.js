@@ -37,7 +37,7 @@ var Workout = (function() {
         $xhr.addEventListener('error', function(event) {
             console.log('Error!');
         });
-        $xhr.open("POST", siteUrl + 'workouts/new');
+        $xhr.open("POST", siteApi + 'workouts/new');
 
         $xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         $xhr.send(JSON.stringify($workout));

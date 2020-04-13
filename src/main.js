@@ -2,7 +2,7 @@
 //
 // This is the entry point for all Javascript code executed in the App.
 
-let siteUrl = "http://workout.local/api/";
+let siteApi = "http://workout.local/api/";
 let site = "http://workout.local/";
 
 let routes = [ 
@@ -94,7 +94,7 @@ function runIndex() {
             $xhr.addEventListener('error', function(event) {
                 console.log('Error!');
             });
-            $xhr.open("POST", siteUrl + 'login');
+            $xhr.open("POST", siteApi + 'login');
             $xhr.send(formData);
         }
 
@@ -122,7 +122,7 @@ function runReady() {
 
     var request = new XMLHttpRequest();
     request.addEventListener("load", requestListener);
-    request.open("GET", siteUrl + '1/workouts/new');
+    request.open("GET", siteApi + '1/workouts/new');
     request.send();
 }
 

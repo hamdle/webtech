@@ -11,7 +11,7 @@ var RoutineBuilder = (function() {
         // Get list of exercises from the Api.
         xhr = new XMLHttpRequest();
         xhr.addEventListener("load", exerciseHandler);
-        xhr.open("GET", siteUrl + 'exercises');
+        xhr.open("GET", siteApi + 'exercises');
         xhr.send();
 
         // Load button handlers.
