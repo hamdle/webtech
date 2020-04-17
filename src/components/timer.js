@@ -48,8 +48,8 @@ var Timer = (function () {
 
     // Event handlers.
     function updateHandler() {
-        //element.innerHTML = Utils.formatTime(elapsed(), Utils.format('HOURS'), false);
-        element.innerHTML = Utils.formatTime(elapsed(), Utils.get('FLEX'), true);
+        element.innerHTML = Utils.formatTime(elapsed(), Utils.get('MINUTES'), false);
+        //element.innerHTML = Utils.formatTime(elapsed(), Utils.get('FLEX'), true);
     }
 
     return {

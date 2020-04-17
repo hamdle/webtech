@@ -491,3 +491,15 @@ h2 {
 .table__col {
     min-width: 100px;
 }
+
+/* Timer */
+.timer {
+    text-align: center;
+    font-size: 48px;
+    line-height: 48px;
+    background-color: #63d063;
+    color: #d7f7d7;
+    border-radius: 4px;
+    margin: 10px 0;
+    padding: 14px;
+}
