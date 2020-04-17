@@ -99,7 +99,7 @@ var InputDisplay = (function () {
         var div_sets = document.createElement('div')
         div_sets.id = $name + '__exercise--sets'
         div_sets.className = $name + '__exercise--sets'
-        div_sets.innerHTML = $exercise.sets + 'x' + $exercise.exercises_id
+        div_sets.innerHTML = $exercise.sets + 'x'
         div_input.appendChild(div_sets)
 
         for (var i = 0; i < $exercise.sets; i++) {
@@ -107,11 +107,18 @@ var InputDisplay = (function () {
             input.className = $name + '__textbox'
             input.id = $name + '__textbox--' + i
             div_input.appendChild(input)
+            if (i + 1 < $exercise.sets) {
+                var span_plus = document.createElement('span');
+                span_plus.className = $name + '__plus'
+                span_plus.innerHTML = ' + '
+                div_input.appendChild(span_plus)
+            }
         }
 
-        var next_button = document.createElement('button')
+        var next_button = document.createElement('a')
         next_button.id = $name + '__next-button'
-        next_button.innerHTML = 'Next'
+        next_button.className = $name + '__next-button'
+        next_button.innerHTML = 'Next exercise'
         $element.appendChild(next_button)
 
         next_button.addEventListener('click', nextButtonHandler);
