@@ -6,7 +6,9 @@ let siteApi = "http://workout.local/api/";
 let site = "http://workout.local/";
 
 let routes = [ 
+    // Public pages
     '',
+    // Auth pages
     'go/',
     'stats/',
     'exercises/',
@@ -23,12 +25,14 @@ routes.map(function (uri, index) {
                 runIndex()
                 break
             case 1:
+                verifyLogin();
                 loadTooltips()
                 runGo()
                 break
             case 2:
             case 3:
             case 4:
+                verifyLogin();
                 loadTooltips()
         }
     }
@@ -36,9 +40,6 @@ routes.map(function (uri, index) {
 
 // /go
 function runGo() {
-    // Verify user login
-    VerifyUser.failure('');
-
     // Init components.
     Workout.init();
     RoutineBuilder.init(document.getElementById('exercise__list'));
@@ -131,4 +132,9 @@ function loadTooltips() {
             };
         }
     });
+}
+
+function verifyLogin() {
+    // Requires verifyuser.js
+    VerifyUser.failure('');
 }
