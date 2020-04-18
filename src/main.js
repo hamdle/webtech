@@ -36,6 +36,9 @@ routes.map(function (uri, index) {
 
 // /go
 function runGo() {
+    // Verify user login
+    VerifyUser.failure('');
+
     // Init components.
     Workout.init();
     RoutineBuilder.init(document.getElementById('exercise__list'));
@@ -52,17 +55,21 @@ function runGo() {
         InputDisplay.init(document.getElementById('inputdisplay'));
         InputDisplay.next();
         Timer.start();
-        //Countdown.add(nextExerciseHandler);
-        //Countdown.start(3);
+        Countdown.add(nextExerciseHandler);
+        Countdown.start(120);
     }
 
-    /*function nextExerciseHandler() {
-        Workoutron.next();
-    }*/
+    function nextExerciseHandler() {
+        Countdown.add(nextExerciseHandler);
+        Countdown.start(60);
+    }
 }
 
 // /
 function runIndex() {
+    // Redirect to /go if the user is already logged in
+    VerifyUser.success('go');
+
     window.addEventListener("load", function() {
         // Helper functions.
         function sendData() {
@@ -90,28 +97,12 @@ function runIndex() {
             $xhr.send(formData);
         }
 
-        function loginRedirect() {
-            const xhr = new XMLHttpRequest();
-            xhr.addEventListener("load", function(event) {
-                console.log(this.status);
-                if (this.status == 200) {
-                    window.location = site + '/go';
-                }
-            })
-            xhr.open("GET", siteApi + 'auth');
-            xhr.send();
-        }
-
         // Run on load.
         let form = document.getElementById('loginForm');
-        
-        // Redirect to /go if user is already logged in.
-        loginRedirect();
 
         // Handle login submit through Api.
         form.addEventListener("submit", function (event) {
             event.preventDefault();
-
             sendData();
         });
     });
