@@ -66,10 +66,15 @@ var InputDisplay = (function () {
 
     function displayDone() {
         var div_finish = document.createElement('div')
-        div_finish.id = $name + '__finish'
-        div_finish.className = $name + '__finish'
-        div_finish.innerHTML = 'Done'
+        div_finish.id = $name + '__finish--large'
+        div_finish.className = $name + '__finish--large'
+        div_finish.innerHTML = 'Workout complete.'
         $element.appendChild(div_finish)
+        var div_finish_small = document.createElement('div')
+        div_finish_small.id = $name + '__finish--small'
+        div_finish_small.className = $name + '__finish--small'
+        div_finish_small.innerHTML = 'Good job!'
+        $element.appendChild(div_finish_small)
 
     }
 
