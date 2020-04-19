@@ -95,19 +95,25 @@ var InputDisplay = (function () {
         div_label.id = $name + '__exercise--label'
         div_label.className = $name + '__exercise--label'
         div_label.innerHTML = $exercise.name
-        // 'Add' and 'Remove' buttons
-        var div_label_add = document.createElement('span')
-        div_label_add.className = $name + '-exercise__button--add'
-        div_label_add.innerHTML = 'Add'
-        // Add set handler.
-        div_label_add.addEventListener('click', addSetHandler);
-        div_label.appendChild(div_label_add)
-        var div_label_remove = document.createElement('span')
-        div_label_remove.className = $name + '-exercise__button--remove'
-        div_label_remove.innerHTML = 'Remove'
-        // Remove set handler.
-        div_label_remove.addEventListener('click', removeSetHandler);
-        div_label.appendChild(div_label_remove)
+
+        if ($exercise.exercises_id != WARM_UP_ID) {
+            // 'Add' button.
+            var div_label_add = document.createElement('span')
+            div_label_add.className = $name + '-exercise__button--add'
+            div_label_add.innerHTML = 'Add'
+            // Add set handler.
+            div_label_add.addEventListener('click', addSetHandler);
+            div_label.appendChild(div_label_add)
+
+            // 'Remove' button.
+            var div_label_remove = document.createElement('span')
+            div_label_remove.className = $name + '-exercise__button--remove'
+            div_label_remove.innerHTML = 'Remove'
+            // Remove set handler.
+            div_label_remove.addEventListener('click', removeSetHandler);
+            div_label.appendChild(div_label_remove)
+        }
+
         $element.appendChild(div_label)
 
         // 2x and input wrap
