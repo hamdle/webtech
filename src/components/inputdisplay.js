@@ -126,7 +126,7 @@ var InputDisplay = (function () {
         var div_sets = document.createElement('div')
         div_sets.id = $name + '__exercise--sets'
         div_sets.className = $name + '__exercise--sets'
-        div_sets.innerHTML = '<span class="sets__number">' + $exercise.sets + '</span>x'
+        div_sets.innerHTML = '<span id="sets__number" class="sets__number">' + $exercise.sets + '</span>x'
         div_input.appendChild(div_sets)
 
         // inputs
@@ -165,10 +165,10 @@ var InputDisplay = (function () {
 
     function addSetHandler(event) {
         // Get the containing div
-        var div_input = document.getElementById('input-display__exercise--input');
+        var div_input = document.getElementById('input-display__exercise--input')
 
         // Add a '+'
-        var span_plus = document.createElement('span');
+        var span_plus = document.createElement('span')
         span_plus.className = $name + '__plus'
         span_plus.innerHTML = ' + '
         div_input.appendChild(span_plus)
@@ -183,6 +183,11 @@ var InputDisplay = (function () {
             input.className = $name + '__textbox'
         }
         div_input.appendChild(input)
+
+        // Now update the set number
+        var div_sets = document.getElementById('sets__number')
+        var sets = parseInt(div_sets.innerHTML) + 1
+        div_sets.innerHTML = sets
     }
 
     function removeSetHandler(event) {
@@ -194,6 +199,13 @@ var InputDisplay = (function () {
             div_input.removeChild(div_input.lastChild)
             // and '+'
             div_input.removeChild(div_input.lastChild)
+        }
+
+        // Now update the set number
+        var div_sets = document.getElementById('sets__number')
+        var sets = parseInt(div_sets.innerHTML) - 1
+        if (sets > 0) {
+            div_sets.innerHTML = sets
         }
     }
 
