@@ -279,13 +279,11 @@ h2 {
 
 .body__link {
     text-decoration: none;
-    transition: 0.3s;
-    padding: 0px 3px;
+    margin: 0px 3px;
 }
 
 .body__link:hover {
-    color: #212121;
-    padding: 3px 3px;
+    border-bottom: 2px solid #ef4928;
 }
 
 .body-link__icon {
@@ -489,33 +487,8 @@ h2 {
 }
 
 /* Table */
-
 .table {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    width: 50%;
-}
-
-.table__row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: #eee;
     text-align: center;
-}
-
-.table__row--header {
-    border-bottom: 2px solid #e6e6e6;
-    font-weight: bold;
-}
-
-.table__row--odd {
-    background-color: #fdfdfd;
-}
-
-.table__col {
-    min-width: 100px;
 }
 
 /* Timer */
