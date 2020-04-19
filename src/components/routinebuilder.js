@@ -87,7 +87,9 @@ var RoutineBuilder = (function() {
 
     function addHandler() {
         var listItem = document.createElement('li');
+        listItem.classList = 'exercise__list-item';
         var selectList = document.createElement('select');
+        selectList.classList = 'exercise__select';
 
         $element.appendChild(listItem);
         listItem.appendChild(selectList);
