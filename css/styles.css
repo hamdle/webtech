@@ -544,8 +544,13 @@ h2 {
 }
 
 .input-display__next-button {
+    padding: 0.5em 1em;
+    background-color: #ef4928;
+    border-radius: 3px;
+    text-decoration: none;
+    color: #ffffff;
+    margin-right: 1rem;
     cursor: pointer;
-    border-bottom: 2px solid #ef4928;
 }
 
 .input-display__finish--large {
@@ -558,6 +563,27 @@ h2 {
     font-size: 22px;
     margin: 10px 0;
     line-height: 22px;
+}
+
+.input-display-exercise__button--add,
+.input-display-exercise__button--remove {
+    font-size: 24px;
+    color: #ef4928;
+    font-weight: bold;
+}
+
+.input-display-exercise__button--add:hover,
+.input-display-exercise__button--remove:hover {
+    cursor: pointer;
+    border-bottom: 3px solid #ef4928;
+}
+
+.input-display-exercise__button--add {
+    margin-left: 40px;
+}
+
+.input-display-exercise__button--remove {
+    margin-left: 10px;
 }
 
 /* Countdown timer */

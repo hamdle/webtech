@@ -90,26 +90,44 @@ var InputDisplay = (function () {
     }
 
     function displayExercise() {
+        // Exercise name
         var div_label = document.createElement('div')
         div_label.id = $name + '__exercise--label'
         div_label.className = $name + '__exercise--label'
         div_label.innerHTML = $exercise.name
+        // 'Add' and 'Remove' buttons
+        var div_label_add = document.createElement('span')
+        div_label_add.className = $name + '-exercise__button--add'
+        div_label_add.innerHTML = 'Add'
+        // Add set handler.
+        div_label_add.addEventListener('click', addSetHandler);
+        div_label.appendChild(div_label_add)
+        var div_label_remove = document.createElement('span')
+        div_label_remove.className = $name + '-exercise__button--remove'
+        div_label_remove.innerHTML = 'Remove'
+        // Remove set handler.
+        div_label_remove.addEventListener('click', removeSetHandler);
+        div_label.appendChild(div_label_remove)
         $element.appendChild(div_label)
 
+        // 2x and input wrap
         var div_input = document.createElement('div')
         div_input.id = $name + '__exercise--input'
         div_input.className = $name + '__exercise--input'
         $element.appendChild(div_input)
 
+        // 2x
         var div_sets = document.createElement('div')
         div_sets.id = $name + '__exercise--sets'
         div_sets.className = $name + '__exercise--sets'
         div_sets.innerHTML = '<span class="sets__number">' + $exercise.sets + '</span>x'
         div_input.appendChild(div_sets)
 
+        // inputs
         for (var i = 0; i < $exercise.sets; i++) {
             var input = document.createElement('input')
             input.id = $name + '__textbox--' + i
+            // Don't display inputs for 'Warm up'
             if ($exercise.exercises_id == WARM_UP_ID) {
                 input.className = $name + '__textbox hide'
             } else {
@@ -124,6 +142,7 @@ var InputDisplay = (function () {
             }
         }
 
+        // Next button
         var next_button = document.createElement('a')
         next_button.id = $name + '__next-button'
         next_button.className = $name + '__next-button'
@@ -136,6 +155,40 @@ var InputDisplay = (function () {
     // Request handlers.
     function nextButtonHandler() {
         next()
+    }
+
+    function addSetHandler(event) {
+        // Get the containing div
+        var div_input = document.getElementById('input-display__exercise--input');
+
+        // Add a '+'
+        var span_plus = document.createElement('span');
+        span_plus.className = $name + '__plus'
+        span_plus.innerHTML = ' + '
+        div_input.appendChild(span_plus)
+
+        // Add the input
+        var input = document.createElement('input')
+        input.id = $name + '__textbox--' + 'add'
+        // Don't display inputs for 'Warm up'
+        if ($exercise.exercises_id == WARM_UP_ID) {
+            input.className = $name + '__textbox hide'
+        } else {
+            input.className = $name + '__textbox'
+        }
+        div_input.appendChild(input)
+    }
+
+    function removeSetHandler(event) {
+        // Get the containing div
+        var div_input = document.getElementById('input-display__exercise--input');
+
+        if (div_input.children.length > 2) {
+            // Remove input
+            div_input.removeChild(div_input.lastChild)
+            // and '+'
+            div_input.removeChild(div_input.lastChild)
+        }
     }
 
     return {
