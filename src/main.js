@@ -62,7 +62,7 @@ function runGo() {
 
     function nextExerciseHandler() {
         Countdown.add(nextExerciseHandler);
-        Countdown.start(60);
+        Countdown.start(120);
     }
 }
 

@@ -24,13 +24,26 @@ var Countdown = (function () {
         interval_id = null;
     }
 
+    function reset(seconds) {
+
+    }
+
     function start(value) {
+        /*
         if (interval_id != null) {
             clearInterval(interval_id);
             clearDisplay();
             start_time = new Date();
             reset = true;
         }
+        */
+        start_time = 0;
+        reset = true;
+        interval_id = null;
+        clearInterval(interval_id);
+        clearDisplay();
+        start_time = new Date();
+        reset = true;
         amount = value;
         interval_id = setInterval(updateHandler, one_second);
     }
@@ -60,7 +73,7 @@ var Countdown = (function () {
     }
 
     function clearDisplay() {
-        element.innerHTML = '';
+        element.innerHTML = '0';
     }
 
     function displayCountdown(countdown) {
@@ -92,5 +105,6 @@ var Countdown = (function () {
         init: init,
         add: add,
         start: start,
+        reset: reset
     };
 })();
