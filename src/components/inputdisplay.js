@@ -14,6 +14,8 @@ var InputDisplay = (function () {
     var $exercise
     var $name
 
+    const WARM_UP_ID = 1;
+
     // Class Api.
     function init(element) {
         $element = element
@@ -94,12 +96,10 @@ var InputDisplay = (function () {
         div_label.innerHTML = $exercise.name
         $element.appendChild(div_label)
 
-
         var div_input = document.createElement('div')
         div_input.id = $name + '__exercise--input'
         div_input.className = $name + '__exercise--input'
         $element.appendChild(div_input)
-
 
         var div_sets = document.createElement('div')
         div_sets.id = $name + '__exercise--sets'
@@ -109,8 +109,12 @@ var InputDisplay = (function () {
 
         for (var i = 0; i < $exercise.sets; i++) {
             var input = document.createElement('input')
-            input.className = $name + '__textbox'
             input.id = $name + '__textbox--' + i
+            if ($exercise.exercises_id == WARM_UP_ID) {
+                input.className = $name + '__textbox hide'
+            } else {
+                input.className = $name + '__textbox'
+            }
             div_input.appendChild(input)
             if (i + 1 < $exercise.sets) {
                 var span_plus = document.createElement('span');
