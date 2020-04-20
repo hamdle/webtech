@@ -41,6 +41,8 @@ var InputDisplay = (function () {
         }
         getExercise()
         displayAndUpdate()
+        // TODO: Replace this magic number with value from user settings.
+        Countdown.start(120)
     }
 
     // Helper functions

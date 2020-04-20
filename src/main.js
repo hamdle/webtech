@@ -56,14 +56,15 @@ function runGo() {
         InputDisplay.init(document.getElementById('inputdisplay'));
         InputDisplay.next();
         Timer.start();
-        Countdown.add(nextExerciseHandler);
+        // TODO: Replace this magic number with value from user settings.
         Countdown.start(120);
     }
 
-    function nextExerciseHandler() {
-        Countdown.add(nextExerciseHandler);
-        Countdown.start(120);
-    }
+    // Reset cooldown timer to 60 sec when the users clicks the timer.
+    var timer = document.getElementById('timer')
+    timer.addEventListener('click', function () {
+        Countdown.start(60);
+    });
 }
 
 // /
