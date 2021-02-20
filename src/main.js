@@ -2,7 +2,7 @@
 //
 // This is the entry point for all Javascript code executed in the App.
 
-let siteApi = "http://workout.local/api/";
+let siteApi = "http://api.workout.local/";
 let site = "http://workout.local/";
 
 let routes = [ 
@@ -88,14 +88,17 @@ function runIndex() {
                     if (this.status == 200) {
                         window.location = site + 'go';
                     } else {
-                        console.log('login failed.');
+                        console.log('Login failed. Response code: '+this.status);
                     }
                 }
             }
             $xhr.addEventListener('error', function(event) {
-                console.log('Error!');
+                console.log('An error occured while logging in.');
             });
             $xhr.open("POST", siteApi + 'login');
+            // Specifying a header here could cause the POST data to be send
+            // incorrectly, don't set it explicitly and let the broswer generate
+            // the correct one automatically
             $xhr.send(formData);
         }
 

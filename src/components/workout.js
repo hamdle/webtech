@@ -32,14 +32,16 @@ var Workout = (function() {
 
         $xhr = new XMLHttpRequest();
         $xhr.addEventListener('load', function(event) {
-            console.log(event.target.responseText);
+            console.log($xhr.status);
         });
         $xhr.addEventListener('error', function(event) {
-            console.log('Error!');
+            console.log('There was an error with this request.');
         });
         $xhr.open("POST", siteApi + 'workouts/new');
 
         $xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        // Send as a simple request to avoid preflight CORS policy checks
+        //$xhr.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
         $xhr.send(JSON.stringify($workout));
     }
 
