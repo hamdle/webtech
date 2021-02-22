@@ -2,7 +2,7 @@
 //
 // This is the entry point for all Javascript code executed in the App.
 
-let siteApi = "http://api.workout.local/";
+let siteApi = "http://workout.local/api/";
 let site = "http://workout.local/";
 
 let routes = [ 
