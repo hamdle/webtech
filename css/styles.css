@@ -246,7 +246,6 @@ h2 {
 .dash__opt {
     width: 350px;
     background-color: #1c1c1c;
-    background-image: linear-gradient(to bottom, #1c1c1c, #242424, #282626, #2f2c2c, #262525);
 }
 
 .exercise__button {
