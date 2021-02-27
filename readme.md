@@ -1,46 +1,17 @@
-# wo app
+# Workout App
 
-This is a web application to track my workouts, herby dubbed wo.
+The Workout App is designed to track workouts that I've been doing for the past few years. There's an accompanying API that manages all of the user and exercise data that works in collaboration with the App. The App has been designed to help enter and track exercies during a workout as well as to send the data to the API to chart workouts over time.
 
-There are three parts to the wo project (1) the app, (2) the API, and (3) the deploy.
+# API submodule
 
-This is (1) the app. The app is the front-end of wo. It displays and posts the workout data. 
+The API, written in PHP, is located in the /api folder at the root of the application.
 
-The workout app posts to an API and is deployed by a custom-built auto deploy application.
+# Pages
 
-# pages
+### Login page
 
-/
-Login page.
+Located at '/', the login page authenticates the user and forwards them to the workout page.
 
-/go
-Workout page.
+### Workout page
 
-/stats
-Explore workouts page.
-
-/exercises
-About exercises page.
-
-/reset
-Reset password page.
-
-/about
-About site page.
-
-/register
-Register for account page.
-
-/settings
-User account settings page.
-
-# theme
-
-### Colors
-
-Red #ef4928
-Black #1c1c1c
-Gray #f9f9f9
-Blue #5d87cb
-
-
+Located at '/go', the workout page helps the user build a workout from existing exercies and then runs the workout for the user to do.
