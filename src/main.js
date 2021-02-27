@@ -12,7 +12,6 @@ let routes = [
     'go/',
     'stats/',
     'exercises/',
-    'settings/',
 ]
 
 let path = location.pathname.substring(1)
@@ -31,7 +30,6 @@ routes.map(function (uri, index) {
                 break
             case 2:
             case 3:
-            case 4:
                 verifyLogin();
                 loadTooltips()
         }
