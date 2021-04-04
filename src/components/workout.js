@@ -10,7 +10,7 @@ var Workout = (function() {
             end: null,
             notes: null,
             feel: null,
-            entries: []
+            exercises: []
         }
     }
 
@@ -32,8 +32,17 @@ var Workout = (function() {
 
         $xhr = new XMLHttpRequest();
         $xhr.addEventListener('load', function(event) {
-            console.log($xhr.status);
+            //console.log($xhr.status);
         });
+        $xhr.onreadystatechange = function() {
+            if ($xhr.readyState == XMLHttpRequest.DONE) {
+                if (this.status == 201) {
+                    console.log("Successful. Response code: "+this.status);
+                } else {
+                    console.log('Login failed. Response code: '+this.status);
+                }
+            }
+        }
         $xhr.addEventListener('error', function(event) {
             console.log('There was an error with this request.');
         });
@@ -48,7 +57,7 @@ var Workout = (function() {
     function addExercise(exercise) {
         console.log('exercise ' + exercise.name + ' added.')
         delete exercise.name
-        $workout.entries.push(exercise)
+        $workout.exercises.push(exercise)
     }
 
     return {
