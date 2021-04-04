@@ -30,7 +30,7 @@ var InputDisplay = (function () {
 
             for (var n = 0; n < inputs.length; n++) {
                 var rep = {
-                    amount: inputs[n].value
+                    amount: (inputs[n].value ? inputs[n].value : 1)
                 };
                 
                 reps.push(rep)
@@ -98,7 +98,7 @@ var InputDisplay = (function () {
         div_label.className = $name + '__exercise--label'
         div_label.innerHTML = $exercise.name
 
-        if ($exercise.exercises_id != WARM_UP_ID) {
+        if ($exercise.exercise_type_id != WARM_UP_ID) {
             // 'Add' button.
             var div_label_add = document.createElement('span')
             div_label_add.className = $name + '-exercise__button--add'
@@ -136,7 +136,7 @@ var InputDisplay = (function () {
             var input = document.createElement('input')
             input.id = $name + '__textbox--' + i
             // Don't display inputs for 'Warm up'
-            if ($exercise.exercises_id == WARM_UP_ID) {
+            if ($exercise.exercise_type_id == WARM_UP_ID) {
                 input.className = $name + '__textbox hide'
             } else {
                 input.className = $name + '__textbox'
@@ -179,7 +179,7 @@ var InputDisplay = (function () {
         var input = document.createElement('input')
         input.id = $name + '__textbox--' + 'add'
         // Don't display inputs for 'Warm up'
-        if ($exercise.exercises_id == WARM_UP_ID) {
+        if ($exercise.exercise_type_id == WARM_UP_ID) {
             input.className = $name + '__textbox hide'
         } else {
             input.className = $name + '__textbox'
