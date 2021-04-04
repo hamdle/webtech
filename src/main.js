@@ -83,7 +83,7 @@ function runIndex() {
             });
             $xhr.onreadystatechange = function() {
                 if ($xhr.readyState == XMLHttpRequest.DONE) {
-                    if (this.status == 200) {
+                    if (this.status == 201) {
                         window.location = site + 'go';
                     } else {
                         console.log('Login failed. Response code: '+this.status);
