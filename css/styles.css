@@ -3,10 +3,16 @@ body {
     margin: 0;
     padding: 0;
     color: #232020;
+    background-color: #f4f4f4;
 }
 
 a {
     color: #00bcd4;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 h2 {
@@ -229,9 +235,17 @@ h2 {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    height: 100vh;
-    background-color: #f4f4f4;
+    flex-wrap: wrap;
 }
+
+/*
+@media (max-width: 900px) {
+    .dash__wrap {
+         flex-direction: column;
+     }
+ }
+ */
+
 
 .dash__menu {
     width: 70px;
@@ -283,17 +297,18 @@ h2 {
     list-style-type: none;
 }
 
-.dash__display {
-    width: 100%;
-    background-color: #f4f4f4;
+.dash__display--routine {
+    flex: 300px;
+}
+.dash__display--workout {
+    flex: 600px;
+}
+.dash__display--log {
+    flex: 800px;
 }
 
 .dash__body {
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    line-height: 1.8rem;
-    overflow-y: scroll;
-    height: calc(100vh - 100px);
+    padding: 14px;
 }
 
 .body__link {
@@ -450,15 +465,10 @@ h2 {
     justify-content: space-between;
 }
 .opt__title--workout {
-    margin-top: 0px;
-    padding: 1.1rem 1em 1.1rem 1rem;
-    line-height: 1.3;
-    color: #232020;
-    text-decoration: none;
-    font-size: 1.3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+    margin: 0px;
+    padding: 14px;
+    color: #ffffff;
+    font-size: 18px;
     background-color: #00bcd4;
 }
 

@@ -1,22 +1,29 @@
 <div class="dash__wrap">
 
-    <div class="dash__opt">
-        <div class="start-button__wrap">
-            <a id="start__button" class="start__button">Start</a>
-        </div>
-        <div class="opt__title--workout">
-            <span>Routine</span>
+    <div class="dash__display dash__display--routine">
+        <div class="dash__body">
+            <div class="opt__title--workout">
+                <span>Routine</span>
+            </div>
+            <!-- Put custom modules here. -->
             <span class="opt-title__extra">
                 <a id="exercise__button--add" class="exercise__button exercise__button--add">Add</a>
                 <a id="exercise__button--remove" class="exercise__button exercise__button--remove">Remove</a>
             </span>
+            <ul id="exercise__list" class="opt__exercise">
+            </ul>
+            <div class="start-button__wrap">
+                <a id="start__button" class="start__button">Start Workout</a>
+            </div>
         </div>
-        <ul id="exercise__list" class="opt__exercise">
-        </ul>
     </div>
 
-    <div class="dash__display">
+    <div class="dash__display dash__display--workout">
         <div class="dash__body">
+            <div class="opt__title--workout">
+                <span>Workout</span>
+            </div>
+            <!-- Put custom modules here. -->
             <div id="timer" class="timer"></div>
             <div class="countdown__wrap">
                 <div class="countdown__base">
@@ -26,8 +33,16 @@
             </div>
             <div id="inputdisplay" class="inputdisplay"></div>
             <div id="instructions" class="instructions">
-                <p>Instructions go here.</p>
+                <p>Build a routine and hit "Start Workout" to begin.</p>
             </div>
+        </div>
+    </div>
+    <div class="dash__display dash__display--log">
+        <div class="dash__body">
+            <div class="opt__title--workout">
+                <span>Log</span>
+            </div>
+            <!-- Put custom modules here. -->
         </div>
     </div>
 </div>
