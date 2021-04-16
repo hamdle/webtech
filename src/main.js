@@ -10,8 +10,6 @@ let routes = [
     '',
     // Auth pages
     'go/',
-    'stats/',
-    'exercises/',
 ]
 
 let path = location.pathname.substring(1)
@@ -20,23 +18,16 @@ routes.map(function (uri, index) {
     if (path == uri) {
         switch (index) {
             case 0: 
-                loadTooltips()
                 runIndex()
                 break
             case 1:
-                verifyLogin();
-                loadTooltips()
+                verifyLogin()
                 runGo()
-                break
-            case 2:
-            case 3:
-                verifyLogin();
-                loadTooltips()
         }
     }
 })
 
-// /go
+// '/go'
 function runGo() {
     // Init components.
     Workout.init();
@@ -65,7 +56,7 @@ function runGo() {
     });
 }
 
-// /
+// '/'
 function runIndex() {
     // Redirect to /go if the user is already logged in
     VerifyUser.success('go');
@@ -108,31 +99,6 @@ function runIndex() {
             event.preventDefault();
             sendData();
         });
-    });
-}
-
-// Helper functions.
-function loadTooltips() {
-    window.addEventListener('load', function() {
-        const buttons = document.querySelectorAll('.menu__link');
-        for (var i = 0; i < buttons.length; i++) {
-            var btn = buttons[i];
-            /*btn.addEventListener('click', function() {
-                console.log('click');
-            });*/
-            btn.onmouseover = function() {
-                var tooltip = event.target.querySelectorAll('.menu__tooltip');
-                if (tooltip[0] !== undefined) {
-                    tooltip[0].className = 'menu__tooltip--show';
-                }
-            };
-            btn.onmouseout = function() {
-                var tooltip = event.target.querySelectorAll('.menu__tooltip--show');
-                if (tooltip[0] !== undefined) {
-                    tooltip[0].className = 'menu__tooltip';
-                }
-            };
-        }
     });
 }
 
