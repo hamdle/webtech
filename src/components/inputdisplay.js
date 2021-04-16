@@ -96,7 +96,10 @@ var InputDisplay = (function () {
         var div_label = document.createElement('div')
         div_label.id = $name + '__exercise--label'
         div_label.className = $name + '__exercise--label'
-        div_label.innerHTML = $exercise.name
+        var div_name = document.createElement('div')
+        div_name.className = $name + '__exercise--name'
+        div_name.innerHTML = $exercise.name
+        div_label.appendChild(div_name)
 
         if ($exercise.exercise_type_id != WARM_UP_ID) {
             // 'Add' button.
