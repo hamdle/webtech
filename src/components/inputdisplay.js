@@ -102,13 +102,17 @@ var InputDisplay = (function () {
         div_label.appendChild(div_name)
 
         if ($exercise.exercise_type_id != WARM_UP_ID) {
+            var div_label_wrap = document.createElement('div');
+            div_label_wrap.className = $name + '-exercise-button__wrap'
+            div_label.appendChild(div_label_wrap)
             // 'Add' button.
             var div_label_add = document.createElement('span')
             div_label_add.className = $name + '-exercise__button--add'
+                + ' button__spacing--right'
             div_label_add.innerHTML = 'Add'
             // Add set handler.
             div_label_add.addEventListener('click', addSetHandler);
-            div_label.appendChild(div_label_add)
+            div_label_wrap.appendChild(div_label_add)
 
             // 'Remove' button.
             var div_label_remove = document.createElement('span')
@@ -116,7 +120,7 @@ var InputDisplay = (function () {
             div_label_remove.innerHTML = 'Remove'
             // Remove set handler.
             div_label_remove.addEventListener('click', removeSetHandler);
-            div_label.appendChild(div_label_remove)
+            div_label_wrap.appendChild(div_label_remove)
         }
 
         $element.appendChild(div_label)
@@ -154,11 +158,14 @@ var InputDisplay = (function () {
         }
 
         // Next button
+        var next_button_wrap = document.createElement('div')
+        next_button_wrap.className = $name + '-next-button__wrap'
         var next_button = document.createElement('a')
         next_button.id = $name + '__next-button'
         next_button.className = $name + '__next-button'
         next_button.innerHTML = 'Next exercise'
-        $element.appendChild(next_button)
+        next_button_wrap.appendChild(next_button)
+        $element.appendChild(next_button_wrap)
 
         next_button.addEventListener('click', nextButtonHandler);
     }
