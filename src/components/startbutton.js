@@ -15,6 +15,8 @@ var Startbutton = (function() {
 
     function disable() {
         $element.classList.add('start__button--disabled')
+        $element.classList.remove('button')
+        $element.innerHTML = "Workout in progress..."
         $element.removeEventListener('click', $handler, false)
     }
 
