@@ -17,6 +17,7 @@
         <script type="text/javascript" src="../src/components/inputdisplay.js"></script>
         <script type="text/javascript" src="../src/components/instructions.js"></script>
         <script type="text/javascript" src="../src/components/verifyuser.js"></script>
+        <script type="text/javascript" src="../src/components/log.js"></script>
         <script type="text/javascript" src="../src/main.js"></script>
     </body>
 </html>
