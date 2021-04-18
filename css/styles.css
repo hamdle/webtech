@@ -643,3 +643,14 @@ h2 {
 .footer__icon {
     padding: 0 5px;
 }
+
+.log {
+    display: flex;
+    flex-direction: column;
+}
+
+.log__entry {
+    padding: 10px 20px 9px 20px;
+    background-color: #ffffff;
+    margin-bottom: 4px;
+}
