@@ -34,7 +34,11 @@ var Log = (function() {
         Object.values(workouts).forEach(function (entry) {
             var div = document.createElement('div');
             div.classList = 'log__entry';
-            div.innerHTML = entry.start;
+            div.innerHTML = "<span class=\"log__title\">" + entry.start + "</ span>";
+            var button = document.createElement('a');
+            button.classList = 'button';
+            button.innerHTML = 'Load';
+            div.appendChild(button);
             log.appendChild(div);
             console.log(entry);
         });

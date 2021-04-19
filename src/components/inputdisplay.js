@@ -106,8 +106,8 @@ var InputDisplay = (function () {
             div_label_wrap.className = $name + '-exercise-button__wrap'
             div_label.appendChild(div_label_wrap)
             // 'Add' button.
-            var div_label_add = document.createElement('span')
-            div_label_add.className = $name + '-exercise__button--add'
+            var div_label_add = document.createElement('a')
+            div_label_add.className = 'button'
                 + ' button__spacing--right'
             div_label_add.innerHTML = 'Add'
             // Add set handler.
@@ -162,7 +162,8 @@ var InputDisplay = (function () {
         next_button_wrap.className = $name + '-next-button__wrap'
         var next_button = document.createElement('a')
         next_button.id = $name + '__next-button'
-        next_button.className = $name + '__next-button'
+        //next_button.className = $name + '__next-button'
+        next_button.className = 'button'
         next_button.innerHTML = 'Next exercise'
         next_button_wrap.appendChild(next_button)
         $element.appendChild(next_button_wrap)
