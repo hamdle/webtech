@@ -176,7 +176,7 @@ h2 {
 }
 
 .button:hover {
-    background-color: #00bcd4;
+    background-color: #222831;
     text-decoration: none;
 }
 
@@ -448,10 +448,10 @@ h2 {
 }
 
 .opt__title {
-    margin: 0px;
-    padding: 14px;
     color: #222831;
     font-size: 18px;
+    font-weight: bold;
+    margin: 14px;
 }
 
 .opt-title__extra {
@@ -513,7 +513,7 @@ h2 {
 }
 
 .timer:hover {
-    background-color: #536162;
+    background-color: #222831;
 }
 
 /* Input display */
@@ -669,4 +669,5 @@ h2 {
 
 .log__title {
     color: #536162;
+    font-weight: bold;
 }
