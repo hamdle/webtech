@@ -665,9 +665,13 @@ h2 {
     justify-content: space-between;
     border-radius: 3px;
     align-items: center;
+    color: #536162;
+}
+.log__entry:hover {
+    background-color: #222831;
+    color: #ffffff;
 }
 
 .log__title {
-    color: #536162;
     font-weight: bold;
 }
