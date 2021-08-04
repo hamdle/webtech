@@ -37,6 +37,7 @@ function runGo() {
     Countdown.init(document.getElementById('countdown'));
     Instructions.init(document.getElementById('instructions'));
     Log.init();
+    Version.init();
     
     // Event handlers.
     function startHandler() {
