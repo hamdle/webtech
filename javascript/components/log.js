@@ -1,13 +1,13 @@
 // javascript/components/log.js
 //
 //
-// This component retrieves and displays previous workouts in the workout log.
+// Build a list of exercise entries, called the log. This component attaches to
+// the element of id = "log"
 
 export let api = "http://workout.local/api/";
 
 export var Log = (function() {
     var xhr;
-    var $element;
 
     function buildLog(workouts) {
         log = document.getElementById("log");
@@ -24,24 +24,10 @@ export var Log = (function() {
         });
     }
 
-    // Request handlers
-    function exerciseHandler() {
-        if (this.status !== 200) {
-            var par = document.createElement("p");
-            par.textContent = "Error loading workout log.";
-            $element.appendChild(par);
-            return;
-        }
-
-        buildLog(JSON.parse(this.responseText));
-    }
-
     // Public
-    function init(element) {
-        $element = element;
-        // Get list of exercises from the Api.
+    function init() {
         xhr = new XMLHttpRequest();
-        xhr.addEventListener("load", exerciseHandler);
+        xhr.addEventListener("load", buildLog);
         xhr.open("GET", api + "workouts");
         xhr.send();
     }
