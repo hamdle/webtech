@@ -2,23 +2,23 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Go - wo, Workout app.</title>
-        <link href="../css/styles.css" rel="stylesheet" type="text/css">
+        <title>Go - Workout app.</title>
+        <link href="/css/styles.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <?php include __DIR__.'/template.html'; ?>
 
-        <script type="text/javascript" src="../src/components/workout.js"></script>
-        <script type="text/javascript" src="../src/components/routinebuilder.js"></script>
-        <script type="text/javascript" src="../src/components/startbutton.js"></script>
-        <script type="text/javascript" src="../src/components/utilities.js"></script>
-        <script type="text/javascript" src="../src/components/timer.js"></script>
-        <script type="text/javascript" src="../src/components/countdown.js"></script>
-        <script type="text/javascript" src="../src/components/inputdisplay.js"></script>
-        <script type="text/javascript" src="../src/components/instructions.js"></script>
-        <script type="text/javascript" src="../src/components/verifyuser.js"></script>
-        <script type="text/javascript" src="../src/components/version.js"></script>
-        <script type="text/javascript" src="../src/components/log.js"></script>
-        <script type="text/javascript" src="../src/main.js"></script>
+        <script src="/javascript/components/workout.js"></script>
+        <script src="/javascript/components/routinebuilder.js"></script>
+        <script src="/javascript/components/startbutton.js"></script>
+        <script src="/javascript/components/utilities.js"></script>
+        <script src="/javascript/components/timer.js"></script>
+        <script src="/javascript/components/countdown.js"></script>
+        <script src="/javascript/components/inputdisplay.js"></script>
+        <script src="/javascript/components/instructions.js"></script>
+        <script src="/javascript/components/verifyuser.js"></script>
+        <script src="/javascript/components/version.js"></script>
+        <script src="/javascript/components/log.js"></script>
+        <script src="/go/script.js"></script>
     </body>
 </html>

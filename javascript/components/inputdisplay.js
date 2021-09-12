@@ -1,4 +1,4 @@
-// inputdisplay.js
+// javascript/components/inputdisplay.js
 //
 //
 // Consume an exercise from the list and provide an interface 

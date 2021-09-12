@@ -9,7 +9,7 @@
     <body>
         <?php include __DIR__.'/template.html'; ?>
 
-        <script type="text/javascript" src="/src/components/verifyuser.js"></script>
-        <script type="text/javascript" src="/src/main.js"></script>
+        <script src="/javascript/components/verifyuser.js"></script>
+        <script src="/script.js"></script>
     </body>
 </html>

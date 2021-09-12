@@ -1,4 +1,4 @@
-// instructions.js
+// javascript/components/instructions.js
 //
 //
 // Display instructions to help the user get started. Should

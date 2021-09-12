@@ -1,4 +1,4 @@
-// workout.js
+// javascript/components/workout.js
 //
 //
 // Track a workout using a data structure and Json.

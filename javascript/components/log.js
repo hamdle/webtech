@@ -1,4 +1,4 @@
-// log.js
+// javascript/components/log.js
 //
 //
 // This component retrieves and displays previous workouts in the workout log.
