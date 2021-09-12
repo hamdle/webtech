@@ -26,6 +26,10 @@ var VerifyUser = (function () {
     }
 
     // Public
+    function onSuccess(onSuccess, redirect) {
+        verifyUser(redirect, false, onSuccess);
+    }
+
     function failure(redirect, onSuccess) {
         verifyUser(redirect, false, onSuccess);
     }
@@ -35,6 +39,7 @@ var VerifyUser = (function () {
     }
 
     return {
+        onSuccess: onSuccess,
         failure: failure,
         success: success
     };

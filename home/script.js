@@ -5,6 +5,6 @@
 
 let api = "http://workout.local/api/";
 
-VerifyUser.failure('', function homePage()  {
+VerifyUser.onSuccess(function() {
     Log.init();
-});
+}, "");

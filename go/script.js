@@ -5,8 +5,7 @@
 
 let api = "http://workout.local/api/";
 
-VerifyUser.failure('', function() {
-    // Init components.
+VerifyUser.onSuccess(function() {
     Workout.init();
     RoutineBuilder.init(document.getElementById('exercise__list'));
     Startbutton.init(startHandler);
@@ -16,9 +15,8 @@ VerifyUser.failure('', function() {
     Log.init();
     Version.init();
     
-    // Event handlers.
-    function startHandler()
-    {
+    // Event handlers
+    function startHandler() {
         Startbutton.disable();
         Instructions.hide();
         Workout.create();
@@ -34,4 +32,4 @@ VerifyUser.failure('', function() {
     timer.addEventListener('click', function () {
         Countdown.start(60);
     });
-});
+}, "");
