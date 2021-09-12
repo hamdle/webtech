@@ -3,7 +3,10 @@
 // 
 // Redirect the page if a user is or is not logged in.
 
-var VerifyUser = (function () {
+export let api = "http://workout.local/api/";
+export let site = "http://workout.local/";
+
+export var VerifyUser = (function () {
     function verifyUser(uri, success, onSuccess) {
         const xhr = new XMLHttpRequest();
         xhr.addEventListener("load", function(event) {
@@ -26,8 +29,8 @@ var VerifyUser = (function () {
     }
 
     // Public
-    function onSuccess(onSuccess, redirect) {
-        verifyUser(redirect, false, onSuccess);
+    function onSuccess(onSuccess) {
+        verifyUser("", false, onSuccess);
     }
 
     function failure(redirect, onSuccess) {

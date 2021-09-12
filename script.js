@@ -3,6 +3,9 @@
 //
 // This is the login page.
 
+let api = "http://workout.local/api/";
+let site = "http://workout.local/";
+
 window.addEventListener("load", function() {
     // Send login form data to Api and redirect on success
     function sendData() {

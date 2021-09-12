@@ -3,7 +3,9 @@
 //
 // This component retrieves and displays previous workouts in the workout log.
 
-var Log = (function() {
+export let api = "http://workout.local/api/";
+
+export var Log = (function() {
     var xhr;
     var $element;
 

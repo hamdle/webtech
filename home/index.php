@@ -8,17 +8,6 @@
     <body>
         <?php include __DIR__.'/template.html'; ?>
 
-        <script src="/javascript/components/workout.js"></script>
-        <script src="/javascript/components/routinebuilder.js"></script>
-        <script src="/javascript/components/startbutton.js"></script>
-        <script src="/javascript/components/utilities.js"></script>
-        <script src="/javascript/components/timer.js"></script>
-        <script src="/javascript/components/countdown.js"></script>
-        <script src="/javascript/components/inputdisplay.js"></script>
-        <script src="/javascript/components/instructions.js"></script>
-        <script src="/javascript/components/verifyuser.js"></script>
-        <script src="/javascript/components/version.js"></script>
-        <script src="/javascript/components/log.js"></script>
-        <script src="/home/script.js"></script>
+        <script type="module" src="/home/script.js"></script>
     </body>
 </html>
