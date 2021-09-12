@@ -24,10 +24,14 @@ export var Log = (function() {
         });
     }
 
+    function logHandler() {
+        buildLog(JSON.parse(this.responseText));
+    }
+
     // Public
     function init() {
         xhr = new XMLHttpRequest();
-        xhr.addEventListener("load", buildLog);
+        xhr.addEventListener("load", logHandler);
         xhr.open("GET", api + "workouts");
         xhr.send();
     }
