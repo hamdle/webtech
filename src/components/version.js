@@ -11,7 +11,7 @@ var Version = (function() {
         $element = element;
         xhr = new XMLHttpRequest();
         xhr.addEventListener("load", exerciseHandler);
-        xhr.open("GET", siteApi + 'version');
+        xhr.open("GET", api + 'version');
         xhr.send();
     }
 

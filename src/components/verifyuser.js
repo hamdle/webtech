@@ -21,7 +21,7 @@ var VerifyUser = (function () {
                 }
             }
         })
-        xhr.open("GET", siteApi + 'auth');
+        xhr.open("GET", api + 'auth');
         xhr.send();
     }
 
