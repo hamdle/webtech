@@ -15,6 +15,7 @@ var VerifyUser = (function () {
                 if (success) {
                     window.location = site + uri;
                 }
+                onSuccess();
             } else {
                 if (!success) {
                     window.location = site + uri;
@@ -26,12 +27,12 @@ var VerifyUser = (function () {
     }
 
     // Class Api.
-    function failure(redirect) {
-        verifyUser(redirect, false);
+    function failure(redirect, onSuccess) {
+        verifyUser(redirect, false, onSuccess);
     }
 
-    function success(redirect) {
-        verifyUser(redirect, true);
+    function success(redirect, onSuccess) {
+        verifyUser(redirect, true, onSuccess);
     }
 
     return {

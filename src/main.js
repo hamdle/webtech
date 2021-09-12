@@ -22,10 +22,10 @@ routes.map(function (uri, index) {
                 runIndex()
                 break
             case 1:
-                runHome()
+                VerifyUser.failure('', runHome);
                 break
             case 2:
-                runGo()
+                VerifyUser.failure('', runGo);
         }
     }
 })
@@ -71,13 +71,10 @@ function runIndex() {
 }
 
 function runHome() {
-    VerifyUser.failure('');
     Log.init();
 }
 
 function runGo() {
-    VerifyUser.failure('');
-
     // Init components.
     Workout.init();
     RoutineBuilder.init(document.getElementById('exercise__list'));
