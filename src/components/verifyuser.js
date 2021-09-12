@@ -7,7 +7,7 @@
  */
 var VerifyUser = (function () {
     // Helper functions.
-    function verifyUser(uri, success) {
+    function verifyUser(uri, success, onSuccess) {
         const xhr = new XMLHttpRequest();
         xhr.addEventListener("load", function(event) {
             console.log(this.status);
@@ -15,7 +15,9 @@ var VerifyUser = (function () {
                 if (success) {
                     window.location = site + uri;
                 }
-                onSuccess();
+                if (onSuccess) {
+                    onSuccess();
+                }
             } else {
                 if (!success) {
                     window.location = site + uri;
