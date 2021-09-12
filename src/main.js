@@ -2,7 +2,7 @@
 //
 // This is the entry point for all Javascript code executed in the App.
 
-let siteApi = "http://workout.local/api/";
+let api = "http://workout.local/api/";
 let site = "http://workout.local/";
 
 let routes = [ 
@@ -21,7 +21,6 @@ routes.map(function (uri, index) {
                 runIndex()
                 break
             case 1:
-                verifyLogin()
                 runGo()
         }
     }
@@ -29,6 +28,8 @@ routes.map(function (uri, index) {
 
 // '/go'
 function runGo() {
+    VerifyUser.failure('');
+
     // Init components.
     Workout.init();
     RoutineBuilder.init(document.getElementById('exercise__list'));
@@ -60,11 +61,8 @@ function runGo() {
 
 // '/'
 function runIndex() {
-    // Redirect to /go if the user is already logged in
-    VerifyUser.success('go');
-
     window.addEventListener("load", function() {
-        // Helper functions.
+        // Send login form data to Api and redirect on success
         function sendData() {
             const $xhr = new XMLHttpRequest();
             const formData = new FormData(form);
@@ -86,7 +84,7 @@ function runIndex() {
             $xhr.addEventListener('error', function(event) {
                 console.log('An error occured while logging in.');
             });
-            $xhr.open("POST", siteApi + 'login');
+            $xhr.open("POST", api + 'login');
             // Specifying a header here could cause the POST data to be send
             // incorrectly, don't set it explicitly and let the broswer generate
             // the correct one automatically
@@ -95,16 +93,9 @@ function runIndex() {
 
         // Run on load.
         let form = document.getElementById('loginForm');
-
-        // Handle login submit through Api.
         form.addEventListener("submit", function (event) {
             event.preventDefault();
             sendData();
         });
     });
-}
-
-function verifyLogin() {
-    // Requires verifyuser.js
-    VerifyUser.failure('');
 }
