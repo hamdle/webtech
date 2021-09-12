@@ -30,6 +30,10 @@ routes.map(function (uri, index) {
     }
 })
 
+//
+// Pages
+//
+
 function runIndex() {
     window.addEventListener("load", function() {
         // Send login form data to Api and redirect on success
