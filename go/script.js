@@ -6,15 +6,6 @@
 let api = "http://workout.local/api/";
 
 VerifyUser.onSuccess(function() {
-    Workout.init();
-    RoutineBuilder.init(document.getElementById('exercise__list'));
-    Startbutton.init(startHandler);
-    Timer.init(document.getElementById('timer'));
-    Countdown.init(document.getElementById('countdown'));
-    Instructions.init(document.getElementById('instructions'));
-    Log.init();
-    Version.init();
-    
     // Event handlers
     function startHandler() {
         Startbutton.disable();
@@ -27,7 +18,15 @@ VerifyUser.onSuccess(function() {
         Countdown.start(120);
     }
 
-    // Reset cooldown timer to 60 sec when the users clicks the timer.
+    Workout.init();
+    RoutineBuilder.init(document.getElementById('exercise__list'));
+    Startbutton.init(startHandler);
+    Timer.init(document.getElementById('timer'));
+    Countdown.init(document.getElementById('countdown'));
+    Instructions.init(document.getElementById('instructions'));
+    Log.init();
+    Version.init();
+    
     var timer = document.getElementById('timer')
     timer.addEventListener('click', function () {
         Countdown.start(60);

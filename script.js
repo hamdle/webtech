@@ -33,7 +33,6 @@ window.addEventListener("load", function() {
         $xhr.send(formData);
     }
 
-    // Run on load.
     let form = document.getElementById('loginForm');
     form.addEventListener("submit", function (event) {
         event.preventDefault();
