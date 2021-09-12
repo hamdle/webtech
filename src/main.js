@@ -19,22 +19,19 @@ routes.map(function (uri, index) {
     if (path == uri) {
         switch (index) {
             case 0: 
-                runIndex()
+                loginPage()
                 break
             case 1:
-                VerifyUser.failure('', runHome);
+                VerifyUser.failure('', homePage);
                 break
             case 2:
-                VerifyUser.failure('', runGo);
+                VerifyUser.failure('', goPage);
         }
     }
 })
 
-//
 // Pages
-//
-
-function runIndex() {
+function loginPage() {
     window.addEventListener("load", function() {
         // Send login form data to Api and redirect on success
         function sendData() {
@@ -74,11 +71,11 @@ function runIndex() {
     });
 }
 
-function runHome() {
+function homePage() {
     Log.init();
 }
 
-function runGo() {
+function goPage() {
     // Init components.
     Workout.init();
     RoutineBuilder.init(document.getElementById('exercise__list'));

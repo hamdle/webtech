@@ -1,12 +1,9 @@
-/* 
- * Verify User componenet
- *
- * Provide functions to redirect to a different page if a
- * user is, or is not, logged in.
- *
- */
+// verifyuser.js
+//
+// 
+// Redirect the page if a user is or is not logged in.
+
 var VerifyUser = (function () {
-    // Helper functions.
     function verifyUser(uri, success, onSuccess) {
         const xhr = new XMLHttpRequest();
         xhr.addEventListener("load", function(event) {
@@ -24,11 +21,11 @@ var VerifyUser = (function () {
                 }
             }
         })
-        xhr.open("GET", api + 'auth');
+        xhr.open("GET", api + "auth");
         xhr.send();
     }
 
-    // Class Api.
+    // Public
     function failure(redirect, onSuccess) {
         verifyUser(redirect, false, onSuccess);
     }

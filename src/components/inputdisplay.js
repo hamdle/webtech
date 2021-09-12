@@ -1,51 +1,19 @@
-/* 
- * Input Display component
- *
- * Consume an exercise from the list and provide an interface 
- * and display.
- *
- * Use RoutineBuilder
- * Use Workout
- * Use Timer
- *
- */
+// inputdisplay.js
+//
+//
+// Consume an exercise from the list and provide an interface 
+// and display.
+//
+// include RoutineBuilder
+// include Workout
+// include Timer
+
 var InputDisplay = (function () {
     var $element
     var $exercise
     var $name
-
     const WARM_UP_ID = 1;
 
-    // Class Api.
-    function init(element) {
-        $element = element
-        $exercise = null
-        $name = 'input-display'
-    }
-
-    function next() {
-        if ($exercise !== null) {
-            var reps = []
-            inputs = $element.getElementsByTagName('input')
-
-            for (var n = 0; n < inputs.length; n++) {
-                var rep = {
-                    amount: (inputs[n].value ? inputs[n].value : 1)
-                };
-                
-                reps.push(rep)
-            }
-
-            $exercise['reps'] = reps
-            $exercise['sets'] = inputs.length
-        }
-        getExercise()
-        displayAndUpdate()
-        // TODO: Replace this magic number with value from user settings.
-        Countdown.start(120)
-    }
-
-    // Helper functions
     function getExercise() {
         $exercise = RoutineBuilder.pop()
     }
@@ -171,7 +139,7 @@ var InputDisplay = (function () {
         next_button.addEventListener('click', nextButtonHandler);
     }
 
-    // Request handlers.
+    // Request handlers
     function nextButtonHandler() {
         next()
     }
@@ -220,6 +188,35 @@ var InputDisplay = (function () {
         if (sets > 0) {
             div_sets.innerHTML = sets
         }
+    }
+
+    // Public
+    function init(element) {
+        $element = element
+        $exercise = null
+        $name = 'input-display'
+    }
+
+    function next() {
+        if ($exercise !== null) {
+            var reps = []
+            inputs = $element.getElementsByTagName('input')
+
+            for (var n = 0; n < inputs.length; n++) {
+                var rep = {
+                    amount: (inputs[n].value ? inputs[n].value : 1)
+                };
+                
+                reps.push(rep)
+            }
+
+            $exercise['reps'] = reps
+            $exercise['sets'] = inputs.length
+        }
+        getExercise()
+        displayAndUpdate()
+        // TODO: Replace this magic number with value from user settings.
+        Countdown.start(120)
     }
 
     return {

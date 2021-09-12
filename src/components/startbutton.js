@@ -1,8 +1,13 @@
-// Startbutton component
+// startbutton.js
+//
+//
+// Call anonymous function on Start Button click
+
 var Startbutton = (function() {
     var $element
     var $handler
 
+    // Public
     function load(clickHandler) {
         $handler = clickHandler
         window.addEventListener("load", startHandler)

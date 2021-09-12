@@ -1,70 +1,33 @@
-/*
- * Workout builder component
- *
- */
+// routinebuilder.js
+//
+//
+// Load exercises for the user to select.
+
 var RoutineBuilder = (function() {
     var xhr;
     var $element;
 
-    function load(element) {
-        $element = element;
-        // Get list of exercises from the Api.
-        xhr = new XMLHttpRequest();
-        xhr.addEventListener("load", exerciseHandler);
-        xhr.open("GET", api + 'exercises');
-        xhr.send();
-
-        // Load button handlers.
-        window.addEventListener("load", function() {
-            loadAdd();
-            loadRemove();
-        });
-    }
-
-    function loadAdd() {
-        // Create button to add new exercise to the routine.
+    // Create button to add new exercise to the routine
+    function loadAdd()
+    {
         var add = document.getElementById('exercise__button--add');
         add.addEventListener('click', addHandler);
     }
 
-    function loadRemove() {
-        // Remove exercises from the bottom of the routine..
+    // Remove exercises from the bottom of the routine
+    function loadRemove()
+    {
         var remove = document.getElementById('exercise__button--remove');
         remove.addEventListener('click', removeHandler);
     }
 
-    function pop() {
-        var list_items = $element.getElementsByTagName('li')
-        if (list_items.length === 0) {
-            return null
-        }
-
-        var select = _pop(list_items)
-        if (select === null) {
-            return null
-        }
-
-        $exercise = {
-            name: select.selectedOptions[0].value,
-            exercise_type_id: select.selectedOptions[0].getAttribute('data-id'),
-            sets: select.selectedOptions[0].getAttribute('data-sets'),
-            reps: null,
-            feedback: null
-        }
-
-        return $exercise
-
-    }
-
-    // Helper functions
-    
     // Pop the next exercise off the top of the routine which will
     // delete the element off the page and return it
-    function _pop(list_items) {
+    function _pop(list_items)
+    {
         var selects = list_items[0].getElementsByTagName('select')
-        if (selects.length === 0) {
+        if (selects.length === 0)
             return null
-        }
 
         var select = selects[0]
 
@@ -73,7 +36,7 @@ var RoutineBuilder = (function() {
         return select
     }
 
-    // Request handlers.
+    // Request handlers
     function exerciseHandler() {
         if (this.status !== 200) {
             var par = document.createElement('p');
@@ -109,6 +72,43 @@ var RoutineBuilder = (function() {
             $element.childNodes[$element.childNodes.length-1].nodeName === "LI") {
             $element.removeChild($element.childNodes[$element.childNodes.length-1]);
         }
+    }
+
+    // Public
+    function load(element) {
+        $element = element;
+        // Get list of exercises from the Api.
+        xhr = new XMLHttpRequest();
+        xhr.addEventListener("load", exerciseHandler);
+        xhr.open("GET", api + 'exercises');
+        xhr.send();
+
+        window.addEventListener("load", function() {
+            loadAdd();
+            loadRemove();
+        });
+    }
+
+    function pop() {
+        var list_items = $element.getElementsByTagName('li')
+        if (list_items.length === 0) {
+            return null
+        }
+
+        var select = _pop(list_items)
+        if (select === null) {
+            return null
+        }
+
+        $exercise = {
+            name: select.selectedOptions[0].value,
+            exercise_type_id: select.selectedOptions[0].getAttribute('data-id'),
+            sets: select.selectedOptions[0].getAttribute('data-sets'),
+            reps: null,
+            feedback: null
+        }
+
+        return $exercise
     }
 
     return {

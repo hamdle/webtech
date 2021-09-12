@@ -1,18 +1,21 @@
-/*
- * Utils component
- *
- * A collection of helper functions for other components
- * to use.
- *
- */
+// utilities.js
+//
+//
+// A collection of helper functions for other components
+// to use.
+//
+// TODO shorten this to utils.js
+
 var Utils = (function() {
-    const constants = {
+    const constants = 
+    {
         'SECONDS': 'seconds',
         'MINUTES': 'minutes',
         'HOURS': 'hours',
         'FLEX': 'flex'
     }
 
+    // Public
     function formatSecondsToTime(time_in_seconds, display, smart_zeroes) {
         var seconds = parseInt(time_in_seconds, 10);
         var hours = Math.floor(seconds / 3600);
@@ -20,26 +23,21 @@ var Utils = (function() {
         var seconds = seconds - (hours * 3600) - (minutes * 60);
 
         if (!smart_zeroes) {
-            if (hours < 10) {
+            if (hours < 10)
                 hours = "0" + hours;
-            }
-            if (minutes < 10) {
+            if (minutes < 10)
                 minutes = "0" + minutes;
-            }
-            if (seconds < 10) {
+            if (seconds < 10)
                 seconds = "0" + seconds;
-            }
         }
         else {
             if (minutes > 0) {
-                if (seconds < 10) {
+                if (seconds < 10)
                     seconds = "0" + seconds;
-                }
             }
             if (hours > 0) {
-                if (minutes < 10) {
+                if (minutes < 10)
                     minutes = "0" + minutes;
-                }
             }
         }
 
@@ -62,7 +60,6 @@ var Utils = (function() {
     }
 
     return {
-        /* Time format utils. */
         formatTime: formatSecondsToTime,
         get: function(name) { return constants[name]; }
     };

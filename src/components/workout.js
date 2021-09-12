@@ -1,10 +1,15 @@
-// Workout component
+// workout.js
+//
+//
+// Track a workout using a data structure and Json.
+
 var Workout = (function() {
     var $xhr
     var $workout
 
-    // Class Api.
-    function load(user_id) {
+    // Public
+    function init(user_id)
+    {
         $workout = {
             start: null,
             end: null,
@@ -14,17 +19,20 @@ var Workout = (function() {
         }
     }
 
-    function create() {
-        // Record a linux timestamp.
+    function create()
+    {
+        // As Linux timestamp
         $workout.start = Math.round(+new Date() / 1000);
     }
 
-    function get() {
+    function get()
+    {
         return $workout;
     }
 
-    function complete() {
-        // Record a linux timestamp.
+    function complete()
+    {
+        // Linux timestamp
         $workout.end = Math.round(+new Date() / 1000);
 
         console.log('sending workout request');
@@ -54,14 +62,15 @@ var Workout = (function() {
         $xhr.send(JSON.stringify($workout));
     }
 
-    function addExercise(exercise) {
+    function addExercise(exercise)
+    {
         console.log('exercise ' + exercise.name + ' added.')
         delete exercise.name
         $workout.exercises.push(exercise)
     }
 
     return {
-        init: load,
+        init: init,
         create: create,
         get: get,
         complete: complete,
