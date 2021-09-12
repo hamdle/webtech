@@ -1,5 +1,6 @@
 // main.js
 //
+//
 // This is the entry point for all Javascript code executed in the App.
 
 let api = "http://workout.local/api/";
