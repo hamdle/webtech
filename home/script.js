@@ -8,4 +8,4 @@ import { Log } from "../javascript/components/log.js";
 
 VerifyUser.onSuccess(function() {
     Log.init();
-}, "");
+});
