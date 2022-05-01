@@ -24,7 +24,7 @@
             </div>
         </div>
         <footer class="footer__login">
-            <a href="https://github.com/hamdle/workout-web-app" target="_blank">Workout.dev</a> v<span id="version"></span> <span class="environment"><span class="fa fa-running footer__icon"></span><?php echo $_ENV['ENVIRONMENT']; ?></span>
+            <a href="https://github.com/hamdle/workout-web-app" target="_blank">Workout.dev</a> v<?php echo $_ENV['VERSION']; ?> <span class="environment"><span class="fa fa-running footer__icon"></span><?php echo $_ENV['ENVIRONMENT']; ?></span>
         </footer>
     </div>
 
@@ -32,10 +32,8 @@
         let api = "http://workout.local/api/";
         let site = "http://workout.local/";
     </script>
-    <script src="/../js/components/version.js"></script>
     <script src="<?php echo $_ENV['ORIGIN']; ?>/js/components/verifyuser.js"></script>
     <script>
-        Version.init();
         window.addEventListener("load", function() {
             // Send login form data to Api and redirect on success
             function sendData() {
