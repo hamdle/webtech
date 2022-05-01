@@ -95,6 +95,13 @@ h2 {
 .fa-code:before {
     content: "\f121";
 }
+.fa-walk:before {
+    content: "\f554";
+}
+.fa-info:before {
+    content: "\f05a";
+}
+
 
 /* Login page */
 .header__button {
