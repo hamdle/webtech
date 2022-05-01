@@ -20,10 +20,10 @@ use \Core\Utils\Log;
 
 class Api
 {
-    // The ring, an array of Api endpoints mapped to controllers.
+    // The ring, an array of Api endpoints mapped to Controllers.
     private static $api;
 
-    // Change this to put the controllers in a different directory.
+    // Change this to put the Controllers in a different directory.
     private static $CONTROLLER_ROOT = "\\Controllers\\";
 
     //

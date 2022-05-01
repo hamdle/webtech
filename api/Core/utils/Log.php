@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Core/Utils/Log.php: print messages to the PHP's error log
+ * Core/utils/Log.php: print messages to the PHP's error log
  *
  * Copyright (C) 2021 Eric Marty
  */

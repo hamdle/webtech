@@ -11,7 +11,7 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-require_once __DIR__ . "/api/src/Core/Utils/Env.php";
+require_once __DIR__ . "/api/Core/utils/Env.php";
 
 use Core\Utils\Env;
 
@@ -28,7 +28,6 @@ class Autoload {
     {
         $apiFile = __DIR__.DIRECTORY_SEPARATOR
             ."api".DIRECTORY_SEPARATOR
-            ."src".DIRECTORY_SEPARATOR
             .str_replace("\\", DIRECTORY_SEPARATOR, $class).".php";
         $serverFile = __DIR__.DIRECTORY_SEPARATOR.
             str_replace("\\", DIRECTORY_SEPARATOR, $class).".php";

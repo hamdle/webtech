@@ -22,26 +22,26 @@ insert into exercise_types
 ('Push Ups', 3, 5, 60, 'push');
 insert into exercise_types
 (title, default_sets, default_reps, wait_time, category) values 
-('Leg Raises', 3, 5, 60, 'core');
+('Leg Raises', 3, 5, 60, 'Core');
 insert into exercise_types
 (title, default_sets, default_reps, wait_time, category) values 
 ('Lunges', 4, 5, 60, 'legs');
 insert into exercise_types
 (title, default_sets, default_reps, wait_time, category) values 
-('Cobras', 3, 40, 30, 'core');
+('Cobras', 3, 40, 30, 'Core');
 insert into exercise_types
 (title, default_sets, default_reps, wait_time, category) values 
-('Planks', 3, 5, 60, 'core');
+('Planks', 3, 5, 60, 'Core');
 /*
 insert into exercise_types
 (title, default_sets, default_reps, wait_time, category) values 
-('Inverted Rows', 4, 5, 60, 'core');
+('Inverted Rows', 4, 5, 60, 'Core');
 insert into exercise_types
 (title, default_sets, default_reps, wait_time, category) values 
 ('Plyo Burpees', 4, 5, 60, 'legs');
 insert into exercise_types
 (title, default_sets, default_reps, wait_time, category) values 
-('Hollow Body', 3, 5, 60, 'core');
+('Hollow Body', 3, 5, 60, 'Core');
 insert into exercise_types
 (title, default_sets, default_reps, wait_time, category) values 
 ('Chin Up', 2, 5, 60, 'pull');
