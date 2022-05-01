@@ -18,7 +18,7 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-require __DIR__ . "/src/autoload.php";
+require __DIR__ . "/autoload.php";
 
 use Core\Api;
 

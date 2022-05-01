@@ -35,6 +35,8 @@
     <script src="/../js/components/verifyuser.js"></script>
     <script src="/../js/components/log.js"></script>
     <script>
+        Log.init();
+        Version.init();
         // VerifyUser.onSuccess(function() {
         //     Log.init();
         //     Version.init();
