@@ -14,7 +14,7 @@
             <div class="login-form__wrap">
                 <form id="loginForm" class="login__form">
                     <h1 class="login__header">Workout.dev</h1>
-                    <span class="login__desc">A calisthenics workout app.</span>
+                    <span class="login__desc">A calisthenics workout app</span>
                     <label class="login__title">Login</label>
                     <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Email" name="email" />
                     <label class="login__title">Password</label>
@@ -24,7 +24,7 @@
             </div>
         </div>
         <footer class="footer__login">
-            Workout.dev <span class="fa fa-code footer__icon"></span> <a href="https://github.com/hamdle" target="_blank">Eric Marty</a> © 2021
+            <a href="https://github.com/hamdle/workout-web-app" target="_blank">Workout.dev</a> v<span id="version"></span> <span class="fa fa-code footer__icon"></span> <?php echo date("Y"); ?>
         </footer>
     </div>
 
@@ -32,8 +32,10 @@
         let api = "http://workout.local/api/";
         let site = "http://workout.local/";
     </script>
+    <script src="/../js/components/version.js"></script>
     <script src="<?php echo $_ENV['ORIGIN']; ?>/js/components/verifyuser.js"></script>
     <script>
+        Version.init();
         window.addEventListener("load", function() {
             // Send login form data to Api and redirect on success
             function sendData() {

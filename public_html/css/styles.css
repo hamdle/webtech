@@ -7,7 +7,7 @@ body {
 }
 
 a {
-    color: #00bcd4;
+    color: #222831; /* #00bcd4;*/
     text-decoration: none;
 }
 
@@ -177,6 +177,7 @@ h2 {
     /*background-color: rgb(101, 126, 228);*/
     font-size: 14px;
     line-height: 21px;
+    border: none;
 }
 
 .button:hover {
