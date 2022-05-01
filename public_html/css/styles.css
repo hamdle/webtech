@@ -692,3 +692,7 @@ h2 {
 .log__title {
     font-weight: bold;
 }
+
+.environment {
+    color: #8057ad;
+}
