@@ -1,3 +1,0 @@
-[submodule "workout-api"]
-	path = api
-	url = git@github.com:hamdle/workout-api.git

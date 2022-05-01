@@ -1,12 +1,12 @@
-// javascript/components/log.js
+// public_html/components/log.js
 //
 //
 // Build a list of exercise entries, called the log. This component attaches to
 // the element of id = "log"
 
-export let api = "http://workout.local/api/";
+//let api = "http://workout.local/api/";
 
-export var Log = (function() {
+var Log = (function() {
     var xhr;
 
     function buildLog(workouts) {

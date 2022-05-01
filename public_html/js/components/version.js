@@ -1,11 +1,9 @@
-// javascript/components/version.js
+// public_html/components/version.js
 //
 //
 // Load the version of the API via an api call
 
-export let api = "http://workout.local/api/";
-
-export var Version = (function() {
+var Version = (function() {
     var xhr;
     var $element;
 

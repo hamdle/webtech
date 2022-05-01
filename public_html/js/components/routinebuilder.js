@@ -1,4 +1,4 @@
-// javascript/components/routinebuilder.js
+// public_html/components/routinebuilder.js
 //
 //
 // Load exercises for the user to select.

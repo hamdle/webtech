@@ -1,4 +1,4 @@
-// javascript/components/countdown.js
+// public_html/components/countdown.js
 //
 // A reusable timer that, given an amount of time in seconds, counts down.
 //

@@ -1,12 +1,12 @@
-// javascript/components/verifyuser.js
+// public_html/components/verifyuser.js
 //
 // 
 // Redirect the page if a user is or is not logged in.
 
-export let api = "http://workout.local/api/";
-export let site = "http://workout.local/";
+//let api = "http://workout.local/api/";
 
-export var VerifyUser = (function () {
+
+var VerifyUser = (function () {
     function verifyUser(uri, success, onSuccess) {
         const xhr = new XMLHttpRequest();
         xhr.addEventListener("load", function(event) {
