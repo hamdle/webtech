@@ -7,12 +7,12 @@ body {
 }
 
 a {
-    color: #222831; /* #00bcd4;*/
+    color: #0d0430;
     text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+    border-bottom: 2px solid;
 }
 
 h2 {
@@ -148,13 +148,14 @@ h2 {
 }
 
 .login__header {
+    color: #0d0430;
     margin: 20px 0 0 0;
     padding: 0;
     text-align: center;
 }
 
 .login__desc {
-    color: #9d9d9d;
+    color: #000000;
     text-align: center;
     margin: 0;
     padding: 0 0 30px 0;
@@ -218,7 +219,7 @@ h2 {
 }
 
 .footer__login {
-    color: #9d9d9d;
+    color: #0d0430;
     margin: 5em 1em 2em 1em;
     text-align: center;
 }
