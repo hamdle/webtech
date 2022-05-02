@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Go - Workout app.</title>
-    <link href="/public_html/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="/../css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <?php //include __DIR__ . '/template.html'; ?>
@@ -12,6 +12,7 @@
 
     <div class="dash__display dash__display--header">
         <div class="header__body">
+            <a class="" href="/home">Home</a>
             Version <span id="version"></span>
         </div>
     </div>
@@ -56,7 +57,7 @@
             </div>
         </div>
     </div>
-    <div class="dash__display dash__display--log">
+    <div class="dash__display dash__display--log hide">
         <div class="dash__body">
             <div class="opt__title">
                 <span>Log</span>
@@ -67,25 +68,23 @@
     </div>
 </div>
 
-
-<script src="/public_html/js/components/workout.js"></script>
-<script src="/public_html/js/components/routinebuilder.js"></script>
-<script src="/public_html/js/components/startbutton.js"></script>
-<script src="/public_html/js/components/utilities.js"></script>
-<script src="/public_html/js/components/timer.js"></script>
-<script src="/public_html/js/components/countdown.js"></script>
-<script src="/public_html/js/components/inputdisplay.js"></script>
-<script src="/public_html/js/components/instructions.js"></script>
-<script src="/public_html/js/components/verifyuser.js"></script>
-<script src="/public_html/js/components/version.js"></script>
-<script src="/public_html/js/components/log.js"></script>
 <script>
-    // go/script.js
-    //
-    //
-    // Track a workout.
-
     let api = "http://workout.local/api/";
+    let site = "http://workout.local/";
+</script>
+
+<script src="/../js/components/workout.js"></script>
+<script src="/../js/components/routinebuilder.js"></script>
+<script src="/../js/components/startbutton.js"></script>
+<script src="/../js/components/utilities.js"></script>
+<script src="/../js/components/timer.js"></script>
+<script src="/../js/components/countdown.js"></script>
+<script src="/../js/components/inputdisplay.js"></script>
+<script src="/../js/components/instructions.js"></script>
+<script src="/../js/components/verifyuser.js"></script>
+<script src="/../js/components/version.js"></script>
+<script src="/../js/components/log.js"></script>
+<script>
 
     VerifyUser.onSuccess(function() {
         // Event handlers

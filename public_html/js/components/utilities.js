@@ -6,9 +6,7 @@
 //
 // TODO shorten this to utils.js
 
-export let api = "http://workout.local/api/";
-
-export var Utils = (function() {
+var Utils = (function() {
     const constants = 
     {
         'SECONDS': 'seconds',

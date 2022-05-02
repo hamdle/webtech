@@ -11,6 +11,9 @@ class App
         if ($template == "Home") {
             require_once dirname(__DIR__,1) . '/web/pages/Home.php';
         }
+        if ($template == "Go") {
+            require_once dirname(__DIR__,1) . '/web/pages/Go.php';
+        }
     }
 
     public function authenticate() {

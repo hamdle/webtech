@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Models/Workout.php: Handle workout data for the Api
+ * Models/Go.php: Handle workout data for the Api
  *
  * Copyright (C) 2021 Eric Marty
  */
