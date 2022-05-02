@@ -19,7 +19,7 @@
                     <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Email" name="email" />
                     <label class="login__title">Password</label>
                     <input class="input login__input" autocapitalize="off" autocorrect="off" type="password" placeholder="Password" name="password" />
-                    <button class="button login__button" type="submit">Login</button>
+                    <button class="button login__button" type="submit"><span class="fa fa-lock- footer__icon login-button__icon"></span> Login</button>
                 </form>
             </div>
         </div>

@@ -106,6 +106,13 @@ h2 {
     content: "\f1e6";
 }
 
+.fa-lock-:before {
+    content: "\f023";
+}
+.login-button__icon {
+    font-size: 16px;
+}
+
 /* Login page */
 .header__button {
     padding: 0.5em 1em;
@@ -184,12 +191,13 @@ h2 {
 
 .button {
     color: #fff;
-    background-color: #ff7315;
-    padding: 14px 30px 14px 30px;
+    background-color: #0d65e9;
+    /*background-color: #ff7315;*/
+    padding: 14px 30px 14px 16px;
     cursor: pointer;
     border-radius: 3px;
-    font-size: 21px;
-    line-height: 21px;
+    font-size: 20px;
+    line-height: 20px;
     font-weight: bold;
     border: none;
 }
