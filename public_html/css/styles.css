@@ -102,6 +102,9 @@ h2 {
     content: "\f05a";
 }
 
+.fa-connection:before {
+    content: "\f1e6";
+}
 
 /* Login page */
 .header__button {
