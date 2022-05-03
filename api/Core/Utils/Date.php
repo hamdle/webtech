@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Core/utils/Date.php: Date helper functions
+ * Core/Utils/Date.php: Date helper functions
  *
  * Copyright (C) 2021 Eric Marty
  */

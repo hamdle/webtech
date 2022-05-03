@@ -4,7 +4,7 @@
 // A collection of helper functions for other components
 // to use.
 //
-// TODO shorten this to utils.js
+// TODO shorten this to Utils.js
 
 var Utils = (function() {
     const constants = 

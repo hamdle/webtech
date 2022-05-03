@@ -689,28 +689,6 @@ h2 {
     text-align: center;
 }
 
-.input-display-exercise__button--add,
-.input-display-exercise__button--remove {
-    color: #fff;
-    background-color: #ff7315;
-    border: 1px solid #ff7315;
-    padding: 10px 20px 9px 20px;
-    cursor: pointer;
-}
-
-.input-display-exercise__button--add:hover,
-.input-display-exercise__button--remove:hover {
-    background-color: #00bcd4;
-    border: 1px solid #00bcd4;
-    text-decoration: none;
-}
-
-.input-display-exercise__button--add {
-}
-
-.input-display-exercise__button--remove {
-}
-
 /* Countdown timer */
 .countdown {
     text-align: center;

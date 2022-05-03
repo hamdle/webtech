@@ -11,7 +11,7 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-require_once __DIR__ . "/api/Core/utils/Env.php";
+require_once __DIR__ . "/api/Core/Utils/Env.php";
 
 use Core\Utils\Env;
 

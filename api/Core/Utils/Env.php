@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Core/utils/Env.php: read .env, make global $_ENV
+ * Core/Utils/Env.php: read .env, make global $_ENV
  *
  * Copyright (C) 2021 Eric Marty
  */

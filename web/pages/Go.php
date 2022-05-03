@@ -39,8 +39,9 @@
                 <!-- Put custom modules here. -->
                 <span class="opt-title__extra">
                     <a id="exercise__button--add" class="button button__spacing--right">Add</a>
-                    <a id="exercise__button--remove" class="button">Remove</a>
                 </span>
+                <span><a id="exercise__button--remove" class="link">Remove</a></span>
+
                 <ul id="exercise__list" class="opt__exercise">
                 </ul>
             </div>
@@ -104,37 +105,31 @@
     <script src="/../js/components/inputdisplay.js"></script>
     <script src="/../js/components/instructions.js"></script>
     <script src="/../js/components/verifyuser.js"></script>
-    <script src="/../js/components/version.js"></script>
     <script src="/../js/components/log.js"></script>
     <script>
+        function startHandler() {
+            Startbutton.disable();
+            Instructions.hide();
+            Workout.create();
+            InputDisplay.init(document.getElementById('inputdisplay'));
+            InputDisplay.next();
+            Timer.start();
+            // TODO: Replace this magic number with value from user settings.
+            Countdown.start(120);
+        }
 
-        VerifyUser.onSuccess(function() {
-            // Event handlers
-            function startHandler() {
-                Startbutton.disable();
-                Instructions.hide();
-                Workout.create();
-                InputDisplay.init(document.getElementById('inputdisplay'));
-                InputDisplay.next();
-                Timer.start();
-                // TODO: Replace this magic number with value from user settings.
-                Countdown.start(120);
-            }
+        Workout.init();
+        RoutineBuilder.init(document.getElementById('exercise__list'));
+        Startbutton.init(startHandler);
+        Timer.init(document.getElementById('timer'));
+        Countdown.init(document.getElementById('countdown'));
+        Instructions.init(document.getElementById('instructions'));
+        Log.init();
 
-            Workout.init();
-            RoutineBuilder.init(document.getElementById('exercise__list'));
-            Startbutton.init(startHandler);
-            Timer.init(document.getElementById('timer'));
-            Countdown.init(document.getElementById('countdown'));
-            Instructions.init(document.getElementById('instructions'));
-            Log.init();
-            Version.init();
-
-            var timer = document.getElementById('timer')
-            timer.addEventListener('click', function () {
-                Countdown.start(60);
-            });
-        }, "");
+        var timer = document.getElementById('timer')
+        timer.addEventListener('click', function () {
+            Countdown.start(60);
+        });
 
     </script>
 </div>

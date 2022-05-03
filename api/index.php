@@ -7,7 +7,7 @@
  * done in this file. The Api will respond by routing the request to an
  * Api-defined function in a controller. Controllers return a Response and use
  * Models to read and write data. The Core contains general classes for
- * handling requests along with helper functions in utils.
+ * handling requests along with helper functions in Utils.
  *
  * index.php          - this file, the starting point
  *   web/

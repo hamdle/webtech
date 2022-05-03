@@ -3,7 +3,7 @@
 //
 // Display a timer that starts at zero and counts up. 
 //
-// Use utils
+// Use Utils
 
 var Timer = (function () {
     var start_time;
@@ -29,7 +29,7 @@ var Timer = (function () {
     // Event handlers
     function updateHandler() {
         element.innerHTML = Utils.formatTime(elapsed(), Utils.get('MINUTES'), false);
-        //element.innerHTML = utils.formatTime(elapsed(), utils.get('FLEX'), true);
+        //element.innerHTML = Utils.formatTime(elapsed(), Utils.get('FLEX'), true);
     }
 
     // Public

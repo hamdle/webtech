@@ -2,7 +2,7 @@
 //
 // A reusable timer that, given an amount of time in seconds, counts down.
 //
-// include utils
+// include Utils
 // TODO use import
 
 var Countdown = (function () {
