@@ -24,7 +24,7 @@
             </div>
         </div>
         <footer class="footer__login">
-            <a href="https://github.com/hamdle/workout-web-app" target="_blank">Workout.dev</a> <span class="fa fa-info footer__icon"></span> version <b><?php echo $_ENV['VERSION']; ?></b> <span class="fa fa-dash footer__icon"></span><span class=""><span class="fa fa-connection footer__icon"></span> <b><?php echo $_ENV['ENVIRONMENT']; ?></b></span>
+            <a href="https://github.com/hamdle/workout-web-app" class="link"  target="_blank">Workout.dev</a> <span class="fa fa-info footer__icon"></span> version <b><?php echo $_ENV['VERSION']; ?></b> <span class="fa fa-dash footer__icon"></span><span class=""><span class="fa fa-connection footer__icon"></span> <b><?php echo $_ENV['ENVIRONMENT']; ?></b></span>
         </footer>
     </div>
 

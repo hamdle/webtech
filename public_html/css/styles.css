@@ -9,13 +9,18 @@ body {
 a {
     color: #0d0430;
     text-decoration: none;
+    border: none;
 }
 .dash__link {
     color: #ffffff;
     text-decoration: none;
 }
 
-a:hover {
+.dash__link:hover {
+    border: none;
+}
+
+.link:hover {
     border-bottom: 2px solid;
 }
 
@@ -118,16 +123,33 @@ h2 {
     content: "\f21d";
 }
 
-.fa-astro:before {
+.fa-server:before {
     content: "\f233";
 }
 
-.fa-bike:before {
-    content: "\f84a";
+.fa-play:before {
+    content: "\f04b";
 }
+
+.fa-clock:before {
+    content: "\f017";
+}
+
+.fa-plus:before {
+    content: "\f067";
+}
+
+.fa-right-arrow:before {
+    content: "\f101";
+}
+
 .header__user {
     font-size: 16px;
     float: right;
+}
+
+.header__links {
+    margin-right: 10px;
 }
 .login-button__icon {
     font-size: 16px;

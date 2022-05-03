@@ -14,7 +14,10 @@ var Log = (function() {
         Object.values(workouts).forEach(function (entry) {
             var div = document.createElement("div");
             div.classList = "log__entry";
-            div.innerHTML = "<span class=\"log__title\">" + entry.start + "</ span>";
+            div.innerHTML = "<span class=\"log__title\">" +
+                "<span class=\"fa fa-clock footer__icon\"></span>" +
+                entry.start +
+                "</ span>";
             // var button = document.createElement("a");
             // button.classList = "button";
             // button.innerHTML = "Load";
