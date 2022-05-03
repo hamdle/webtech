@@ -18,7 +18,14 @@
                 $session->verify();
                 $user = $session->user;
                 ?>
-                <div class="header__title">Workout.dev <span class="fa fa-astro footer__icon"></span> Workout <span class="header__user"><span class="fa fa-user footer__icon"></span><?php echo $user->email; ?></span></div>
+                <div class="header__title">Workout.dev <span class="fa fa-astro footer__icon"></span>
+                    Workout
+                    <span class="header__user">
+                        <a href="/home">Dashboard</a>
+                        <span class="fa fa-user footer__icon"></span>
+                        <?php echo $user->email; ?>
+                    </span>
+                </div>
                 <div class="header__menu">
                 </div>
             </div>
