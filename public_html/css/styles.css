@@ -372,6 +372,7 @@ h2 {
 
 .dash__display--routine {
     flex: 300px;
+    max-width: 300px;
 }
 .dash__display--workout {
     flex: 600px;
