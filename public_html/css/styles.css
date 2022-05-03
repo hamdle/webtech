@@ -10,6 +10,10 @@ a {
     color: #0d0430;
     text-decoration: none;
 }
+.dash__link {
+    color: #ffffff;
+    text-decoration: none;
+}
 
 a:hover {
     border-bottom: 2px solid;
@@ -106,8 +110,24 @@ h2 {
     content: "\f1e6";
 }
 
-.fa-lock-:before {
+.fa-lock:before {
     content: "\f023";
+}
+
+.fa-user:before {
+    content: "\f21d";
+}
+
+.fa-astro:before {
+    content: "\f233";
+}
+
+.fa-bike:before {
+    content: "\f84a";
+}
+.header__user {
+    font-size: 16px;
+    float: right;
 }
 .login-button__icon {
     font-size: 16px;
@@ -200,6 +220,7 @@ h2 {
     line-height: 16px;
     font-weight: bold;
     border: none;
+    box-shadow: 0px 0px 3px grey;
 }
 
 .button:hover {
@@ -240,6 +261,11 @@ h2 {
     margin: 5em 1em 2em 1em;
     text-align: center;
 }
+.footer__wrap {
+    position: absolute;
+    bottom: 30px;
+    left: 40px;
+}
 
 /* Old styles */
 .display__wrap {
@@ -271,8 +297,7 @@ h2 {
 /* Dashboard */
 .dash__wrap {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    flex: 1 1 auto;
     flex-wrap: wrap;
 }
 
@@ -330,7 +355,7 @@ h2 {
     flex: 600px;
 }
 .dash__display--log {
-    flex: 600px;
+    width: 800px;
 }
 
 .dash__display--header {
@@ -346,6 +371,10 @@ h2 {
 
 .dash__body {
     padding: 14px;
+}
+
+.dash__button-start {
+    margin: 10px 0;
 }
 
 .body__link {
@@ -689,6 +718,16 @@ h2 {
 
 .footer__icon {
     padding: 0 5px;
+}
+.footer_wrap {
+
+}
+
+.dash__body {
+    background: #f4f4f4;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    display: flex;
 }
 
 .log {

@@ -15,10 +15,10 @@ var Log = (function() {
             var div = document.createElement("div");
             div.classList = "log__entry";
             div.innerHTML = "<span class=\"log__title\">" + entry.start + "</ span>";
-            var button = document.createElement("a");
-            button.classList = "button";
-            button.innerHTML = "Load";
-            div.appendChild(button);
+            // var button = document.createElement("a");
+            // button.classList = "button";
+            // button.innerHTML = "Load";
+            // div.appendChild(button);
             log.appendChild(div);
             console.log(entry);
         });

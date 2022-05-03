@@ -12,15 +12,23 @@
 
     <div class="dash__display dash__display--header">
         <div class="header__body">
-            <a class="" href="/home">Home</a>
-            Version <span id="version"></span>
+            <div class="header__wrap">
+                <?php
+                $session = new \Models\Session();
+                $session->verify();
+                $user = $session->user;
+                ?>
+                <div class="header__title">Workout.dev <span class="fa fa-astro footer__icon"></span> Workout <span class="header__user"><span class="fa fa-user footer__icon"></span><?php echo $user->email; ?></span></div>
+                <div class="header__menu">
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="dash__display dash__display--routine">
         <div class="dash__body">
             <div class="opt__title">
-                <span>Routine</span>
+                <span>Next exercise</span>
             </div>
             <!-- Put custom modules here. -->
             <span class="opt-title__extra">
@@ -34,9 +42,7 @@
 
     <div class="dash__display dash__display--workout">
         <div class="dash__body">
-            <div class="opt__title">
-                <span>Workout</span>
-            </div>
+
             <!-- Put custom modules here. -->
             <div id="timer" class="timer"></div>
             <div class="countdown__wrap">
