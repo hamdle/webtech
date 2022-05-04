@@ -12,6 +12,7 @@ use Core\Http\Request;
 use Core\Http\Response;
 use Core\Database\Record;
 use Core\Database\Query;
+use \Core\Database;
 
 class Session extends Record
 {
@@ -29,7 +30,7 @@ class Session extends Record
         $this->filter();
         $this->transform($this->transforms());
 
-        $records = Query::select($this->table(), "*", $this->fields);
+        $records = Database::execute('session.sql', $this->fields);
 
         if (array_key_exists(0, $records))
         {
