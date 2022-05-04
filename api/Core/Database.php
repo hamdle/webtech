@@ -2,8 +2,6 @@
 
 namespace Core;
 
-use Core\Database\Query;
-
 class Database {
     private static $db = null;
 
@@ -28,15 +26,17 @@ class Database {
 
         if (is_readable($path)) {
             $sql = file_get_contents($path);
+
             if ($_ENV['DEBUG'] == 1) {
                 \Core\Utils\Log::error($sql, "SQL query");
                 \Core\Utils\Log::error($args, "SQL args");
             }
+
             $sth = self::db()->prepare($sql);
             $sth->execute($args);
             $results = $sth->fetchAll();
-
         }
+
         return $results;
     }
 }
