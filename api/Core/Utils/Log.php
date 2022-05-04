@@ -12,7 +12,7 @@ class Log {
     // Sends an error message to the public_html web's error log or to a file.
     public static function error($value = null, $tag = "")
     {
-        error_log("__".($tag ?? "START")."__< ".print_r($value, true)." >__".
-            ($tag ?? "END")."__");
+        error_log(($tag ?? "")." ----->".PHP_EOL.print_r($value, true).PHP_EOL);
+
     }
 }
