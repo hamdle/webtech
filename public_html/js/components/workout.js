@@ -72,11 +72,23 @@ var Workout = (function() {
         $workout.exercises.push(exercise)
     }
 
+    function addNote(note) {
+        console.log('note ' + ' added.')
+        $workout.notes = note;
+    }
+
+    function addFeel(feel) {
+        console.log('feel ' + ' added.')
+        $workout.feel = feel
+    }
+
     return {
         init: init,
         create: create,
         get: get,
         completeAndSend: completeAndSend,
-        addExercise: addExercise
+        addExercise: addExercise,
+        addNote: addNote,
+        addFeel: addFeel
     };
 })();

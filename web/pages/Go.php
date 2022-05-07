@@ -63,7 +63,7 @@
                     <p>
                         <span class="start-button__wrap">
 
-                            <a id="start__button" class="button"><span class="fa fa-clock footer__icon"></span>Start</a>
+                            <a id="start__button" class="button"><span class="fa fa-clock exercise__icon"></span>Start</a>
                         </span>
                     </p>
                 </div>

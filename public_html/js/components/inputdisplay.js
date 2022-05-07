@@ -12,6 +12,8 @@ var InputDisplay = (function () {
     var $element
     var $exercise
     var $name
+    var $note
+    var $feel
     const WARM_UP_ID = 1;
     const EXERCISE_COOLDOWN = 120; // (sec)
 
@@ -28,6 +30,9 @@ var InputDisplay = (function () {
                 break;
             case 'exercise':
                 showCurrentExercise();
+                break;
+            case 'finalize':
+                showFinalize();
                 break;
         }
     }
@@ -144,6 +149,44 @@ var InputDisplay = (function () {
         next_button.addEventListener('click', next);
     }
 
+    function showFinalize() {
+        var wrap = document.createElement('div');
+        wrap.className = "feedback__wrap";
+
+        var notes = document.createElement('textarea');
+        notes.className = "feedback__notes";
+        notes.id = "notes";
+        notes.rows = 4;
+        wrap.appendChild(notes);
+
+        var feel = document.createElement('select');
+        feel.className = "feedback__feel";
+        feel.id = "feel";
+        ['weak','average','strong'].forEach(function (item) {
+                var option = document.createElement('option');
+                option.value = item;
+                option.innerHTML = item;
+                feel.appendChild(option);
+            }
+        );
+        wrap.appendChild(feel);
+
+        $element.appendChild(wrap);
+
+        // Save button
+        var next_button_wrap = document.createElement('div')
+        next_button_wrap.className = $name + '-next-button__wrap'
+        var next_button = document.createElement('a')
+        next_button.id = $name + '__next-button'
+        //next_button.className = $name + '__next-button'
+        next_button.className = 'button'
+        next_button.innerHTML = "<span class=\"fa fa-save exercise__icon\"></span> Save"
+        next_button_wrap.appendChild(next_button)
+        $element.appendChild(next_button_wrap)
+
+        next_button.addEventListener('click', save);
+    }
+
     // Request handlers
     function addSetHandler(event) {
         // Get the containing div
@@ -220,25 +263,35 @@ var InputDisplay = (function () {
         // Get next exercise
         $exercise = RoutineBuilder.pop()
 
-
         // Update input display
         display('clear');
 
         if ($exercise === null) {
             Timer.stop();
-            Workout.completeAndSend(function () {
-                    display('complete');
-                },
-                function () {
-                    display('failed');
-            });
+            display('finalize');
         } else {
             display('exercise');
             Workout.addExercise($exercise);
+            Countdown.start(EXERCISE_COOLDOWN)
         }
+    }
 
-        // TODO: Replace this magic number with value from user settings.
-        Countdown.start(EXERCISE_COOLDOWN)
+    function save() {
+        // Process note and feel
+        $note = document.getElementById('notes').value;
+        $feel = document.getElementById('feel').value;
+
+        display('clear');
+
+        // Set, save, and send...
+        Workout.addNote($note);
+        Workout.addFeel($feel);
+        Workout.completeAndSend(function () {
+                display('complete');
+            },
+            function () {
+                display('failed');
+            });
     }
 
     return {
