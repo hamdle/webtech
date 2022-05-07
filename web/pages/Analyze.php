@@ -42,7 +42,7 @@
 
     </div>
     <footer class="footer__login">
-        <div class="footer__wrap">
+        <div class="footer__wrap--left">
             <a href="https://github.com/hamdle/workout-web-app" class="link" target="_blank">Workout.dev</a>
             <span class="fa fa-info footer__icon"></span> version
             <b><?php echo $_ENV['VERSION']; ?></b>

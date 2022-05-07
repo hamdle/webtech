@@ -287,9 +287,12 @@ h2 {
     margin: 5em 1em 2em 1em;
     text-align: center;
 }
-.footer__wrap {
+.footer__wrap--left {
+    text-align: left;
+}
+.footer__wrap--bottom {
     position: absolute;
-    bottom: 30px;
+    bottom:30px;
     left: 40px;
 }
 
