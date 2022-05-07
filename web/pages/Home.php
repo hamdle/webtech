@@ -59,10 +59,7 @@
         </div>
     </footer>
 
-    <script>
-        let api = "http://workout.local/api/";
-        let site = "http://workout.local/";
-    </script>
+    <?php include dirname(__DIR__, 1)."/templates/Javascript.php"; ?>
     <script src="/../js/components/log.js"></script>
     <script>
         Log.init();

@@ -91,10 +91,7 @@
         </footer>
     </div>
 
-    <script>
-        let api = "http://workout.local/api/";
-        let site = "http://workout.local/";
-    </script>
+    <?php include dirname(__DIR__, 1)."/templates/Javascript.php"; ?>
 
     <script src="/../js/components/workout.js"></script>
     <script src="/../js/components/routinebuilder.js"></script>

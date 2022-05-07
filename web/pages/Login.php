@@ -30,10 +30,7 @@
         </footer>
     </div>
 
-    <script>
-        let api = "http://workout.local/api/";
-        let site = "http://workout.local/";
-    </script>
+    <?php include dirname(__DIR__, 1)."/templates/Javascript.php"; ?>
     <script src="<?php echo $_ENV['ORIGIN']; ?>/js/components/verifyuser.js"></script>
     <script>
         window.addEventListener("load", function() {
