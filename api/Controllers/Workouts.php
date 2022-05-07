@@ -14,6 +14,7 @@ namespace Controllers;
 use Core\Http\Response;
 use Core\Http\Request;
 use Core\Http\Code;
+use Core\Database;
 use Core\Database\Query;
 use Models\Session;
 use Models\Workout;
@@ -104,12 +105,10 @@ class Workouts
             $exerciseTypesByKey[$exerciseType["id"]] = $exerciseType;
         }
 
-        $workouts = Query::run("
-            select *
-            from workouts
-            where workouts.user_id = {$session->user->id}
-            limit " . $limit
-        );
+        $workouts = Database::execute('user-workouts.sql', [
+            'user_id' => $session->user->id,
+            'limit' => $limit
+        ]);
         $exercises = Query::run("
             select *
             from exercises
