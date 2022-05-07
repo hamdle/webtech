@@ -30,7 +30,7 @@ var Workout = (function() {
         return $workout;
     }
 
-    function complete()
+    function completeAndSend(onSuccess, onFailure)
     {
         // Linux timestamp
         $workout.end = Math.round(+new Date() / 1000);
@@ -45,13 +45,16 @@ var Workout = (function() {
         $xhr.onreadystatechange = function() {
             if ($xhr.readyState == XMLHttpRequest.DONE) {
                 if (this.status == 201) {
+                    onSuccess();
                     console.log("Successful. Response code: "+this.status);
                 } else {
+                    onFailure();
                     console.log('Login failed. Response code: '+this.status);
                 }
             }
         }
         $xhr.addEventListener('error', function(event) {
+            onFailure();
             console.log('There was an error with this request.');
         });
         $xhr.open("POST", api + 'workouts/new');
@@ -73,7 +76,7 @@ var Workout = (function() {
         init: init,
         create: create,
         get: get,
-        complete: complete,
+        completeAndSend: completeAndSend,
         addExercise: addExercise
     };
 })();

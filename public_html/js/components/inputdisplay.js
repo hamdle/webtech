@@ -13,6 +13,7 @@ var InputDisplay = (function () {
     var $exercise
     var $name
     const WARM_UP_ID = 1;
+    const EXERCISE_COOLDOWN = 120; // (sec)
 
     function display(option) {
         switch (option) {
@@ -21,6 +22,9 @@ var InputDisplay = (function () {
                 break;
             case 'complete':
                 showCompleteMessage();
+                break;
+            case 'failed':
+                showFailedMessage();
                 break;
             case 'exercise':
                 showCurrentExercise();
@@ -45,7 +49,19 @@ var InputDisplay = (function () {
         div_finish_small.className = $name + '__finish--small'
         div_finish_small.innerHTML = 'Good job!'
         $element.appendChild(div_finish_small)
+    }
 
+    function showFailedMessage() {
+        var div_finish = document.createElement('div')
+        div_finish.id = $name + '__finish--large'
+        div_finish.className = $name + '__finish--large'
+        div_finish.innerHTML = 'Workout failed'
+        $element.appendChild(div_finish)
+        var div_finish_small = document.createElement('div')
+        div_finish_small.id = $name + '__finish--small'
+        div_finish_small.className = $name + '__finish--small'
+        div_finish_small.innerHTML = 'Failed to send!'
+        $element.appendChild(div_finish_small)
     }
 
     function showCurrentExercise() {
@@ -209,16 +225,20 @@ var InputDisplay = (function () {
         display('clear');
 
         if ($exercise === null) {
-            display('complete');
             Timer.stop();
-            Workout.complete()
+            Workout.completeAndSend(function () {
+                    display('complete');
+                },
+                function () {
+                    display('failed');
+            });
         } else {
-            display('exercise');
             Workout.addExercise($exercise);
+            display('exercise');
         }
 
         // TODO: Replace this magic number with value from user settings.
-        Countdown.start(120)
+        Countdown.start(EXERCISE_COOLDOWN)
     }
 
     return {
