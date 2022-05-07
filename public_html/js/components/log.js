@@ -12,12 +12,16 @@ var Log = (function() {
     function buildLog(workouts) {
         log = document.getElementById("log");
         Object.values(workouts).forEach(function (entry) {
+            console.log(entry);
             var div = document.createElement("div");
             div.classList = "log__entry";
             div.innerHTML = "<span class=\"log__title\">" +
                 "<span class=\"fa fa-clock footer__icon\"></span>" +
                 entry.start +
-                "</ span>";
+                "</ span> " +
+                "<a href='/edit/index.php?id=" +
+                entry.id +
+                "'>Edit</a>";
             // var button = document.createElement("a");
             // button.classList = "button";
             // button.innerHTML = "Load";

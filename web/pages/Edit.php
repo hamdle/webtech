@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <title>Home - Workout app.</title>
+    <title>Edit - Workout app.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="<?php echo $_ENV['ORIGIN']; ?>/css/styles.css" rel="stylesheet" type="text/css">
@@ -14,17 +14,17 @@
             <div class="header__body">
                 <div class="header__wrap">
                     <?php
-                        $session = \web\App::getObject('session');
-                        //$session = \Models\Session::user();
-                        //$session = \Models\User::user();
-                        $user = $session->user;
+                    $session = \web\App::getObject('session');
+                    //$session = \Models\Session::user();
+                    //$session = \Models\User::user();
+                    $user = $session->user;
                     ?>
-                    <div class="header__title">Workout.dev <span class="fa fa-right-arrow footer__icon"></span>
-                        Dashboard
+                    <div class="header__title"><a class="link" href="/home">Workout.dev</a> <span class="fa fa-right-arrow footer__icon"></span>
+                        Edit workout
                         <span class="header__user">
                             <span class="header__actions">
                                 <span class="header__links">
-                                    <a class="action" href="/analyze/">Analyze</a>
+                                    <a class="action" href="/delete">Delete</a>
                                 </span>
                             </span>
                             <span class="fa fa-user footer__icon"></span>
@@ -41,8 +41,7 @@
 
         <div class="dash__display dash__display--log">
             <div class="dash__body">
-                <a class="dash__link" href="/go"><div class="dash__button-start"><div class="button"><span class="fa fa-plus footer__icon"></span> Start new workout</div></div></a>
-                <div id="log" class="log"></div>
+                Edit workout
             </div>
         </div>
 
@@ -58,19 +57,6 @@
                 </span>
         </div>
     </footer>
-
-    <script>
-        let api = "http://workout.local/api/";
-        let site = "http://workout.local/";
-    </script>
-    <script src="/../js/components/log.js"></script>
-    <script>
-        Log.init();
-        // VerifyUser.onSuccess(function() {
-        //     Log.init();
-        //     Version.init();
-        // });
-    </script>
 </div>
 </body>
 </html>

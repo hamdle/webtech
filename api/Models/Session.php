@@ -18,6 +18,8 @@ class Session extends Record
 {
     const COOKIE_KEY = "Session-Id";
 
+    private $verified = false;
+
     public function table()
     {
         return "sessions";
@@ -106,10 +108,14 @@ class Session extends Record
             $this->cookie = $user->email.":".$this->token;
             $mac = hash_hmac("sha256", $this->cookie, $_ENV["COOKIE_KEY"]);
 
-            if (hash_equals($mac, $parts[2]))
+            if (hash_equals($mac, $parts[2])) {
+                $this->verified = true;
                 return true;
+            }
+
         }
 
+        $this->verified = false;
         return false;
     }
 

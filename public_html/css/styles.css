@@ -375,7 +375,8 @@ h2 {
     max-width: 300px;
 }
 .dash__display--workout {
-    flex: 600px;
+    flex: 800px;
+    max-width: 800px;
 }
 .dash__display--log {
     width: 800px;
@@ -757,4 +758,14 @@ h2 {
 
 .environment {
     color: #8057ad;
+}
+
+.header__actions {
+    margin-right: 10px;
+}
+.action {
+    color: #e90d0d;;
+}
+.action:hover {
+    border-bottom: 2px solid;
 }

@@ -16,13 +16,13 @@
                     $session->verify();
                     $user = $session->user;
                     ?>
-                    <div class="header__title">Workout.dev <span class="fa fa-right-arrow footer__icon"></span>
-                        New workout
+                    <div class="header__title"><a class="link" href="/home">Workout.dev</a> <span class="fa fa-right-arrow footer__icon"></span>
+                        Workout
                         <span class="header__user">
+                             <span class="fa fa-user footer__icon"></span>
                             <span class="header__links">
-                                <a class="link" href="/home">Dashboard</a>
+                                <a class="link" href="/user/"><?php echo $user->email; ?></a>
                             </span>
-                            <span class="fa fa-user footer__icon"></span><?php echo $user->email; ?>
                         </span>
                     </div>
                     <div class="header__menu">
