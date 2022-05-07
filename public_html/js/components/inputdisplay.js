@@ -14,19 +14,17 @@ var InputDisplay = (function () {
     var $name
     const WARM_UP_ID = 1;
 
-    function getExercise() {
-        $exercise = RoutineBuilder.pop()
-    }
-
-    function displayAndUpdate() {
-        clearDisplay()
-
-        if ($exercise === null) {
-            displayDone()
-            completeWorkout()
-        } else {
-            displayExercise()
-            updateWorkout()
+    function display(option) {
+        switch (option) {
+            case 'clear':
+                clearDisplay();
+                break;
+            case 'complete':
+                showCompleteMessage();
+                break;
+            case 'exercise':
+                showCurrentExercise();
+                break;
         }
     }
 
@@ -36,7 +34,7 @@ var InputDisplay = (function () {
         }
     }
 
-    function displayDone() {
+    function showCompleteMessage() {
         var div_finish = document.createElement('div')
         div_finish.id = $name + '__finish--large'
         div_finish.className = $name + '__finish--large'
@@ -50,16 +48,7 @@ var InputDisplay = (function () {
 
     }
 
-    function updateWorkout() {
-        Workout.addExercise($exercise);
-    }
-
-    function completeWorkout() {
-        Timer.stop();
-        Workout.complete()
-    }
-
-    function displayExercise() {
+    function showCurrentExercise() {
         // Exercise name
         var div_label = document.createElement('div')
         div_label.id = $name + '__exercise--label'
@@ -136,14 +125,10 @@ var InputDisplay = (function () {
         next_button_wrap.appendChild(next_button)
         $element.appendChild(next_button_wrap)
 
-        next_button.addEventListener('click', nextButtonHandler);
+        next_button.addEventListener('click', next);
     }
 
     // Request handlers
-    function nextButtonHandler() {
-        next()
-    }
-
     function addSetHandler(event) {
         // Get the containing div
         var div_input = document.getElementById('input-display__exercise--input')
@@ -195,9 +180,11 @@ var InputDisplay = (function () {
         $element = element
         $exercise = null
         $name = 'input-display'
+        console.log($name + " initialized.");
     }
 
     function next() {
+        // Process last exercise
         if ($exercise !== null) {
             var reps = []
             inputs = $element.getElementsByTagName('input')
@@ -213,8 +200,23 @@ var InputDisplay = (function () {
             $exercise['reps'] = reps
             $exercise['sets'] = inputs.length
         }
-        getExercise()
-        displayAndUpdate()
+
+        // Get next exercise
+        $exercise = RoutineBuilder.pop()
+
+
+        // Update input display
+        display('clear');
+
+        if ($exercise === null) {
+            display('complete');
+            Timer.stop();
+            Workout.complete()
+        } else {
+            display('exercise');
+            Workout.addExercise($exercise);
+        }
+
         // TODO: Replace this magic number with value from user settings.
         Countdown.start(120)
     }
