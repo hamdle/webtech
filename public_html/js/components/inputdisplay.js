@@ -233,8 +233,8 @@ var InputDisplay = (function () {
                     display('failed');
             });
         } else {
-            Workout.addExercise($exercise);
             display('exercise');
+            Workout.addExercise($exercise);
         }
 
         // TODO: Replace this magic number with value from user settings.
