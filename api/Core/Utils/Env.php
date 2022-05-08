@@ -19,9 +19,14 @@ class Env
             $pathParts = explode("/", $_SERVER["DOCUMENT_ROOT"]);
             $web = $pathParts[count($pathParts)-1];
             if (strcmp($web, "public_html") !== 0) {
-                // This call came from within this Api project
-                $output = file_get_contents(
-                    $path ?? $_SERVER["DOCUMENT_ROOT"] . "/api/.env");
+                if (empty($_SERVER["DOCUMENT_ROOT"])) {
+                    // This is a script
+                    $output = file_get_contents(dirname(__FILE__,3)."/.env");
+                } else {
+                    // This call came from within this Api project
+                    $output = file_get_contents(
+                        $path ?? $_SERVER["DOCUMENT_ROOT"] . "/api/.env");
+                }
             } else {
                 // This call is from outside of the Api project and came from the parent public_html application who uses this
                 // API. You can find this file starting from the root of the parent project at /public_html/index.php

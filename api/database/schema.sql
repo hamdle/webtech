@@ -28,7 +28,7 @@ CREATE TABLE `exercise_types` (
     `default_sets` INT(1) unsigned DEFAULT 0,
     `default_reps` INT(1) unsigned DEFAULT 0,
     `wait_time` INT(2) unsigned DEFAULT 0,
-    `category` ENUM('warm', 'pull', 'push', 'legs', 'Core') DEFAULT NULL,
+    `category` ENUM('warm', 'pull', 'push', 'legs', 'core') DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
