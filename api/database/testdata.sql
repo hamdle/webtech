@@ -1,7 +1,7 @@
 use workouts;
 
 /* users */
-insert into users (email, password) values ('admin@localhost.com', md5('admin'));
+insert into users (email, password, first_name) values ('admin@localhost.com', md5('admin'), 'Admin');
 
 /* exercises */
 insert into exercise_types
