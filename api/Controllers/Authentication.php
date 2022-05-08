@@ -30,6 +30,16 @@ class Authentication {
         return Response::send(Code::UNAUTHORIZED_401);
     }
 
+    public function logout()
+    {
+        $session = new Session();
+        if ($session->verify()) {
+            $session->setExpiredCookie();
+            $session->delete();
+        }
+        return Response::send(Code::DELETED_204);
+    }
+
     // The browser will send the cookie used to verify the session automatically.
     // return = \Http\Response
     public static function verifySession()

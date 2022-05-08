@@ -52,7 +52,10 @@ class Session extends Record
 
     public function delete()
     {
-        Query::delete($this->table(), ["id" => $this->id]);
+        Database::execute('delete-session.sql', [
+            'id' => $this->id
+        ]);
+        $this->fields = [];
     }
 
     // $user = \Models\User

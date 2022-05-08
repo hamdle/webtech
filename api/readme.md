@@ -51,6 +51,18 @@ Form validation failure: 422
 
 Failure code: 401
 
+### POST /logout
+
+Invalidate a user sessions.
+
+#### Request
+
+No extra data needed. In browsers, the cookie will be send automatically.
+
+#### Response
+
+Success code: 204
+
 ### GET /auth
 
 Verify that a cookie is valid and matches the user creds.

@@ -794,3 +794,21 @@ textarea.feedback__notes {
 select.feedback__feel {
     margin: 10px;
 }
+
+.user__field {
+    margin: 10px;
+}
+
+.user__icon {
+    font-size: 24px;
+    display: inline-block;
+    border-radius: 60px;
+    box-shadow: 0 0 2px #888;
+    padding: 0.5em 0.6em;
+}
+
+.user__value {
+    font-size: 18px;
+    color: #0074cc;
+    margin-left: 20px;
+}

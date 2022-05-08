@@ -31,6 +31,7 @@ Api::get("roll", "Dice", "d20");
 Api::get("september", "September", "countdown");
 
 Api::post("login", "Authentication", "login");
+Api::post("logout", "Authentication", "logout");
 Api::post("workouts/new", "Workouts", "save");
 
 return Api::respond();
