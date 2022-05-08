@@ -65,7 +65,7 @@ var Log = (function() {
             notes.classList = "log__entry"
             notes.innerHTML = entry.notes;
             wrap.appendChild(notes);
-            
+
             // div.innerHTML = "<span class=\"log__title\">" +
             //     "<span class=\"fa fa-clock footer__icon\"></span>" +
             //     entry.start +
