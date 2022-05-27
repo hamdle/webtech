@@ -103,6 +103,7 @@
     <script src="/../js/components/instructions.js"></script>
     <script src="/../js/components/verifyuser.js"></script>
     <script src="/../js/components/log.js"></script>
+    <script src="/../js/components/jumptoinput.js"></script>
     <script>
         function startHandler() {
             Startbutton.disable();
@@ -125,6 +126,7 @@
         Countdown.init(document.getElementById('countdown'));
         Instructions.init(document.getElementById('instructions'));
         Log.init();
+        JumpToInput.init(document.getElementById('timer'), 'inputdisplay');
 
         var timer = document.getElementById('timer')
         timer.addEventListener('click', function () {
