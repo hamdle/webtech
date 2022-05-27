@@ -113,6 +113,9 @@
             Timer.start();
             // TODO: Replace this magic number with value from user settings.
             Countdown.start(120);
+            window.onbeforeunload = function () {
+                return "Quit workout?";
+            };
         }
 
         Workout.init();

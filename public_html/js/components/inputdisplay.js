@@ -287,6 +287,9 @@ var InputDisplay = (function () {
         Workout.addNote($note);
         Workout.addFeel($feel);
         Workout.completeAndSend(function () {
+                window.onbeforeunload = function () {
+                    // Left empty to remove leave page warning
+                };
                 display('complete');
             },
             function () {
