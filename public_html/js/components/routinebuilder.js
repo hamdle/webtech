@@ -49,7 +49,6 @@ var RoutineBuilder = (function() {
     }
 
     function addHandler() {
-        console.log("HIT");
         var listItem = document.createElement('li');
         listItem.classList = 'exercise__list-item';
         var selectList = document.createElement('select');
