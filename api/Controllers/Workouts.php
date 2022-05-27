@@ -139,7 +139,6 @@ class Workouts
                 if ($rep["exercise_id"] == $exercise["id"])
                 {
                     $data[$exercise["workout_id"]]["exercises"][$exercise["id"]]["reps"][$rep["id"]] = $rep;
-                    unset($reps[$rep["id"]]);
                 }
             }
         }
