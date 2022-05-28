@@ -145,4 +145,27 @@ class Workouts
 
         return Response::send(Code::OK_200, $data);
     }
+
+    public function suggestReps($args) {
+        $session = new Session();
+
+        if (!$session->verify())
+            return Response::send(Code::UNAUTHORIZED_401);
+
+        $results = Database::execute('last-exercise.sql', [
+            'user_id' => $session->user->id,
+            'exercise_type_id' => $args['exercise_type_id']
+        ]);
+
+        $workoutId = $results[0]['workout_id'];
+
+        $suggestedReps = Database::execute('suggested-reps.sql', [
+            'user_id' => $session->user->id,
+            'exercise_type_id' => 3,
+            'workout_id' => $workoutId
+        ]);
+        //\Core\Utils\Log::error(array_column($suggestedReps, 'reps'));
+        $data = array_column($suggestedReps, 'reps');
+        return Response::send(Code::OK_200, $data);
+    }
 }

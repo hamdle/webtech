@@ -14,6 +14,7 @@ var InputDisplay = (function () {
     var $name
     var $note
     var $feel
+    var $repInputElements
     const WARM_UP_ID = 1;
     const EXERCISE_COOLDOWN = 120; // (sec)
 
@@ -147,6 +148,19 @@ var InputDisplay = (function () {
         $element.appendChild(next_button_wrap)
 
         next_button.addEventListener('click', next);
+
+        $repInputElements = Array.from(div_input.querySelectorAll('input'));
+
+        requestSuggestedReps($exercise.exercise_type_id);
+    }
+
+    function requestSuggestedReps(exerciseTypeId) {
+        console.log("Requesting suggested reps for exercise " + exerciseTypeId);
+        // Get reps suggestion from the Api.
+        xhr = new XMLHttpRequest();
+        xhr.addEventListener("load", suggestRepsHandler);
+        xhr.open("GET", api + "suggest/reps/" + exerciseTypeId);
+        xhr.send();
     }
 
     function showFinalize() {
@@ -231,6 +245,27 @@ var InputDisplay = (function () {
         var sets = parseInt(div_sets.innerHTML) - 1
         if (sets > 0) {
             div_sets.innerHTML = sets
+        }
+    }
+
+    function suggestRepsHandler() {
+        if (this.status === 200) {
+            payload = JSON.parse(this.responseText);
+            console.log(payload);
+            if (typeof payload[0] === undefined) {
+                return;
+            }
+            if (payload.length === 0) {
+                return;
+            }
+            var i;
+            for (i = 0; i < $repInputElements.length; i++) {
+                if (typeof payload[i] === 'undefined') {
+                    $repInputElements[i].placeholder = payload[0];
+                } else {
+                    $repInputElements[i].placeholder = payload[i];
+                }
+            }
         }
     }
 

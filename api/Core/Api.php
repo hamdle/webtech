@@ -53,9 +53,11 @@ class Api
 
             $namespace = self::$CONTROLLER_ROOT.$controllerParts[0];
             $function = $controllerParts[1];
+            // Format args as key => value pairs
+            $args = array_key_exists(2, $controllerParts) ? $controllerParts[2] : null;
 
             if ($controller = [new $namespace, $function])
-                return $controller();
+                return $controller($args);
 
             return Response::sendDefaultNotFound();
         }
@@ -82,6 +84,7 @@ class Api
     private static function route()
     {
         $path = Request::path();
+        $args = [];
         // TODO can you reduce the complexity of this?
         foreach (self::$api[Request::method()] ?? [] as $route)
         {
@@ -92,12 +95,25 @@ class Api
 
                 for ($i = 0; $i < count($uriParts); $i++)
                 {
+                    // Check number of parts
                     if (!(isset($path[$i]) &&
-                        isset($uriParts[$i]) &&
-                        $path[$i] == $uriParts[$i]))
+                        isset($uriParts[$i])))
                     {
                         $pass = false;
                     }
+                    // Check part content
+                    if ($path[$i] !== $uriParts[$i]) {
+                        preg_match('#\{(.*?)\}#', $uriParts[$i], $match);
+                        if (array_key_exists(1, $match)) {
+                            $args[$match[1]] = $path[$i];
+                        } else {
+                            $pass = false;
+                        }
+                    }
+
+                }
+                if (!empty($args)) {
+                    $controller[] = $args;
                 }
 
                 if ($pass)

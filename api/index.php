@@ -29,6 +29,7 @@ Api::get("version", "AppInfo", "version");
 Api::get("coffee", "AppInfo", "teapot");
 Api::get("roll", "Dice", "d20");
 Api::get("september", "September", "countdown");
+Api::get("suggest/reps/{exercise_type_id}", "Workouts", "suggestReps");
 
 Api::post("login", "Authentication", "login");
 Api::post("logout", "Authentication", "logout");
