@@ -86,8 +86,10 @@ class Workouts
 
     // Return list of workouts from most recent to ALL_WORKOUTS_LIMIT.
     // return = \Http\Response
-    public function allWorkouts($limit = self::ALL_WORKOUTS_LIMIT)
+    public function allWorkouts($limit)
     {
+        $limit = $limit ? $limit : self::ALL_WORKOUTS_LIMIT;
+
         $session = new Session();
 
         if (!$session->verify())
