@@ -849,6 +849,7 @@ select.feedback__feel {
     margin: 10px 0;
     padding: 10px;
     border: 1px solid #e3e2e2;
+    border-radius: 6px;
 }
 .log__table__row {
     text-align: left;
