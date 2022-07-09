@@ -822,3 +822,49 @@ select.feedback__feel {
     color: #0074cc;
     margin-left: 20px;
 }
+
+.log__time {
+    font-size: 30px;
+    margin-left: 10px;
+    text-align: left;
+    width: 100%;
+    font-color: #383e52;
+}
+
+.log__feel {
+    margin-left: 10px;
+    text-align: left;
+    width: 100%;
+    font-color: #383e52;
+}
+
+.log__notes{
+    margin-left: 10px;
+    text-align: left;
+    width: 100%;
+    color: #383e52;
+}
+
+.log__table {
+    width: 100%;
+    margin: 10px 0;
+}
+.log__table__row {
+    text-align: left;
+}
+
+.log__table__row__header:first-child {
+    width: 100px;
+}
+
+.log__table__row__header:nth-child(2) {
+    width: 200px;
+}
+
+.log__table__row__header:nth-child(3) {
+    width: 200px;
+}
+
+.log__table__row__header-title {
+    color: #000000;
+}

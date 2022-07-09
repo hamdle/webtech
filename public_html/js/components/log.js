@@ -12,26 +12,25 @@ var Log = (function() {
     function buildLog(workouts) {
         log = document.getElementById("log");
         Object.values(workouts).forEach(function (entry) {
-            console.log(entry);
+            //console.log(entry);
 
             // Wrapper
             var wrap = document.createElement("div");
             wrap.classList = "log__wrap";
 
-            // Workout info: start
+            // Workout info: time (end - start)
             var start = document.createElement("div");
-            start.classList = "log__entry"
-            start.innerHTML = entry.start;
+            start.classList = "log__time"
+            var timeParts = entry.start.split("-");
+            var time = timeParts[1] + " - " + timeParts[2].split(" ")[0];
+            start.textContent = "Workout on " + time; // entry.end;
             wrap.appendChild(start);
-            // Workout info: end
-            var end = document.createElement("div");
-            end.classList = "log__entry"
-            end.innerHTML = entry.end;
-            wrap.appendChild(end);
-
 
             // Exercises
             Object.values(entry.exercises).forEach(function (exercise) {
+                var table = document.createElement("table");
+                table.classList = "log__table";
+
                 var div = document.createElement("div");
                 div.classList = "log__exercise";
                 var reps = "";
@@ -49,20 +48,67 @@ var Log = (function() {
                     })
                 }
 
-                div.innerHTML = exercise.exercise_type.title +
-                    " --- " + exercise.sets + " X [ "+reps+" ]" +
-                    " --- " + exercise.feedback;
-                wrap.appendChild(div);
+                var tr1 = document.createElement("tr");
+                tr1.classList = "log__table__row";
+                var td1 = document.createElement("th")
+                td1.classList = "log__table__row__header log__table__row__header-title";
+                td1.textContent = exercise.exercise_type.title;
+                tr1.appendChild(td1);
+                table.appendChild(tr1);
+
+
+                var tr3 = document.createElement("tr");
+                tr3.classList = "log__table__row";
+                ["Sets", "Reps", "Feedback"].forEach(function (x) {
+                    var td = document.createElement("th")
+                    td.classList = "log__table__row__header";
+                    td.textContent = x;
+                    tr3.appendChild(td);
+                });
+
+                table.appendChild(tr3);
+
+
+                var tr2 = document.createElement("tr");
+                tr2.classList = "log__table__row";
+                var td2 = document.createElement("td")
+                td2.classList = "log__table__row__header";
+                td2.textContent = exercise.sets;
+                tr2.appendChild(td2);
+                var td3 = document.createElement("td")
+                td3.classList = "log__table__row__header";
+                td3.textContent = "[ "+reps+" ]";
+                tr2.appendChild(td3);
+                var td4 = document.createElement("td")
+                td4.classList = "log__table__row__header";
+                td4.textContent = exercise.feedback
+                tr2.appendChild(td4);
+                table.appendChild(tr2);
+
+                // var tr3 = document.createElement("tr");
+                // tr3.classList = "log__table__row";
+                // var td5 = document.createElement("td")
+                // table.appendChild(tr3);
+
+                // div.innerHTML = exercise.exercise_type.title +
+                //     " --- " + exercise.sets + " X [ "+reps+" ]" +
+                //     " --- " + exercise.feedback;
+                // wrap.appendChild(div);
+                wrap.appendChild(table);
             });
+
+
+
 
             // Workout info: feel
             var feel = document.createElement("div");
-            feel.classList = "log__entry"
+            feel.classList = "log__feel"
             feel.innerHTML = entry.feel;
             wrap.appendChild(feel);
+
             // Workout info: notes
             var notes = document.createElement("div");
-            notes.classList = "log__entry"
+            notes.classList = "log__notes"
             notes.innerHTML = entry.notes;
             wrap.appendChild(notes);
 
