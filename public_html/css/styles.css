@@ -758,9 +758,6 @@ h2 {
     align-items: center;
     color: #536162;
 }
-.log__wrap:hover {
-    background-color: #ededed;
-}
 
 .log__entry {
     align-self: flex-start;
@@ -855,25 +852,38 @@ select.feedback__feel {
 }
 .log__table__row {
     text-align: left;
+    height: 30px
 }
 
-.log__table__row__header:first-child {
+.log__table__row:first-child {
+    height: 40px;
+}
+
+.log__table__row__item:first-child {
+    width: 150px;
+}
+
+.log__table__row__item:nth-child(2) {
     width: 100px;
 }
 
-.log__table__row__header:nth-child(2) {
+.log__table__row__item:nth-child(3) {
     width: 200px;
 }
 
-.log__table__row__header:nth-child(3) {
+.log__table__row__item:nth-child(4) {
     width: 200px;
 }
 
-.log__table__row__header-title {
+.log__table__row__item-title {
     color: #000000;
-    font-size: 21px;
+    font-weight: bold;
 }
 
 .log__time__icon {
     margin: 0 10px 0 0;
+}
+
+.log__table__row__data:hover {
+    background-color: #e3e3e3;
 }

@@ -27,13 +27,26 @@ var Log = (function() {
                 "Workout on " + time; // entry.end;
             wrap.appendChild(start);
 
+            var table = document.createElement("table");
+            table.classList = "log__table";
+
+            var tr3 = document.createElement("tr");
+            tr3.classList = "log__table__row";
+            ["Exercise", "Sets", "Reps", "Feedback"].forEach(function (x) {
+                var td = document.createElement("th")
+                td.classList = "log__table__row__header";
+                td.textContent = x;
+                tr3.appendChild(td);
+            });
+
+            table.appendChild(tr3);
+
             // Exercises
             Object.values(entry.exercises).forEach(function (exercise) {
-                var table = document.createElement("table");
-                table.classList = "log__table";
 
-                var div = document.createElement("div");
-                div.classList = "log__exercise";
+
+                // var div = document.createElement("div");
+                // div.classList = "log__exercise";
                 var reps = "";
                 //console.log(Object.values(exercise.reps).length);
                 var count = 0;
@@ -49,43 +62,26 @@ var Log = (function() {
                     })
                 }
 
-                var tr1 = document.createElement("tr");
-                tr1.classList = "log__table__row";
+                var tr2 = document.createElement("tr");
+                tr2.classList = "log__table__row log__table__row__data";
 
                 var td1 = document.createElement("th")
                 var icon = document.createElement("span");
                 icon.classList = "fa fa-dumbbell";
                 td1.appendChild(icon);
-                td1.classList = "log__table__row__header log__table__row__header-title";
+                td1.classList = "log__table__row__item log__table__row__item-title";
                 td1.textContent = exercise.exercise_type.title;
-                tr1.appendChild(td1);
-                table.appendChild(tr1);
-
-
-                var tr3 = document.createElement("tr");
-                tr3.classList = "log__table__row";
-                ["Sets", "Reps", "Feedback"].forEach(function (x) {
-                    var td = document.createElement("th")
-                    td.classList = "log__table__row__header";
-                    td.textContent = x;
-                    tr3.appendChild(td);
-                });
-
-                table.appendChild(tr3);
-
-
-                var tr2 = document.createElement("tr");
-                tr2.classList = "log__table__row";
+                tr2.appendChild(td1);
                 var td2 = document.createElement("td")
-                td2.classList = "log__table__row__header";
+                td2.classList = "log__table__row__item";
                 td2.textContent = exercise.sets;
                 tr2.appendChild(td2);
                 var td3 = document.createElement("td")
-                td3.classList = "log__table__row__header";
+                td3.classList = "log__table__row__item";
                 td3.textContent = "[ "+reps+" ]";
                 tr2.appendChild(td3);
                 var td4 = document.createElement("td")
-                td4.classList = "log__table__row__header";
+                td4.classList = "log__table__row__item";
                 td4.textContent = exercise.feedback
                 tr2.appendChild(td4);
                 table.appendChild(tr2);
@@ -99,11 +95,9 @@ var Log = (function() {
                 //     " --- " + exercise.sets + " X [ "+reps+" ]" +
                 //     " --- " + exercise.feedback;
                 // wrap.appendChild(div);
-                wrap.appendChild(table);
+
             });
-
-
-
+            wrap.appendChild(table);
 
             // Workout info: feel
             var feel = document.createElement("div");
