@@ -23,7 +23,8 @@ var Log = (function() {
             start.classList = "log__time"
             var timeParts = entry.start.split("-");
             var time = timeParts[1] + " - " + timeParts[2].split(" ")[0];
-            start.textContent = "Workout on " + time; // entry.end;
+            start.innerHTML = "<span class=\"fa fa-running footer__icon log__time__icon\"></span>" +
+                "Workout on " + time; // entry.end;
             wrap.appendChild(start);
 
             // Exercises
@@ -50,7 +51,11 @@ var Log = (function() {
 
                 var tr1 = document.createElement("tr");
                 tr1.classList = "log__table__row";
+
                 var td1 = document.createElement("th")
+                var icon = document.createElement("span");
+                icon.classList = "fa fa-dumbbell";
+                td1.appendChild(icon);
                 td1.classList = "log__table__row__header log__table__row__header-title";
                 td1.textContent = exercise.exercise_type.title;
                 tr1.appendChild(td1);
