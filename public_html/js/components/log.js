@@ -10,15 +10,13 @@ var Log = (function() {
     var xhr;
 
     function buildLog(workouts) {
-        log = document.getElementById("log");
-        Object.values(workouts).forEach(function (entry) {
-            //console.log(entry);
+        var log = document.getElementById("log");
+        var tempLog = document.createElement("div");
 
-            // Wrapper
+        Object.values(workouts).forEach(function (entry) {
             var wrap = document.createElement("div");
             wrap.classList = "log__wrap";
 
-            // Workout info: time (end - start)
             var start = document.createElement("div");
             start.classList = "log__time"
             var timeParts = entry.start.split("-");
@@ -43,13 +41,9 @@ var Log = (function() {
 
             // Exercises
             Object.values(entry.exercises).forEach(function (exercise) {
-
-
-                // var div = document.createElement("div");
-                // div.classList = "log__exercise";
                 var reps = "";
-                //console.log(Object.values(exercise.reps).length);
                 var count = 0;
+
                 if (exercise.reps == undefined) {
                     reps = " ";
                 } else {
@@ -86,11 +80,6 @@ var Log = (function() {
                 tr2.appendChild(td4);
                 table.appendChild(tr2);
 
-                // var tr3 = document.createElement("tr");
-                // tr3.classList = "log__table__row";
-                // var td5 = document.createElement("td")
-                // table.appendChild(tr3);
-
                 // div.innerHTML = exercise.exercise_type.title +
                 //     " --- " + exercise.sets + " X [ "+reps+" ]" +
                 //     " --- " + exercise.feedback;
@@ -122,8 +111,14 @@ var Log = (function() {
             // button.classList = "button";
             // button.innerHTML = "Load";
             // div.appendChild(button);
-            log.appendChild(wrap);
+
+            tempLog.appendChild(wrap);
         });
+
+        var i = 0;
+        for (i = tempLog.children.length - 1; i > 0; i--) {
+            log.appendChild(tempLog.children[i])
+        }
     }
 
     function logHandler() {
