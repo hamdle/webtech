@@ -12,7 +12,16 @@ class App
 
     public function render($template) {
         $dir = dirname(__DIR__, 1)."/web/pages/";
-        $templates = scandir($dir, 1);
+        // Automatically generate pages, impact on performance
+        // $templates = scandir($dir, 1);
+        $templates = [
+            "Analyze.php",
+            "Edit.php",
+            "Go.php",
+            "Home.php",
+            "Login.php",
+            "User.php",
+        ];
         $default = $templates[0];
 
         require_once $dir.(in_array($template, $templates) ? $template : $default);
