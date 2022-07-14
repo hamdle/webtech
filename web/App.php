@@ -11,19 +11,11 @@ class App
     }
 
     public function render($template) {
-        $templates = [
-            "Login",
-            "Home",
-            "Go",
-            "Edit",
-            "User",
-            "Analyze"
-        ];
+        $dir = dirname(__DIR__, 1)."/web/pages/";
+        $templates = scandir($dir, 1);
         $default = $templates[0];
 
-        require_once dirname(__DIR__, 1).
-            "/web/pages/".
-            (in_array($template, $templates) ? $template : $default).".php";
+        require_once $dir.(in_array($template, $templates) ? $template : $default);
     }
 
     public function authenticate() {
