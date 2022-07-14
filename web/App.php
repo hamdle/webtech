@@ -11,24 +11,19 @@ class App
     }
 
     public function render($template) {
-        if ($template == "Login") {
-            require_once dirname(__DIR__,1) . '/web/pages/Login.php';
-        }
-        if ($template == "Home") {
-            require_once dirname(__DIR__, 1) . '/web/pages/Home.php';
-        }
-        if ($template == "Go") {
-            require_once dirname(__DIR__,1) . '/web/pages/Go.php';
-        }
-        if ($template == "Edit") {
-            require_once dirname(__DIR__,1) . '/web/pages/Edit.php';
-        }
-        if ($template == "User") {
-            require_once dirname(__DIR__,1) . '/web/pages/User.php';
-        }
-        if ($template == "Analyze") {
-            require_once dirname(__DIR__,1) . '/web/pages/Analyze.php';
-        }
+        $templates = [
+            "Login",
+            "Home",
+            "Go",
+            "Edit",
+            "User",
+            "Analyze"
+        ];
+        $default = $templates[0];
+
+        require_once dirname(__DIR__, 1).
+            "/web/pages/".
+            (in_array($template, $templates) ? $template : $default).".php";
     }
 
     public function authenticate() {
