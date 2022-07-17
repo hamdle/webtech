@@ -27,23 +27,20 @@ class App
         require_once $dir.(in_array($template, $templates) ? $template : $default);
     }
 
-    public function authenticate() {
+    private function verifyUser() {
         if (!array_key_exists('session', self::$obj)) {
             self::$obj['session'] = new \Models\Session();
         }
-        if (!self::$obj['session']->verify()) {
-            header("Location: " . $_ENV['ORIGIN']);
-            exit();
-        }
-        return $this;
+        return self::$obj['session']->verify();
     }
 
-    public function redirectAuthenticated($path) {
-        if (!array_key_exists('session', self::$obj)) {
-            self::$obj['session'] = new \Models\Session();
-        }
-        if (self::$obj['session']->verify()) {
-            header("Location: " . $_ENV['ORIGIN'] . $path);
+    public function verifySession($onSuccessRedirect = null) {
+        $verifiedSession = $this->verifyUser();
+        if (!$verifiedSession) {
+            header("Location: " . $_ENV['ORIGIN']);
+            exit();
+        } else if (!is_null($onSuccessRedirect)) {
+            header("Location: " . $_ENV['ORIGIN'] . $onSuccessRedirect);
             exit();
         }
         return $this;
