@@ -1,3 +1,7 @@
+/*
+    Eric Marty
+    Fri 27 May 2022
+ */
 select
     amount
 from workouts
