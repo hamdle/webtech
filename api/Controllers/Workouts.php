@@ -156,18 +156,21 @@ class Workouts
 
         $results = Database::execute('last-exercise.sql', [
             'user_id' => $session->user->id,
-            'exercise_type_id' => $args['exercise_type_id']
+            'exercise_type_id' => intval($args['exercise_type_id'])
         ]);
 
-        $workoutId = $results[0]['workout_id'];
+        $workoutId = $results[0]['id'];
 
-        $suggestedReps = Database::execute('suggested-reps.sql', [
+        $reps = Database::execute('suggested-reps.sql', [
             'user_id' => $session->user->id,
-            'exercise_type_id' => 3,
+            'exercise_type_id' => intval($args['exercise_type_id']),
             'workout_id' => $workoutId
         ]);
-        //\Core\Utils\Log::error(array_column($suggestedReps, 'reps'));
-        $data = array_column($suggestedReps, 'reps');
+
+        $data = [];
+        foreach ($reps as $rep) {
+            $data[] = $rep[array_key_first($rep)];
+        }
         return Response::send(Code::OK_200, $data);
     }
 }

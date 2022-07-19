@@ -28,13 +28,21 @@ class Database {
             $sql = file_get_contents($path);
 
             if ($_ENV['DEBUG'] == 1) {
+                \Core\Utils\Log::error(date('Y-m-d H:i:s'));
                 \Core\Utils\Log::error($sql, "SQL query");
                 \Core\Utils\Log::error($args, "SQL args");
             }
 
-            $sth = self::db()->prepare($sql);
-            $sth->execute($args);
-            $results = $sth->fetchAll();
+            $stmt = self::db()->prepare($sql);
+            foreach($args as $key => $value) {
+                $stmt->bindValue($key, $value);
+            }
+
+            $stmt->execute();
+
+            foreach ($stmt as $row) {
+                $results[] = $row;
+            }
         }
 
         return $results;
