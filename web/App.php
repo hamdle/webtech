@@ -35,11 +35,8 @@ class App
     }
 
     public function verifySession($onSuccessRedirect = null) {
-        $verifiedSession = $this->verifyUser();
-        if (!$verifiedSession) {
-            header("Location: " . $_ENV['ORIGIN']);
-            exit();
-        } else if (!is_null($onSuccessRedirect)) {
+        // TODO: Verify $onSuccessRedirect is a template
+        if (!is_null($onSuccessRedirect) && $this->verifyUser()) {
             header("Location: " . $_ENV['ORIGIN'] . $onSuccessRedirect);
             exit();
         }
