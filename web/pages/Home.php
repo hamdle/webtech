@@ -16,6 +16,7 @@
                     <?php
                         //$session = \web\App::getObject('session');
                         global $app;
+                        $session = $app::getObject('session');
                         //$session = \Models\Session::user();
                         //$session = \Models\User::user();
                         if (!$app->verifyUser()) {
