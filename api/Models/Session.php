@@ -34,7 +34,7 @@ class Session extends Record
 
         $records = Database::execute('session.sql', $this->fields);
 
-        if (array_key_exists(0, $records))
+        if (!is_null($records) && array_key_exists(0, $records))
         {
             foreach ($records[0] as $field => $value)
             {

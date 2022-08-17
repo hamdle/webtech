@@ -2,10 +2,12 @@
 <html>
 <head>
 
-    <title>Analyze - Workout app.</title>
+    <title>Stats - Workout app.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="<?php echo $_ENV['ORIGIN']; ?>/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="<?php use Core\Database;
+
+    echo $_ENV['ORIGIN']; ?>/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="dash__body">
@@ -14,13 +16,17 @@
             <div class="header__body">
                 <div class="header__wrap">
                     <?php
-                    $session = \web\App::getObject('session');
-                    //$session = \Models\Session::user();
-                    //$session = \Models\User::user();
-                    $user = $session->user;
+                        global $app;
+                        $session = $app::getObject('session');
+                        //$session = \Models\Session::user();
+                        //$session = \Models\User::user();
+                        if (!$app->verifyUser()) {
+                            die("User not verified. Please login.");
+                        }
+                        $user = $session->user;
                     ?>
                     <div class="header__title"><a class="link" href="/home">Workout.dev</a> <span class="fa fa-right-arrow footer__icon"></span>
-                        Analyze
+                        Stats
                         <span class="header__user">
                             <span class="fa fa-user footer__icon"></span>
                             <span class="header__links">
@@ -36,7 +42,15 @@
 
         <div class="dash__display">
             <div class="dash__body">
-                Data goes here
+                <?php
+                    $results = Database::execute('total-workouts.sql', [
+                        'user_id' => $session->user->id
+                    ]);
+                    $totalWorkouts = $results[0]['total'];
+                ?>
+                <div class="analytics__row ">
+                    <span class="analytics__title">Total workouts: </span><span class="analytics__result"><?php echo $totalWorkouts ?></span>
+                </div>
             </div>
         </div>
 

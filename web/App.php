@@ -7,15 +7,21 @@ class App
     public static $obj = [];
 
     public static function getObject($lookup) {
-        return self::$obj[$lookup] ?? null;
+        // TODO: need better cache implementation
+        if ($lookup == 'session' && !array_key_exists('session', self::$obj)) {
+            self::$obj['session'] = new \Models\Session();
+        }
+        return self::$obj[$lookup] ?? die("Object not found.");
     }
 
     public function render($template) {
         $dir = dirname(__DIR__, 1)."/web/pages/";
         // Automatically generate pages, impact on performance
         // $templates = scandir($dir, 1);
+        // TODO: pages should be authenticated automatically by the App
+        // $templates = [["Login.php", "public"], ["Edit.php", "auth"]]
         $templates = [
-            "Analyze.php",
+            "Stats.php",
             "Edit.php",
             "Go.php",
             "Home.php",
@@ -27,7 +33,7 @@ class App
         require_once $dir.(in_array($template, $templates) ? $template : $default);
     }
 
-    private function verifyUser() {
+    public function verifyUser() {
         if (!array_key_exists('session', self::$obj)) {
             self::$obj['session'] = new \Models\Session();
         }

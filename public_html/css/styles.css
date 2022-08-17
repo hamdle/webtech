@@ -888,3 +888,31 @@ select.feedback__feel {
 .log__table__row__data:hover {
     background-color: #e3e3e3;
 }
+
+.analytics__row {
+    margin: 5px;
+}
+
+.analytics__title {
+    font-size: 20px;
+}
+
+.analytics__result {
+    font-size: 30px;
+    border-radius: 6px;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #e3e3e3;
+}
+
+.green {
+    color: #00FF00;
+}
+
+.red {
+    color: #FF0000;
+}
+
+.yellow {
+    color: #FFFF00;
+}

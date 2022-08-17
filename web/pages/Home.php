@@ -14,9 +14,13 @@
             <div class="header__body">
                 <div class="header__wrap">
                     <?php
-                        $session = \web\App::getObject('session');
+                        //$session = \web\App::getObject('session');
+                        global $app;
                         //$session = \Models\Session::user();
                         //$session = \Models\User::user();
+                        if (!$app->verifyUser()) {
+                            die("User not verified. Please login.");
+                        }
                         $user = $session->user;
                     ?>
                     <div class="header__title">Workout.dev <span class="fa fa-right-arrow footer__icon"></span>
@@ -24,7 +28,7 @@
                         <span class="header__user">
                             <span class="header__actions">
                                 <span class="header__links">
-                                    <a class="action" href="/analyze/">Analyze</a>
+                                    <a class="action" href="/stats/">Stats</a>
                                 </span>
                             </span>
                             <span class="fa fa-user footer__icon"></span>
