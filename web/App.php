@@ -16,17 +16,10 @@ class App
         return self::$obj[$lookup] ?? die("Object not found.");
     }
 
-    public function render($page, $public = false)
+    public function render($page)
     {
-        if ($public) {
-            return $this->_render($page);
-        }
-
-        if ($this->verifyUser()) {
-            return $this->_render($page);
-        }
-
-        return $this->_render('404.php');
+        $this->verifyUser();
+        return $this->_render($page);
     }
 
     private function _render($template) {

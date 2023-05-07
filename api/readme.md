@@ -4,11 +4,15 @@ The Workout API is designed to track workouts that I've been doing for the past 
 
 # Nginx setup
 
-To route the API through the URI, like `workout.dev/api`, place the following in the nginx config.
+To route the API through the URI, like `workout.dev/api`, place the following in the nginx config server block.
 
 ```
 location /api {
     try_files $uri $uri/ /api/index.php?query_string;
+}
+
+location / {
+    try_files $uri $uri/ /index.php?query_string;
 }
 ```
 
