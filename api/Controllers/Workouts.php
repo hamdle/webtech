@@ -32,7 +32,7 @@ class Workouts
     {
         $session = new Session();
 
-        if (!$session->verify())
+        if (!$session->loadUser())
             return Response::send(Code::UNAUTHORIZED_401);
 
         $workout = new Workout(Request::complexData());
@@ -92,7 +92,7 @@ class Workouts
 
         $session = new Session();
 
-        if (!$session->verify())
+        if (!$session->loadUser())
             return Response::send(Code::UNAUTHORIZED_401);
 
         $exerciseTypes = Query::run("
@@ -151,7 +151,7 @@ class Workouts
     public function suggestReps($args) {
         $session = new Session();
 
-        if (!$session->verify())
+        if (!$session->loadUser())
             return Response::send(Code::UNAUTHORIZED_401);
 
         $results = Database::execute('last-exercise.sql', [

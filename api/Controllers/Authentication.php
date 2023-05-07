@@ -33,7 +33,7 @@ class Authentication {
     public function logout()
     {
         $session = new Session();
-        if ($session->verify()) {
+        if ($session->loadUser()) {
             $session->setExpiredCookie();
             $session->delete();
         }
@@ -45,7 +45,7 @@ class Authentication {
     public static function verifySession()
     {
         $session = new Session();
-        if ($session->verify())
+        if ($session->loadUser())
             return Response::send(Code::OK_200);
 
         return Response::send(Code::UNAUTHORIZED_401);

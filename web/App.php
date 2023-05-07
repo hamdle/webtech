@@ -4,7 +4,6 @@ namespace web;
 
 class App
 {
-    const AUTH_REDIRECT = '/home';
     const PAGE_DIR = '/web/pages/';
     public static $obj = [];
 
@@ -16,29 +15,9 @@ class App
         return self::$obj[$lookup] ?? die("Object not found.");
     }
 
-    public function render($page)
+    public function render($template)
     {
-        $this->verifyUser();
-        return $this->_render($page);
-    }
-
-    private function _render($template) {
-        require_once dirname(__DIR__, 1).self::PAGE_DIR.$template;
-    }
-
-    public function verifyUser() {
-        if (!array_key_exists('session', self::$obj)) {
-            self::$obj['session'] = new \Models\Session();
-        }
-        return self::$obj['session']->verify();
-    }
-
-    public function verifySession($onSuccessRedirect = null) {
-        // TODO: Verify $onSuccessRedirect is a template
-        if (!is_null($onSuccessRedirect) && $this->verifyUser()) {
-            header("Location: " . $_ENV['ORIGIN'] . $onSuccessRedirect);
-            exit();
-        }
-        return $this;
+        self::getObject('session')->loadUser();
+        include dirname(__DIR__, 1).self::PAGE_DIR.$template;
     }
 }
