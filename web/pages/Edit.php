@@ -15,8 +15,6 @@
                 <div class="header__wrap">
                     <?php
                     $session = \web\App::getObject('session');
-                    //$session = \Models\Session::user();
-                    //$session = \Models\User::user();
                     $user = $session->user;
                     ?>
                     <div class="header__title"><a class="link" href="/home">Workout.dev</a> <span class="fa fa-right-arrow footer__icon"></span>

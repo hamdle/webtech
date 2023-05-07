@@ -4,6 +4,8 @@ namespace web;
 
 class App
 {
+    const AUTH_REDIRECT = '/home';
+    const PAGE_DIR = '/web/pages/';
     public static $obj = [];
 
     public static function getObject($lookup) {
@@ -14,23 +16,21 @@ class App
         return self::$obj[$lookup] ?? die("Object not found.");
     }
 
-    public function render($template) {
-        $dir = dirname(__DIR__, 1)."/web/pages/";
-        // Automatically generate pages, impact on performance
-        // $templates = scandir($dir, 1);
-        // TODO: pages should be authenticated automatically by the App
-        // $templates = [["Login.php", "public"], ["Edit.php", "auth"]]
-        $templates = [
-            "Stats.php",
-            "Edit.php",
-            "Go.php",
-            "Home.php",
-            "Login.php",
-            "User.php",
-        ];
-        $default = $templates[0];
+    public function render($page, $public = false)
+    {
+        if ($public) {
+            return $this->_render($page);
+        }
 
-        require_once $dir.(in_array($template, $templates) ? $template : $default);
+        if ($this->verifyUser()) {
+            return $this->_render($page);
+        }
+
+        return $this->_render('404.php');
+    }
+
+    private function _render($template) {
+        require_once dirname(__DIR__, 1).self::PAGE_DIR.$template;
     }
 
     public function verifyUser() {

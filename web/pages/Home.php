@@ -14,14 +14,8 @@
             <div class="header__body">
                 <div class="header__wrap">
                     <?php
-                        //$session = \web\App::getObject('session');
                         global $app;
                         $session = $app::getObject('session');
-                        //$session = \Models\Session::user();
-                        //$session = \Models\User::user();
-                        if (!$app->verifyUser()) {
-                            die("User not verified. Please login.");
-                        }
                         $user = $session->user;
                     ?>
                     <div class="header__title">Workout.dev <span class="fa fa-right-arrow footer__icon"></span>

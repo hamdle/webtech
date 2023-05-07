@@ -3,6 +3,6 @@
 require_once dirname(__DIR__,2) . "/autoload.php";
 
 $app = new \web\App();
-$app->verifySession()->render("Go.php");
+$app->render("Go.php");
 
 ?>
