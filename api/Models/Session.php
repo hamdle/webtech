@@ -83,7 +83,7 @@ class Session extends Record
     // valid, the verified user (of type \Models\User) will be added to the
     // session's fields.
     // return = bool
-    public function loadUser()
+    public function tryLoadUser()
     {
         foreach (Request::cookie() as $key => $value) {
             if (strcmp($key, self::COOKIE_KEY) !== 0)
