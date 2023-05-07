@@ -1,7 +1,6 @@
 <?php
 
 global $app;
-$session = $app::getObject('session');
-$user = $session->user;
+$user = $app->session->user;
 
 ?>

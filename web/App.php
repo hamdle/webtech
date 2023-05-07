@@ -4,20 +4,21 @@ namespace web;
 
 class App
 {
-    const PAGE_DIR = '/web/pages/';
-    public static $obj = [];
+    public $session;
 
-    public static function getObject($lookup) {
-        // TODO: need better cache implementation
-        if ($lookup == 'session' && !array_key_exists('session', self::$obj)) {
-            self::$obj['session'] = new \Models\Session();
-        }
-        return self::$obj[$lookup] ?? die("Object not found.");
+    public function __construct() {
+        $this->session = new \Models\Session();
     }
 
-    public function render($template)
+    public function render($uri)
     {
-        self::getObject('session')->loadUser();
-        include dirname(__DIR__, 1).self::PAGE_DIR.$template;
+        $uri = str_replace('/','',$uri);
+
+        $template = empty($uri)
+            ? "Login.php"
+            : ucwords(str_replace('/','',$uri)).".php";
+
+        $this->session->tryLoadUser();
+        include dirname(__DIR__, 1).$_ENV["WEB_PAGE_DIR"].$template;
     }
 }
