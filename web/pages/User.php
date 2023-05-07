@@ -1,7 +1,7 @@
+<?php include dirname(__DIR__, 1)."/templates/SessionUser.php"; ?>
 <!DOCTYPE html>
 <html>
 <head>
-
     <title>User - Workout app.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,11 +13,6 @@
             <div class="dash__display dash__display--header">
                 <div class="header__body">
                     <div class="header__wrap">
-                        <?php
-                            global $app;
-                            $session = $app::getObject('session');
-                            $user = $session->user;
-                        ?>
                         <div class="header__title"><a class="link" href="/home">Workout.dev</a> <span class="fa fa-right-arrow footer__icon"></span>
                             User
                             <span class="header__user">
