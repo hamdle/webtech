@@ -126,7 +126,7 @@ var Log = (function() {
     }
 
     // Public
-    function init() {
+    function init(api) {
         xhr = new XMLHttpRequest();
         xhr.addEventListener("load", logHandler);
         xhr.open("GET", api + "workouts");

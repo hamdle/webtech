@@ -5,7 +5,6 @@ $user = $this->session->user;
 <!DOCTYPE html>
 <html>
 <head>
-
     <title>Home - Workout app.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -39,7 +38,13 @@ $user = $this->session->user;
 
         <div class="dash__display dash__display--log">
             <div class="dash__body">
-                <a class="dash__link" href="/go"><div class="dash__button-start"><div class="button"><span class="fa fa-plus footer__icon"></span> Start new workout</div></div></a>
+                <a class="dash__link" href="/go">
+                    <div class="dash__button-start">
+                        <div class="button">
+                            <span class="fa fa-plus footer__icon"></span> Start new workout
+                        </div>
+                    </div>
+                </a>
                 <div id="log" class="log"></div>
             </div>
         </div>
@@ -57,15 +62,12 @@ $user = $this->session->user;
         </div>
     </footer>
 
-    <?php include dirname(__DIR__, 1)."/templates/Javascript.php"; ?>
     <script src="/../js/components/log.js"></script>
     <script>
-        Log.init();
-        // VerifyUser.onSuccess(function() {
-        //     Log.init();
-        //     Version.init();
-        // });
+        let api = "<?php echo $_ENV['SITE_URL']; ?>";
+        Log.init(api);
     </script>
+
 </div>
 </body>
 </html>

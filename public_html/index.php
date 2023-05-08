@@ -8,9 +8,9 @@ class WorkoutApp {
     public $file404;
 
     public function __construct() {
-        $this->session = new \Models\Session();
-        $this->home = dirname(__DIR__,1).$_ENV["WEB_PAGE_DIR"].$_ENV["HOME_PAGE"];
-        $this->file404 = dirname(__DIR__,1).$_ENV["WEB_PAGE_DIR"].$_ENV["404_PAGE"];
+        $this->session  = new \Models\Session();
+        $this->home     = dirname(__DIR__,1).$_ENV["WEB_PAGE_DIR"].$_ENV["HOME_PAGE"];
+        $this->file404  = dirname(__DIR__,1).$_ENV["WEB_PAGE_DIR"].$_ENV["404_PAGE"];
     }
     public function run() {
         $this->session->tryLoadUser();
