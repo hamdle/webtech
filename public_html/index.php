@@ -5,10 +5,12 @@ require_once dirname(__DIR__,1) . "/autoload.php";
 class WorkoutApp {
     public $session;
     public $home;
+    public $file404;
 
     public function __construct() {
         $this->session = new \Models\Session();
         $this->home = dirname(__DIR__,1).$_ENV["WEB_PAGE_DIR"].$_ENV["HOME_PAGE"];
+        $this->file404 = dirname(__DIR__,1).$_ENV["WEB_PAGE_DIR"].$_ENV["404_PAGE"];
     }
     public function run() {
         $this->session->tryLoadUser();
@@ -22,7 +24,7 @@ class WorkoutApp {
 
         try {
             $this->tryRender($file)
-                ?:$this->tryRenderOrDie($this->home);
+                ?:$this->tryRenderOrDie($this->session->verified() ? $this->file404 : $this->home);
         } catch (\Throwable $e) {
             error_log($e->getMessage());
             $this->tryRenderOrDie($this->home);
