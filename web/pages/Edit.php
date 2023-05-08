@@ -1,4 +1,8 @@
-<?php include dirname(__DIR__, 1)."/templates/SessionUser.php"; ?>
+<?php
+
+$user = $this->session->user;
+
+?>
 <!DOCTYPE html>
 <html>
 <head>

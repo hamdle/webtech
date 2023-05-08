@@ -1,3 +1,8 @@
+<?php
+
+$user = $this->session->user;
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
