@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login - Workout.dev</title>
-    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo $_ENV['ORIGIN']; ?>/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <?php //include __DIR__.'/template.html'; ?>
