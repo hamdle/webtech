@@ -1,7 +1,6 @@
 <?php
-
+$this->verifyOrDie();
 $user = $this->session->user;
-
 ?>
 <!DOCTYPE html>
 <html>
