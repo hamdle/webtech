@@ -2,13 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-    <title>Stats - Workout app.</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="<?php use Core\Database;
-
-    echo $_ENV['ORIGIN']; ?>/css/styles.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - Workout.dev</title>
+    <link href="<?php echo $_ENV['ORIGIN']; ?>/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="dash__body">
