@@ -1,7 +1,7 @@
-// public_html/components/utilities.js
+// public_html/component/utilities.js
 //
 //
-// A collection of helper functions for other components
+// A collection of helper functions for other component
 // to use.
 //
 // TODO shorten this to Utils.js

@@ -33,4 +33,4 @@ insert into exercise_types
 ('Planks', 3, 40, 60, 'core');
 
 /* workouts */
-/* Generate workouts dynamically using app or command line tool */
+/* Generate workouts dynamically using page or command line tool */

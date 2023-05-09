@@ -3,7 +3,7 @@
 /*
  * autoload.php: autoload files
  *
- * Autoload files based on their location in the web folder. To use a namespace
+ * Autoload files based on their location in the page folder. To use a namespace
  * of \Core\Html\Request create a directory called Core and put a directory
  * called Html inside of it. Add file Request.php into the Html directory and
  * define the Request class in it.

@@ -1,13 +1,17 @@
 <?php
-$this->verifyOrDie();
-$user = $this->session->user;
+
+if (!$this->session->verified()) {
+    $this->renderOrDie($_ENV["HOME_PAGE"]);
+}
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Go - Workout app.</title>
-    <link href="/../css/styles.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="<?php echo $_ENV['ORIGIN']; ?>/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="dash__body">
@@ -20,7 +24,7 @@ $user = $this->session->user;
                         <span class="header__user">
                              <span class="fa fa-user footer__icon"></span>
                             <span class="header__links">
-                                <a class="link" href="/user/"><?php echo $user->email; ?></a>
+                                <a class="link" href="/user/"><?php echo $this->session->user->email; ?></a>
                             </span>
                         </span>
                     </div>
@@ -90,21 +94,24 @@ $user = $this->session->user;
         </footer>
     </div>
 
-    <?php include dirname(__DIR__, 1)."/templates/Javascript.php"; ?>
+    <?php include dirname(__DIR__, 1) . "/templates/Javascript.php"; ?>
 
-    <script src="/../js/components/workout.js"></script>
-    <script src="/../js/components/routinebuilder.js"></script>
-    <script src="/../js/components/startbutton.js"></script>
-    <script src="/../js/components/utilities.js"></script>
-    <script src="/../js/components/timer.js"></script>
-    <script src="/../js/components/countdown.js"></script>
-    <script src="/../js/components/inputdisplay.js"></script>
-    <script src="/../js/components/instructions.js"></script>
-    <script src="/../js/components/verifyuser.js"></script>
-    <script src="/../js/components/log.js"></script>
-    <script src="/../js/components/jumptoinput.js"></script>
+    <script src="/../js/component/workout.js"></script>
+    <script src="/../js/component/routinebuilder.js"></script>
+    <script src="/../js/component/startbutton.js"></script>
+    <script src="/../js/component/utilities.js"></script>
+    <script src="/../js/component/timer.js"></script>
+    <script src="/../js/component/countdown.js"></script>
+    <script src="/../js/component/inputdisplay.js"></script>
+    <script src="/../js/component/instructions.js"></script>
+    <script src="/../js/component/verifyuser.js"></script>
+    <script src="/../js/component/log.js"></script>
+    <script src="/../js/component/jumptoinput.js"></script>
     <script>
-        function startHandler() {
+        let api = "<?php echo $_ENV['SITE_URL']; ?>";
+        let site = "<?php echo $_ENV['ORIGIN']; ?>" + "/";
+
+        function onStart() {
             Startbutton.disable();
             Instructions.hide();
             Workout.create();
@@ -120,18 +127,18 @@ $user = $this->session->user;
 
         Workout.init();
         RoutineBuilder.init(document.getElementById('exercise__list'));
-        Startbutton.init(startHandler);
-        Timer.init(document.getElementById('timer'));
-        Countdown.init(document.getElementById('countdown'));
-        Instructions.init(document.getElementById('instructions'));
-        Log.init();
-        JumpToInput.init(document.getElementById('timer'), 'inputdisplay');
+        Startbutton.init(onStart);
 
+        Timer.init(document.getElementById('timer'));
         var timer = document.getElementById('timer')
         timer.addEventListener('click', function () {
             Countdown.start(60);
         });
 
+        Countdown.init(document.getElementById('countdown'));
+        Instructions.init(document.getElementById('instructions'));
+        Log.init(app);
+        JumpToInput.init(document.getElementById('timer'), 'inputdisplay');
     </script>
 </div>
 </body>

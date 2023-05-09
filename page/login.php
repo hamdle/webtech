@@ -1,18 +1,10 @@
 <?php
 
-$user = $this->session->user;
+$this->title = "Login";
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login - Workout.dev</title>
-    <link href="<?php echo $_ENV['ORIGIN']; ?>/css/styles.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-    <?php //include __DIR__.'/template.html'; ?>
+
+<?php $this->tryRenderTemplate('htmlheader.php'); ?>
 
     <div class="login__body">
         <div class="login__wrap">
@@ -27,17 +19,16 @@ $user = $this->session->user;
                     <button id="login__button" class="button login__button" type="submit"><span class="fa fa-lock footer__icon login-button__icon"></span> Login</button>
                 </form>
             </div>
-        </div>
-        <footer class="footer__login">
-            <div class="footer__wrap--bottom">
-                <a href="https://github.com/hamdle/workout-web-app" class="link"  target="_blank">Workout.dev</a> <span class="fa fa-info footer__icon"></span> version <b><?php echo $_ENV['VERSION']; ?></b> <span class="fa fa-dash footer__icon"></span><span class=""><span class="fa fa-connection footer__icon"></span> <b><?php echo $_ENV['ENVIRONMENT']; ?></b></span>
-            </div>
-        </footer>
-    </div>
+        </div><!-- wrap -->
 
-    <?php include dirname(__DIR__, 1)."/templates/Javascript.php"; ?>
-    <script src="<?php echo $_ENV['ORIGIN']; ?>/js/components/verifyuser.js"></script>
+        <?php $this->tryRenderTemplate('pagefooter.php'); ?>
+
+    </div><!-- body -->
+
+    <script src="<?php echo $_ENV['ORIGIN']; ?>/js/component/verifyuser.js"></script>
     <script>
+        let api = "<?php echo $_ENV['SITE_URL']; ?>";
+        let site = "<?php echo $_ENV['ORIGIN']; ?>" + "/";
         window.addEventListener("load", function() {
             // Send login form data to Api and redirect on success
             function sendData() {
@@ -75,5 +66,5 @@ $user = $this->session->user;
             });
         });
     </script>
-</body>
-</html>
+
+<?php $this->tryRenderTemplate('htmlfooter.php'); ?>

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Controllers/AppInfo.php: get information about the app
+ * Controllers/AppInfo.php: get information about the page
  *
  * The purpose of this controller is to provide information about the Api,
  * typically these requests are public and available to anyone willing to ask.

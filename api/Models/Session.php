@@ -128,7 +128,7 @@ class Session extends Record
         Response::addExpiredCookie([self::COOKIE_KEY => $this->cookie]);
     }
 
-    public function verified() {
+    public function authenticated() {
         return $this->verified;
     }
 

@@ -1,4 +1,4 @@
-// public_html/js/components/jumptoinput.js
+// public_html/js/component/jumptoinput.js
 //
 //
 // Jump to next input when timer is pressed.

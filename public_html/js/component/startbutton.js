@@ -1,4 +1,4 @@
-// public_html/components/startbutton.js
+// public_html/component/startbutton.js
 //
 //
 // Call anonymous function on Start Button click

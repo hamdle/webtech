@@ -10,7 +10,7 @@
  * handling requests along with helper functions in Utils.
  *
  * index.php          - this file, the starting point
- *   web/
+ *   page/
  *     Controllers/   - Put functions here that use data to respond to requests
  *     Modules/       - Database related classes go here, typically one per table
  *     Core/          - General functionality and helper classes

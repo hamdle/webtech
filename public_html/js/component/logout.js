@@ -1,10 +1,12 @@
-// public_html/components/logout.js
+// public_html/component/logout.js
 //
 //
 // Logout currently logged in user.
 
 var Logout = (function () {
     var element;
+    var api;
+    var site;
 
     function logout(event) {
         event.preventDefault();
@@ -12,7 +14,7 @@ var Logout = (function () {
         const xhr = new XMLHttpRequest();
         xhr.addEventListener("load", function(event) {
             console.log(this.status);
-            if (this.status == 204) {
+            if (this.status === 204) {
                 window.location = site;
             } else {
                 console.log('failed');
@@ -23,7 +25,9 @@ var Logout = (function () {
     }
 
     // Public
-    function init(elem) {
+    function init(_api, _site, elem) {
+        api = _api;
+        site = _site;
         element = elem;
         element.addEventListener('click', logout);
     }
