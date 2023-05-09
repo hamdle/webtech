@@ -1,6 +1,6 @@
 <footer class="footer__login">
     <div class="footer__wrap--left">
-        <a href="<?php echo $_ENV['WORKOUT_DEV_LINK']; ?>" class="link" target="_blank">Workout.dev</a>
+        <a href="<?php echo $_ENV['WORKOUT_DEV_LINK']; ?>" class="link" target="_blank"><?php echo $_ENV['APP_NAME']; ?></a>
         <span class="fa fa-info footer__icon"></span> version
         <b><?php echo $_ENV['VERSION']; ?></b>
         <span class="fa fa-dash footer__icon"></span>

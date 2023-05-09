@@ -1,7 +1,7 @@
 <div id="menu" class="dash__display dash__display--header">
     <div class="header__body">
         <div class="header__wrap">
-            <div class="header__title"><a class="link" href="<?php echo $_ENV['ORIGIN'].$_ENV['AUTH_HOME_LINK']; ?>">Workout.dev</a> <span class="fa fa-right-arrow footer__icon"></span>
+            <div class="header__title"><a class="link" href="<?php echo $_ENV['ORIGIN'].$_ENV['AUTH_HOME_LINK']; ?>"><?php echo $_ENV['APP_NAME']; ?></a> <span class="fa fa-right-arrow footer__icon"></span>
                 <?php echo $this->title; ?>
                 <span class="header__user">
                     <?php foreach ($this->menu as $title => $link) { ?>
