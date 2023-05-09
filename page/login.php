@@ -11,7 +11,7 @@ $this->title = "Login";
             <div class="login-form__wrap">
                 <form id="loginForm" class="login__form">
                     <h1 class="login__header">Workout.dev</h1>
-                    <span class="login__desc">evercise <span class="fa fa-running footer__icon"></span> analyze</span>
+                    <span class="login__desc">exercise <span class="fa fa-running footer__icon"></span> analyze</span>
                     <label class="login__title">Login</label>
                     <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Email" name="email" />
                     <label class="login__title">Password</label>
