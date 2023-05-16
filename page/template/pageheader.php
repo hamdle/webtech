@@ -12,13 +12,14 @@
                         </span>
                     <?php } ?>
 
-                    <span class="header__links">
+                    <span class="header__links header__links--active-user">
+                        <span class="fa fa-user footer__icon"></span>
                         <a class="link" href="/user"><?php echo $this->session->user->email; ?></a>
                     </span>
-                    <span class="fa fa-user footer__icon"></span>
                     <span class="header__links">
                         <a id="logout" class="link" href="/logout">Logout</a>
                     </span>
+
                 </span>
             </div>
             <div class="header__menu">

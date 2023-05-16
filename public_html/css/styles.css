@@ -147,6 +147,10 @@ h2 {
     content: "\f0c7";
 }
 
+.fa-wrench:before {
+    content: "\f0ad";
+}
+
 .header__user {
     font-size: 16px;
     float: right;
@@ -155,6 +159,17 @@ h2 {
 .header__links {
     margin: 0 10px 0 10px
 }
+
+.header__links--active-user {
+    background-color: #E3EAFC;
+    border-radius: 12px;
+    padding: 11px 15px 12px 16px;
+}
+
+.header__links--active-user:hover {
+    background-color: #CEDCFF;
+}
+
 .login-button__icon {
     font-size: 16px;
 }
@@ -397,6 +412,7 @@ h2 {
     height: 56px;
     line-height: 56px;
     padding: 0px 20px;
+    margin-bottom: 10px;
     box-sizing: border-box;
 }
 
@@ -749,12 +765,13 @@ h2 {
 
 .log__wrap {
     padding: 10px 20px 9px 20px;
-    margin-bottom: 4px;
+    margin-bottom: 34px;
     color: #222831;
+    background-color: #E3E3E3;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    border-radius: 3px;
     align-items: center;
     color: #536162;
 }
@@ -822,7 +839,7 @@ select.feedback__feel {
 
 .log__time {
     font-size: 30px;
-    margin: 5px 10px 10px 10px;
+    margin: 5px 10px 0 10px;
     text-align: left;
     width: 100%;
     color: #383e52;
@@ -838,7 +855,7 @@ select.feedback__feel {
 }
 
 .log__notes{
-    margin-left: 10px;
+    margin: 0 0 20px 10px;
     text-align: left;
     width: 100%;
     color: #383e52;
@@ -847,7 +864,6 @@ select.feedback__feel {
 .log__table {
     width: 100%;
     margin: 10px 0;
-    padding: 10px;
     border: 1px solid #e3e2e2;
     border-radius: 6px;
 }
@@ -886,11 +902,14 @@ select.feedback__feel {
 }
 
 .log__table__row__data:hover {
-    background-color: #e3e3e3;
+    font-weight: bold;
+    color: #fff;
+    background-color: #d9d9d9;
 }
 
 .analytics__row {
-    margin: 5px;
+    margin: 15px 15px 20px 15px;
+    padding: 10px 10px 10px 0;
 }
 
 .analytics__title {
