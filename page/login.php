@@ -3,7 +3,6 @@
 $this->title = "Login";
 
 ?>
-
 <?php $this->tryRenderTemplate('htmlheader.php'); ?>
 
     <div class="login__body">

@@ -11,7 +11,6 @@ $this->menu = [
 ];
 
 ?>
-
 <?php $this->tryRenderTemplate('htmlheader.php'); ?>
 
 <div class="dash__body">

@@ -7,7 +7,6 @@ if (!$this->session->authenticated()) {
 $this->title = "User";
 
 ?>
-
 <?php $this->tryRenderTemplate('htmlheader.php'); ?>
 
 <div class="dash__body">
