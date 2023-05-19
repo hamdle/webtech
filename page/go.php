@@ -1,40 +1,22 @@
 <?php
 
-if (!$this->session->verified()) {
+if (!$this->session->authenticated()) {
     $this->renderOrDie($_ENV["HOME_PAGE"]);
 }
 
+$this->title = "Go";
+$this->menu = [
+];
+
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Go - Workout app.</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="<?php echo $_ENV['ORIGIN']; ?>/css/styles.css" rel="stylesheet" type="text/css">
-</head>
-<body>
+<?php $this->tryRenderTemplate('htmlheader.php'); ?>
+
 <div class="dash__body">
     <div class="dash__wrap">
-        <div class="dash__display dash__display--header">
-            <div class="header__body">
-                <div class="header__wrap">
-                    <div class="header__title"><a class="link" href="/home">Workout.dev</a> <span class="fa fa-right-arrow footer__icon"></span>
-                        Workout
-                        <span class="header__user">
-                             <span class="fa fa-user footer__icon"></span>
-                            <span class="header__links">
-                                <a class="link" href="/user/"><?php echo $this->session->user->email; ?></a>
-                            </span>
-                        </span>
-                    </div>
-                    <div class="header__menu">
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="dash__display dash__display--routine">
+        <?php $this->tryRenderTemplate('pageheader.php'); ?>
+
+        <div id="content" class="dash__display dash__display--routine">
             <div class="dash__body">
                 <div class="opt__title">
                     <span>Next exercise</span>
@@ -81,36 +63,22 @@ if (!$this->session->verified()) {
                 <div id="log" class="log"></div>
             </div>
         </div>
-        <footer class="footer__login">
-            <div class="footer__wrap--bottom">
-                <a href="https://github.com/hamdle/workout-web-app" class="link" target="_blank">Workout.dev</a>
-                <span class="fa fa-info footer__icon"></span> version
-                <b><?php echo $_ENV['VERSION']; ?></b>
-                <span class="fa fa-dash footer__icon"></span>
-                <span class=""><span class="fa fa-connection footer__icon"></span>
-                        <b><?php echo $_ENV['ENVIRONMENT']; ?></b>
-                    </span>
-            </div>
-        </footer>
-    </div>
+    </div><!-- wrap -->
 
-    <?php include dirname(__DIR__, 1) . "/templates/Javascript.php"; ?>
+    <?php $this->tryRenderTemplate('authpagefooter.php'); ?>
 
-    <script src="/../js/component/workout.js"></script>
-    <script src="/../js/component/routinebuilder.js"></script>
-    <script src="/../js/component/startbutton.js"></script>
-    <script src="/../js/component/utilities.js"></script>
-    <script src="/../js/component/timer.js"></script>
-    <script src="/../js/component/countdown.js"></script>
-    <script src="/../js/component/inputdisplay.js"></script>
-    <script src="/../js/component/instructions.js"></script>
-    <script src="/../js/component/verifyuser.js"></script>
-    <script src="/../js/component/log.js"></script>
-    <script src="/../js/component/jumptoinput.js"></script>
+    <script src="<?php echo $_ENV['ORIGIN']; ?>/js/component/workout.js"></script>
+    <script src="<?php echo $_ENV['ORIGIN']; ?>/js/component/routinebuilder.js"></script>
+    <script src="<?php echo $_ENV['ORIGIN']; ?>/js/component/startbutton.js"></script>
+    <script src="<?php echo $_ENV['ORIGIN']; ?>/js/component/utilities.js"></script>
+    <script src="<?php echo $_ENV['ORIGIN']; ?>/js/component/timer.js"></script>
+    <script src="<?php echo $_ENV['ORIGIN']; ?>/js/component/countdown.js"></script>
+    <script src="<?php echo $_ENV['ORIGIN']; ?>/js/component/inputdisplay.js"></script>
+    <script src="<?php echo $_ENV['ORIGIN']; ?>/js/component/instructions.js"></script>
+    <script src="<?php echo $_ENV['ORIGIN']; ?>/js/component/verifyuser.js"></script>
+    <script src="<?php echo $_ENV['ORIGIN']; ?>/js/component/log.js"></script>
+    <script src="<?php echo $_ENV['ORIGIN']; ?>/js/component/jumptoinput.js"></script>
     <script>
-        let api = "<?php echo $_ENV['SITE_URL']; ?>";
-        let site = "<?php echo $_ENV['ORIGIN']; ?>" + "/";
-
         function onStart() {
             Startbutton.disable();
             Instructions.hide();
@@ -140,6 +108,7 @@ if (!$this->session->verified()) {
         Log.init(app);
         JumpToInput.init(document.getElementById('timer'), 'inputdisplay');
     </script>
-</div>
-</body>
-</html>
+
+</div><!-- body -->
+
+<?php $this->tryRenderTemplate('htmlfooter.php'); ?>
