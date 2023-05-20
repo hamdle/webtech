@@ -14,12 +14,45 @@ $this->title = "User";
 <div id="main-content" class="l-site">
     <div class="p-stripe is-shallow">
         <div class="row">
-            <div class="dash__display dash__display--log">
-                <div class="dash__body">
-                    <div class="user__field"><span class="fa fa-user user__icon"></span></div>
-                    <div class="user__field">Name: <span class="user__value"><?php echo $this->session->user->first_name; ?></span></div>
-                    <div class="user__field">Email: <span class="user__value"><?php echo $this->session->user->email; ?></span></div>
-                    <div class="user__field">Created on: <span class="user__value"><?php echo $this->session->user->created_date; ?></span></div>
+
+            <div class="p-card u-vertically-center">
+                <div class="card">
+                    <div class="card u-clearfix">
+                        <div class="card u-float-left">
+                            <h2>Settings</h2>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card">
+                    <div class="p-card__content">
+                        <img class="p-card__image" alt="" src="<?php echo $_ENV['ORIGIN']; ?>/img/p-bar.png" height="150">
+                    </div>
+                </div>
+                <div class="card">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th><?php echo $this->session->user->first_name; ?></th>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <th><?php echo $this->session->user->email; ?></th>
+                        </tr>
+                        <tr>
+                            <th>Created</th>
+                            <th><?php echo $this->session->user->created_date; ?></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card">
+                    <p class="u-clearfix">
+                        <div class="card u-float-left"><button class="p-button">Edit</button></div>
+                        <div class="card u-float-right"><button class="p-button--negative">Delete</button></div>
+
+                    </p>
                 </div>
             </div>
         </div>

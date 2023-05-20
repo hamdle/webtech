@@ -1,15 +1,17 @@
 <footer class="l-footer--sticky p-strip--light" id="footer">
     <div class="row">
         <div class="col-9">
+
+            <h3><span style="font-weight: 800"><?php echo $_ENV['APP_NAME']; ?></span></h3><br>
             <p>
-                <a href="<?php echo $_ENV['WORKOUT_DEV_LINK']; ?>" class="link" target="_blank"><?php echo $_ENV['APP_NAME']; ?></a> © 2023<br>
+
                 <span class=""><span class="fa fa-connection footer__icon"></span>
                 <b><?php echo $_ENV['ENVIRONMENT']; ?></b>
                 </span>
-                <br>
                 <span class="fa fa-info footer__icon"></span> version
                 <b><?php echo $_ENV['VERSION']; ?></b>
                 <span class="fa fa-dash footer__icon"></span>
+
             </p>
         </div>
         <div class="col-3">
