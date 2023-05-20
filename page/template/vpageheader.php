@@ -1,8 +1,8 @@
 <header id="navigation" class="p-navigation is-dark">
     <div class="p-navigation__row">
         <div class="p-navigation__banner">
-            <div class="p-navigation__logo">
-                <a class="p-navigation__item" href="<?php echo $_ENV['ORIGIN']; ?>">
+            <div class="p-navigation__logo w-navigation__logo">
+                <a class="p-navigation__item w-navigation__item" href="<?php echo $_ENV['ORIGIN']; ?>">
                     <img class="p-navigation__logo-icon" src="<?php echo $_ENV['ORIGIN']; ?>/img/workout-logo-graybox.svg" alt="Workout.dev">
                 </a>
             </div>
@@ -10,9 +10,9 @@
             <a href="#navigation-closed" class="p-navigation__toggle--close" title="close menu">Close menu</a>
         </div>
         <nav class="p-navigation__nav" aria-label="Example main">
-      <span class="u-off-screen">
-        <a href="#main-content">Jump to main content</a>
-      </span>
+            <span class="u-off-screen">
+                <a href="#main-content">Jump to main content</a>
+            </span>
             <ul class="p-navigation__items">
                 <li class="p-navigation__item">
                     <a class="p-navigation__link" href="/home">

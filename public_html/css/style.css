@@ -115,3 +115,11 @@
 .fa-wrench:before {
     content: "\f0ad";
 }
+
+.w-navigation__logo {
+    margin: 0 !important;
+}
+
+.w-navigation__item {
+    width: 64px;
+}
