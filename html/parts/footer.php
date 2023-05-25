@@ -1,22 +1,22 @@
-<footer class="l-footer--sticky p-strip--light" id="footer">
+<footer class="p-strip--light p-sticky-footer" id="footer">
     <div class="row">
         <div class="col-9">
-
             <h3><span style="font-weight: 800"><?php echo $_ENV['APP_NAME']; ?></span></h3><br>
-            <p>
-
-                <span class=""><span class="fa fa-connection footer__icon"></span>
-                <b><?php echo $_ENV['ENVIRONMENT']; ?></b>
-                </span>
-                <span class="fa fa-info footer__icon"></span> version
-                <b><?php echo $_ENV['VERSION']; ?></b>
-                <span class="fa fa-dash footer__icon"></span>
-
-            </p>
+            <dl>
+                <dd>
+                    <span class=""><span class="fa fa-connection footer__icon"></span>
+                    <b><?php echo $_ENV['ENVIRONMENT']; ?></b>
+                    </span>
+                </dd>
+                <dd>
+                    <span class="fa fa-info footer__icon"></span> version<?php echo $_ENV['VERSION']; ?></b>
+                    <span class="fa fa-dash footer__icon"></span>
+                </dd>
+            </dl>
         </div>
         <div class="col-3">
             <p>
-                <a class="p-link--soft" href="#">Back to top<i class="p-icon--top"></i></a>
+                <a class="p-link--soft" href="#">Back to top<i class="p-icon--top"></i> <span class="fa fa-arrow-up footer__icon"></span></a>
             </p>
         </div>
     </div>
@@ -71,9 +71,11 @@
     initNavDropdowns('.p-navigation__item--dropdown-toggle')
 </script>
 
-<script src="/../js/component/logout.js"></script>
+<script src="<?php echo $_ENV['ORIGIN']; ?>/js/logout.js"></script>
 <script>
     let api = "<?php echo $_ENV['SITE_URL']; ?>";
     let site = "<?php echo $_ENV['ORIGIN']; ?>" + "/";
-    Logout.init(api, site, document.getElementById("logout"));
+    <?php if ($this->Session->Authenticated()) { ?>
+        Logout.init(api, site, document.getElementById("logout"));
+    <?php } ?>
 </script>

@@ -1,4 +1,4 @@
-// public_html/component/logout.js
+// Logout
 //
 //
 // Logout currently logged in user.

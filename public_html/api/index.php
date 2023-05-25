@@ -1,3 +1,3 @@
 <?php
 
-require_once dirname(__DIR__,2)."/api/index.php";
+include dirname(__DIR__,2)."/api/index.php";

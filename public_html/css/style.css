@@ -116,6 +116,10 @@
     content: "\f0ad";
 }
 
+.fa-arrow-up:before {
+    content: "\f062";
+}
+
 .w-navigation__logo {
     margin: 0 !important;
 }

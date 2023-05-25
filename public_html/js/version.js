@@ -1,4 +1,4 @@
-// public_html/component/version.js
+// Version
 //
 //
 // Load the version of the API via an api call

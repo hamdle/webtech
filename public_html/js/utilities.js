@@ -1,4 +1,4 @@
-// public_html/component/utilities.js
+// Utils
 //
 //
 // A collection of helper functions for other component

@@ -7,7 +7,7 @@
  *
  */
 
-require dirname(__DIR__,1)."/autoload.php";
+require dirname(__DIR__,2)."/autoload.php";
 
 if (count($argv) < 2) {
     print "Error: Invalid number of arguments.".PHP_EOL.PHP_EOL;

@@ -1,20 +1,16 @@
 <?php
+$App = $this;
+$App->IsAuthenticated();
 
-if (!$this->session->authenticated()) {
-    $this->renderOrDie($_ENV["HOME_PAGE"]);
-}
+$App->Attributes["title"] = "User";
 
-$this->title = "User";
-
+$App->RenderHtml('open.php');
+$App->RenderHtml('header.php');
 ?>
-<?php $this->tryRenderTemplate('htmlheader.php'); ?>
 
-<?php $this->tryRenderTemplate('vpageheader.php'); ?>
-
-<div id="main-content" class="l-site">
+<div id="main-content" class="">
     <div class="p-stripe is-shallow">
         <div class="row">
-
             <div class="p-card u-vertically-center">
                 <div class="card">
                     <div class="card u-clearfix">
@@ -34,15 +30,15 @@ $this->title = "User";
                         <tbody>
                         <tr>
                             <th>Name</th>
-                            <th><?php echo $this->session->user->first_name; ?></th>
+                            <th><?php echo $App->User->first_name; ?></th>
                         </tr>
                         <tr>
                             <th>Email</th>
-                            <th><?php echo $this->session->user->email; ?></th>
+                            <th><?php echo $App->User->email; ?></th>
                         </tr>
                         <tr>
                             <th>Created</th>
-                            <th><?php echo $this->session->user->created_date; ?></th>
+                            <th><?php echo $App->User->created_date; ?></th>
                         </tr>
                         </tbody>
                     </table>
@@ -57,9 +53,7 @@ $this->title = "User";
             </div>
         </div>
     </div>
+</div>
 
-    <?php $this->tryRenderTemplate('vauthpagefooter.php'); ?>
-
-</div><!-- main-content -->
-
-<?php $this->tryRenderTemplate('htmlfooter.php'); ?>
+<?php $App->RenderHtml('footer.php'); ?>
+<?php $App->RenderHtml('close.php'); ?>

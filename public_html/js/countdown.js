@@ -1,9 +1,8 @@
-// public_html/component/countdown.js
+// Countdown
 //
 // A reusable timer that, given an amount of time in seconds, counts down.
 //
 // include Utils
-// TODO use import
 
 var Countdown = (function () {
     var amount;
