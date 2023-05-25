@@ -9,31 +9,41 @@
             <a href="#navigation" class="p-navigation__toggle--open" title="menu">Menu</a>
             <a href="#navigation-closed" class="p-navigation__toggle--close" title="close menu">Close menu</a>
         </div>
-        <nav class="p-navigation__nav" aria-label="Example main">
+        <nav class="p-navigation__nav" aria-label="">
             <span class="u-off-screen">
                 <a href="#main-content">Jump to main content</a>
             </span>
-            <ul class="p-navigation__items">
-                <li class="p-navigation__item">
-                    <a class="p-navigation__link" href="/home">
-                        Dashboard
-                    </a>
-                </li>
-                <li class="p-navigation__item">
-                    <a class="p-navigation__link" href="/build">
-                        Build
-                    </a>
-                </li>
-                <li class="p-navigation__item">
-                    <a class="p-button p-navigation__link  has-icon" href="/go">
-                        <i class="p-icon--plus"></i><span>Workout</span>
-                    </a>
-                </li>
-            </ul>
+            <?php if ($this->Session->Authenticated()) { ?>
+                <ul class="p-navigation__items">
+                    <li class="p-navigation__item <?php if ($this->IsSelected("/home")) { ?> is-selected <?php } ?>">
+                        <a class="p-navigation__link" href="/home">
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="p-navigation__item <?php if ($this->IsSelected("/build")) { ?> is-selected <?php } ?>">
+                        <a class="p-navigation__link" href="/build">
+                            Build
+                        </a>
+                    </li>
+                    <li class="p-navigation__item <?php if ($this->IsSelected("/go")) { ?> is-selected <?php } ?>">
+                        <a class="p-button p-navigation__link  has-icon" href="/go">
+                            <i class="p-icon--plus"></i><span>Workout</span>
+                        </a>
+                    </li>
+                </ul>
+            <?php } else { ?>
+                <ul class="p-navigation__items">
+                    <li class="p-navigation__item  <?php if ($this->IsSelected("/")) { ?> is-selected <?php } ?>">
+                        <a class="p-navigation__link" href="/">
+                            Workout.dev
+                        </a>
+                    </li>
+                </ul>
+            <?php } ?>
 
             <?php if ($this->Session->Authenticated()) { ?>
                 <ul class="p-navigation__items">
-                    <li class="p-navigation__item--dropdown-toggle" id="link-1">
+                    <li class="p-navigation__item--dropdown-toggle <?php if ($this->IsSelected("/user")) { ?> is-selected <?php } ?>" id="link-1">
                         <a class="p-navigation__link" aria-controls="account-menu" aria-expanded="false" href="#">
                             <?php echo $this->User->first_name." ".$this->User->last_name; ?>
                         </a>
@@ -49,7 +59,7 @@
                 </ul>
             <?php } else { ?>
                 <ul class="p-navigation__items">
-                    <li class="p-navigation__item--dropdown-toggle" id="link-1">
+                    <li class="p-navigation__item--dropdown-toggle  <?php if ($this->IsSelected("/login")) { ?> is-selected <?php } ?>" id="link-1">
                         <a class="p-navigation__link" aria-controls="account-menu" aria-expanded="false" href="#">
                             My Account
                         </a>

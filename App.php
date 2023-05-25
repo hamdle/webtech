@@ -34,6 +34,8 @@ class App {
             ? $_ENV["HOME_PAGE"]
             : str_replace('/','',$file).".php";
 
+        $this->Attributes["file"] = $file;
+
         try
         {
             $this->TryRenderPage($file)
@@ -67,6 +69,20 @@ class App {
     {
         $this->TryRenderPage($file);
         $this->TryRenderPart($file);
+    }
+
+    public function IsSelected($uri)
+    {
+        if ($uri === "/" && $this->Attributes["file"] === $_ENV["HOME_PAGE"])
+        {
+            return true;
+        }
+
+        $e = explode(".", $this->Attributes["file"]);
+        if (str_contains($uri, (empty($e)?:$e[0] )))
+        {
+            return true;
+        }
     }
 
     private function TryRenderPage($file)
