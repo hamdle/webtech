@@ -1,4 +1,4 @@
-// public_html/component/verifyuser.js
+// VerifyUser
 //
 // 
 // Redirect the page if a user is or is not logged in.

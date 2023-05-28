@@ -18,21 +18,25 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-require __DIR__ . "/autoload.php";
+require_once dirname(__DIR__, 1) . "/autoload.php";
 
 use Core\Api;
 
-Api::get("auth", "Authentication", "verifySession");
-Api::get("exercises", "Workouts", "exerciseTypes");
-Api::get("workouts", "Workouts", "allWorkouts");
-Api::get("version", "AppInfo", "version");
-Api::get("coffee", "AppInfo", "teapot");
-Api::get("roll", "Dice", "d20");
-Api::get("september", "September", "countdown");
-Api::get("suggest/reps/{exercise_type_id}", "Workouts", "suggestReps");
+Api::get("auth",        "Authentication",   "verifySession");
+Api::get("exercises",   "Workouts",         "exerciseTypes");
+Api::get("workouts",    "Workouts",         "allWorkouts");
+Api::get("version",     "AppInfo",          "version");
+Api::get("coffee",      "AppInfo",          "teapot");
+Api::get("roll",        "Dice",             "d20");
+Api::get("september",   "September",        "countdown");
+Api::get(
+    "suggest/reps/{exercise_type_id}",
+    "Workouts",
+    "suggestReps"
+);
 
-Api::post("login", "Authentication", "login");
-Api::post("logout", "Authentication", "logout");
-Api::post("workouts/new", "Workouts", "save");
+Api::post("login",          "Authentication",   "login");
+Api::post("logout",         "Authentication",   "logout");
+Api::post("workouts/new",   "Workouts",         "save");
 
 return Api::respond();

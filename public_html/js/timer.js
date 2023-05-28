@@ -1,4 +1,4 @@
-// public_html/component/timer.js
+// Timer
 //
 //
 // Display a timer that starts at zero and counts up. 

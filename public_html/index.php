@@ -1,8 +1,3 @@
 <?php
 
-require_once dirname(__DIR__,1) . "/autoload.php";
-
-$app = new App();
-$app->run();
-
-?>
+include dirname(__DIR__,1) . "/App.php";

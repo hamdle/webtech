@@ -91,16 +91,23 @@ class Session extends Record
 
             $parts = explode(":", $value);
             if (count($parts) !== 3)
+            {
+                $this->verified = false;
                 return false;
+            }
 
             $user = new User(["email" => $parts[0]]);
             if (!$user->load())
+            {
+                $this->verified = false;
                 return false;
+            }
 
             $this->user_id = $user->id;
             if (!$this->load())
             {
                 $this->setExpiredCookie();
+                $this->verified = false;
                 return false;
             }
             $this->user = $user;
@@ -111,11 +118,11 @@ class Session extends Record
             $this->cookie = $user->email.":".$this->token;
             $mac = hash_hmac("sha256", $this->cookie, $_ENV["COOKIE_KEY"]);
 
-            if (hash_equals($mac, $parts[2])) {
+            if (hash_equals($mac, $parts[2]))
+            {
                 $this->verified = true;
                 return true;
             }
-
         }
 
         $this->verified = false;
@@ -128,7 +135,7 @@ class Session extends Record
         Response::addExpiredCookie([self::COOKIE_KEY => $this->cookie]);
     }
 
-    public function authenticated() {
+    public function Authenticated() {
         return $this->verified;
     }
 

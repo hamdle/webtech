@@ -1,4 +1,4 @@
-// public_html/component/log.js
+// Log
 //
 //
 // Build a list of exercise entries, called the log. This component attaches to

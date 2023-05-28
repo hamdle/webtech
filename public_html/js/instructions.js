@@ -1,4 +1,4 @@
-// public_html/component/instructions.js
+// instructions.js
 //
 //
 // Display instructions to help the user get started. Should
