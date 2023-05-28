@@ -17,17 +17,17 @@
                 <ul class="p-navigation__items">
                     <li class="p-navigation__item <?php if ($this->IsSelected("/home")) { ?> is-selected <?php } ?>">
                         <a class="p-navigation__link" href="/home">
-                            Dashboard
+                            Workouts
                         </a>
                     </li>
                     <li class="p-navigation__item <?php if ($this->IsSelected("/build")) { ?> is-selected <?php } ?>">
                         <a class="p-navigation__link" href="/build">
-                            Build
+                            Develop
                         </a>
                     </li>
                     <li class="p-navigation__item <?php if ($this->IsSelected("/go")) { ?> is-selected <?php } ?>">
                         <a class="p-button p-navigation__link  has-icon" href="/go">
-                            <i class="p-icon--plus"></i><span>Workout</span>
+                            <i class="p-icon--spinner"></i><span>Press Start</span>
                         </a>
                     </li>
                 </ul>
@@ -35,7 +35,7 @@
                 <ul class="p-navigation__items">
                     <li class="p-navigation__item  <?php if ($this->IsSelected("/")) { ?> is-selected <?php } ?>">
                         <a class="p-navigation__link" href="/">
-                            Workout.dev
+                            <?php echo $_ENV["APP_NAME"]; ?>
                         </a>
                     </li>
                 </ul>
