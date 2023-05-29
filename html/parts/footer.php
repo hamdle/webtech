@@ -2,21 +2,25 @@
     <div class="row">
         <div class="col-9">
             <h3><span style="font-weight: 800"><?php echo $_ENV['APP_NAME']; ?></span></h3><br>
-            <dl>
-                <dd>
-                    <span class=""><span style="margin-right:3px;" class="fa fa-connection footer__icon"></span>
-                    <b><?php echo $_ENV['ENVIRONMENT']; ?></b>
-                    </span>
-                </dd>
-                <dd>
-                    <span style="margin-right:3px;" class="fa fa-info footer__icon"></span> version <?php echo $_ENV['VERSION']; ?></b>
-                    <span class="fa fa-dash footer__icon"></span>
-                </dd>
-            </dl>
+            <?php if ($this->Session->Authenticated()) {?>
+                <dl>
+                    <dd>
+                        <span class=""><span style="margin-right:3px;" class="fa fa-connection footer__icon"></span>
+                        <b><?php echo $_ENV['ENVIRONMENT']; ?></b>
+                        </span>
+                    </dd>
+                    <dd>
+                        <span style="margin-right:3px;" class="fa fa-info footer__icon"></span>Release: <a href="https://github.com/hamdle/workout.dev/releases/tag/v2.0" target="_blank"> v<b><?php echo $_ENV['VERSION']; ?></b></a>
+
+                    </dd>
+                </dl>
+            <?php } ?>
         </div>
         <div class="col-3">
             <p>
-                <a class="p-link--soft" href="#">Back to top<i class="p-icon--top"></i> <span class="fa fa-arrow-up footer__icon"></span></a>
+                <?php if (!$this->IsSelected("/login")) { ?>
+                    <a class="p-link--soft" href="#">Back to top<i class="p-icon--top"></i> <span class="fa fa-arrow-up footer__icon"></span></a>
+                <?php } ?>
             </p>
         </div>
     </div>
