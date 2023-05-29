@@ -21,27 +21,30 @@ DROP TABLE IF EXISTS `exercise_types`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `exercise_types` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
     `title` varchar(128) DEFAULT NULL,
     `default_sets` int(1) unsigned DEFAULT 0,
     `default_reps` int(1) unsigned DEFAULT 0,
     `wait_time` int(2) unsigned DEFAULT 0,
-    `category` enum('warm','pull','push','legs','core') DEFAULT NULL,
+    `active` boolean not null default 1,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `exercise_types` WRITE;
 /*!40000 ALTER TABLE `exercise_types` DISABLE KEYS */;
-INSERT INTO `exercise_types` VALUES
-(1,'Warm Up',1,1,0,'warm'),
-(2,'Pull Ups',3,5,60,'pull'),
-(3,'Dips',3,5,60,'push'),
-(4,'Push Ups',3,5,60,'push'),
-(5,'Leg Raises',3,5,60,'core'),
-(6,'Lunges',4,5,60,'legs'),
-(7,'Cobras',3,40,30,'core'),
-(8,'Planks',3,5,60,'core'),
-(9,'Run',3,10,60,'legs');
+INSERT INTO `exercise_types`
+(`user_id`, `title`, `default_sets`, `default_reps`, `wait_time`)
+VALUES
+(1, 'Warm Up',     1,  1,  0),
+(1, 'Pull Ups',    3,  5,  60),
+(1, 'Dips',        3,  5,  60),
+(1, 'Push Ups',    3,  5,  60),
+(1, 'Leg Raises',  3,  5,  60),
+(1, 'Lunges',      4,  5,  60),
+(1, 'Cobras',      3,  40, 30),
+(1, 'Planks',      3,  5,  60),
+(1, 'Run',         3,  10, 60);
 /*!40000 ALTER TABLE `exercise_types` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,6 +100,7 @@ CREATE TABLE `users` (
     `created_date` datetime DEFAULT current_timestamp(),
     `first_name` varchar(128) NOT NULL,
     `last_name` varchar(128) DEFAULT NULL,
+    `active` boolean not null default 1,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -104,7 +108,7 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES
-(1,'system@localhost.com','21232f297a57a5a743894a0e4a801fc3',now(),'System','User');
+(1,'system@localhost.com','21232f297a57a5a743894a0e4a801fc3',now(),'System','User',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
