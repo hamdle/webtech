@@ -12,7 +12,7 @@ use Exception;
 
 class Env
 {
-    // Load .env file at root of the Api.
+    // Load .env file at root of the Application.
     public static function load($path = null)
     {
         try {
@@ -21,17 +21,17 @@ class Env
             if (strcmp($web, "public_html") !== 0) {
                 if (empty($_SERVER["DOCUMENT_ROOT"])) {
                     // This is a script
-                    $output = file_get_contents(dirname(__FILE__,3)."/.env");
+                    $output = file_get_contents(dirname(__FILE__, 4) . "/.env");
                 } else {
                     // This call came from within this Api project
                     $output = file_get_contents(
-                        $path ?? $_SERVER["DOCUMENT_ROOT"] . "/api/.env");
+                        $path ?? $_SERVER["DOCUMENT_ROOT"] . "/.env");
                 }
             } else {
                 // This call is from outside of the Api project and came from the parent public_html application who uses this
                 // API. You can find this file starting from the root of the parent project at /public_html/index.php
                 $output = file_get_contents(
-                    $path ?? dirname($_SERVER["DOCUMENT_ROOT"],1) . "/api/.env");
+                    $path ?? dirname($_SERVER["DOCUMENT_ROOT"],1) . "/.env");
             }
 
             if ($output === false || $output == "")
