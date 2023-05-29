@@ -23,18 +23,11 @@ $App->RenderHtml('header.php');
     <div class="p-stripe is-shallow">
         <div class="row">
             <a class="dash__link" href="/go">
-                <div class="p-button has-icon">
+                <button class="p-tooltip--right has-icon" aria-describedby="btn-new-workout">
                     <i class="p-icon--plus"></i>
-                    <span>New</span>
-                </div>
-                <div class="p-button has-icon">
-                    <i class="p-icon--plus"></i>
-                    <span>Planned</span>
-                </div>
-                <div class="p-button has-icon">
-                    <i class="p-icon--plus"></i>
-                    <span>Custom</span>
-                </div>
+                    Workout
+                    <span class="p-tooltip__message" role="tooltip" id="btn-new-workout">Start a new workout</span>
+                </button>
             </a>
             <div class="">
                 <?php
