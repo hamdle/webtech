@@ -11,18 +11,19 @@ $App->RenderHtml('header.php');
 
 ?>
 
-<div class="p-notification--negative u-hide" id="notification">
-    <div class="p-notification__content">
-        <h5 class="p-notification__title">Login Failed</h5>
-        <p class="p-notification__message">Please check your user and password and try again.</p>
-        <button class="p-notification__close" aria-controls="notification">Close</button>
-    </div>
-</div>
+
 
 <main id="main-content" class="">
     <section class="p-strip">
         <div class="row">
             <div class="col-6">
+                <div class="p-notification--negative u-hide" id="notification">
+                    <div class="p-notification__content">
+                        <h5 class="p-notification__title">Login Failed</h5>
+                        <p class="p-notification__message">Please check your user and password and try again.</p>
+                        <button class="p-notification__close" aria-controls="notification">Close</button>
+                    </div>
+                </div>
                 <div class="form-box p-card selected-login">
                     <h1 class="p-heading--four title login-title">Login</h1>
                     <hr>
