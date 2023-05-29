@@ -1,13 +1,23 @@
 <?php
-    $App = $this;
-    $App->RedirectAuthenticated("home.php");
 
-    $App->Attributes["title"] = "Login";
-    $App->Attributes["menu"] = [];
+$App = $this;
+$App->RedirectAuthenticated("home.php");
 
-    $App->RenderHtml('open.php');
-    $App->RenderHtml('header.php');
+$App->Attributes["title"] = "Login";
+$App->Attributes["menu"] = [];
+
+$App->RenderHtml('open.php');
+$App->RenderHtml('header.php');
+
 ?>
+
+<div class="p-notification--negative u-hide" id="notification">
+    <div class="p-notification__content">
+        <h5 class="p-notification__title">Login Failed</h5>
+        <p class="p-notification__message">Please check your user and password and try again.</p>
+        <button class="p-notification__close" aria-controls="notification">Close</button>
+    </div>
+</div>
 
 <main id="main-content" class="">
     <section class="p-strip">
@@ -46,19 +56,28 @@
 <?php $App->RenderHtml("footer.php"); ?>
 
 <script>
-    window.addEventListener("load", function() {
-        // Send login form data to Api and redirect on success
-        function sendData() {
+    window.addEventListener("load", function()
+    {
+        function sendData()
+        {
             const $xhr = new XMLHttpRequest();
             const formData = new FormData(form);
 
-            // TODO: Clean this up. Don't need both of thses.
-            $xhr.addEventListener('load', function(event) {
-                //console.log(event.target.responseText);
-                //window.location = site + 'go';
+            $xhr.addEventListener('load', function(event)
+            {
+                const response = JSON.parse(event.target.responseText);
+
+                if (response.error === 'true')
+                {
+                    let notification = document.getElementById('notification');
+                    if (notification) {
+                        notification.classList.remove('u-hide');
+                    }
+                }
             });
             $xhr.onreadystatechange = function() {
-                if ($xhr.readyState == XMLHttpRequest.DONE) {
+                if ($xhr.readyState == XMLHttpRequest.DONE)
+                {
                     if (this.status == 201) {
                         window.location = site + 'home';
                     } else {
@@ -66,7 +85,8 @@
                     }
                 }
             }
-            $xhr.addEventListener('error', function(event) {
+            $xhr.addEventListener('error', function(event)
+            {
                 console.log('An error occured while logging in.');
             });
             $xhr.open("POST", api + 'login');
@@ -77,11 +97,33 @@
         }
 
         let form = document.getElementById('loginForm');
-        form.addEventListener("submit", function (event) {
+        form.addEventListener("submit", function (event)
+        {
             event.preventDefault();
             sendData();
         });
     });
+</script>
+
+<script>
+    var closeButtons = document.querySelectorAll('.p-notification__close');
+
+    function setupCloseButton(closeButton) {
+        closeButton.addEventListener('click', function(event) {
+            var target = event.target.getAttribute('aria-controls');
+            var notification = document.getElementById(target);
+
+            if (notification)
+            {
+                notification.classList.add('u-hide');
+            }
+        });
+    }
+
+    for (var i = 0, l = closeButtons.length; i < l; i++)
+    {
+        setupCloseButton(closeButtons[i]);
+    }
 </script>
 
 <?php $App->RenderHtml('close.php'); ?>

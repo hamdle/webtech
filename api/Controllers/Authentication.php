@@ -27,7 +27,9 @@ class Authentication {
         if ($user->login())
             return Response::send(Code::CREATED_201);
 
-        return Response::send(Code::UNAUTHORIZED_401);
+        return Response::send(Code::UNAUTHORIZED_401, [
+            "error" => "true"
+        ]);
     }
 
     public function logout()
