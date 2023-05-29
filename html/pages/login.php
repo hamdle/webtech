@@ -40,7 +40,7 @@ $App->RenderHtml('header.php');
                 <div class="p-table-of-contents">
                     <div class="related-information">
                         <p>
-                            <b>Welcome to <?php echo $_ENV['APP_NAME']; ?>!</b> Join today to build your perfect calisthenics workout routine. Design a workout that fit you using our library of exercises or create your own.
+                            <b>Welcome to <?php echo $_ENV['APP_NAME']; ?>!</b> Join today to track calisthenics and home gym workouts in real time. Build and tweak exercies to perfection. Track workout metrics powered by A.I.
                         </p>
                         <p>
                             Want to know more about <?php echo $_ENV['APP_NAME']; ?> features?<br>
