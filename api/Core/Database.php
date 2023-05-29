@@ -19,10 +19,18 @@ class Database {
         return self::$db;
     }
 
-    public static function execute($file, $args)
+    public static function execute($file, $args, $path = null)
     {
         $results = null;
-        $path = dirname(__FILE__).'/Sql/'.$file;
+        if (is_null($path))
+        {
+            $path = dirname(__FILE__).'/Sql/'.$file;
+        }
+        else
+        {
+            $path = $path.'/'.$file;
+        }
+
 
         if (is_readable($path)) {
             $sql = file_get_contents($path);
