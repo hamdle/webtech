@@ -28,6 +28,7 @@ CREATE TABLE `sessions` (
 DROP TABLE IF EXISTS `exercise_types`;
 CREATE TABLE `exercise_types` (
     `id` INT(10) unsigned NOT NULL AUTO_INCREMENT,
+    `user_id` INT(10) unsigned DEFAULT 1,
     `title` VARCHAR(128),
     `default_sets` INT(1) unsigned DEFAULT 0,
     `default_reps` INT(1) unsigned DEFAULT 0,
