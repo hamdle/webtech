@@ -4,12 +4,12 @@
             <h3><span style="font-weight: 800"><?php echo $_ENV['APP_NAME']; ?></span></h3><br>
             <dl>
                 <dd>
-                    <span class=""><span class="fa fa-connection footer__icon"></span>
+                    <span class=""><span style="margin-right:3px;" class="fa fa-connection footer__icon"></span>
                     <b><?php echo $_ENV['ENVIRONMENT']; ?></b>
                     </span>
                 </dd>
                 <dd>
-                    <span class="fa fa-info footer__icon"></span> version<?php echo $_ENV['VERSION']; ?></b>
+                    <span style="margin-right:3px;" class="fa fa-info footer__icon"></span> version <?php echo $_ENV['VERSION']; ?></b>
                     <span class="fa fa-dash footer__icon"></span>
                 </dd>
             </dl>
