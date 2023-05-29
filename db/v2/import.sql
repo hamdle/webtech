@@ -34,17 +34,17 @@ CREATE TABLE `exercise_types` (
 LOCK TABLES `exercise_types` WRITE;
 /*!40000 ALTER TABLE `exercise_types` DISABLE KEYS */;
 INSERT INTO `exercise_types`
-(`user_id`, `title`, `default_sets`, `default_reps`, `wait_time`)
+(`id`, `user_id`, `title`, `default_sets`, `default_reps`, `wait_time`)
 VALUES
-(1, 'Warm Up',     1,  1,  0),
-(1, 'Pull Ups',    3,  5,  60),
-(1, 'Dips',        3,  5,  60),
-(1, 'Push Ups',    3,  5,  60),
-(1, 'Leg Raises',  3,  5,  60),
-(1, 'Lunges',      4,  5,  60),
-(1, 'Cobras',      3,  40, 30),
-(1, 'Planks',      3,  5,  60),
-(1, 'Run',         3,  10, 60);
+    (1, 1, 'Warm Up',     1,  1,  0),
+    (2, 1, 'Pull Ups',    3,  5,  60),
+    (3, 1, 'Dips',        3,  5,  60),
+    (4, 1, 'Push Ups',    3,  5,  60),
+    (5, 1, 'Leg Raises',  3,  5,  60),
+    (6, 1, 'Lunges',      4,  5,  60),
+    (7, 1, 'Cobras',      3,  40, 30),
+    (8, 1, 'Planks',      3,  5,  60),
+    (9, 1, 'Run',         3,  10, 60);
 /*!40000 ALTER TABLE `exercise_types` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +100,7 @@ CREATE TABLE `users` (
     `created_date` datetime DEFAULT current_timestamp(),
     `first_name` varchar(128) NOT NULL,
     `last_name` varchar(128) DEFAULT NULL,
-    `active` boolean not null default 1,
+    `active` boolean DEFAULT 1,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -108,7 +108,7 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES
-(1,'system@localhost.com','21232f297a57a5a743894a0e4a801fc3',now(),'System','User',1);
+    (1,'system@localhost.com','21232f297a57a5a743894a0e4a801fc3',now(),'System','User',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,6 +127,61 @@ CREATE TABLE `workouts` (
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+DROP TABLE IF EXISTS `log_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `log_types` (
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `log_type` varchar(32) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `log_types` WRITE;
+/*!40000 ALTER TABLE `log_types` DISABLE KEYS */;
+INSERT INTO `log_types`
+(`log_type`)
+VALUES
+    ('system'),
+    ('error'),
+    ('info');
+/*!40000 ALTER TABLE `log_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+DROP TABLE IF EXISTS `logs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `logs` (
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `log_type_id` int(10) DEFAULT 0,
+    `user_id` int(11) DEFAULT NULL,
+    `timestamp` datetime DEFAULT NULL,
+    `message` varchar(1024) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+DROP TABLE IF EXISTS `system_config`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `system_config` (
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) DEFAULT 1,
+    `reference` varchar(32) NOT NULL,
+    `data` varchar(1024) NOT NULL,
+    `active` boolean DEFAULT 1,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `system_config` WRITE;
+/*!40000 ALTER TABLE `system_config` DISABLE KEYS */;
+INSERT INTO `system_config`
+(`user_id`, `reference`, `data`)
+VALUES
+    (1, 'default_timezone', '-8');
+/*!40000 ALTER TABLE `system_config` ENABLE KEYS */;
+UNLOCK TABLES;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

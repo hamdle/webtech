@@ -1,7 +1,18 @@
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'eric@localhost.com','21232f297a57a5a743894a0e4a801fc3',now(),'Eric','Marty',1);
+INSERT INTO `users`
+VALUES
+    (2,'eric@localhost.com','21232f297a57a5a743894a0e4a801fc3',now(),'Eric','Marty',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `system_config` WRITE;
+/*!40000 ALTER TABLE `system_config` DISABLE KEYS */;
+INSERT INTO `system_config`
+(`user_id`, `reference`, `data`)
+VALUES
+    (2, 'default_timezone', '-8');
+/*!40000 ALTER TABLE `system_config` ENABLE KEYS */;
 UNLOCK TABLES;
 
 LOCK TABLES `exercise_types` WRITE;
