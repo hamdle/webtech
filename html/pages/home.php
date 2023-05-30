@@ -25,10 +25,15 @@ $App->RenderHtml('header.php');
             <div class="u-clearfix">
                 <div class="u-float-left">
                     <a class="dash__link" href="/go">
-                        <button class="p-tooltip--right has-icon" aria-describedby="btn-new-workout">
-                            <i class="p-icon--plus"></i>
-                            Workout
-                            <span class="p-tooltip__message" role="tooltip" id="btn-new-workout">Start a new workout</span>
+                        <button class="p-tooltip--top-center has-icon" aria-describedby="btn-new-workout">
+                            <i class="p-icon--spinner"></i>
+                            Press Start
+                            <span class="p-tooltip__message" role="tooltip" id="btn-new-workout">to Workout</span>
+                        </button>
+                        <button class="p-button--positive p-tooltip--top-center has-icon" aria-describedby="btm-cntr">
+                            <i class="p-icon--success"></i>
+                            16
+                            <span class="p-tooltip__message" role="tooltip" id="btm-cntr" >Completed</span>
                         </button>
                     </a>
                 </div>
@@ -41,7 +46,9 @@ $App->RenderHtml('header.php');
                         $totalWorkouts = $results[0]['total'];
                         ?>
                         <div class="analytics__row ">
-                            <span class="analytics__title">Showing latest <?php echo $totalWorkouts ?> of </span><span class="analytics__result"><?php echo $totalWorkouts ?></span>
+                            <span class="analytics__title">
+                                Show: <b>ALL</b>
+                            </span>
                         </div>
                     </div>
                 </div>
