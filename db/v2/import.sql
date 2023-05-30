@@ -231,10 +231,10 @@ INSERT INTO `system_config`
 (`user_id`, `reference`, `data`, `system_config_type_id`)
 VALUES
     (1, 'default_timezone', '-8', 1),
-    (1, 'pagination_default', '25', 1),
+    (1, 'pagination_default', '30', 1),
     (1, 'rep_rest_default', '60', 2),
     (1, 'set_rest_default', '120', 2),
-    (1, 'warm_up_default', '180', 2);
+    (1, 'warm_up_default', '120', 2);
 /*!40000 ALTER TABLE `system_config` ENABLE KEYS */;
 UNLOCK TABLES;
 

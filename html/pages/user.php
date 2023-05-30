@@ -97,16 +97,19 @@ $App->RenderHtml('header.php');
                                     <table>
                                         <tbody>
                                         <tr>
-                                            <th>Default Reps</th>
+                                            <th>Seconds Between Reps</th>
                                             <th>60</th>
+                                            <th>System Default</th>
                                         </tr>
                                         <tr>
-                                            <th>Default Sets</th>
+                                            <th>Seconds Between Sets</th>
                                             <th>120</th>
+                                            <th>System Default</th>
                                         </tr>
                                         <tr>
                                             <th>Warm Up Length</th>
-                                            <th>180</th>
+                                            <th>120</th>
+                                            <th>System Default</th>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -139,10 +142,12 @@ $App->RenderHtml('header.php');
                                         <tr>
                                             <th>Timezone</th>
                                             <th>-8</th>
+                                            <th>System Default</th>
                                         </tr>
                                         <tr>
                                             <th>Workout Pagination Default</th>
-                                            <th>25</th>
+                                            <th>30</th>
+                                            <th>System Default</th>
                                         </tr>
                                         </tbody>
                                     </table>
