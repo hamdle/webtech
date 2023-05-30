@@ -27,13 +27,12 @@
                     </li>
                     <li class="p-navigation__item <?php if ($this->IsSelected("/go")) { ?> is-selected <?php } ?>">
                         <a class="p-button p-navigation__link  has-icon" href="/go">
-                            <span style="margin-right:10px;"><i class="<?php if ($this->IsSelected("/go")) { ?> is-selected p-icon--spinner<?php } ?> p-icon--success"></i></span>
+                            <span style="margin-right:10px;"><i class="<?php if ($this->IsSelected("/go")) { ?> is-selected p-icon--success<?php } else { ?> p-icon--spinner<?php } ?>"></i></span>
                             New Workout
                         </a>
                     </li>
-                    <li class="p-navigation__item w-blink__item  <?php if ($this->IsSelected("/go")) { ?> hide <?php } ?>">
-                        <a class="p-button p-navigation__link  has-icon" href="/go">
-                            <span style="margin-right:10px;"><i class="p-icon--spinner"></i></span>
+                    <li class="p-navigation__item w-blink__item <?php if ($this->IsSelected("/go")) { ?> hide <?php } ?>">
+                        <a class="p-button p-navigation__link  has-icon" style="font-size:14px;" href="/go">
                             Press Start
                         </a>
                     </li>
