@@ -22,24 +22,32 @@ $App->RenderHtml('header.php');
     </section>
     <div class="p-stripe is-shallow">
         <div class="row">
-            <a class="dash__link" href="/go">
-                <button class="p-tooltip--right has-icon" aria-describedby="btn-new-workout">
-                    <i class="p-icon--plus"></i>
-                    Workout
-                    <span class="p-tooltip__message" role="tooltip" id="btn-new-workout">Start a new workout</span>
-                </button>
-            </a>
-            <div class="">
-                <?php
-                $results = \Core\Database::execute('total-workouts.sql', [
-                    'user_id' => $App->User->id
-                ]);
-                $totalWorkouts = $results[0]['total'];
-                ?>
-                <div class="analytics__row ">
-                    <h3><span class="analytics__title">Total workouts: </span><span class="analytics__result"><?php echo $totalWorkouts ?></span></h3>
+            <div class="u-clearfix">
+                <div class="u-float-left">
+                    <a class="dash__link" href="/go">
+                        <button class="p-tooltip--right has-icon" aria-describedby="btn-new-workout">
+                            <i class="p-icon--plus"></i>
+                            Workout
+                            <span class="p-tooltip__message" role="tooltip" id="btn-new-workout">Start a new workout</span>
+                        </button>
+                    </a>
+                </div>
+                <div class="u-float-right">
+                    <div class="">
+                        <?php
+                        $results = \Core\Database::execute('total-workouts.sql', [
+                            'user_id' => $App->User->id
+                        ]);
+                        $totalWorkouts = $results[0]['total'];
+                        ?>
+                        <div class="analytics__row ">
+                            <span class="analytics__title">Showing latest <?php echo $totalWorkouts ?> of </span><span class="analytics__result"><?php echo $totalWorkouts ?></span>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+
             <div class="p-card">
                 <div id="log" class="log"></div>
             </div>
