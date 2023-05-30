@@ -97,7 +97,7 @@ var Log = (function() {
             // Workout info: notes
             var notes = document.createElement("div");
             notes.classList = "log__notes"
-            notes.innerHTML = entry.notes;
+            notes.innerHTML = entry.notes.replace(/\n/g, "<br />");;
             wrap.appendChild(notes);
 
             // div.innerHTML = "<span class=\"log__title\">" +
