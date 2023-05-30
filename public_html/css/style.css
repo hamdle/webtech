@@ -127,3 +127,17 @@
 .w-navigation__item {
     width: 64px;
 }
+
+.w-blink__item {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+.hide {
+    display: none;
+}

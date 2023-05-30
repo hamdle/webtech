@@ -26,9 +26,9 @@ $App->RenderHtml('header.php');
                 <div class="u-float-left">
                     <a class="dash__link" href="/go">
                         <button class="p-tooltip--top-center has-icon" aria-describedby="btn-new-workout">
-                            <i class="p-icon--spinner"></i>
-                            Press Start
-                            <span class="p-tooltip__message" role="tooltip" id="btn-new-workout">to Workout</span>
+                            <i class="p-icon--success"></i>
+                            New Workout
+                            <span class="p-tooltip__message w-blink__item" role="tooltip" id="btn-new-workout"><span style="margin-right:5px;"><i class="p-icon--spinner"></i></span>Press Start</span>
                         </button>
                         <button class="p-button--positive p-tooltip--top-center has-icon" aria-describedby="btm-cntr">
                             <i class="p-icon--success"></i>
