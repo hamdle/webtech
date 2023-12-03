@@ -6,7 +6,7 @@ include dirname(__DIR__, 2) . "/app/Core.php";
 
 $App = new Core();
 
-$App->IsAuthenticated();
+$App->AuthOrDie();
 
 $App->title = "Dashboard";
 

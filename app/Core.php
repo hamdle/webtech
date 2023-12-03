@@ -35,7 +35,7 @@ class Core
         // TODO: Middleware goes here
     }
 
-    public function IsAuthenticated()
+    public function AuthOrDie()
     {
         if (!$this->Session->Authenticated()) {
             return $this->RenderOrDie($_ENV["HOME_PAGE"]);
