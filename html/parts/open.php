@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title><?php echo $this->Attributes["title"]; ?> - <?php echo $_ENV['APP_NAME']; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
