@@ -39,9 +39,8 @@ class Response
     {
         header(self::JSON_CONTENT_TYPE);
 
-        // Currenly, CORS policy is set in the Nginx config. To set policy in
-        // PHP, you can set it here using:
-        // 
+        // CORS policy may be set in the server config. To set policy in PHP
+        // you can set it here using:
         // header("Access-Control-Allow-Origin: " . $_ENV["ORIGIN"]);
 
         http_response_code($code);
@@ -53,8 +52,10 @@ class Response
     {
         return self::send
         (
-            Code::NOT_FOUND_404,
+            Code::OK_200,
             [
+                "ok" => "false",
+                "error" => "true",
                 "message" => "Not found",
                 "code" => "404"
             ]

@@ -1,7 +1,6 @@
 // Logout
 //
-//
-// Logout currently logged in user.
+// Send request to delete user cookie to logout user
 
 var Logout = (function () {
     var element;
@@ -10,18 +9,37 @@ var Logout = (function () {
 
     function logout(event) {
         event.preventDefault();
-        console.log('Logout...');
-        const xhr = new XMLHttpRequest();
-        xhr.addEventListener("load", function(event) {
-            console.log(this.status);
-            if (this.status === 204) {
-                window.location = site;
-            } else {
-                console.log('failed');
+
+        const $xhr = new XMLHttpRequest();
+
+        // $xhr.addEventListener("load", function(event) {
+        //     const response = JSON.parse(event.target.responseText);
+        //     if (response.ok == 'true') {
+        //         window.location = site;
+        //     }
+        // })
+        $xhr.addEventListener('readystatechange', function(event)
+        {
+            if ($xhr.readyState == XMLHttpRequest.DONE)
+            {
+                const response = JSON.parse(event.target.responseText);
+                if (response.ok === 'false' || response.hasOwnProperty('warning') || response.hasOwnProperty('error')) {
+                    return;
+                }
+                if (response.ok === 'true') {
+                    window.location = site;
+                }
             }
-        })
-        xhr.open("POST", api + "logout");
-        xhr.send();
+        });
+        $xhr.addEventListener('error', function(event)
+        {
+            console.log('An error occured while logging in.');
+        });
+        $xhr.open("POST", api);
+        $xhr.setRequestHeader('Content-type', 'application/json');
+        $xhr.send(JSON.stringify({
+            method: "Authentication.logout"
+        }));
     }
 
     // Public

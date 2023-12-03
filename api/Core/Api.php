@@ -46,8 +46,10 @@ class Api
     {
         try {
             $request = Request::post();
+            if (empty($request)) {
+                $request = Request::complexData();
+            }
 
-            // If found, this will be a tuple in the form [controller, function]
             $method = $request['method'] ?? null;
             if (is_null($method))
                 return Response::sendDefaultNotFound();
@@ -73,10 +75,11 @@ class Api
             Log::error($e->getMessage()." in ".$e->getFile()." on line ".$e->getLine(), "Api::respond");
             return Response::send
             (
-                Code::INTERNAL_SERVER_ERROR_500,
+                Code::OK_200,
                 [
-                    "error" => true,
-                    "message" => "An unexpected error has occurred",
+                    "ok" => "false",
+                    "error" => "true",
+                    "message" => "An unexpected error has occurred"
                 ]
             );
         }

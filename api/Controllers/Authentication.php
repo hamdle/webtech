@@ -42,7 +42,9 @@ class Authentication {
             $session->setExpiredCookie();
             $session->delete();
         }
-        return Response::send(Code::DELETED_204);
+        return Response::send(Code::OK_200, [
+            "ok" => "true"
+        ]);
     }
 
     // The browser will send the cookie used to verify the session automatically.
