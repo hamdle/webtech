@@ -29,7 +29,7 @@
                 </ul>
             <?php } else { ?>
                 <ul class="p-navigation__items">
-                    <li class="p-navigation__item  <?php if ($this->IsSelected("/")) { ?> is-selected <?php } ?>">
+                    <li class="p-navigation__item ">
                         <a class="p-navigation__link" href="/">
                             <?php echo $_ENV["APP_NAME"]; ?>
                         </a>
@@ -55,15 +55,10 @@
                 </ul>
             <?php } else { ?>
                 <ul class="p-navigation__items">
-                    <li class="p-navigation__item--dropdown-toggle  <?php if ($this->IsSelected("/login")) { ?> is-selected <?php } ?>" id="link-1">
+                    <li class="p-navigation__item  <?php if ($this->IsSelected("/login")) { ?> is-selected <?php } ?>" id="link-1">
                         <a class="p-navigation__link" aria-controls="account-menu" aria-expanded="false" href="#">
-                            My Account
+                            Login
                         </a>
-                        <ul class="p-navigation__dropdown--right" id="account-menu" aria-hidden="true">
-                            <li>
-                                <a href="/login" class="p-navigation__dropdown-item">Login</a>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
             <?php } ?>
