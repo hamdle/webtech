@@ -25,7 +25,7 @@ class Env
                 } else {
                     // This call came from within this Api project
                     $output = file_get_contents(
-                        $path ?? $_SERVER["DOCUMENT_ROOT"] . "/.env");
+                        $path ?? dirname($_SERVER["DOCUMENT_ROOT"],1) . "/.env");
                 }
             } else {
                 // This call is from outside of the Api project and came from the parent public_html application who uses this
