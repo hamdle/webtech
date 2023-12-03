@@ -31,11 +31,6 @@
                             New Workout
                         </a>
                     </li>
-                    <li class="p-navigation__item w-blink__item <?php if ($this->IsSelected("/go")) { ?> hide <?php } ?>">
-                        <a class="p-button p-navigation__link  has-icon" style="font-size:14px;" href="/go">
-                            Press Start
-                        </a>
-                    </li>
                 </ul>
             <?php } else { ?>
                 <ul class="p-navigation__items">
