@@ -25,10 +25,13 @@ class Authentication {
             return Response::send(Code::UNPROCESSABLE_ENTITY_422, $user->getMessages());
 
         if ($user->login())
-            return Response::send(Code::CREATED_201);
+            return Response::send(Code::OK_200, [
+                "ok" => "true"
+            ]);
 
-        return Response::send(Code::UNAUTHORIZED_401, [
-            "error" => "true"
+        return Response::send(Code::OK_200, [
+            "ok" => "true",
+            "warning" => "login failed"
         ]);
     }
 

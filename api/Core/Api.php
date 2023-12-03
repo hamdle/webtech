@@ -45,16 +45,23 @@ class Api
     public static function respond()
     {
         try {
-            // If found, this will be a tuple in the form [controller, function]
-            $controllerParts = self::route();
+            $request = Request::post();
 
-            if (is_null($controllerParts))
+            // If found, this will be a tuple in the form [controller, function]
+            $method = $request['method'] ?? null;
+            if (is_null($method))
                 return Response::sendDefaultNotFound();
 
-            $namespace = self::$CONTROLLER_ROOT.$controllerParts[0];
-            $function = $controllerParts[1];
+            $parts = explode('.', $method);
+            if (count($parts) != 2)
+                return Response::sendDefaultNotFound();
+            $namespace = self::$CONTROLLER_ROOT.$parts[0];
+            $function = $parts[1];
+
             // Format args as key => value pairs
-            $args = array_key_exists(2, $controllerParts) ? $controllerParts[2] : null;
+            $args = array_filter($request, function ($key) {
+                return $key != 'method';
+            },ARRAY_FILTER_USE_KEY);
 
             if ($controller = [new $namespace, $function])
                 return $controller($args);

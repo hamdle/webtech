@@ -7,8 +7,10 @@ use \Models\User;
 
 class App {
     private Session $Session;
-    private ?User $User;
-    private array $Attributes;
+    public ?User $User;
+    private $file;
+
+    public $title;
 
     public function __construct()
     {
@@ -21,31 +23,14 @@ class App {
         $this->Session->tryLoadUser();
         $this->User = $this->Session->user;
 
-        $this->Attributes["title"] = "Welcome";
-        $this->Attributes["menu"] = [];
+        $this->title = "Welcome";
+
+        $file = str_replace('/','',$_SERVER["REQUEST_URI"]);
+        $file = str_replace('/','',$file).".php";
+
+        $this->file = $file;
 
         // TODO: Middleware goes here
-    }
-
-    public function Run()
-    {
-        $file = str_replace('/','',$_SERVER["REQUEST_URI"]);
-        $file = empty($file)
-            ? $_ENV["HOME_PAGE"]
-            : str_replace('/','',$file).".php";
-
-        $this->Attributes["file"] = $file;
-
-        try
-        {
-            $this->TryRenderPage($file)
-                ?:$this->RenderOrDie($this->Session->Authenticated() ? $_ENV["404_PAGE"] : $_ENV["HOME_PAGE"]);
-        }
-        catch (\Throwable $e)
-        {
-            error_log($e->getMessage());
-            $this->RenderOrDie($_ENV["HOME_PAGE"]);
-        }
     }
 
     public function IsAuthenticated()
@@ -73,12 +58,12 @@ class App {
 
     public function IsSelected($uri)
     {
-        if ($uri === "/" && $this->Attributes["file"] === $_ENV["HOME_PAGE"])
+        if ($uri === "/" && $this->file === $_ENV["HOME_PAGE"])
         {
             return true;
         }
 
-        $e = explode(".", $this->Attributes["file"]);
+        $e = explode(".", $this->file);
         if (str_contains($uri, (empty($e)?:$e[0] )))
         {
             return true;
@@ -111,10 +96,5 @@ class App {
         die($_ENV['RENDER_OR_DIE_ERROR_MESSAGE']);
     }
 }
-
-// APP STARTS HERE
-////////////////////////////////
-$App = new App();
-$App->Run();
 
 ?>
