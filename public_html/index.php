@@ -1,8 +1,10 @@
 <?php
 
-include dirname(__DIR__,1) . "/App.php";
+use app\Core;
 
-$App = new App();
+include dirname(__DIR__, 1) . "/app/Core.php";
+
+$App = new Core();
 
 //$App->RedirectAuthenticated("home.php");
 

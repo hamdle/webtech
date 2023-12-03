@@ -1,8 +1,10 @@
 <?php
 
-include dirname(__DIR__,2) . "/App.php";
+use app\Core;
 
-$App = new App();
+include dirname(__DIR__, 2) . "/app/Core.php";
+
+$App = new Core();
 
 $App->IsAuthenticated();
 
