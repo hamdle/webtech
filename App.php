@@ -52,7 +52,6 @@ class App {
 
     public function RenderHtml($file)
     {
-        $this->TryRenderPage($file);
         $this->TryRenderPart($file);
     }
 
@@ -67,16 +66,6 @@ class App {
         if (str_contains($uri, (empty($e)?:$e[0] )))
         {
             return true;
-        }
-    }
-
-    private function TryRenderPage($file)
-    {
-        $filepath = __DIR__.$_ENV["PAGE_DIR"].$file;
-        if (file_exists($filepath)) {
-            //error_log("Rendering: ".$filepath);
-            require $filepath;
-            exit();
         }
     }
 

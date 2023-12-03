@@ -1,8 +1,12 @@
 <?php
-$App = $this;
+
+include dirname(__DIR__,2) . "/App.php";
+
+$App = new App();
+
 $App->IsAuthenticated();
 
-$App->Attributes["title"] = "Go";
+$App->title = "Go";
 
 $App->RenderHtml('open.php');
 $App->RenderHtml('header.php');

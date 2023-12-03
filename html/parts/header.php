@@ -20,11 +20,6 @@
                             Workouts
                         </a>
                     </li>
-                    <li class="p-navigation__item <?php if ($this->IsSelected("/build")) { ?> is-selected <?php } ?>">
-                        <a class="p-navigation__link" href="/build">
-                            Develop
-                        </a>
-                    </li>
                     <li class="p-navigation__item <?php if ($this->IsSelected("/go")) { ?> is-selected <?php } ?>">
                         <a class="p-button p-navigation__link  has-icon" href="/go">
                             <span style="margin-right:10px;"><i class="<?php if ($this->IsSelected("/go")) { ?> is-selected p-icon--success<?php } else { ?> p-icon--spinner<?php } ?>"></i></span>
