@@ -5,33 +5,26 @@ namespace app;
 require_once dirname(__DIR__, 1) . "/autoload.php";
 
 use Models\Session;
-use Models\User;
 
 class Core
 {
-
     public const HTML_CLOSE = 'close';
     public const HTML_FOOTER = 'footer';
     public const HTML_HEADER = 'header';
     public const HTML_OPEN = 'open';
+    public readonly Session $session;
 
-    private Session $Session;
-    public ?User $User;
-    private $uri;
-    private $title;
+    private $name;
 
-    public function __construct()
+    public function __construct($name = "Workout")
     {
-        $this->Session = new Session();
-        $this->Session->loadUser();
-        $this->User = $this->Session->user;
-        $this->title = "Welcome";
-        $this->uri = str_replace('/', '', $_SERVER["REQUEST_URI"]);
+        $this->session = new Session(true);
+        $this->name = $name;
     }
 
     public function authOrDie($message = 'Authentication error')
     {
-        if (!$this->Session->Authenticated())
+        if (!$this->session->authenticated())
         {
             error_log($message);
             die($message);
@@ -49,20 +42,15 @@ class Core
 
     public function onPage($uri)
     {
-        if ($uri === "/" || empty($this->uri))
+        if ($_SERVER["REQUEST_URI"] === "/")
         {
             return false;
         }
-        else if (str_contains($uri, $this->uri))
+        else if (str_contains($_SERVER["REQUEST_URI"], $uri))
         {
             return true;
         }
         return false;
-    }
-
-    public function title($title)
-    {
-        $this->title = $title;
     }
 }
 ?>

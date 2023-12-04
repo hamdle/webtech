@@ -4,8 +4,7 @@ use app\Core;
 
 include dirname(__DIR__, 2) . "/app/Core.php";
 
-$App = new Core();
-$App->title("Go");
+$App = new Core("Go");
 $App->authOrDie();
 $App->renderHtml(Core::HTML_OPEN);
 $App->renderHtml(Core::HTML_HEADER);

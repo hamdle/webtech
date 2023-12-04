@@ -4,8 +4,7 @@ use app\Core;
 
 include dirname(__DIR__, 2) . "/app/Core.php";
 
-$App = new Core();
-$App->title("Dashboard");
+$App = new Core("Home");
 $App->authOrDie();
 $App->renderHtml(Core::HTML_OPEN);
 $App->renderHtml(Core::HTML_HEADER);
@@ -41,7 +40,7 @@ $App->renderHtml(Core::HTML_HEADER);
                     <div class="">
                         <?php
                         $results = \Core\Database::execute('total-workouts.sql', [
-                            'user_id' => $App->User->id
+                            'user_id' => $App->session->user->id
                         ]);
                         $totalWorkouts = $results[0]['total'];
                         ?>

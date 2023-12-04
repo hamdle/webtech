@@ -4,8 +4,7 @@ use app\Core;
 
 include dirname(__DIR__, 1) . "/app/Core.php";
 
-$App = new Core();
-$App->title("Login");
+$App = new Core("Login");
 $App->renderHtml(Core::HTML_OPEN);
 $App->renderHtml(Core::HTML_HEADER);
 

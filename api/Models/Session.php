@@ -20,6 +20,13 @@ class Session extends Record
 
     private $verified = false;
 
+    public function __construct($loadUser = false)
+    {
+        if ($loadUser)
+        {
+            $this->loadUser();
+        }
+    }
     public function table()
     {
         return "sessions";
@@ -30,7 +37,7 @@ class Session extends Record
     public function load()
     {
         $this->filter();
-        $this->transform($this->transforms());
+        $this->transform();
 
         $records = Database::execute('session.sql', $this->fields);
 
@@ -135,7 +142,7 @@ class Session extends Record
         Response::addExpiredCookie([self::COOKIE_KEY => $this->cookie]);
     }
 
-    public function Authenticated() {
+    public function authenticated() {
         return $this->verified;
     }
 
