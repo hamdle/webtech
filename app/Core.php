@@ -11,7 +11,7 @@ class Core
 {
     private Session $Session;
     public ?User $User;
-    private $file;
+    private $uri;
     private $title;
 
     public function __construct()
@@ -21,14 +21,14 @@ class Core
         $this->User = $this->Session->user;
         $this->title = "Welcome";
 
-        $file = str_replace('/', '', $_SERVER["REQUEST_URI"]);
-        $file = str_replace('/', '', $file) . ".php";
-        $this->file = $file;
+        $uri = str_replace('/', '', $_SERVER["REQUEST_URI"]);
+        $this->uri = $uri;
     }
 
     public function authOrDie($message = 'Authentication error')
     {
-        if (!$this->Session->Authenticated()) {
+        if (!$this->Session->Authenticated())
+        {
             error_log($message);
             die($message);
         }
@@ -37,19 +37,20 @@ class Core
     public function renderHtml($file)
     {
         $filepath = dirname(__DIR__, 1) . $_ENV["PART_DIR"] . $file;
-        if (file_exists($filepath)) {
+        if (file_exists($filepath))
+        {
             require $filepath;
         }
     }
 
     public function onPage($uri)
     {
-        if ($uri === "/" && $this->file === $_ENV["HOME_PAGE"]) {
-            return true;
+        if ($uri === "/" || empty($this->uri))
+        {
+            return false;
         }
-
-        $e = explode(".", $this->file);
-        if (str_contains($uri, (empty($e) ?: $e[0]))) {
+        else if (str_contains($uri, $this->uri))
+        {
             return true;
         }
     }
