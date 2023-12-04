@@ -5,13 +5,10 @@ use app\Core;
 include dirname(__DIR__, 2) . "/app/Core.php";
 
 $App = new Core();
-
-//$App->IsAuthenticated();
-
-$App->Attributes["title"] = "User";
-
-$App->RenderHtml('open.php');
-$App->RenderHtml('header.php');
+$App->title("User");
+$App->authOrDie();
+$App->renderHtml('open.php');
+$App->renderHtml('header.php');
 
 ?>
 
@@ -204,7 +201,7 @@ $App->RenderHtml('header.php');
         </section>
     </div>
 
-<?php $App->RenderHtml('footer.php'); ?>
+<?php $App->renderHtml('footer.php'); ?>
 
     <script>
         (function () {
@@ -430,4 +427,4 @@ $App->RenderHtml('header.php');
         })();
     </script>
 
-<?php $App->RenderHtml('close.php'); ?>
+<?php $App->renderHtml('close.php'); ?>

@@ -18,7 +18,7 @@
         </div>
         <div class="col-3">
             <p>
-                <?php if (!$this->IsSelected("/login")) { ?>
+                <?php if (!$this->onPage("/login")) { ?>
                     <a class="p-link--soft" href="#">Back to top<i class="p-icon--top"></i> <span class="fa fa-arrow-up footer__icon"></span></a>
                 <?php } ?>
             </p>

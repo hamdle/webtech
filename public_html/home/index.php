@@ -5,13 +5,10 @@ use app\Core;
 include dirname(__DIR__, 2) . "/app/Core.php";
 
 $App = new Core();
-
-$App->AuthOrDie();
-
-$App->title = "Dashboard";
-
-$App->RenderHtml('open.php');
-$App->RenderHtml('header.php');
+$App->title("Dashboard");
+$App->authOrDie();
+$App->renderHtml('open.php');
+$App->renderHtml('header.php');
 
 ?>
 
@@ -65,11 +62,11 @@ $App->RenderHtml('header.php');
     </div>
 </div>
 
-<?php $App->RenderHtml('footer.php'); ?>
+<?php $App->renderHtml('footer.php'); ?>
 
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/log.js"></script>
 <script>
     Log.init(api);
 </script>
 
-<?php $App->RenderHtml('close.php'); ?>
+<?php $App->renderHtml('close.php'); ?>

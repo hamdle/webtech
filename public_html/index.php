@@ -5,13 +5,9 @@ use app\Core;
 include dirname(__DIR__, 1) . "/app/Core.php";
 
 $App = new Core();
-
-//$App->RedirectAuthenticated("home.php");
-
-$App->title = "Login";
-
-$App->RenderHtml('open.php');
-$App->RenderHtml('header.php');
+$App->title("Login");
+$App->renderHtml('open.php');
+$App->renderHtml('header.php');
 
 ?>
 
@@ -57,7 +53,7 @@ $App->RenderHtml('header.php');
     </section>
 </main>
 
-<?php $App->RenderHtml("footer.php"); ?>
+<?php $App->renderHtml("footer.php"); ?>
 
 <script>
     window.addEventListener("load", function()
@@ -132,4 +128,4 @@ $App->RenderHtml('header.php');
     }
 </script>
 
-<?php $App->RenderHtml('close.php'); ?>
+<?php $App->renderHtml('close.php'); ?>

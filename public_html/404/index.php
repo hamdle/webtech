@@ -6,7 +6,7 @@ include dirname(__DIR__, 2) . "/app/Core.php";
 
 $App = new Core();
 
-$App->AuthOrDie();
+$App->authOrDie();
 
 $App->Attributes["title"] = "404";
 
@@ -32,5 +32,5 @@ $this->RenderHtml('header.php');
         <div class="" style="padding-bottom: 300px;"></div>
     </div>
 
-<?php $App->RenderHtml('footer.php'); ?>
-<?php $App->RenderHtml('close.php'); ?>
+<?php $App->renderHtml('footer.php'); ?>
+<?php $App->renderHtml('close.php'); ?>

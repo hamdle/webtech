@@ -5,13 +5,11 @@ use app\Core;
 include dirname(__DIR__, 2) . "/app/Core.php";
 
 $App = new Core();
+$App->title("Go");
+$App->authOrDie();
+$App->renderHtml('open.php');
+$App->renderHtml('header.php');
 
-$App->AuthOrDie();
-
-$App->title = "Go";
-
-$App->RenderHtml('open.php');
-$App->RenderHtml('header.php');
 ?>
 
 <div id="main-content" class="l-site">
@@ -66,7 +64,7 @@ $App->RenderHtml('header.php');
     </div>
 </div>
 
-<?php $App->RenderHtml('footer.php'); ?>
+<?php $App->renderHtml('footer.php'); ?>
 
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/workout.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/routinebuilder.js"></script>
@@ -110,4 +108,4 @@ $App->RenderHtml('header.php');
     JumpToInput.init(document.getElementById('timer'), 'inputdisplay');
 </script>
 
-<?php $App->RenderHtml('close.php'); ?>
+<?php $App->renderHtml('close.php'); ?>

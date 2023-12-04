@@ -15,14 +15,14 @@
             </span>
             <?php if ($this->Session->Authenticated()) { ?>
                 <ul class="p-navigation__items">
-                    <li class="p-navigation__item <?php if ($this->IsSelected("/home")) { ?> is-selected <?php } ?>">
+                    <li class="p-navigation__item <?php if ($this->onPage("/home")) { ?> is-selected <?php } ?>">
                         <a class="p-navigation__link" href="/home">
                             Workouts
                         </a>
                     </li>
-                    <li class="p-navigation__item <?php if ($this->IsSelected("/go")) { ?> is-selected <?php } ?>">
+                    <li class="p-navigation__item <?php if ($this->onPage("/go")) { ?> is-selected <?php } ?>">
                         <a class="p-button p-navigation__link  has-icon" href="/go">
-                            <span style="margin-right:10px;"><i class="<?php if ($this->IsSelected("/go")) { ?> is-selected p-icon--success<?php } else { ?> p-icon--spinner<?php } ?>"></i></span>
+                            <span style="margin-right:10px;"><i class="<?php if ($this->onPage("/go")) { ?> is-selected p-icon--success<?php } else { ?> p-icon--spinner<?php } ?>"></i></span>
                             New Workout
                         </a>
                     </li>
@@ -39,7 +39,7 @@
 
             <?php if ($this->Session->Authenticated()) { ?>
                 <ul class="p-navigation__items">
-                    <li class="p-navigation__item--dropdown-toggle <?php if ($this->IsSelected("/user")) { ?> is-selected <?php } ?>" id="link-1">
+                    <li class="p-navigation__item--dropdown-toggle <?php if ($this->onPage("/user")) { ?> is-selected <?php } ?>" id="link-1">
                         <a class="p-navigation__link" aria-controls="account-menu" aria-expanded="false" href="#">
                             <?php echo $this->User->first_name." ".$this->User->last_name; ?>
                         </a>
@@ -55,7 +55,7 @@
                 </ul>
             <?php } else { ?>
                 <ul class="p-navigation__items">
-                    <li class="p-navigation__item  <?php if ($this->IsSelected("/login")) { ?> is-selected <?php } ?>" id="link-1">
+                    <li class="p-navigation__item  <?php if ($this->onPage("/login")) { ?> is-selected <?php } ?>" id="link-1">
                         <a class="p-navigation__link" aria-controls="account-menu" aria-expanded="false" href="#">
                             Login
                         </a>
