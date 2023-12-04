@@ -7,8 +7,8 @@ include dirname(__DIR__, 2) . "/app/Core.php";
 $App = new Core();
 $App->title("Dashboard");
 $App->authOrDie();
-$App->renderHtml('open.php');
-$App->renderHtml('header.php');
+$App->renderHtml(Core::HTML_OPEN);
+$App->renderHtml(Core::HTML_HEADER);
 
 ?>
 
@@ -62,11 +62,11 @@ $App->renderHtml('header.php');
     </div>
 </div>
 
-<?php $App->renderHtml('footer.php'); ?>
+<?php $App->renderHtml(Core::HTML_FOOTER); ?>
 
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/log.js"></script>
 <script>
     Log.init(api);
 </script>
 
-<?php $App->renderHtml('close.php'); ?>
+<?php $App->renderHtml(Core::HTML_CLOSE); ?>

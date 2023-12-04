@@ -7,8 +7,8 @@ include dirname(__DIR__, 2) . "/app/Core.php";
 $App = new Core();
 $App->title("User");
 $App->authOrDie();
-$App->renderHtml('open.php');
-$App->renderHtml('header.php');
+$App->renderHtml(Core::HTML_OPEN);
+$App->renderHtml(Core::HTML_HEADER);
 
 ?>
 
@@ -201,7 +201,7 @@ $App->renderHtml('header.php');
         </section>
     </div>
 
-<?php $App->renderHtml('footer.php'); ?>
+<?php $App->renderHtml(Core::HTML_FOOTER); ?>
 
     <script>
         (function () {
@@ -427,4 +427,4 @@ $App->renderHtml('header.php');
         })();
     </script>
 
-<?php $App->renderHtml('close.php'); ?>
+<?php $App->renderHtml(Core::HTML_CLOSE); ?>

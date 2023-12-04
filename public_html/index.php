@@ -6,8 +6,8 @@ include dirname(__DIR__, 1) . "/app/Core.php";
 
 $App = new Core();
 $App->title("Login");
-$App->renderHtml('open.php');
-$App->renderHtml('header.php');
+$App->renderHtml(Core::HTML_OPEN);
+$App->renderHtml(Core::HTML_HEADER);
 
 ?>
 
@@ -53,7 +53,7 @@ $App->renderHtml('header.php');
     </section>
 </main>
 
-<?php $App->renderHtml("footer.php"); ?>
+<?php $App->renderHtml(Core::HTML_FOOTER); ?>
 
 <script>
     window.addEventListener("load", function()
@@ -128,4 +128,4 @@ $App->renderHtml('header.php');
     }
 </script>
 
-<?php $App->renderHtml('close.php'); ?>
+<?php $App->renderHtml(Core::HTML_CLOSE); ?>

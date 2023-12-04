@@ -7,8 +7,8 @@ include dirname(__DIR__, 2) . "/app/Core.php";
 $App = new Core();
 $App->title("Go");
 $App->authOrDie();
-$App->renderHtml('open.php');
-$App->renderHtml('header.php');
+$App->renderHtml(Core::HTML_OPEN);
+$App->renderHtml(Core::HTML_HEADER);
 
 ?>
 
@@ -64,7 +64,7 @@ $App->renderHtml('header.php');
     </div>
 </div>
 
-<?php $App->renderHtml('footer.php'); ?>
+<?php $App->renderHtml(Core::HTML_FOOTER); ?>
 
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/workout.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/routinebuilder.js"></script>
@@ -108,4 +108,4 @@ $App->renderHtml('header.php');
     JumpToInput.init(document.getElementById('timer'), 'inputdisplay');
 </script>
 
-<?php $App->renderHtml('close.php'); ?>
+<?php $App->renderHtml(Core::HTML_CLOSE); ?>

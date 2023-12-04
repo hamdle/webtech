@@ -9,6 +9,12 @@ use Models\User;
 
 class Core
 {
+
+    public const HTML_CLOSE = 'close';
+    public const HTML_FOOTER = 'footer';
+    public const HTML_HEADER = 'header';
+    public const HTML_OPEN = 'open';
+
     private Session $Session;
     public ?User $User;
     private $uri;
@@ -20,9 +26,7 @@ class Core
         $this->Session->loadUser();
         $this->User = $this->Session->user;
         $this->title = "Welcome";
-
-        $uri = str_replace('/', '', $_SERVER["REQUEST_URI"]);
-        $this->uri = $uri;
+        $this->uri = str_replace('/', '', $_SERVER["REQUEST_URI"]);
     }
 
     public function authOrDie($message = 'Authentication error')
@@ -36,7 +40,7 @@ class Core
 
     public function renderHtml($file)
     {
-        $filepath = dirname(__DIR__, 1) . $_ENV["PART_DIR"] . $file;
+        $filepath = dirname(__DIR__, 1) . $_ENV["HTML_DIR"] . $file . '.php';
         if (file_exists($filepath))
         {
             require $filepath;
@@ -53,6 +57,7 @@ class Core
         {
             return true;
         }
+        return false;
     }
 
     public function title($title)
