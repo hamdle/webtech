@@ -89,11 +89,11 @@ $App->renderHtml(Core::HTML_HEADER);
             });
             $xhr.addEventListener('error', function(event)
             {
-                console.log('An error occured while logging in.');
+                console.log('An error occurred while logging in.');
             });
             $xhr.open("POST", api);
-            // Specifying a header here could cause the POST data to be send
-            // incorrectly, don't set it explicitly and let the broswer generate
+            // Specifying a header here could cause the POST data to be sent
+            // incorrectly, don't set it explicitly and let the browser generate
             // the correct one automatically
             $xhr.send(formData);
         }
