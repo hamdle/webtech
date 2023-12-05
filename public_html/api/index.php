@@ -1,8 +1,8 @@
 <?php
 
-require_once dirname(__DIR__, 2) . "/autoload.php";
+use api\Core\Rpc;
 
-use api\Core\Http\Request;
+require_once dirname(__DIR__, 2) . "/autoload.php";
 
 // TODO: endpoints to replace
 //Api::get("auth",        "Authentication",   "verifySession");
@@ -15,4 +15,4 @@ use api\Core\Http\Request;
 //Api::get("suggest/reps/{exercise_type_id}", "Workouts", "suggestReps");
 //Api::post("workouts/new",   "Workouts",         "save");
 
-return Request::respond();
+Rpc::handle();
