@@ -8,13 +8,13 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Controllers;
+namespace api\Controllers;
 
-use Core\Http\Request;
-use Core\Http\Response;
-use Core\Http\Code;
-use Models\User;
-use Models\Session;
+use api\Core\Http\Request;
+use api\Core\Http\Response;
+use api\Core\Http\Code;
+use api\Models\User;
+use api\Models\Session;
 
 class Authentication {
     // return = \Http\Response

@@ -6,7 +6,7 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Core\Http;
+namespace api\Core\Http;
 
 class Response
 {

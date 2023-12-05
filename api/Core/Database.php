@@ -1,6 +1,6 @@
 <?php
 
-namespace Core;
+namespace api\Core;
 
 class Database {
     private static $db = null;

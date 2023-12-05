@@ -6,7 +6,7 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Core\Utils;
+namespace api\Core\Utils;
 
 class Date
 {

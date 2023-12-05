@@ -6,13 +6,13 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Models;
+namespace api\Models;
 
-use Core\Http\Request;
-use Core\Http\Response;
-use Core\Database\Record;
-use Core\Database\Query;
-use \Core\Database;
+use api\Core\Http\Request;
+use api\Core\Http\Response;
+use api\Core\Database\Record;
+use api\Core\Database\Query;
+use api\Core\Database;
 
 class Session extends Record
 {

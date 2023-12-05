@@ -1,8 +1,9 @@
 <?php
 
 use app\Core;
+use api\Core\Database;
 
-include dirname(__DIR__, 2) . "/app/Core.php";
+require_once dirname(__DIR__, 2) . "/autoload.php";
 
 $App = new Core("Home");
 $App->authOrDie();
@@ -39,7 +40,7 @@ $App->renderHtml(Core::HTML_HEADER);
                 <div class="u-float-right">
                     <div class="">
                         <?php
-                        $results = \Core\Database::execute('total-workouts.sql', [
+                        $results = Database::execute('total-workouts.sql', [
                             'user_id' => $App->session->user->id
                         ]);
                         $totalWorkouts = $results[0]['total'];

@@ -6,10 +6,10 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Core\Database;
+namespace api\Core\Database;
 
 use mysqli;
-use \Core\Utils\Log;
+use api\Core\Utils\Log;
 
 class Query
 {

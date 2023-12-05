@@ -4,7 +4,7 @@ namespace app;
 
 require_once dirname(__DIR__, 1) . "/autoload.php";
 
-use Models\Session;
+use api\Models\Session;
 
 class Core
 {

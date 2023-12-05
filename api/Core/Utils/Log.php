@@ -6,7 +6,7 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Core\Utils;
+namespace api\Core\Utils;
 
 class Log {
     // Sends an error message to the public_html page's error log or to a file.

@@ -13,7 +13,7 @@
             <span class="u-off-screen">
                 <a href="#main-content">Jump to main content</a>
             </span>
-            <?php if ($this->session->Authenticated()) { ?>
+            <?php if ($this->session->authenticated()) { ?>
                 <ul class="p-navigation__items">
                     <li class="p-navigation__item <?php if ($this->onPage("/home")) { ?> is-selected <?php } ?>">
                         <a class="p-navigation__link" href="/home">
@@ -37,7 +37,7 @@
                 </ul>
             <?php } ?>
 
-            <?php if ($this->session->Authenticated()) { ?>
+            <?php if ($this->session->authenticated()) { ?>
                 <ul class="p-navigation__items">
                     <li class="p-navigation__item--dropdown-toggle <?php if ($this->onPage("/user")) { ?> is-selected <?php } ?>" id="link-1">
                         <a class="p-navigation__link" aria-controls="account-menu" aria-expanded="false" href="#">

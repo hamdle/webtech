@@ -2,7 +2,7 @@
 
 use app\Core;
 
-include dirname(__DIR__, 1) . "/app/Core.php";
+require_once dirname(__DIR__, 1) . "/autoload.php";
 
 $App = new Core("Login");
 $App->renderHtml(Core::HTML_OPEN);

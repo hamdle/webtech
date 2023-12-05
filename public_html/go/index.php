@@ -2,7 +2,7 @@
 
 use app\Core;
 
-include dirname(__DIR__, 2) . "/app/Core.php";
+require_once dirname(__DIR__, 2) . "/autoload.php";
 
 $App = new Core("Go");
 $App->authOrDie();

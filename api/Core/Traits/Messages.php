@@ -6,7 +6,7 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Core\Traits;
+namespace api\Core\Traits;
 
 trait Messages
 {

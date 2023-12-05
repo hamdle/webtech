@@ -6,10 +6,10 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Models;
+namespace api\Models;
 
-use \Core\Database\Record;
-use \Core\Database\Query;
+use api\Core\Database\Record;
+use api\Core\Database\Query;
 
 class User extends Record
 {

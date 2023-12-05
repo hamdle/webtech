@@ -8,11 +8,11 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Core\Database;
+namespace api\Core\Database;
 
 abstract class Record
 {
-    use \Core\Traits\Messages;
+    use \api\Core\Traits\Messages;
 
     public $fields = [];
 

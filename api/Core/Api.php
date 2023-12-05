@@ -11,7 +11,7 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Core;
+namespace api\Core;
 
 use \Core\Http\Response;
 use \Core\Http\Request;
@@ -20,25 +20,7 @@ use \Core\Utils\Log;
 
 class Api
 {
-    // The ring, an array of Api endpoints mapped to Controllers.
-    private static $api;
-
-    // Change this to put the Controllers in a different directory.
     private static $CONTROLLER_ROOT = "\\Controllers\\";
-
-    //
-    // Public methods
-    //
-
-    public static function get($endpoint, $controller, $function)
-    {
-        self::$api["get"][] = [$endpoint => [$controller, $function]];
-    }
-
-    public static function post($endpoint, $controller, $function)
-    {
-        self::$api["post"][] = [$endpoint => [$controller, $function]];
-    }
 
     // This is the surface, uncaught exceptions can bubble up to here.
     // return = \Core\Http\Response
@@ -83,54 +65,5 @@ class Api
                 ]
             );
         }
-    }
-
-    //
-    // Private methods
-    //
-
-    // Given [$endpoint => $value], match the $endpoint to the request path and
-    // return = $value or null
-    private static function route()
-    {
-        $path = Request::path();
-        $args = [];
-        // TODO can you reduce the complexity of this?
-        foreach (self::$api[Request::method()] ?? [] as $route)
-        {
-            foreach ($route as $uri => $controller)
-            {
-                $uriParts = explode("/", $uri);
-                $pass = true;
-
-                for ($i = 0; $i < count($uriParts); $i++)
-                {
-                    // Check number of parts
-                    if (!(isset($path[$i]) &&
-                        isset($uriParts[$i])))
-                    {
-                        $pass = false;
-                    }
-                    // Check part content
-                    if ($path[$i] !== $uriParts[$i]) {
-                        preg_match('#\{(.*?)\}#', $uriParts[$i], $match);
-                        if (array_key_exists(1, $match)) {
-                            $args[$match[1]] = $path[$i];
-                        } else {
-                            $pass = false;
-                        }
-                    }
-
-                }
-                if (!empty($args)) {
-                    $controller[] = $args;
-                }
-
-                if ($pass)
-                    return $controller;
-            }
-        }
-
-        return null;
     }
 }
