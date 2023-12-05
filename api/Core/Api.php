@@ -13,14 +13,14 @@
 
 namespace api\Core;
 
-use \Core\Http\Response;
-use \Core\Http\Request;
-use \Core\Http\Code;
-use \Core\Utils\Log;
+use api\Core\Http\Response;
+use api\Core\Http\Request;
+use api\Core\Http\Code;
+use api\Core\Utils\Log;
 
 class Api
 {
-    private static $CONTROLLER_ROOT = "\\Controllers\\";
+    private static $CONTROLLER_ROOT = "\\api\\Controllers\\";
 
     // This is the surface, uncaught exceptions can bubble up to here.
     // return = \Core\Http\Response

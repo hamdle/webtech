@@ -2,7 +2,7 @@
 
 require_once dirname(__DIR__, 2) . "/autoload.php";
 
-use Core\Api;
+use api\Core\Api;
 
 // TODO: endpoints to replace
 //Api::get("auth",        "Authentication",   "verifySession");
