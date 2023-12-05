@@ -1,12 +1,12 @@
 <?php
 
 /*
- * Models/Session.php: a user session
+ * Model/Session.php: a user session
  *
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace api\Models;
+namespace api\Model;
 
 use api\Core\Http\Request;
 use api\Core\Http\Response;
@@ -65,7 +65,7 @@ class Session extends Record
         $this->fields = [];
     }
 
-    // $user = \Models\User
+    // $user = \Model\User
     public function createNewCookie($user)
     {
         $token = bin2hex(random_bytes(128));
@@ -87,7 +87,7 @@ class Session extends Record
     }
 
     // Verify that a cookie sent from the client is valid. If the cookie is
-    // valid, the verified user (of type \Models\User) will be added to the
+    // valid, the verified user (of type \Model\User) will be added to the
     // session's fields.
     // return = bool
     public function loadUser()

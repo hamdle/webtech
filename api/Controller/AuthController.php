@@ -13,8 +13,8 @@ namespace api\Controller;
 use api\Core\Http\Request;
 use api\Core\Http\Response;
 use api\Core\Http\Code;
-use api\Models\User;
-use api\Models\Session;
+use api\Model\User;
+use api\Model\Session;
 
 class AuthController {
     // return = \Http\Response

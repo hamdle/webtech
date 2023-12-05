@@ -1,12 +1,12 @@
 <?php
 
 /*
- * Models/Go.php: Handle workout data for the Api
+ * Model/Go.php: Handle workout data for the Api
  *
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Models;
+namespace Model;
 
 use \Core\Database\Record;
 use \Core\Utils\Date;

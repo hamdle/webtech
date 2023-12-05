@@ -1,12 +1,12 @@
 <?php
 
 /*
- * Models/User.php: a person that needs to authenticate
+ * Model/User.php: a person that needs to authenticate
  *
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace api\Models;
+namespace api\Model;
 
 use api\Core\Database\Record;
 use api\Core\Database\Query;

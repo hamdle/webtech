@@ -16,11 +16,11 @@ use api\Core\Http\Request;
 use api\Core\Http\Code;
 use api\Core\Database;
 use api\Core\Database\Query;
-use api\Models\Session;
-use api\Models\Workout;
-use api\Models\Rep;
-use api\Models\Exercise;
-use api\Models\ExerciseType;
+use api\Model\Session;
+use api\Model\Workout;
+use api\Model\Rep;
+use api\Model\Exercise;
+use api\Model\ExerciseType;
 
 class WorkoutController
 {

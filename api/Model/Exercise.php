@@ -1,12 +1,12 @@
 <?php
 
 /*
- * Models/Exercise.php: handle exercise data requests
+ * Model/Exercise.php: handle exercise data requests
  *
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Models;
+namespace Model;
 
 use Core\Database\Record;
 

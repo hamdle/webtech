@@ -1,12 +1,12 @@
 <?php
 
 /*
- * Models/Rep.php: a single round of an exercise
+ * Model/Rep.php: a single round of an exercise
  *
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Models;
+namespace Model;
 
 use Core\Database\Record;
 
