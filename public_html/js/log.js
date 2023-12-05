@@ -7,7 +7,7 @@
 //let api = "http://workout.local/api/";
 
 var Log = (function() {
-    var xhr;
+    var $xhr;
 
     function buildLog(workouts) {
         var log = document.getElementById("log");
@@ -127,10 +127,13 @@ var Log = (function() {
 
     // Public
     function init(api) {
-        xhr = new XMLHttpRequest();
-        xhr.addEventListener("load", logHandler);
-        xhr.open("GET", api + "workouts");
-        xhr.send();
+        $xhr = new XMLHttpRequest();
+        $xhr.addEventListener("load", logHandler);
+        $xhr.open("POST", api);
+        $xhr.setRequestHeader('Content-type', 'application/json');
+        $xhr.send(JSON.stringify({
+            method: "Workouts.allWorkouts"
+        }));
     }
 
     return {

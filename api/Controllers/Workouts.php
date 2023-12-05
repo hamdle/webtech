@@ -9,18 +9,18 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Controllers;
+namespace api\Controllers;
 
-use Core\Http\Response;
-use Core\Http\Request;
-use Core\Http\Code;
-use Core\Database;
-use Core\Database\Query;
-use Models\Session;
-use Models\Workout;
-use Models\Rep;
-use Models\Exercise;
-use Models\ExerciseType;
+use api\Core\Http\Response;
+use api\Core\Http\Request;
+use api\Core\Http\Code;
+use api\Core\Database;
+use api\Core\Database\Query;
+use api\Models\Session;
+use api\Models\Workout;
+use api\Models\Rep;
+use api\Models\Exercise;
+use api\Models\ExerciseType;
 
 class Workouts
 {
@@ -92,7 +92,7 @@ class Workouts
 
         $session = new Session();
 
-        if (!$session->loadUser())
+        if (!$session->authenticated())
             return Response::send(Code::UNAUTHORIZED_401);
 
         $exerciseTypes = Query::run("
