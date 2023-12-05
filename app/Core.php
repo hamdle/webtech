@@ -18,7 +18,7 @@ class Core
 
     public function __construct($name = "Workout")
     {
-        $this->session = new Session([], true);
+        $this->session = new Session();
         $this->name = $name;
     }
 

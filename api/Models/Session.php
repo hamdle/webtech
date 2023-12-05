@@ -19,13 +19,10 @@ class Session extends Record
 
     private $verified = false;
 
-    public function __construct($fields = [], $loadUser = false)
+    public function __construct($fields = [])
     {
         parent::__construct($fields);
-        if ($loadUser)
-        {
-            $this->loadUser();
-        }
+        $this->loadUser();
     }
     public function table()
     {
@@ -59,9 +56,12 @@ class Session extends Record
 
     public function delete()
     {
-        Database::execute('delete-session.sql', [
-            'id' => $this->id
-        ]);
+        if ($this->id)
+        {
+            Database::execute('delete-session.sql', [
+                'id' => $this->id
+            ]);
+        }
         $this->fields = [];
     }
 

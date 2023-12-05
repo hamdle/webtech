@@ -38,10 +38,9 @@ class Authentication {
     public function logout()
     {
         $session = new Session();
-        if ($session->loadUser()) {
-            $session->setExpiredCookie();
-            $session->delete();
-        }
+        $session->setExpiredCookie();
+        $session->delete();
+
         return Response::send(Code::OK_200, [
             "ok" => "true"
         ]);
