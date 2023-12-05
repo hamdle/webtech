@@ -35,7 +35,7 @@ class WorkoutController
         if (!$session->loadUser())
             return Response::send(Code::UNAUTHORIZED_401);
 
-        $workout = new WorkoutController(Request::complexData());
+        $workout = new Workout(Request::complexData());
         $workout->user_id = $session->user->id;
 
         if (!$workout->validate())
