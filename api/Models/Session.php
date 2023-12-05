@@ -11,7 +11,6 @@ namespace api\Models;
 use api\Core\Http\Request;
 use api\Core\Http\Response;
 use api\Core\Database\Record;
-use api\Core\Database\Query;
 use api\Core\Database;
 
 class Session extends Record
@@ -20,8 +19,9 @@ class Session extends Record
 
     private $verified = false;
 
-    public function __construct($loadUser = false)
+    public function __construct($fields = [], $loadUser = false)
     {
+        parent::__construct($fields);
         if ($loadUser)
         {
             $this->loadUser();

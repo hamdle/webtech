@@ -2,7 +2,7 @@
 
 require_once dirname(__DIR__, 2) . "/autoload.php";
 
-use api\Core\Api;
+use api\Core\Http\Request;
 
 // TODO: endpoints to replace
 //Api::get("auth",        "Authentication",   "verifySession");
@@ -15,4 +15,4 @@ use api\Core\Api;
 //Api::get("suggest/reps/{exercise_type_id}", "Workouts", "suggestReps");
 //Api::post("workouts/new",   "Workouts",         "save");
 
-return Api::respond();
+return Request::respond();

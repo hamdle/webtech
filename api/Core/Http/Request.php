@@ -8,8 +8,12 @@
 
 namespace api\Core\Http;
 
+use api\Core\Utils\Log;
+
 class Request
 {
+    private static $CONTROLLER_ROOT = "\\api\\Controllers\\";
+
     public static function uri()
     {
         return $_SERVER["REQUEST_URI"];
@@ -52,5 +56,48 @@ class Request
     public static function cookie()
     {
         return $_COOKIE;
+    }
+
+    public static function respond()
+    {
+        try {
+            $request = Request::post();
+            if (empty($request)) {
+                $request = Request::complexData();
+            }
+
+            $method = $request['method'] ?? null;
+            if (is_null($method))
+                return Response::sendDefaultNotFound();
+
+            $parts = explode('.', $method);
+            if (count($parts) != 2)
+                return Response::sendDefaultNotFound();
+            $namespace = self::$CONTROLLER_ROOT.$parts[0];
+            $function = $parts[1];
+
+            // Format args as key => value pairs
+            $args = array_filter($request, function ($key) {
+                return $key != 'method';
+            },ARRAY_FILTER_USE_KEY);
+
+            if ($controller = [new $namespace, $function])
+                return $controller($args);
+
+            return Response::sendDefaultNotFound();
+        }
+        catch (\Throwable $e)
+        {
+            Log::error($e->getMessage()." in ".$e->getFile()." on line ".$e->getLine(), "Api::respond");
+            return Response::send
+            (
+                Code::OK_200,
+                [
+                    "ok" => "false",
+                    "error" => "true",
+                    "message" => "An unexpected error has occurred"
+                ]
+            );
+        }
     }
 }
