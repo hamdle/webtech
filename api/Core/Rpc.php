@@ -9,7 +9,9 @@ use api\Core\Utils\Log;
 
 class Rpc
 {
-    private static $CONTROLLER_ROOT = "\\api\\Controllers\\";
+    private static $CONTROLLER_ROOT = "\\api\\Controller\\";
+    private static $CONTROLLER_FILE_EXT = "Controller";
+
     public static function handle()
     {
         try {
@@ -25,7 +27,7 @@ class Rpc
             $parts = explode('.', $method);
             if (count($parts) != 2)
                 return Response::sendDefaultNotFound();
-            $namespace = self::$CONTROLLER_ROOT.$parts[0];
+            $namespace = self::$CONTROLLER_ROOT.$parts[0].self::$CONTROLLER_FILE_EXT;
             $function = $parts[1];
 
             $args = array_filter($request, function ($key) {

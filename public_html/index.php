@@ -29,7 +29,7 @@ $App->renderHtml(Core::HTML_HEADER);
                         <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Email" name="email" />
                         <label class="login__title">Password:</label>
                         <input class="input login__input" autocapitalize="off" autocorrect="off" type="password" placeholder="Password" name="password" />
-                        <input type="hidden" name="method" value="Authentication.login">
+                        <input type="hidden" name="method" value="Auth.login">
                         <button id="login__button" class="button login__button" type="submit"><span class="fa fa-lock footer__icon login-button__icon"></span> Login</button>
                     </form>
                 </div>

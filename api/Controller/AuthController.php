@@ -8,7 +8,7 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace api\Controllers;
+namespace api\Controller;
 
 use api\Core\Http\Request;
 use api\Core\Http\Response;
@@ -16,7 +16,7 @@ use api\Core\Http\Code;
 use api\Models\User;
 use api\Models\Session;
 
-class Authentication {
+class AuthController {
     // return = \Http\Response
     public function login()
     {

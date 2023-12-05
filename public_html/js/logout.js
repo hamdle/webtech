@@ -38,7 +38,7 @@ var Logout = (function () {
         $xhr.open("POST", api);
         $xhr.setRequestHeader('Content-type', 'application/json');
         $xhr.send(JSON.stringify({
-            method: "Authentication.logout"
+            method: "Auth.logout"
         }));
     }
 

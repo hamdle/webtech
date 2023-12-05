@@ -9,7 +9,7 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace api\Controllers;
+namespace api\Controller;
 
 use api\Core\Http\Response;
 use api\Core\Http\Request;
@@ -22,7 +22,7 @@ use api\Models\Rep;
 use api\Models\Exercise;
 use api\Models\ExerciseType;
 
-class Workouts
+class WorkoutController
 {
     // The default number of past workouts to query for a user.
     const ALL_WORKOUTS_LIMIT = 20;
@@ -35,7 +35,7 @@ class Workouts
         if (!$session->loadUser())
             return Response::send(Code::UNAUTHORIZED_401);
 
-        $workout = new Workout(Request::complexData());
+        $workout = new WorkoutController(Request::complexData());
         $workout->user_id = $session->user->id;
 
         if (!$workout->validate())
@@ -86,7 +86,7 @@ class Workouts
 
     // Return list of workouts from most recent to ALL_WORKOUTS_LIMIT.
     // return = \Http\Response
-    public function allWorkouts($limit)
+    public function all($limit)
     {
         $limit = $limit ? $limit : self::ALL_WORKOUTS_LIMIT;
 

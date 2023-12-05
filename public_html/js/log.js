@@ -132,7 +132,7 @@ var Log = (function() {
         $xhr.open("POST", api);
         $xhr.setRequestHeader('Content-type', 'application/json');
         $xhr.send(JSON.stringify({
-            method: "Workouts.allWorkouts"
+            method: "Workout.all"
         }));
     }
 

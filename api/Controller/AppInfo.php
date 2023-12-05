@@ -9,7 +9,7 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Controllers;
+namespace Controller;
 
 use Core\Http\Response;
 use Core\Http\Code;
