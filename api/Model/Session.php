@@ -8,10 +8,10 @@
 
 namespace api\Model;
 
+use api\Core\Database\Database;
+use api\Core\Database\Record;
 use api\Core\Http\Request;
 use api\Core\Http\Response;
-use api\Core\Database\Record;
-use api\Core\Database;
 
 class Session extends Record
 {

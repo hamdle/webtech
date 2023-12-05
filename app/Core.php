@@ -24,11 +24,12 @@ class Core
 
     public function authOrDie($message = "Authentication error")
     {
-        if (!$this->session->authenticated())
+        if ($this->session->authenticated() || $this->session->loadUser())
         {
-            error_log($message);
-            die($message);
+            return;
         }
+        error_log($message);
+        die($message);
     }
 
     public function renderHtml($file)

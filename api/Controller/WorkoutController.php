@@ -11,16 +11,16 @@
 
 namespace api\Controller;
 
-use api\Core\Http\Response;
-use api\Core\Http\Request;
-use api\Core\Http\Code;
-use api\Core\Database;
+use api\Core\Database\Database;
 use api\Core\Database\Query;
-use api\Model\Session;
-use api\Model\Workout;
-use api\Model\Rep;
+use api\Core\Http\Code;
+use api\Core\Http\Request;
+use api\Core\Http\Response;
 use api\Model\Exercise;
 use api\Model\ExerciseType;
+use api\Model\Rep;
+use api\Model\Session;
+use api\Model\Workout;
 
 class WorkoutController
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace api\Core;
+namespace api\Core\Database;
 
 class Database {
     private static $db = null;
@@ -24,7 +24,7 @@ class Database {
         $results = null;
         if (is_null($path))
         {
-            $path = dirname(__FILE__).'/Sql/'.$file;
+            $path = dirname(__DIR__,1).'/Sql/'.$file;
         }
         else
         {

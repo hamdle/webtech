@@ -1,7 +1,7 @@
 <?php
 
 use app\Core;
-use api\Core\Database;
+use api\Core\Database\Database;
 
 require_once dirname(__DIR__, 2) . "/autoload.php";
 
