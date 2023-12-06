@@ -58,6 +58,9 @@ class Session extends Record
     {
         if ($this->id)
         {
+            // TODO should delete all sessions for a user
+            // since multiple sessions in the database for
+            // one user will cause auth failure?
             Database::execute('delete-session.sql', [
                 'id' => $this->id
             ]);
