@@ -18,18 +18,21 @@ class Core
 
     public function __construct($name = "Workout")
     {
-        $this->session = new Session();
         $this->name = $name;
-    }
+        $this->session = new Session();
 
-    public function authOrDie($message = "Authentication error")
-    {
-        if ($this->session->authenticated() || $this->session->loadUser())
+        if ($_SERVER["REQUEST_URI"] === "/" ||
+            $this->session->authenticated() ||
+            $this->session->loadUser())
         {
             return;
         }
-        error_log($message);
-        die($message);
+        else
+        {
+            $message = "Authentication error";
+            error_log($message);
+            die($message);
+        }
     }
 
     public function renderHtml($file)

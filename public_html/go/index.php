@@ -5,7 +5,6 @@ use app\Core;
 require_once dirname(__DIR__, 2) . "/autoload.php";
 
 $App = new Core("Go");
-$App->authOrDie();
 $App->renderHtml(Core::HTML_OPEN);
 $App->renderHtml(Core::HTML_HEADER);
 

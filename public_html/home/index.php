@@ -6,7 +6,6 @@ use api\Core\Database\Database;
 require_once dirname(__DIR__, 2) . "/autoload.php";
 
 $App = new Core("Home");
-$App->authOrDie();
 $App->renderHtml(Core::HTML_OPEN);
 $App->renderHtml(Core::HTML_HEADER);
 
