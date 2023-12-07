@@ -37,15 +37,11 @@ var RoutineBuilder = (function() {
     }
 
     // Request handlers
-    function exerciseHandler() {
-        if (this.status !== 200) {
-            var par = document.createElement('p');
-            par.textContent = 'Error loading exercises.';
-            $element.appendChild(par);
-            return;
+    function exerciseHandler(event) {
+        const response = JSON.parse(event.target.responseText);
+        if (response.ok === 'true') {
+            exercises = response.exercise_types;
         }
-
-        exercises = JSON.parse(this.responseText);
     }
 
     function addHandler() {
@@ -78,10 +74,13 @@ var RoutineBuilder = (function() {
     function load(element) {
         $element = element;
         // Get list of exercises from the Api.
-        xhr = new XMLHttpRequest();
-        xhr.addEventListener("load", exerciseHandler);
-        xhr.open("GET", api + 'exercises');
-        xhr.send();
+        const $xhr = new XMLHttpRequest();
+        $xhr.addEventListener("load", exerciseHandler);
+        $xhr.open("POST", api);
+        $xhr.setRequestHeader('Content-type', 'application/json');
+        $xhr.send(JSON.stringify({
+            method: "Workout.exerciseTypes"
+        }));
 
         window.addEventListener("load", function() {
             loadAdd();

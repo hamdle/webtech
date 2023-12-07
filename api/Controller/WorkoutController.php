@@ -80,8 +80,11 @@ class WorkoutController
     public function exerciseTypes()
     {
         $exerciseTypes = new ExerciseType();
-        // TODO should we send a different response if the database fails
-        return Response::send(Code::OK_200, $exerciseTypes->all());
+        $response = array_merge(
+            ["ok" => "true"],
+            ["exercise_types" => $exerciseTypes->all()]
+        );
+        return Response::send(Code::OK_200, $response);
     }
 
     // Return list of workouts from most recent to ALL_WORKOUTS_LIMIT.
