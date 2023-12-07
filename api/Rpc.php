@@ -12,30 +12,26 @@ class Rpc
     private static $CONTROLLER_ROOT = "\\api\\Controller\\";
     private static $CONTROLLER_FILE_EXT = "Controller";
 
-    public static function handle()
+    public static function handle($request)
     {
         try {
-            $request = Request::post();
-            if (empty($request)) {
-                $request = Request::complexData();
+            if (array_key_exists("method", $request))
+            {
+                $parts = explode('.', $request["method"]);
+                if (count($parts) === 2)
+                {
+                    $namespace = self::$CONTROLLER_ROOT.$parts[0].self::$CONTROLLER_FILE_EXT;
+                    $function = $parts[1];
+                    $args = array_filter($request, function ($key) {
+                            return $key != 'method';
+                        }, ARRAY_FILTER_USE_KEY);
+
+                    if ($controller = [new $namespace, $function])
+                    {
+                        return $controller($args);
+                    }
+                }
             }
-
-            $method = $request['method'] ?? null;
-            if (is_null($method))
-                return Response::sendDefaultNotFound();
-
-            $parts = explode('.', $method);
-            if (count($parts) != 2)
-                return Response::sendDefaultNotFound();
-            $namespace = self::$CONTROLLER_ROOT.$parts[0].self::$CONTROLLER_FILE_EXT;
-            $function = $parts[1];
-
-            $args = array_filter($request, function ($key) {
-                return $key != 'method';
-            },ARRAY_FILTER_USE_KEY);
-
-            if ($controller = [new $namespace, $function])
-                return $controller($args);
 
             return Response::sendDefaultNotFound();
         }

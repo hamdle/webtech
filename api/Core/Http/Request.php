@@ -48,7 +48,9 @@ class Request
 
     public static function post()
     {
-        return $_POST;
+        return empty($_POST)
+            ? self::complexData()
+            : $_POST;
     }
 
     public static function cookie()
