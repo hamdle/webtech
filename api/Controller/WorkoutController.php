@@ -148,7 +148,11 @@ class WorkoutController
             }
         }
 
-        return Response::send(Code::OK_200, $data);
+        $response = array_merge(
+            ["ok" => "true"],
+            ['workouts' => $data]
+        );
+        return Response::send(Code::OK_200, $response);
     }
 
     public function suggestReps($args) {

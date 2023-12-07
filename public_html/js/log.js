@@ -121,8 +121,11 @@ var Log = (function() {
         }
     }
 
-    function logHandler() {
-        buildLog(JSON.parse(this.responseText));
+    function logHandler(event) {
+        const response = JSON.parse(event.target.responseText);
+        if (response.ok === 'true') {
+            buildLog(response.workouts);
+        }
     }
 
     // Public
