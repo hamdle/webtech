@@ -3,7 +3,6 @@
 namespace api;
 
 use api\Core\Http\Code;
-use api\Core\Http\Request;
 use api\Core\Http\Response;
 use api\Core\Utils\Log;
 

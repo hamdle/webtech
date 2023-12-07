@@ -102,7 +102,7 @@ $App->renderHtml(Core::HTML_HEADER);
 
     Countdown.init(document.getElementById('countdown'));
     Instructions.init(document.getElementById('instructions'));
-    Log.init(app);
+    Log.init(api);
     JumpToInput.init(document.getElementById('timer'), 'inputdisplay');
 </script>
 
