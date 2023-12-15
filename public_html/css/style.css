@@ -132,6 +132,10 @@
     animation: blinker 1s linear infinite;
 }
 
+.black-background {
+    background-color: black;
+}
+
 @keyframes blinker {
     50% {
         opacity: 0;
