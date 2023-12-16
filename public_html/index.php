@@ -5,8 +5,7 @@ use app\Core;
 require_once dirname(__DIR__, 1) . "/autoload.php";
 
 $App = new Core("Login");
-$App->renderHtml(Core::HTML_OPEN);
-$App->renderHtml(Core::HTML_HEADER);
+$App->renderHtml([Core::HTML_OPEN, Core::HTML_HEADER]);
 
 ?>
 

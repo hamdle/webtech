@@ -1,9 +1,12 @@
 <?php
 
 /*
- * Core/Utils/Env.php: read .env, make global $_ENV
+ * Class Env
  *
- * Copyright (C) 2021 Eric Marty
+ * Load $_ENV global and load into putenv() so getenv() can be used safely.
+ *
+ * @author Eric Marty
+ * @since 10/15/2023 6:47 PM
  */
 
 namespace api\Core\Utils;
@@ -12,7 +15,12 @@ use Exception;
 
 class Env
 {
-    // Load .env file at root of the Application.
+    /**
+     * Load the contents of a .env file and set environment variables.
+     *
+     * @param string|null $path The path to the .env file. If null, the default path will be used.
+     * @throws Exception If the .env file is empty or cannot be read.
+     */
     public static function load($path = null)
     {
         try {
@@ -54,9 +62,14 @@ class Env
             $keyVal = explode("=", $line);
 
             if (isset($keyVal[0]) && isset($keyVal[1]))
+            {
                 $_ENV[$keyVal[0]] = $keyVal[1];
+                putenv($keyVal[0]."=".$keyVal[1]);
+            }
             else
+            {
                 echo "Unable to parse line {$lineNumber} of the .env.";
+            }
         }
     }
 }

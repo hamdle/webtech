@@ -22,7 +22,6 @@ class Session extends Record
     public function __construct($fields = [])
     {
         parent::__construct($fields);
-        $this->loadUser();
     }
     public function table()
     {
@@ -68,27 +67,6 @@ class Session extends Record
         $this->fields = [];
     }
 
-    // $user = \Model\User
-    public function createNewCookie($user)
-    {
-        $token = bin2hex(random_bytes(128));
-        $cookie = $user->email.":".$token;
-        $mac = hash_hmac("sha256", $cookie, $_ENV["COOKIE_KEY"]);
-        $cookie .= ":".$mac;
-
-        $this->user_id = $user->id;
-        $this->token = $token;
-        $this->save();
-
-        $this->cookie = $cookie;
-    }
-
-    // Add cookie to the global Response
-    public function addCookie()
-    {
-        Response::addCookie([self::COOKIE_KEY => $this->cookie]);
-    }
-
     // Verify that a cookie sent from the client is valid. If the cookie is
     // valid, the verified user (of type \Model\User) will be added to the
     // session's fields.
@@ -107,7 +85,7 @@ class Session extends Record
             }
 
             $user = new User(["email" => $parts[0]]);
-            if (!$user->load())
+            if (!$user->loadFromDatabase())
             {
                 $this->verified = false;
                 return false;

@@ -6,8 +6,7 @@ use api\Core\Database\Database;
 require_once dirname(__DIR__, 2) . "/autoload.php";
 
 $App = new Core("Home");
-$App->renderHtml(Core::HTML_OPEN);
-$App->renderHtml(Core::HTML_HEADER);
+$App->renderHtml([Core::HTML_OPEN, Core::HTML_HEADER]);
 
 ?>
 
@@ -40,7 +39,7 @@ $App->renderHtml(Core::HTML_HEADER);
                     <div class="">
                         <?php
                         $results = Database::execute('total-workouts.sql', [
-                            'user_id' => $App->session->user->id
+                            'user_id' => $App->user->id
                         ]);
                         $totalWorkouts = $results[0]['total'];
                         ?>

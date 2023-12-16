@@ -48,6 +48,30 @@ class Response
             echo json_encode($data);
     }
 
+    public static function sendOk()
+    {
+        header(self::JSON_CONTENT_TYPE);
+
+        // CORS policy may be set in the server config. To set policy in PHP
+        // you can set it here using:
+        // header("Access-Control-Allow-Origin: " . $_ENV["ORIGIN"]);
+
+        http_response_code(Code::OK_200);
+        echo json_encode(["ok" => "true"]);
+    }
+
+    public static function sendOkWithWarning($warning)
+    {
+        header(self::JSON_CONTENT_TYPE);
+
+        // CORS policy may be set in the server config. To set policy in PHP
+        // you can set it here using:
+        // header("Access-Control-Allow-Origin: " . $_ENV["ORIGIN"]);
+
+        http_response_code(Code::OK_200);
+        echo json_encode(["ok" => "true", "warning" => $warning]);
+    }
+
     public static function sendDefaultNotFound()
     {
         return self::send

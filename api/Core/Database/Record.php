@@ -60,7 +60,7 @@ abstract class Record
 
     // Run validation using defined config() and return error messages.
     //return bool = true | false with messages set
-    public function validate()
+    public function verifyFields()
     {
         if (($results = $this->validation($this->config())) !== true)
         {

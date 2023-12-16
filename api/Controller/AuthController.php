@@ -1,59 +1,52 @@
 <?php
 
 /*
- * Controllers/Authentication.php: handle user authentication requests
+ * Class AuthController
  *
- * This controller should verify cookies and handle user login details.
+ * Control login and logout authentication.
  *
- * Copyright (C) 2021 Eric Marty
+ * @author Eric Marty
+ * @since 10/15/2023 6:38 PM
  */
 
 namespace api\Controller;
 
 use api\Core\Http\Request;
 use api\Core\Http\Response;
-use api\Core\Http\Code;
 use api\Model\User;
-use api\Model\Session;
+use api\Core\Authentication;
+use api\Rpc;
 
 class AuthController {
-    // return = \Http\Response
-    public function login()
+    /**
+     * Logs in a user by verifying input fields, loading user data from the database,
+     * and authenticating the user session.
+     *
+     * @return Response The response object containing the login result.
+     * @throws Exception If an error occurs during the login process.
+     */
+    public function login(): Response
     {
         $user = new User(Request::post());
-        if (!$user->validate())
-            return Response::send(Code::UNPROCESSABLE_ENTITY_422, $user->getMessages());
+        $session = new Authentication\Session();
+        if ($session->authenticateLogin($user))
+        {
+            return Response::sendOk();
+        }
 
-        if ($user->login())
-            return Response::send(Code::OK_200, [
-                "ok" => "true"
-            ]);
-
-        return Response::send(Code::OK_200, [
-            "ok" => "true",
-            "warning" => "login failed"
-        ]);
+        return Response::sendOkWithWarning("login failed");
     }
 
-    public function logout()
+    /**
+     * Logs out the user by invalidating the current session.
+     *
+     * @return Response A response indicating successful logout.
+     */
+    public function logout(): Response
     {
-        $session = new Session();
-        $session->setExpiredCookie();
-        $session->delete();
+        $session = Rpc::getAuthenticationSession();
+        $session->invalidateSession();
 
-        return Response::send(Code::OK_200, [
-            "ok" => "true"
-        ]);
-    }
-
-    // The browser will send the cookie used to verify the session automatically.
-    // return = \Http\Response
-    public static function verifySession()
-    {
-        $session = new Session();
-        if ($session->loadUser())
-            return Response::send(Code::OK_200);
-
-        return Response::send(Code::UNAUTHORIZED_401);
+        return Response::sendOk();
     }
 }

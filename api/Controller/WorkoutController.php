@@ -21,6 +21,7 @@ use api\Model\ExerciseType;
 use api\Model\Rep;
 use api\Model\Session;
 use api\Model\Workout;
+use api\Rpc;
 
 class WorkoutController
 {
@@ -93,11 +94,6 @@ class WorkoutController
     {
         $limit = $limit ? $limit : self::ALL_WORKOUTS_LIMIT;
 
-        $session = new Session();
-
-        if (!$session->authenticated())
-            return Response::send(Code::UNAUTHORIZED_401);
-
         $exerciseTypes = Query::run("
             select *
             from exercise_types
@@ -111,7 +107,7 @@ class WorkoutController
         }
 
         $workouts = Database::execute('user-workouts.sql', [
-            'user_id' => $session->user->id,
+            'user_id' => Rpc::getUser()->id,
             'limit' => $limit
         ]);
         $exercises = Query::run("
