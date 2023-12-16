@@ -11,6 +11,7 @@
 
 namespace api\Core\Authentication;
 
+use api\Core\Database\Database;
 use api\Core\Http\Request;
 use api\Model\User;
 use api\Model;
@@ -42,6 +43,10 @@ class Session
 
             $mac = hash_hmac("sha256", $cookie, $cookieKey);
             $cookie .= ":".$mac;
+
+            Database::execute('delete-all-session.sql', [
+                'user_id' => $user->id
+            ]);
 
             $this->session = new Model\Session([
                 'user_id' => $user->id,
