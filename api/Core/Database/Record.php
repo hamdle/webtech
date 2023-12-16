@@ -17,16 +17,17 @@ abstract class Record
     use \api\Core\Traits\Messages;
 
     public $fields = [];
+    protected $table;
 
     private $id;
 
-    abstract public function table();
     abstract public function formFieldValidationConfig();
     abstract public function formFieldTransformConfig();
 
-    public function __construct($fields = [])
+    public function __construct($fields = [], $table)
     {
         $this->fields = $fields;
+        $this->table = $table;
     }
 
     public function __get($field)
@@ -46,7 +47,7 @@ abstract class Record
     {
         $this->transformFormFields();
         $id = Query::insert(
-            $this->table(),
+            $this->table,
             array_keys($this->fields),
             array_values($this->fields));
 
@@ -56,7 +57,7 @@ abstract class Record
     public function loadFromDatabase()
     {
         $this->transformFormFields();
-        $results = Query::select($this->table(), "*", $this->fields);
+        $results = Query::select($this->table, "*", $this->fields);
 
         if (is_array($results) && array_key_exists(0, $results))
         {
@@ -67,7 +68,7 @@ abstract class Record
         }
         else
         {
-            $this->messages[] = ucfirst($this->table())." not found.";
+            $this->messages[] = ucfirst($this->table)." not found.";
             return false;
         }
 

@@ -20,11 +20,7 @@ class Session extends Record
 
     public function __construct($fields = [])
     {
-        parent::__construct($fields);
-    }
-    public function table()
-    {
-        return self::TABLE;
+        parent::__construct($fields, self::TABLE);
     }
 
     public function delete()

@@ -17,9 +17,9 @@ class User extends Record
 {
     const TABLE = "users";
 
-    public function table()
+    public function __construct($fields = [])
     {
-        return self::TABLE;
+        parent::__construct($fields, self::TABLE);
     }
 
     public function formFieldValidationConfig()
