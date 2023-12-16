@@ -15,6 +15,7 @@ use api\Core\Http\Response;
 
 class Session extends Record
 {
+    const TABLE = "sessions";
     const COOKIE_KEY = "Session-Id";
 
     public function __construct($fields = [])
@@ -23,7 +24,7 @@ class Session extends Record
     }
     public function table()
     {
-        return "sessions";
+        return self::TABLE;
     }
 
     public function delete()

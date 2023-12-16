@@ -15,12 +15,11 @@ use api\Core\Database\Record;
 
 class User extends Record
 {
-    // TODO should this be used instead?
-    //const table = "users";
+    const TABLE = "users";
 
     public function table()
     {
-        return "users";
+        return self::TABLE;
     }
 
     public function formFieldValidationConfig()
