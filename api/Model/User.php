@@ -1,15 +1,17 @@
 <?php
 
 /*
- * Model/User.php: a person that needs to authenticate
+ * Class User
  *
- * Copyright (C) 2021 Eric Marty
+ * A user as represented by the database.
+ *
+ * @author Eric Marty
+ * @since 12-16-2023 1:10 PM
  */
 
 namespace api\Model;
 
 use api\Core\Database\Record;
-use api\Core\Database\Query;
 
 class User extends Record
 {
@@ -21,33 +23,7 @@ class User extends Record
         return "users";
     }
 
-    // TODO this should be an abstract method defined by Record, and move this
-    // down with the others
-    // return = bool
-    public function loadFromDatabase()
-    {
-        $this->filter();
-        $this->transform();
-
-        $results = Query::select($this->table(), "*", $this->fields);
-
-        if (is_array($results) && array_key_exists(0, $results))
-        {
-            foreach ($results[0] as $key => $value)
-            {
-                $this->fields[$key] = $value;
-            }
-        }
-        else
-        {
-            $this->messages[] = "User not found.";
-            return false;
-        }
-
-        return true;
-    }
-
-    public function config()
+    public function formFieldValidationConfig()
     {
         return [
             "email" => function ($entry) {
@@ -63,7 +39,7 @@ class User extends Record
         ];
     }
 
-    public function transforms()
+    public function formFieldTransformConfig()
     {
         return [
             "email" => function ($entry) {

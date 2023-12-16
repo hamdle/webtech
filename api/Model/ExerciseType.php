@@ -23,12 +23,12 @@ class ExerciseType extends Record
         return Query::select($this->table(), "*");
     }
 
-    public function config()
+    public function formFieldValidationConfig()
     {
         return [];
     }
 
-    public function transforms()
+    public function formFieldTransformConfig()
     {
         return [];
     }

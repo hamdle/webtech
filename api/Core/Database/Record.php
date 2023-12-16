@@ -1,11 +1,13 @@
 <?php
 
 /*
- * Core/Database/Record.php: a record from the database
+ * Class Record
  *
+ * A record from the database.
  * Models should extend this class and define these abstract functions.
  *
- * Copyright (C) 2021 Eric Marty
+ * @author Eric Marty
+ * @since 12-16-2023 1:16 PM
  */
 
 namespace api\Core\Database;
@@ -16,10 +18,11 @@ abstract class Record
 
     public $fields = [];
 
-    // Define these functions in the model
+    private $id;
+
     abstract public function table();
-    abstract public function config();
-    abstract public function transforms();
+    abstract public function formFieldValidationConfig();
+    abstract public function formFieldTransformConfig();
 
     public function __construct($fields = [])
     {
@@ -28,7 +31,9 @@ abstract class Record
 
     public function __get($field)
     {
-        return $this->get($field);
+        return array_key_exists($field, $this->fields ?? [])
+            ? $this->fields[$field]
+            : null;
     }
 
     public function __set($field, $value)
@@ -36,20 +41,10 @@ abstract class Record
         $this->fields[$field] = $value;
     }
 
-    private function get($field)
-    {
-        if (array_key_exists($field, $this->fields ?? []))
-            return $this->fields[$field];
-        else
-            return null;
-    }
-
     // return = Id of inserted record | null
     public function save()
     {
-        $this->filter();
-        $this->transform();
-
+        $this->transformFormFields();
         $id = Query::insert(
             $this->table(),
             array_keys($this->fields),
@@ -58,55 +53,49 @@ abstract class Record
         return $this->id = (is_numeric($id) ? $id : null);
     }
 
-    // Run validation using defined config() and return error messages.
-    //return bool = true | false with messages set
-    public function verifyFields()
+    public function loadFromDatabase()
     {
-        if (($results = $this->validation($this->config())) !== true)
+        $this->transformFormFields();
+        $results = Query::select($this->table(), "*", $this->fields);
+
+        if (is_array($results) && array_key_exists(0, $results))
         {
-            $this->messages[] = $results;
+            foreach ($results[0] as $key => $value)
+            {
+                $this->fields[$key] = $value;
+            }
+        }
+        else
+        {
+            $this->messages[] = ucfirst($this->table())." not found.";
             return false;
         }
 
         return true;
     }
 
-    // Run fields through the config() validation functions.
-    // TODO revise this return to include messages
-    // return bool = true | false with messages set
-    public function validation($config)
+    public function validateFormFields()
     {
-        // TODO Can this function call $this->config() directly?
-        if (!isset($this->fields))
-            return false;
-
-        $messages = [];
-        foreach ($config as $key => $validator)
+        $this->messages = [];
+        foreach ($this->formFieldValidationConfig() as $key => $validator)
         {
             if (array_key_exists($key, $this->fields))
             {
                 if (($validationResponse = $validator($this->fields[$key])) !== true)
-                    $messages[$key] = $validationResponse;
+                    $this->messages[$key] = $validationResponse;
             }
         }
-
-        return empty($messages) ? true : $messages;
+        return empty($this->messages);
     }
 
-    // Filter out fields that are not in the config.
-    public function filter()
+    public function transformFormFields()
     {
         foreach ($this->fields as $key => $field)
         {
-            if (!array_key_exists($key, $this->config()))
+            if (!array_key_exists($key, $this->formFieldValidationConfig()))
                 unset($this->fields[$key]);
         }
-    }
-
-    // Run fields through input transforms.
-    public function transform()
-    {
-        foreach ($this->transforms() as $key => $transform)
+        foreach ($this->formFieldTransformConfig() as $key => $transform)
         {
             if (array_key_exists($key, $this->fields))
                 $this->fields[$key] = $transform($this->fields[$key]);

@@ -32,7 +32,7 @@ class Session
      */
     public function authenticateLogin($user): bool
     {
-        if ($user->verifyFields() && $user->loadFromDatabase())
+        if ($user->validateFormFields() && $user->loadFromDatabase())
         {
             $token = bin2hex(random_bytes(128));
             $cookie = $user->email.":".$token;

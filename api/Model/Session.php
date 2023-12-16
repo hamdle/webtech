@@ -17,8 +17,6 @@ class Session extends Record
 {
     const COOKIE_KEY = "Session-Id";
 
-    private $verified = false;
-
     public function __construct($fields = [])
     {
         parent::__construct($fields);
@@ -26,31 +24,6 @@ class Session extends Record
     public function table()
     {
         return "sessions";
-    }
-
-    // Attempt to load a session using the fields assigned to this session.
-    // return = true | false and a message will be set if the session fails to load
-    public function loadFromDatabase()
-    {
-        $this->filter();
-        $this->transform();
-
-        $records = Database::execute('session.sql', $this->fields);
-
-        if (!is_null($records) && array_key_exists(0, $records))
-        {
-            foreach ($records[0] as $field => $value)
-            {
-                $this->fields[$field] = $value;
-            }
-        }
-        else
-        {
-            $this->messages[] = "Session not found.";
-            return false;
-        }
-
-        return true;
     }
 
     public function delete()
@@ -67,10 +40,7 @@ class Session extends Record
         $this->fields = [];
     }
 
-    // Verify that a cookie sent from the client is valid. If the cookie is
-    // valid, the verified user (of type \Model\User) will be added to the
-    // session's fields.
-    // return = bool
+    // TODO refactor out this method, use Authentication/Session.php
     public function loadUser()
     {
         foreach (Request::cookie() as $key => $value) {
@@ -80,22 +50,19 @@ class Session extends Record
             $parts = explode(":", $value);
             if (count($parts) !== 3)
             {
-                $this->verified = false;
                 return false;
             }
 
             $user = new User(["email" => $parts[0]]);
             if (!$user->loadFromDatabase())
             {
-                $this->verified = false;
                 return false;
             }
 
             $this->user_id = $user->id;
             if (!$this->loadFromDatabase())
             {
-                $this->setExpiredCookie();
-                $this->verified = false;
+                Response::addExpiredCookie([self::COOKIE_KEY => $this->cookie]);
                 return false;
             }
             $this->user = $user;
@@ -108,26 +75,14 @@ class Session extends Record
 
             if (hash_equals($mac, $parts[2]))
             {
-                $this->verified = true;
                 return true;
             }
         }
 
-        $this->verified = false;
         return false;
     }
 
-    // Delete a cookie on the client by setting it as expired.
-    public function setExpiredCookie()
-    {
-        Response::addExpiredCookie([self::COOKIE_KEY => $this->cookie]);
-    }
-
-    public function authenticated() {
-        return $this->verified;
-    }
-
-    public function config()
+    public function formFieldValidationConfig()
     {
         return [
             "user_id" => function ($entry) {
@@ -143,7 +98,7 @@ class Session extends Record
         ];
     }
 
-    public function transforms()
+    public function formFieldTransformConfig()
     {
         return [
             "user_id" => function ($entry) {
