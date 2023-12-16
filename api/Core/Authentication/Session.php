@@ -116,6 +116,10 @@ class Session
                 $this->user = $user;
                 return true;
             }
+            else
+            {
+                $this->invalidateCookie($cookie);
+            }
         }
 
         return false;
@@ -130,8 +134,13 @@ class Session
      */
     public function invalidateSession(): void
     {
-        setcookie(self::COOKIE_KEY, $this->cookie, strtotime("-30 days"), "/");
+        $this->invalidateCookie($this->cookie);
         $this->session->delete();
+    }
+
+    private function invalidateCookie($cookie): void
+    {
+        setcookie(self::COOKIE_KEY, $cookie, strtotime("-30 days"), "/");
     }
 
     public function getAuthenticatedUser(): User|null
