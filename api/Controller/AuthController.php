@@ -25,7 +25,7 @@ class AuthController {
      * @return Response The response object containing the login result.
      * @throws Exception If an error occurs during the login process.
      */
-    public function login(): Response
+    public function login()
     {
         $user = new User(Request::post());
         $session = new Authentication\Session();
@@ -42,7 +42,7 @@ class AuthController {
      *
      * @return Response A response indicating successful logout.
      */
-    public function logout(): Response
+    public function logout()
     {
         $session = Rpc::getAuthenticationSession();
         $session->invalidateSession();
