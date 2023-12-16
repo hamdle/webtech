@@ -97,7 +97,7 @@ class Session
             $this->session = new Model\Session([
                 'user_id' => $user->id
             ]);
-            if (!$this->session->load())
+            if (!$this->session->loadFromDatabase())
             {
                 $this->setExpiredCookie();
                 return false;

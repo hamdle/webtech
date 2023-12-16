@@ -30,7 +30,7 @@ class Session extends Record
 
     // Attempt to load a session using the fields assigned to this session.
     // return = true | false and a message will be set if the session fails to load
-    public function load()
+    public function loadFromDatabase()
     {
         $this->filter();
         $this->transform();
@@ -92,7 +92,7 @@ class Session extends Record
             }
 
             $this->user_id = $user->id;
-            if (!$this->load())
+            if (!$this->loadFromDatabase())
             {
                 $this->setExpiredCookie();
                 $this->verified = false;
