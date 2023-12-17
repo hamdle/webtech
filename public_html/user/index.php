@@ -51,19 +51,19 @@ $App->renderHtml(Core::HTML_HEADER);
                                         <tbody>
                                         <tr>
                                             <th>First Name</th>
-                                            <th><?php echo $App->session->user->first_name; ?></th>
+                                            <th><?php echo $App->user->first_name; ?></th>
                                         </tr>
                                         <tr>
                                             <th>Last Name</th>
-                                            <th><?php echo $App->session->user->last_name; ?></th>
+                                            <th><?php echo $App->user->last_name; ?></th>
                                         </tr>
                                         <tr>
                                             <th>Email</th>
-                                            <th><?php echo $App->session->user->email; ?></th>
+                                            <th><?php echo $App->user->email; ?></th>
                                         </tr>
                                         <tr>
                                             <th>Created On</th>
-                                            <th><?php echo is_null($App->session->user->created_date) ? ltrim(date("m/d/Y"), "0") : $App->session->user->created_date; ?></th>
+                                            <th><?php echo is_null($App->user->created_date) ? ltrim(date("m/d/Y"), "0") : $App->user->created_date; ?></th>
                                         </tr>
                                         </tbody>
                                     </table>
