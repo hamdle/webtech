@@ -17,27 +17,30 @@ var Log = (function() {
             var wrap = document.createElement("div");
             wrap.classList = "log__wrap";
 
-            var start = document.createElement("div");
+            var start = document.createElement("h2");
             start.classList = "log__time"
             var timeParts = entry.start.split("-");
-            var time = timeParts[1] + " - " + timeParts[2].split(" ")[0];
+            var time = timeParts[1] + "/" + timeParts[2].split(" ")[0] + "/" + timeParts[0];
             start.innerHTML = "<span class=\"fa fa-running footer__icon log__time__icon\"></span>" +
-                "Workout on " + time; // entry.end;
+                "Workout — " + time; // entry.end;
             wrap.appendChild(start);
 
             var table = document.createElement("table");
             table.classList = "log__table";
 
+            var thead = document.createElement("thead");
+
             var tr3 = document.createElement("tr");
             tr3.classList = "log__table__row";
-            ["Exercise", "Sets", "Reps", "Feedback"].forEach(function (x) {
+            ["Exercise", "Sets", "Reps", ""].forEach(function (x) {
                 var td = document.createElement("th")
                 td.classList = "log__table__row__header";
                 td.textContent = x;
                 tr3.appendChild(td);
             });
 
-            table.appendChild(tr3);
+            thead.appendChild(tr3)
+            table.appendChild(thead);
 
             // Exercises
             Object.values(entry.exercises).forEach(function (exercise) {
@@ -77,14 +80,8 @@ var Log = (function() {
                 var td4 = document.createElement("td")
                 td4.classList = "log__table__row__item";
                 td4.textContent = exercise.feedback
-                tr2.appendChild(td4);
+                //tr2.appendChild(td4);
                 table.appendChild(tr2);
-
-                // div.innerHTML = exercise.exercise_type.title +
-                //     " --- " + exercise.sets + " X [ "+reps+" ]" +
-                //     " --- " + exercise.feedback;
-                // wrap.appendChild(div);
-
             });
             wrap.appendChild(table);
 

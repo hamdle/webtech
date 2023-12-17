@@ -6,5 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="<?php echo $_ENV['ORIGIN']; ?>/css/style.css" rel="stylesheet" type="text/css">
     <link href="<?php echo $_ENV['ORIGIN']; ?>/css/vanilla.css" rel="stylesheet" type="text/css">
+    <?php if ($this->onPage("/go")) { ?>
+        <link href="<?php echo $_ENV['ORIGIN']; ?>/css/go.css" rel="stylesheet" type="text/css">
+    <?php } ?>
 </head>
 <body>

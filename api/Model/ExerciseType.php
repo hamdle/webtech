@@ -1,9 +1,12 @@
 <?php
 
 /*
- * Model/ExerciseType.php: handle exercise type data requests
+ * Class ExerciseType
  *
- * Copyright (C) 2021 Eric Marty
+ * Exercises that can be preformed during a workout.
+ *
+ * @author Eric Marty
+ * @since 12/16/2023
  */
 
 namespace api\Model;
@@ -13,14 +16,16 @@ use api\Core\Database\Query;
 
 class ExerciseType extends Record
 {
-    public function table()
+    const TABLE = "exercise_types";
+
+    public function __construct($fields = [])
     {
-        return "exercise_types";
+        parent::__construct($fields, self::TABLE);
     }
 
     public function all()
     {
-        return Query::select($this->table(), "*");
+        return Query::select(self::TABLE, "*");
     }
 
     public function formFieldValidationConfig()

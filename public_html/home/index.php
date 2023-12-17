@@ -24,14 +24,13 @@ $App->renderHtml([Core::HTML_OPEN, Core::HTML_HEADER]);
                 <div class="u-float-left">
                     <a class="dash__link" href="/go">
                         <button class="p-tooltip--top-center has-icon" aria-describedby="btn-new-workout">
-                            <i class="p-icon--spinner"></i>
+                            <i class="p-icon--plus"></i>
                             New Workout
-                            <span class="p-tooltip__message" role="tooltip" id="btn-new-workout"><span class="w-blink__item">Press Start</span></span>
                         </button>
                         <button class="p-button--positive p-tooltip--top-center has-icon" aria-describedby="btm-cntr">
                             <i class="p-icon--success"></i>
                             16
-                            <span class="p-tooltip__message" role="tooltip" id="btm-cntr" >Completed</span>
+                            <span class="p-tooltip__message" role="tooltip" id="btm-cntr" >Completed Workouts</span>
                         </button>
                     </a>
                 </div>

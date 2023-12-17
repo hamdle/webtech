@@ -85,8 +85,8 @@ var InputDisplay = (function () {
             div_label_wrap.className = $name + '-exercise-button__wrap'
             div_label.appendChild(div_label_wrap)
             // 'Add' button.
-            var div_label_add = document.createElement('a')
-            div_label_add.className = 'button'
+            var div_label_add = document.createElement('button')
+            div_label_add.className = 'p-button'
                 + ' button__spacing--right'
             div_label_add.innerHTML = 'Add'
             // Add set handler.
@@ -94,8 +94,8 @@ var InputDisplay = (function () {
             div_label_wrap.appendChild(div_label_add)
 
             // 'Remove' button.
-            var div_label_remove = document.createElement('span')
-            div_label_remove.className = $name + '-exercise__button--remove'
+            var div_label_remove = document.createElement('button')
+            div_label_remove.className = 'p-button ' + $name + '-exercise__button--remove'
             div_label_remove.innerHTML = 'Remove'
             // Remove set handler.
             div_label_remove.addEventListener('click', removeSetHandler);
@@ -139,10 +139,10 @@ var InputDisplay = (function () {
         // Next button
         var next_button_wrap = document.createElement('div')
         next_button_wrap.className = $name + '-next-button__wrap'
-        var next_button = document.createElement('a')
+        var next_button = document.createElement('button')
         next_button.id = $name + '__next-button'
         //next_button.className = $name + '__next-button'
-        next_button.className = 'button'
+        next_button.className = 'p-button'
         next_button.innerHTML = 'Next exercise'
         next_button_wrap.appendChild(next_button)
         $element.appendChild(next_button_wrap)
@@ -184,7 +184,6 @@ var InputDisplay = (function () {
             }
         );
         wrap.appendChild(feel);
-
         $element.appendChild(wrap);
 
         // Save button
@@ -274,7 +273,6 @@ var InputDisplay = (function () {
         $element = element
         $exercise = null
         $name = 'input-display'
-        console.log($name + " initialized.");
     }
 
     function next() {

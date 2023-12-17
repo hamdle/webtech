@@ -12,53 +12,42 @@ $App->renderHtml(Core::HTML_HEADER);
 
 <div id="main-content" class="l-site">
     <div class="p-stripe is-shallow">
-        <div class="row">
+
+
+        <div class="row dash__display dash__display--workout">
             <div class="dash__body">
-                <div class="opt__title">
-                    <span>Next exercise</span>
-                </div>
-                <!-- Put custom modules here. -->
-                <span class="opt-title__extra">
-                    <a id="exercise__button--add" class="button button__spacing--right">Add</a>
-                </span>
-                <span><a id="exercise__button--remove" class="link">Remove</a></span>
-
-                <ul id="exercise__list" class="opt__exercise">
-                </ul>
-            </div>
-        </div>
-
-        <div class="dash__display dash__display--workout">
-            <div class="dash__body">
-
-                <!-- Put custom modules here. -->
                 <div id="timer" class="timer"></div>
                 <div class="countdown__wrap">
                     <div class="countdown__base">
                         <div class="countdown__label">cooldown</div>
-                        <div id="countdown" class="countdown"></div>
+                        <div id="countdown" class="countdown">00:00</div>
                     </div>
                 </div>
                 <div id="inputdisplay" class="inputdisplay"></div>
                 <div id="instructions" class="instructions">
-                    <p>
-                        <span class="start-button__wrap">
+                    <span class="start-button__wrap">
+                        <button id="start__button" class="p-button has-icon"><span class="fa fa-clock exercise__icon"></span>Start</button>
+                    </span>
+                </div>
+            </div>
+        </div>
 
-                            <a id="start__button" class="button"><span class="fa fa-clock exercise__icon"></span>Start</a>
-                        </span>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="dash__display dash__display--log hide">
-            <div class="dash__body">
+        <div class="row">
+            <div class="u-align--center">
                 <div class="opt__title">
-                    <span>Log</span>
+                    <h3>Exercise list</h3>
                 </div>
-                <!-- Put custom modules here. -->
-                <div id="log" class="log"></div>
+                <span>
+                    <button id="exercise__button--add" class="p-button">Add</button>
+                </span>
+                <span>
+                    <button id="exercise__button--remove" class="p-button">Remove</button>
+                </span>
+                <ol id="exercise__list" class="opt__exercise">
+                </ol>
             </div>
         </div>
+
     </div>
 </div>
 
@@ -73,7 +62,6 @@ $App->renderHtml(Core::HTML_HEADER);
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/inputdisplay.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/instructions.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/verifyuser.js"></script>
-<script src="<?php echo $_ENV['ORIGIN']; ?>/js/log.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/jumptoinput.js"></script>
 <script>
     function onStart() {
