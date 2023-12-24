@@ -1,9 +1,12 @@
 <?php
 
 /*
- * Model/Rep.php: a single round of an exercise
+ * Class Rep
  *
- * Copyright (C) 2021 Eric Marty
+ * Model a single round of an exercise.
+ *
+ * @author Eric Jawaid Marty
+ * @since 12/24/2023 12:03 PM
  */
 
 namespace api\Model;

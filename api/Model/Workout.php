@@ -1,9 +1,12 @@
 <?php
 
 /*
- * Model/Go.php: Handle workout data for the Api
+ * Class Workout
  *
- * Copyright (C) 2021 Eric Marty
+ * Model user workout.
+ *
+ * @author Eric Jawaid Marty
+ * @since 12/24/2023 12:02 PM
  */
 
 namespace api\Model;

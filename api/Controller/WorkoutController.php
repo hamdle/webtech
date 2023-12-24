@@ -1,12 +1,12 @@
 <?php
 
 /*
- * Controllers/Workouts.php: handle workout requests
+ * Class WorkoutController
  *
- * This controller should handle all request pertaining to reading or writing
- * workout details.
+ * Handle requests for user workout information.
  *
- * Copyright (C) 2021 Eric Marty
+ * @author Eric Jawaid Marty
+ * @since 12/24/2023 12:00 PM
  */
 
 namespace api\Controller;
@@ -14,7 +14,6 @@ namespace api\Controller;
 use api\Core\Database\Database;
 use api\Core\Database\Query;
 use api\Core\Http\Code;
-use api\Core\Http\Request;
 use api\Core\Http\Response;
 use api\Model\Exercise;
 use api\Model\ExerciseType;
@@ -24,7 +23,6 @@ use api\Rpc;
 
 class WorkoutController
 {
-    // The default number of past workouts to query for a user.
     const ALL_WORKOUTS_LIMIT = 20;
 
     public function save()

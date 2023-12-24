@@ -1,9 +1,12 @@
 <?php
 
 /*
- * Model/Exercise.php: handle exercise data requests
+ * Class Exercise
  *
- * Copyright (C) 2021 Eric Marty
+ * Model exercise data.
+ *
+ * @author Eric Jawaid Marty
+ * @since 12/24/2023 12:05 PM
  */
 
 namespace api\Model;
