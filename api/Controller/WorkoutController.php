@@ -90,10 +90,8 @@ class WorkoutController
 
     // Return list of workouts from most recent to ALL_WORKOUTS_LIMIT.
     // return = \Http\Response
-    public function all($limit)
+    public function all($args)
     {
-        $limit = $limit ? $limit : self::ALL_WORKOUTS_LIMIT;
-
         $exerciseTypes = Query::run("
             select *
             from exercise_types
@@ -108,7 +106,7 @@ class WorkoutController
 
         $workouts = Database::execute('user-workouts.sql', [
             'user_id' => Rpc::getUser()->id,
-            'limit' => $limit
+            'limit' => self::ALL_WORKOUTS_LIMIT
         ]);
         $exercises = Query::run("
             select *
@@ -146,7 +144,7 @@ class WorkoutController
 
         $response = array_merge(
             ["ok" => "true"],
-            ['workouts' => $data]
+            ["workouts" => $data]
         );
         return Response::send(Code::OK_200, $response);
     }
