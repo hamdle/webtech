@@ -12,6 +12,7 @@ class Rpc
 {
     private static $CONTROLLER_ROOT = "\\api\\Controller\\";
     private static $CONTROLLER_FILE_EXT = "Controller";
+    private static $request;
     private static Session $session;
     private static User $user;
     private static $publicEndpoints = [
@@ -21,6 +22,7 @@ class Rpc
 
     public static function handle($request)
     {
+        self::$request = $request;
         try {
             if (array_key_exists("method", $request))
             {
@@ -69,6 +71,11 @@ class Rpc
                 ]
             );
         }
+    }
+
+    public static function getRequest()
+    {
+        return self::$request;
     }
 
     public static function getUser()

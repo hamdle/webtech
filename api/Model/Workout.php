@@ -6,19 +6,21 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Model;
+namespace api\Model;
 
-use \Core\Database\Record;
-use \Core\Utils\Date;
+use api\Core\Database\Record;
+use api\Core\Utils\Date;
 
 class Workout extends Record
 {
-    public function table()
+    const TABLE = "workouts";
+
+    public function __construct($fields = [])
     {
-        return "workouts";
+        parent::__construct($fields, self::TABLE);
     }
 
-    public function config()
+    public function formFieldValidationConfig()
     {
         return [
             "user_id" => function ($entry) {
@@ -39,7 +41,7 @@ class Workout extends Record
         ];
     }
 
-    public function transforms()
+    public function formFieldTransformConfig()
     {
         return [
             "user_id" => function ($entry) {

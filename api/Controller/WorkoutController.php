@@ -19,7 +19,6 @@ use api\Core\Http\Response;
 use api\Model\Exercise;
 use api\Model\ExerciseType;
 use api\Model\Rep;
-use api\Model\Session;
 use api\Model\Workout;
 use api\Rpc;
 
@@ -28,53 +27,38 @@ class WorkoutController
     // The default number of past workouts to query for a user.
     const ALL_WORKOUTS_LIMIT = 20;
 
-    // return = \Http\Response
     public function save()
     {
-        $session = new Session();
+        $request = Rpc::getRequest();
+        $workout = new Workout($request);
+        $workout->user_id = Rpc::getUser()->id;
+        $workout->validateFormFields();
+        $workout->save();
 
-        if (!$session->loadUser())
-            return Response::send(Code::UNAUTHORIZED_401);
-
-        $workout = new Workout(Request::complexData());
-        $workout->user_id = $session->user->id;
-
-        if (!$workout->validate())
-            return Response::send(Code::UNPROCESSABLE_ENTITY_422, $workout->getMessages());
-
-        if (!$workout->save())
-            return Response::send(Code::INTERNAL_SERVER_ERROR_500);
-
-        foreach (Request::complexData()["exercises"] ?? [] as $exerciseEntry)
+        foreach ($request["exercises"] ?? [] as $exerciseEntry)
         {
             $exercise = new Exercise($exerciseEntry);
             $exercise->workout_id = $workout->id;
-            $exercise->user_id = $session->user->id;
+            $exercise->user_id = Rpc::getUser()->id;
             // Saving the exercise will unset `reps` since it"s not a field in
             // the `exercises` table. So we need to get the reps from this
             // exercise before saving it.
             $reps = $exerciseEntry["reps"] ?? [];
 
-            if (!$exercise->validate())
-                return Response::send(Code::UNPROCESSABLE_ENTITY_422, $exercise->getMessages());
-
-            if (!$exercise->save())
-                return Response::send(Code::INTERNAL_SERVER_ERROR_500);
+            $exercise->validateFormFields();
+            $exercise->save();
 
             foreach ($reps as $repEntry)
             {
                 $rep = new Rep($repEntry);
                 $rep->exercise_id = $exercise->id;
 
-                if (!$rep->validate())
-                    return Response::send(Code::UNPROCESSABLE_ENTITY_422, $rep->getMessages());
-
-                if (!$rep->save())
-                    return Response::send(Code::INTERNAL_SERVER_ERROR_500);
+                $rep->validateFormFields();
+                $rep->save();
             }
         }
 
-        return Response::send(Code::CREATED_201);
+        return Response::sendOk();
     }
 
     // return = \Http\Response

@@ -34,8 +34,8 @@ var Workout = (function() {
     {
         // Linux timestamp
         $workout.end = Math.round(+new Date() / 1000);
+        $workout.method = "Workout.save";
 
-        console.log('sending workout request');
         console.log($workout);
 
         $xhr = new XMLHttpRequest();
@@ -44,12 +44,13 @@ var Workout = (function() {
         });
         $xhr.onreadystatechange = function() {
             if ($xhr.readyState == XMLHttpRequest.DONE) {
-                if (this.status == 201) {
-                    onSuccess();
-                    console.log("Successful. Response code: "+this.status);
-                } else {
-                    onFailure();
-                    console.log('Login failed. Response code: '+this.status);
+                if (this.status == 200) {
+                    payload = JSON.parse(this.responseText);
+                    if (payload.ok == "true") {
+                        onSuccess();
+                    } else {
+                        onFailure();
+                    }
                 }
             }
         }
@@ -57,8 +58,7 @@ var Workout = (function() {
             onFailure();
             console.log('There was an error with this request.');
         });
-        $xhr.open("POST", api + 'workouts/new');
-
+        $xhr.open("POST", api);
         $xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         // Send as a simple request to avoid preflight CORS policy checks
         //$xhr.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");

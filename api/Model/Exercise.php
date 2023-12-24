@@ -6,18 +6,20 @@
  * Copyright (C) 2021 Eric Marty
  */
 
-namespace Model;
+namespace api\Model;
 
-use Core\Database\Record;
+use api\Core\Database\Record;
 
 class Exercise extends Record
 {
-    public function table()
+    const TABLE = "exercises";
+
+    public function __construct($fields = [])
     {
-        return "exercises";
+        parent::__construct($fields, self::TABLE);
     }
 
-    public function config()
+    public function formFieldValidationConfig()
     {
         return [
             "exercise_type_id" => function ($entry) {
@@ -38,7 +40,7 @@ class Exercise extends Record
         ];
     }
 
-    public function transforms()
+    public function formFieldTransformConfig()
     {
         return [
             "exercise_type_id" => function ($entry) {

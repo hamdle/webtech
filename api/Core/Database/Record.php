@@ -51,7 +51,7 @@ abstract class Record
             array_keys($this->fields),
             array_values($this->fields));
 
-        return $this->id = (is_numeric($id) ? $id : null);
+        return $this->fields["id"] = (is_numeric($id) ? $id : null);
     }
 
     public function loadFromDatabase()
