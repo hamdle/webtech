@@ -156,11 +156,15 @@ var InputDisplay = (function () {
 
     function requestSuggestedReps(exerciseTypeId) {
         console.log("Requesting suggested reps for exercise " + exerciseTypeId);
-        // Get reps suggestion from the Api.
-        xhr = new XMLHttpRequest();
-        xhr.addEventListener("load", suggestRepsHandler);
-        xhr.open("GET", api + "suggest/reps/" + exerciseTypeId);
-        xhr.send();
+        $rpc = {
+            "exerciseTypeId": exerciseTypeId,
+            "method": "Workout.suggestedReps"
+        }
+        $xhr = new XMLHttpRequest();
+        $xhr.addEventListener("load", suggestRepsHandler);
+        $xhr.open("POST", api);
+        $xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        $xhr.send(JSON.stringify($rpc));
     }
 
     function showFinalize() {
@@ -251,18 +255,12 @@ var InputDisplay = (function () {
         if (this.status === 200) {
             payload = JSON.parse(this.responseText);
             console.log(payload);
-            if (typeof payload[0] === undefined) {
-                return;
-            }
-            if (payload.length === 0) {
-                return;
-            }
-            var i;
-            for (i = 0; i < $repInputElements.length; i++) {
-                if (typeof payload[i] === 'undefined') {
-                    $repInputElements[i].placeholder = payload[0];
-                } else {
-                    $repInputElements[i].placeholder = payload[i];
+            if (payload.ok === "true") {
+                var i;
+                for (i = 0; i < $repInputElements.length; i++) {
+                    if (typeof payload.suggestedReps[i] !== 'undefined') {
+                        $repInputElements[i].placeholder = payload.suggestedReps[i];
+                    }
                 }
             }
         }

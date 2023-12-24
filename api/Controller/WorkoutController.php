@@ -151,22 +151,17 @@ class WorkoutController
         return Response::send(Code::OK_200, $response);
     }
 
-    public function suggestReps($args) {
-        $session = new Session();
-
-        if (!$session->loadUser())
-            return Response::send(Code::UNAUTHORIZED_401);
-
+    public function suggestedReps($args) {
         $results = Database::execute('last-exercise.sql', [
-            'user_id' => $session->user->id,
-            'exercise_type_id' => intval($args['exercise_type_id'])
+            'user_id' => Rpc::getUser()->id,
+            'exercise_type_id' => intval($args['exerciseTypeId'])
         ]);
 
         $workoutId = $results[0]['id'];
 
         $reps = Database::execute('suggested-reps.sql', [
-            'user_id' => $session->user->id,
-            'exercise_type_id' => intval($args['exercise_type_id']),
+            'user_id' => Rpc::getUser()->id,
+            'exercise_type_id' => intval($args['exerciseTypeId']),
             'workout_id' => $workoutId
         ]);
 
@@ -174,6 +169,10 @@ class WorkoutController
         foreach ($reps as $rep) {
             $data[] = $rep[array_key_first($rep)];
         }
-        return Response::send(Code::OK_200, $data);
+        $response = array_merge(
+            ["ok" => "true"],
+            ['suggestedReps' => $data]
+        );
+        return Response::send(Code::OK_200, $response);
     }
 }
