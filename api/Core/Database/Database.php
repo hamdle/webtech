@@ -2,6 +2,8 @@
 
 namespace api\Core\Database;
 
+use api\Core\Utils\Log;
+
 class Database {
     private static $db = null;
 
@@ -31,22 +33,17 @@ class Database {
             $path = $path.'/'.$file;
         }
 
-
         if (is_readable($path)) {
             $sql = file_get_contents($path);
 
-            if ($_ENV['DEBUG'] == 1) {
-                \Core\Utils\Log::error(date('Y-m-d H:i:s'));
-                \Core\Utils\Log::error($sql, "SQL query");
-                \Core\Utils\Log::error($args, "SQL args");
+            if ($_ENV['DEBUG'] == 1)
+            {
+                Log::error($sql, "SQL query");
+                Log::error($args, "SQL args");
             }
 
             $stmt = self::db()->prepare($sql);
-            foreach($args as $key => $value) {
-                $stmt->bindValue($key, $value);
-            }
-
-            $stmt->execute();
+            $stmt->execute($args);
 
             foreach ($stmt as $row) {
                 $results[] = $row;
@@ -54,5 +51,37 @@ class Database {
         }
 
         return $results;
+    }
+
+    public static function run($sql, $args = [])
+    {
+        if ($_ENV['DEBUG'] == 1)
+        {
+            Log::error($sql, "SQL query");
+            Log::error($args, "SQL args");
+        }
+
+        $stmt = self::db()->prepare($sql);
+        $stmt->execute($args);
+
+        foreach ($stmt as $row) {
+            $results[] = $row;
+        }
+
+        return $results;
+    }
+
+    public static function log($message, $type, $user)
+    {
+        $sql = "
+            insert into logs 
+            (log_type_id, user_id, timestamp, message)
+            values ((select id from log_types where log_type='{$type}'), :user, now(), :message)";
+        $args = [
+            "message" => $message,
+            "user" => $user
+        ];
+        $stmt = self::db()->prepare($sql);
+        $stmt->execute($args);
     }
 }
