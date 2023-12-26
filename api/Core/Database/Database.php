@@ -80,7 +80,7 @@ class Database {
 
     public static function config($key)
     {
-        return self::execute("systemConfig.sql", ["ref" => $key])[0]["data"];
+        return self::execute("system-config.sql", ["ref" => $key])[0]["data"];
     }
 
     public static function log($message, $type, $user)
