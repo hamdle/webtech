@@ -62,7 +62,6 @@ $App->renderHtml(Core::HTML_HEADER);
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/countdown.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/inputdisplay.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/instructions.js"></script>
-<script src="<?php echo $_ENV['ORIGIN']; ?>/js/verifyuser.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/jumptoinput.js"></script>
 <script>
     function onStart() {
