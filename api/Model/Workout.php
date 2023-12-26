@@ -23,7 +23,7 @@ class Workout extends Record
         parent::__construct($fields, self::TABLE);
     }
 
-    public function formFieldValidationConfig()
+    public function fieldValidation()
     {
         return [
             "user_id" => function ($entry) {
@@ -44,7 +44,7 @@ class Workout extends Record
         ];
     }
 
-    public function formFieldTransformConfig()
+    public function databaseTransforms()
     {
         return [
             "user_id" => function ($entry) {

@@ -28,12 +28,12 @@ class ExerciseType extends Record
         return Query::select(self::TABLE, "*");
     }
 
-    public function formFieldValidationConfig()
+    public function fieldValidation()
     {
         return [];
     }
 
-    public function formFieldTransformConfig()
+    public function databaseTransforms()
     {
         return [];
     }

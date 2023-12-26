@@ -21,8 +21,8 @@ abstract class Record
 
     private $id;
 
-    abstract public function formFieldValidationConfig();
-    abstract public function formFieldTransformConfig();
+    abstract public function fieldValidation();
+    abstract public function databaseTransforms();
 
     public function __construct($fields = [], $table)
     {
@@ -78,7 +78,7 @@ abstract class Record
     public function validateFormFields()
     {
         $this->messages = [];
-        foreach ($this->formFieldValidationConfig() as $key => $validator)
+        foreach ($this->fieldValidation() as $key => $validator)
         {
             if (array_key_exists($key, $this->fields))
             {
@@ -93,10 +93,10 @@ abstract class Record
     {
         foreach ($this->fields as $key => $field)
         {
-            if (!array_key_exists($key, $this->formFieldValidationConfig()))
+            if (!array_key_exists($key, $this->fieldValidation()))
                 unset($this->fields[$key]);
         }
-        foreach ($this->formFieldTransformConfig() as $key => $transform)
+        foreach ($this->databaseTransforms() as $key => $transform)
         {
             if (array_key_exists($key, $this->fields))
                 $this->fields[$key] = $transform($this->fields[$key]);

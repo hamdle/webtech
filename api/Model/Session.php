@@ -79,7 +79,7 @@ class Session extends Record
         return false;
     }
 
-    public function formFieldValidationConfig()
+    public function fieldValidation()
     {
         return [
             "user_id" => function ($entry) {
@@ -95,7 +95,7 @@ class Session extends Record
         ];
     }
 
-    public function formFieldTransformConfig()
+    public function databaseTransforms()
     {
         return [
             "user_id" => function ($entry) {

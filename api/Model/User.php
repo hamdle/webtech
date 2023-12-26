@@ -22,7 +22,7 @@ class User extends Record
         parent::__construct($fields, self::TABLE);
     }
 
-    public function formFieldValidationConfig()
+    public function fieldValidation()
     {
         return [
             "email" => function ($entry) {
@@ -38,7 +38,7 @@ class User extends Record
         ];
     }
 
-    public function formFieldTransformConfig()
+    public function databaseTransforms()
     {
         return [
             "email" => function ($entry) {
