@@ -94,33 +94,19 @@ class Database {
 
     public static function insert($table, $fields, $values)
     {
-        $query = "insert into ".$table;
+        $query = "
+            INSERT INTO {$table} (
+                ".implode(',', array_map(function ($entry) { return "`{$entry}`"; }, $fields))."
+            ) VALUES (
+                ".implode(',', array_fill(0, count($values), '?'))."
+            )";
 
-        $query .= " (";
-        $query .= implode(
-            ",",
-            array_map(
-                function ($entry) {
-                    return "`".$entry."`";
-                },
-                $fields
-            )
-        );
-        $query .= ")";
+        $stmt = self::$db->prepare($query);
+        foreach ($values as $key => $value){
+            $stmt->bindValue($key+1, $value);
+        }
 
-        $query .= " values (";
-        $query .= implode(
-            ",",
-            array_map(
-                function ($entry) {
-                    return "'".$entry."'";
-                },
-                $values
-            )
-        );
-        $query .= ")";
-
-        return self::run($query);
+        return $stmt->execute();
     }
 
     public static function select($table, $selects, $where = null)
