@@ -10,13 +10,20 @@ class Database {
     public static function db()
     {
         if (is_null(self::$db)) {
-            $dsn = "mysql:host=".$_ENV["DB_HOST"].";dbname=".$_ENV["DB_NAME"].";charset=utf8mb4";
-            $options = [
-                \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
-                \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
-                \PDO::ATTR_EMULATE_PREPARES   => false,
-            ];
-            self::$db = new \PDO($dsn, $_ENV["DB_USER"], $_ENV["DB_PASS"], $options);
+            try
+            {
+                $dsn = "mysql:host=".getenv("DB_HOST").";dbname=".getenv("DB_NAME").";charset=utf8mb4";
+                $options = [
+                    \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
+                    \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+                    \PDO::ATTR_EMULATE_PREPARES   => false,
+                ];
+                self::$db = new \PDO($dsn, getenv("DB_USER"), getenv("DB_PASS"), $options);
+            }
+            catch (\Exception $e)
+            {
+                Log::error("Error connecting to database.");
+            }
         }
         return self::$db;
     }
@@ -83,5 +90,67 @@ class Database {
         ];
         $stmt = self::db()->prepare($sql);
         $stmt->execute($args);
+    }
+
+    public static function insert($table, $fields, $values)
+    {
+        $query = "insert into ".$table;
+
+        $query .= " (";
+        $query .= implode(
+            ",",
+            array_map(
+                function ($entry) {
+                    return "`".$entry."`";
+                },
+                $fields
+            )
+        );
+        $query .= ")";
+
+        $query .= " values (";
+        $query .= implode(
+            ",",
+            array_map(
+                function ($entry) {
+                    return "'".$entry."'";
+                },
+                $values
+            )
+        );
+        $query .= ")";
+
+        return self::run($query);
+    }
+
+    public static function select($table, $selects, $where = null)
+    {
+        $query = "select ";
+
+        if ($selects == '*')
+            $query .= $selects;
+        else if (is_array($selects))
+            $query .= implode(",", $selects);
+
+        $query .= " from ".$table;
+
+        if (is_array($where))
+        {
+            $query .= " where ";
+
+            $count = 0;
+            foreach ($where as $key => $attribute)
+            {
+                $count++;
+                if (!is_array($attribute))
+                {
+                    $query .= $key . " = '" . $attribute . "'";
+                    if (count($where) !== $count)
+                        $query .= " and ";
+                }
+            }
+        }
+
+        return self::run($query);
     }
 }

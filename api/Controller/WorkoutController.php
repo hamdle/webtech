@@ -74,7 +74,7 @@ class WorkoutController
     // return = \Http\Response
     public function all($args)
     {
-        $exerciseTypes = Query::run("
+        $exerciseTypes = Database::run("
             select *
             from exercise_types
         ");
@@ -90,13 +90,13 @@ class WorkoutController
             'user_id' => Rpc::getUser()->id,
             'limit' => self::ALL_WORKOUTS_LIMIT
         ]);
-        $exercises = Query::run("
+        $exercises = Database::run("
             select *
             from exercises
             where exercises.workout_id in
             (".implode(", ", array_column($workouts, "id")).")
         ");
-        $reps = Query::run("
+        $reps = Database::run("
             select *
             from reps
             where reps.exercise_id in

@@ -25,7 +25,7 @@ class ExerciseType extends Record
 
     public function all()
     {
-        return Query::select(self::TABLE, "*");
+        return Database::select(self::TABLE, "*");
     }
 
     public function fieldValidation()

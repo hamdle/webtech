@@ -46,7 +46,7 @@ abstract class Record
     public function save()
     {
         $this->transformFormFields();
-        $id = Query::insert(
+        $id = Database::insert(
             $this->table,
             array_keys($this->fields),
             array_values($this->fields));
@@ -57,7 +57,7 @@ abstract class Record
     public function loadFromDatabase()
     {
         $this->transformFormFields();
-        $results = Query::select($this->table, "*", $this->fields);
+        $results = Database::select($this->table, "*", $this->fields);
 
         if (is_array($results) && array_key_exists(0, $results))
         {
