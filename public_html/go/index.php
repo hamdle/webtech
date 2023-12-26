@@ -1,6 +1,7 @@
 <?php
 
 use app\Core;
+use api\Core\Database\Database;
 
 require_once dirname(__DIR__, 2) . "/autoload.php";
 
@@ -68,11 +69,11 @@ $App->renderHtml(Core::HTML_HEADER);
         Startbutton.disable();
         Instructions.hide();
         Workout.create();
-        InputDisplay.init(document.getElementById('inputdisplay'));
+        InputDisplay.init(document.getElementById('inputdisplay'), <?php echo Database::config("set_rest_default") ?>);
         InputDisplay.next();
         Timer.start();
         // TODO: Replace this magic number with value from user settings.
-        Countdown.start(120);
+        Countdown.start(<?php echo Database::config("set_rest_default") ?>);
         window.onbeforeunload = function () {
             return "Quit workout?";
         };

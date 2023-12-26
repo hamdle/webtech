@@ -9,14 +9,14 @@
 // include Timer
 
 var InputDisplay = (function () {
-    var $element
-    var $exercise
-    var $name
-    var $note
-    var $feel
-    var $repInputElements
+    var $element;
+    var $exercise;
+    var $name;
+    var $note;
+    var $feel;
+    var $repInputElements;
+    var $cooldown; // in seconds
     const WARM_UP_ID = 1;
-    const EXERCISE_COOLDOWN = 120; // (sec)
 
     function display(option) {
         switch (option) {
@@ -267,10 +267,11 @@ var InputDisplay = (function () {
     }
 
     // Public
-    function init(element) {
+    function init(element, cooldown) {
         $element = element
         $exercise = null
         $name = 'input-display'
+        $cooldown = cooldown;
     }
 
     function next() {
@@ -303,7 +304,7 @@ var InputDisplay = (function () {
         } else {
             display('exercise');
             Workout.addExercise($exercise);
-            Countdown.start(EXERCISE_COOLDOWN)
+            Countdown.start($cooldown)
         }
     }
 
