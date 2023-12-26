@@ -43,7 +43,7 @@ class Database {
         if (is_readable($path)) {
             $sql = file_get_contents($path);
 
-            if ($_ENV['DEBUG'] == 1)
+            if (getenv("LOG_SQL_QUERIES"))
             {
                 Log::error($sql, "SQL query");
                 Log::error($args, "SQL args");
@@ -62,7 +62,7 @@ class Database {
 
     public static function run($sql, $args = [])
     {
-        if ($_ENV['DEBUG'] == 1)
+        if (getenv("LOG_SQL_QUERIES"))
         {
             Log::error($sql, "SQL query");
             Log::error($args, "SQL args");
