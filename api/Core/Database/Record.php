@@ -42,7 +42,6 @@ abstract class Record
         $this->fields[$field] = $value;
     }
 
-    // return = Id of inserted record | null
     public function save()
     {
         $this->transformFormFields();
@@ -50,7 +49,6 @@ abstract class Record
             $this->table,
             array_keys($this->fields),
             array_values($this->fields));
-
         return $this->fields["id"] = (is_numeric($id) ? $id : null);
     }
 

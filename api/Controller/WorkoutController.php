@@ -46,6 +46,7 @@ class WorkoutController
             $exercise->validateFormFields();
             $exercise->save();
 
+            // TODO: add bulk save to Database and use it here
             foreach ($reps as $repEntry)
             {
                 $rep = new Rep($repEntry);
@@ -90,12 +91,14 @@ class WorkoutController
             'user_id' => Rpc::getUser()->id,
             'limit' => self::ALL_WORKOUTS_LIMIT
         ]);
+        // TODO: change to Database::insert(sql, ids) so Database class use prepare
         $exercises = Database::run("
             select *
             from exercises
             where exercises.workout_id in
             (".implode(", ", array_column($workouts, "id")).")
         ");
+        // TODO: change to Database::insert(sql, ids) so Database class use prepare
         $reps = Database::run("
             select *
             from reps

@@ -12,7 +12,7 @@
 namespace api\Model;
 
 use api\Core\Database\Record;
-use api\Core\Database\Query;
+use api\Core\Database\Database;
 
 class ExerciseType extends Record
 {
