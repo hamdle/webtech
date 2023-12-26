@@ -58,7 +58,7 @@ class Session
             setcookie(self::COOKIE_KEY, $cookie, [
                 "expires" => time() + 60 * 60 * 24 * 30,    // one hour * 24 hours * 30 days
                 "path" => "/",
-                //"secure" => true,     // cookie will only be sent over secure HTTPS connections
+                "secure" => getenv("DEV_MODE") ? true : true,     // cookie will only be sent over secure HTTPS connections
                 "httponly" => true,     // cookie will only be accessible through the HTTP protocol (no JavaScript)
                 "samesite" => "None",   // cookie will not be sent along with requests initiated by third party websites
             ]);
