@@ -86,7 +86,7 @@ $App->renderHtml(Core::HTML_HEADER);
     Timer.init(document.getElementById('timer'));
     var timer = document.getElementById('timer')
     timer.addEventListener('click', function () {
-        Countdown.start(60);
+        Countdown.start(<?php echo Database::config("rep_rest_default") ?>);
     });
 
     Countdown.init(document.getElementById('countdown'));

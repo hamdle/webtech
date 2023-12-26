@@ -5,7 +5,7 @@
 // include Utils
 
 var Countdown = (function () {
-    var amount;
+    var $amount;
     var element;
     var start_time;
     var interval;
@@ -17,7 +17,7 @@ var Countdown = (function () {
         var time_diff = start_time - current_time;
         var count = Math.abs(Math.round(time_diff / one_second));
 
-        return Math.max(amount - count, 0)
+        return Math.max($amount - count, 0)
     }
 
     function clearDisplay(value) {
@@ -49,7 +49,7 @@ var Countdown = (function () {
         clearInterval(interval);
         clearDisplay(value)
         start_time = new Date()
-        amount = parseInt(value)
+        $amount = parseInt(value)
         updateHandler()
         interval = setInterval(updateHandler, one_second)
     }
