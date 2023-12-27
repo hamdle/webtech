@@ -79,22 +79,6 @@ class Session extends Record
         return false;
     }
 
-    public function fieldValidation()
-    {
-        return [
-            "user_id" => function ($entry) {
-                if (empty($entry))
-                    return "User ID should not be empty.";
-                return true;
-            },
-            "token" => function ($entry) {
-                if (empty($entry))
-                    return "Token should not be empty.";
-                return true;
-            },
-        ];
-    }
-
     public function databaseTransforms()
     {
         return [

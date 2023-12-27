@@ -23,27 +23,6 @@ class Workout extends Record
         parent::__construct($fields, self::TABLE);
     }
 
-    public function fieldValidation()
-    {
-        return [
-            "user_id" => function ($entry) {
-                return is_numeric($entry);
-            },
-            "start" => function ($entry) {
-                return is_numeric($entry);
-            },
-            "end" => function ($entry) {
-                return is_numeric($entry);
-            },
-            "notes" => function ($entry) {
-                return true;
-            },
-            "feel" => function ($entry) {
-                return true;
-            },
-        ];
-    }
-
     public function databaseTransforms()
     {
         return [

@@ -22,22 +22,6 @@ class User extends Record
         parent::__construct($fields, self::TABLE);
     }
 
-    public function fieldValidation()
-    {
-        return [
-            "email" => function ($entry) {
-                if (empty($entry))
-                    return "Email address should not be empty.";
-                return true;
-            },
-            "password" => function ($entry) {
-                if (empty($entry))
-                    return "Password should not be empty.";
-                return true;
-            },
-        ];
-    }
-
     public function databaseTransforms()
     {
         return [

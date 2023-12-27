@@ -30,7 +30,6 @@ class WorkoutController
         $request = Rpc::getRequest();
         $workout = new Workout($request);
         $workout->user_id = Rpc::getUser()->id;
-        $workout->validateFormFields();
         $workout->save();
 
         foreach ($request["exercises"] ?? [] as $exerciseEntry)
@@ -42,8 +41,6 @@ class WorkoutController
             // the `exercises` table. So we need to get the reps from this
             // exercise before saving it.
             $reps = $exerciseEntry["reps"] ?? [];
-
-            $exercise->validateFormFields();
             $exercise->save();
 
             // TODO: add bulk save to Database and use it here
@@ -51,8 +48,6 @@ class WorkoutController
             {
                 $rep = new Rep($repEntry);
                 $rep->exercise_id = $exercise->id;
-
-                $rep->validateFormFields();
                 $rep->save();
             }
         }
