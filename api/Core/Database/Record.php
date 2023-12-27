@@ -44,11 +44,26 @@ abstract class Record
     public function save()
     {
         $this->transformFields();
-        $id = Database::insert(
-            $this->table,
-            array_keys($this->fields),
-            array_values($this->fields));
-        return $this->fields["id"] = (is_numeric($id) ? $id : null);
+        if (intval($this->fields["id"]))
+        {
+            $id = $this->fields["id"];
+            unset($this->fields["id"]);
+            Database::update(
+                $this->table,
+                array_keys($this->fields),
+                array_values($this->fields),
+                "id = ".$id
+            );
+            $this->fields["id"] = $id;
+        }
+        else
+        {
+            $id = Database::insert(
+                $this->table,
+                array_keys($this->fields),
+                array_values($this->fields));
+            return $this->fields["id"] = (is_numeric($id) ? $id : null);
+        }
     }
 
     public function loadFromDatabase()

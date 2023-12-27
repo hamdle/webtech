@@ -171,22 +171,19 @@ $App->renderHtml(Core::HTML_HEADER);
             <h2 class="p-modal__title" id="modal-title">Edit User</h2>
             <button class="p-modal__close" aria-label="Close active modal" aria-controls="modal">Close</button>
         </header>
-        <form id="loginForm" class="login__form">
+        <form id="userSettingsForm" class="login__form">
             <div class="form-box card selected-login">
                 <p class="u-clearfix">
-                    <label class="login__title">First Name</label>
-                    <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Email" name="email" />
+                    <label class="login__title">First Name:</label>
+                    <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="First Name" value="<?php echo $App->user->first_name; ?>" name="first_name" />
                 </p>
                 <p class="u-clearfix">
                     <label class="login__title">Last Name</label>
-                    <input class="input login__input" autocapitalize="off" autocorrect="off" type="password" placeholder="Password" name="password" />
+                    <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Last Name" value="<?php echo $App->user->last_name; ?>"  name="last_name" />
                 </p>
                 <p class="u-clearfix">
-                    <label class="login__title">Email</label>
-                    <input class="input login__input" autocapitalize="off" autocorrect="off" type="password" placeholder="Password" name="password" />
+                    <input type="hidden" name="method" value="Config.saveUserSettings">
                 </p>
-
-
             </div>
             <footer class="p-modal__footer">
                 <button class="u-no-margin--bottom" aria-controls="modal">Cancel</button>
@@ -423,6 +420,58 @@ $App->renderHtml(Core::HTML_HEADER);
             toggleModal(document.querySelector('#modal'), document.querySelector('[aria-controls=modal]'), true);
         });
     })();
+</script>
+
+<script>
+    window.addEventListener("load", function()
+    {
+        function sendData()
+        {
+            const $xhr = new XMLHttpRequest();
+            const formData = new FormData(form);
+
+            $xhr.addEventListener('load', function(event)
+            {
+                const response = JSON.parse(event.target.responseText);
+                if (response.ok === 'false' || response.warning === 'validation failed')
+                {
+                    let notification = document.getElementById('notification');
+                    if (notification) {
+                        notification.classList.remove('u-hide');
+                    }
+                }
+            });
+            $xhr.addEventListener('readystatechange', function(event)
+            {
+                if ($xhr.readyState == XMLHttpRequest.DONE)
+                {
+                    const response = JSON.parse(event.target.responseText);
+                    if (response.ok === 'false' || response.hasOwnProperty('warning') || response.hasOwnProperty('error')) {
+                        return;
+                    }
+                    if (response.ok === 'true') {
+                        window.location.reload();
+                    }
+                }
+            });
+            $xhr.addEventListener('error', function(event)
+            {
+                console.log('An error occurred while logging in.');
+            });
+            $xhr.open("POST", api);
+            // Specifying a header here could cause the POST data to be sent
+            // incorrectly, don't set it explicitly and let the browser generate
+            // the correct one automatically
+            $xhr.send(formData);
+        }
+
+        let form = document.getElementById('userSettingsForm');
+        form.addEventListener("submit", function (event)
+        {
+            event.preventDefault();
+            sendData();
+        });
+    });
 </script>
 
 <?php $App->renderHtml(Core::HTML_CLOSE); ?>

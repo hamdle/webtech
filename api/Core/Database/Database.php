@@ -114,6 +114,22 @@ class Database {
         return $stmt->execute();
     }
 
+    public static function update($table, $fields, $values, $where)
+    {
+        $query = "
+            UPDATE {$table} SET 
+            " . implode(', ', array_map(function ($entry) { return "`{$entry}` = ?"; }, $fields)) . " 
+            WHERE 
+            ".$where;
+
+        $stmt = self::$db->prepare($query);
+        foreach ($values as $key => $value){
+            $stmt->bindValue($key+1, $value);
+        }
+
+        return $stmt->execute();
+    }
+
     public static function select($table, $selects, $where = null)
     {
         $query = "SELECT ";

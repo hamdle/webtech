@@ -11,25 +11,9 @@
 
 namespace api\Form;
 
-class LoginForm
+class LoginForm extends BaseForm
 {
-    use \api\Core\Traits\Messages;
-
-    public function validate($request)
-    {
-        $this->messages = [];
-        foreach ($this->fieldValidation() as $key => $validator)
-        {
-            if (array_key_exists($key, $request) &&
-                ($validationResponse = $validator($request[$key])) !== true)
-            {
-                $this->messages[$key] = $validationResponse;
-            }
-        }
-        return empty($this->messages);
-    }
-
-    private function fieldValidation()
+    protected function fieldValidation()
     {
         return [
             "email" => function ($entry) {
