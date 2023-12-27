@@ -32,43 +32,38 @@ class Session
      */
     public function authenticateLogin($user): bool
     {
-        if ($user->validateFormFields() && $user->loadFromDatabase())
-        {
-            $token = bin2hex(random_bytes(128));
-            $cookie = $user->email.":".$token;
-            $cookieKey = getenv('COOKIE_KEY', true);
-            if (!$cookieKey) {
-                throw new Exception('No Cookie Key found in the environment!');
-            }
-
-            $mac = hash_hmac("sha256", $cookie, $cookieKey);
-            $cookie .= ":".$mac;
-
-            Database::execute('delete-all-session.sql', [
-                'user_id' => $user->id
-            ]);
-
-            $this->session = new Model\Session([
-                'user_id' => $user->id,
-                'token' => $token
-            ]);
-            $this->session->save();
-
-            // Now you could use the generated cookie securely with flags set properly
-            setcookie(self::COOKIE_KEY, $cookie, [
-                "expires" => time() + 60 * 60 * 24 * 30,    // one hour * 24 hours * 30 days
-                "path" => "/",
-                "secure" => getenv("DEV_MODE") ? true : true,     // cookie will only be sent over secure HTTPS connections
-                "httponly" => true,     // cookie will only be accessible through the HTTP protocol (no JavaScript)
-                "samesite" => "None",   // cookie will not be sent along with requests initiated by third party websites
-            ]);
-            $this->cookie = $cookie;
-            $this->user = $user;
-
-            return true;
+        $token = bin2hex(random_bytes(128));
+        $cookie = $user->email.":".$token;
+        $cookieKey = getenv('COOKIE_KEY', true);
+        if (!$cookieKey) {
+            throw new Exception('No Cookie Key found in the environment!');
         }
 
-        return false;
+        $mac = hash_hmac("sha256", $cookie, $cookieKey);
+        $cookie .= ":".$mac;
+
+        Database::execute('delete-all-session.sql', [
+            'user_id' => $user->id
+        ]);
+
+        $this->session = new Model\Session([
+            'user_id' => $user->id,
+            'token' => $token
+        ]);
+        $this->session->save();
+
+        // Now you could use the generated cookie securely with flags set properly
+        setcookie(self::COOKIE_KEY, $cookie, [
+            "expires" => time() + 60 * 60 * 24 * 30,    // one hour * 24 hours * 30 days
+            "path" => "/",
+            "secure" => getenv("DEV_MODE") ? false : true,     // cookie will only be sent over secure HTTPS connections
+            "httponly" => true,     // cookie will only be accessible through the HTTP protocol (no JavaScript)
+            "samesite" => "None",   // cookie will not be sent along with requests initiated by third party websites
+        ]);
+        $this->cookie = $cookie;
+        $this->user = $user;
+
+        return true;
     }
 
     /**

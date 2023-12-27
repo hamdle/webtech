@@ -22,18 +22,6 @@ class Rep extends Record
         parent::__construct($fields, self::TABLE);
     }
 
-    public function fieldValidation()
-    {
-        return [
-            "exercise_id" => function ($entry) {
-                return is_numeric($entry);
-            },
-            "amount" => function ($entry) {
-                return is_numeric($entry);
-            }
-        ];
-    }
-
     public function databaseTransforms()
     {
         return [

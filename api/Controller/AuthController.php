@@ -14,7 +14,8 @@ namespace api\Controller;
 use api\Core\Http\Request;
 use api\Core\Http\Response;
 use api\Model\User;
-use api\Core\Authentication;
+use api\Form\LoginForm;
+use api\Core\Authentication\Session;
 use api\Rpc;
 
 class AuthController {
@@ -27,9 +28,13 @@ class AuthController {
      */
     public function login()
     {
-        $user = new User(Request::post());
-        $session = new Authentication\Session();
-        if ($session->authenticateLogin($user))
+        $request = Request::post();
+        $form = new LoginForm();
+        $user = new User($request);
+        $session = new Session();
+        if ($form->validate($request) &&
+            $user->loadFromDatabase() &&
+            $session->authenticateLogin($user))
         {
             return Response::sendOk();
         }

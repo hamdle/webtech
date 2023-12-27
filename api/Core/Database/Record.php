@@ -21,7 +21,6 @@ abstract class Record
 
     private $id;
 
-    abstract public function fieldValidation();
     abstract public function databaseTransforms();
 
     public function __construct($fields = [], $table)
@@ -44,7 +43,7 @@ abstract class Record
 
     public function save()
     {
-        $this->transformFormFields();
+        $this->transformFields();
         $id = Database::insert(
             $this->table,
             array_keys($this->fields),
@@ -54,7 +53,7 @@ abstract class Record
 
     public function loadFromDatabase()
     {
-        $this->transformFormFields();
+        $this->transformFields();
         $results = Database::select($this->table, "*", $this->fields);
 
         if (is_array($results) && array_key_exists(0, $results))
@@ -73,25 +72,11 @@ abstract class Record
         return true;
     }
 
-    public function validateFormFields()
-    {
-        $this->messages = [];
-        foreach ($this->fieldValidation() as $key => $validator)
-        {
-            if (array_key_exists($key, $this->fields))
-            {
-                if (($validationResponse = $validator($this->fields[$key])) !== true)
-                    $this->messages[$key] = $validationResponse;
-            }
-        }
-        return empty($this->messages);
-    }
-
-    public function transformFormFields()
+    public function transformFields()
     {
         foreach ($this->fields as $key => $field)
         {
-            if (!array_key_exists($key, $this->fieldValidation()))
+            if (!array_key_exists($key, $this->databaseTransforms()))
                 unset($this->fields[$key]);
         }
         foreach ($this->databaseTransforms() as $key => $transform)

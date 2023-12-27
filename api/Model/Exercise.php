@@ -22,27 +22,6 @@ class Exercise extends Record
         parent::__construct($fields, self::TABLE);
     }
 
-    public function fieldValidation()
-    {
-        return [
-            "exercise_type_id" => function ($entry) {
-                return is_numeric($entry);
-            },
-            "workout_id" => function ($entry) {
-                return is_numeric($entry);
-            },
-            "user_id" => function ($entry) {
-                return is_numeric($entry);
-            },
-            "sets" => function ($entry) {
-                return is_numeric($entry);
-            },
-            "feedback" => function ($entry) {
-                return true;
-            },
-        ];
-    }
-
     public function databaseTransforms()
     {
         return [

@@ -15,6 +15,7 @@ require_once dirname(__DIR__, 1) . "/autoload.php";
 
 use api\Core\Authentication;
 use api\Model\User;
+use api\Core\Utils\Log;
 
 class Core
 {
@@ -31,6 +32,8 @@ class Core
 
     public function __construct($name = "Workout")
     {
+        //session_start();
+        //Log::info(session_id(), "session_id");
         $this->name = $name;
         try
         {
