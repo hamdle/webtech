@@ -116,32 +116,36 @@ class Database {
 
     public static function select($table, $selects, $where = null)
     {
-        $query = "select ";
-
+        $query = "SELECT ";
         if ($selects == '*')
             $query .= $selects;
         else if (is_array($selects))
             $query .= implode(",", $selects);
+        $query .= " FROM " . $table;
 
-        $query .= " from ".$table;
-
+        $params = [];
         if (is_array($where))
         {
-            $query .= " where ";
-
+            $query .= " WHERE ";
             $count = 0;
             foreach ($where as $key => $attribute)
             {
                 $count++;
                 if (!is_array($attribute))
                 {
-                    $query .= $key . " = '" . $attribute . "'";
+                    $query .= $key . " = :".$key;
                     if (count($where) !== $count)
-                        $query .= " and ";
+                        $query .= " AND ";
+
+                    $params[":".$key] = $attribute;
                 }
             }
         }
 
-        return self::run($query);
+        $db = self::db();
+        $stmt = $db->prepare($query);
+        $stmt->execute($params);
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
