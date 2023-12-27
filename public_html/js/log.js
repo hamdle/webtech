@@ -4,8 +4,6 @@
 // Build a list of exercise entries, called the log. This component attaches to
 // the element of id = "log"
 
-//let api = "http://workout.local/api/";
-
 var Log = (function() {
     var $xhr;
 
@@ -25,6 +23,13 @@ var Log = (function() {
                 "Workout — " + time; // entry.end;
             wrap.appendChild(start);
 
+            var load = document.createElement("button");
+            load.textContent = "Load";
+            load.classList = "p-button";
+            load.setAttribute("data-exercise-ids", "");
+            load.addEventListener('click', loadWorkout);
+            wrap.appendChild(load);
+
             var table = document.createElement("table");
             table.classList = "log__table";
 
@@ -43,7 +48,9 @@ var Log = (function() {
             table.appendChild(thead);
 
             // Exercises
+            var exercise_ids = "";
             Object.values(entry.exercises).forEach(function (exercise) {
+                exercise_ids += (exercise_ids === "" ? "" : ",") + exercise.exercise_type_id;
                 var reps = "";
                 var count = 0;
 
@@ -83,6 +90,7 @@ var Log = (function() {
                 //tr2.appendChild(td4);
                 table.appendChild(tr2);
             });
+            load.setAttribute("data-exercise-ids", exercise_ids);
             wrap.appendChild(table);
 
             // Workout info: feel
@@ -116,6 +124,11 @@ var Log = (function() {
         for (i = tempLog.children.length - 1; i > 0; i--) {
             log.appendChild(tempLog.children[i])
         }
+    }
+
+    function loadWorkout(event) {
+        var ids = event.target.getAttribute("data-exercise-ids")
+        window.location = "/go?el=" + ids;
     }
 
     function logHandler(event) {

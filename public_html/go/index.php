@@ -6,6 +6,8 @@ use api\Core\Database\Database;
 require_once dirname(__DIR__, 2) . "/autoload.php";
 
 $App = new Core("Go");
+$get = isset($_GET["el"]) ? $_GET["el"] : null;
+$el = $get ? explode(",", $get) : null;
 $App->renderHtml(Core::HTML_OPEN);
 $App->renderHtml(Core::HTML_HEADER);
 
@@ -79,7 +81,7 @@ $App->renderHtml(Core::HTML_HEADER);
     }
 
     Workout.init();
-    RoutineBuilder.init(document.getElementById('exercise__list'));
+    RoutineBuilder.init(document.getElementById('exercise__list'), JSON.parse('<?php echo json_encode($el) ?>'));
     Startbutton.init(onStart);
 
     Timer.init(document.getElementById('timer'));
