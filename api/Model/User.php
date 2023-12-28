@@ -35,10 +35,10 @@ class User extends Record
                 return empty($entry) ? null : md5($entry);
             },
             "first_name" => function ($entry) {
-                return $entry;
+                return htmlspecialchars(substr($entry, 0, 128), ENT_QUOTES, "UTF-8");
             },
             "last_name" => function ($entry) {
-                return $entry;
+                return htmlspecialchars(substr($entry, 0, 128), ENT_QUOTES, "UTF-8");
             }
         ];
     }
