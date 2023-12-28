@@ -3,7 +3,6 @@ body {
     margin: 0;
     padding: 0;
     color: #222831;
-    background-color: #f4f4f4;
 }
 
 .dash__link {
@@ -578,7 +577,7 @@ h2 {
 }
 
 .input-display__textbox:focus {
-    border-bottom: 4px solid #ff7315;
+    border-bottom: 4px solid #00bcd4;
 }
 
 .input-display__plus {
@@ -640,7 +639,6 @@ h2 {
 }
 
 .dash__body {
-    background: #f4f4f4;
     flex-wrap: nowrap;
     flex-direction: column;
     display: flex;
