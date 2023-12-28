@@ -144,16 +144,16 @@ $App->renderHtml(Core::HTML_HEADER);
                                         <tbody>
                                         <tr>
                                             <th>Timezone</th>
-                                            <th>-8</th>
-                                            <th>System Default</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Workout Pagination Default</th>
-                                            <th>30</th>
+                                            <th><?php echo Database::config("default_timezone", $App->user->id) ?></th>
                                             <th>System Default</th>
                                         </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                                <div class="card">
+                                    <p class="u-clearfix">
+                                    <div id="editsys" aria-controls="modal" class="card u-float-left"><button class="p-button">Edit</button></div>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -227,6 +227,33 @@ $App->renderHtml(Core::HTML_HEADER);
         </form>
     </section>
 </div>
+
+    <div class="p-modal" id="modalsys" style="display: none;">
+        <section class="p-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description">
+            <header class="p-modal__header">
+                <h2 class="p-modal__title" id="modal-title">Edit System Settings</h2>
+                <button class="p-modal__close" aria-label="Close active modal" aria-controls="modalsys">Close</button>
+            </header>
+            <form id="systemSettingsForm" class="login__form">
+                <div class="form-box card selected-login">
+                    <p class="u-clearfix">
+                        <label class="login__title">Timezone:</label>
+                        <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Timezone" value="<?php echo Database::config("default_timezone", $App->user->id) ?>" name="default_timezone" />
+                    </p>
+                    <p class="u-clearfix">
+                        <input type="hidden" name="method" value="Config.saveSystemSettings">
+                    </p>
+                </div>
+                <footer class="p-modal__footer">
+                    <button class="u-no-margin--bottom" aria-controls="modalsys">Cancel</button>
+                    <button id="login__button" class="button p-button--positive u-no-margin--bottom has-icon" type="submit">
+                        <span class="fa fa-save footer__icon login-button__icon" style="margin-right:6px"></span>
+                        Save
+                    </button>
+                </footer>
+            </form>
+        </section>
+    </div>
 
 <?php $App->renderHtml(Core::HTML_FOOTER); ?>
 
@@ -455,6 +482,10 @@ $App->renderHtml(Core::HTML_HEADER);
         edit2.addEventListener('click', function (event) {
             toggleModal(document.querySelector('#modalwo'), document.querySelector('[aria-controls=modalwo]'), true);
         });
+        var edit3 = document.getElementById("editsys");
+        edit3.addEventListener('click', function (event) {
+            toggleModal(document.querySelector('#modalsys'), document.querySelector('[aria-controls=modalsys]'), true);
+        });
     })();
 </script>
 
@@ -512,6 +543,12 @@ $App->renderHtml(Core::HTML_HEADER);
         {
             event.preventDefault();
             sendData(workoutForm);
+        });
+        let systemForm = document.getElementById('systemSettingsForm');
+        systemForm.addEventListener("submit", function (event)
+        {
+            event.preventDefault();
+            sendData(systemForm);
         });
     });
 </script>

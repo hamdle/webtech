@@ -15,6 +15,7 @@ use api\Core\Http\Request;
 use api\Core\Http\Response;
 use api\Form\UserSettingsForm;
 use api\Form\WorkoutSettingsForm;
+use api\Form\SystemSettingsForm;
 use api\Model\User;
 use api\Rpc;
 
@@ -50,6 +51,27 @@ class ConfigController
                 [$request["rep_rest_default"]],
                 "user_id = ".$user->fields["id"].
                 " and reference = 'rep_rest_default'"
+            );
+
+            return Response::sendOk();
+        }
+
+        return Response::sendOkWithWarning("validation failed");
+    }
+
+    public function saveSystemSettings()
+    {
+        $request = Request::post();
+        $form = new SystemSettingsForm();
+        $user = Rpc::getUser();
+        if ($form->validate($request))
+        {
+            Database::update(
+                "system_config",
+                ["data"],
+                [$request["default_timezone"]],
+                "user_id = ".$user->fields["id"].
+                " and reference = 'default_timezone'"
             );
 
             return Response::sendOk();
