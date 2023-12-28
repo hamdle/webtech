@@ -29,14 +29,14 @@ class WorkoutController
     {
         $request = Rpc::getRequest();
         $workout = new Workout($request);
-        $workout->user_id = Rpc::getUser()->id;
+        $workout->user_id = Rpc::getUser()->fields["id"];
         $workout->save();
 
         foreach ($request["exercises"] ?? [] as $exerciseEntry)
         {
             $exercise = new Exercise($exerciseEntry);
             $exercise->workout_id = $workout->id;
-            $exercise->user_id = Rpc::getUser()->id;
+            $exercise->user_id = Rpc::getUser()->fields["id"];
             // Saving the exercise will unset `reps` since it"s not a field in
             // the `exercises` table. So we need to get the reps from this
             // exercise before saving it.
@@ -83,7 +83,7 @@ class WorkoutController
         }
 
         $workouts = Database::execute('user-workouts.sql', [
-            'user_id' => Rpc::getUser()->id,
+            'user_id' => Rpc::getUser()->fields["id"],
             'limit' => self::ALL_WORKOUTS_LIMIT
         ]);
         // TODO: change to Database::insert(sql, ids) so Database class use prepare
@@ -131,14 +131,14 @@ class WorkoutController
 
     public function suggestedReps($args) {
         $results = Database::execute('last-exercise.sql', [
-            'user_id' => Rpc::getUser()->id,
+            'user_id' => Rpc::getUser()->fields["id"],
             'exercise_type_id' => intval($args['exerciseTypeId'])
         ]);
 
         $workoutId = $results[0]['id'];
 
         $reps = Database::execute('suggested-reps.sql', [
-            'user_id' => Rpc::getUser()->id,
+            'user_id' => Rpc::getUser()->fields["id"],
             'exercise_type_id' => intval($args['exerciseTypeId']),
             'workout_id' => $workoutId
         ]);
