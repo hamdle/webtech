@@ -64,7 +64,10 @@ $App->renderHtml(Core::HTML_HEADER);
                                         </tr>
                                         <tr>
                                             <th>Created On</th>
-                                            <th><?php echo is_null($App->user->created_date) ? ltrim(date("m/d/Y"), "0") : $App->user->created_date; ?></th>
+                                            <th><?php
+                                                echo is_null($App->user->created_date)
+                                                    ? ltrim(date("m/d/Y"), "0")
+                                                    : (new DateTime($App->user->created_date))->format("F j, Y"); ?></th>
                                         </tr>
                                         </tbody>
                                     </table>
