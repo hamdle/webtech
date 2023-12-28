@@ -1,6 +1,7 @@
 <?php
 
 use app\Core;
+use api\Core\Database\Database;
 
 require_once dirname(__DIR__, 2) . "/autoload.php";
 
@@ -100,21 +101,21 @@ $App->renderHtml(Core::HTML_HEADER);
                                         <tbody>
                                         <tr>
                                             <th>Seconds Between Reps</th>
-                                            <th>60</th>
+                                            <th><?php echo Database::config("rep_rest_default", $App->user->id) ?></th>
                                             <th>System Default</th>
                                         </tr>
                                         <tr>
                                             <th>Seconds Between Sets</th>
-                                            <th>120</th>
-                                            <th>System Default</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Warm Up Length</th>
-                                            <th>120</th>
+                                            <th><?php echo Database::config("set_rest_default", $App->user->id) ?></th>
                                             <th>System Default</th>
                                         </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                                <div class="card">
+                                    <p class="u-clearfix">
+                                    <div id="editwo" aria-controls="modal" class="card u-float-left"><button class="p-button">Edit</button></div>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -168,7 +169,7 @@ $App->renderHtml(Core::HTML_HEADER);
 <div class="p-modal" id="modal" style="display: none;">
     <section class="p-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description">
         <header class="p-modal__header">
-            <h2 class="p-modal__title" id="modal-title">Edit User</h2>
+            <h2 class="p-modal__title" id="modal-title">Edit User Settings</h2>
             <button class="p-modal__close" aria-label="Close active modal" aria-controls="modal">Close</button>
         </header>
         <form id="userSettingsForm" class="login__form">
@@ -187,6 +188,37 @@ $App->renderHtml(Core::HTML_HEADER);
             </div>
             <footer class="p-modal__footer">
                 <button class="u-no-margin--bottom" aria-controls="modal">Cancel</button>
+                <button id="login__button" class="button p-button--positive u-no-margin--bottom has-icon" type="submit">
+                    <span class="fa fa-save footer__icon login-button__icon" style="margin-right:6px"></span>
+                    Save
+                </button>
+            </footer>
+        </form>
+    </section>
+</div>
+
+<div class="p-modal" id="modalwo" style="display: none;">
+    <section class="p-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description">
+        <header class="p-modal__header">
+            <h2 class="p-modal__title" id="modal-title">Edit Workout Settings</h2>
+            <button class="p-modal__close" aria-label="Close active modal" aria-controls="modalwo">Close</button>
+        </header>
+        <form id="workoutSettingsForm" class="login__form">
+            <div class="form-box card selected-login">
+                <p class="u-clearfix">
+                    <label class="login__title">Seconds Between Reps:</label>
+                    <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Reps (seconds)" value="<?php echo Database::config("rep_rest_default", $App->user->id) ?>" name="rep_rest_default" />
+                </p>
+                <p class="u-clearfix">
+                    <label class="login__title">Seconds Between Sets:</label>
+                    <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Sets (seconds)" value="<?php echo Database::config("set_rest_default", $App->user->id) ?>"  name="set_rest_default" />
+                </p>
+                <p class="u-clearfix">
+                    <input type="hidden" name="method" value="Config.saveWorkoutSettings">
+                </p>
+            </div>
+            <footer class="p-modal__footer">
+                <button class="u-no-margin--bottom" aria-controls="modalwo">Cancel</button>
                 <button id="login__button" class="button p-button--positive u-no-margin--bottom has-icon" type="submit">
                     <span class="fa fa-save footer__icon login-button__icon" style="margin-right:6px"></span>
                     Save
@@ -419,13 +451,17 @@ $App->renderHtml(Core::HTML_HEADER);
         edit.addEventListener('click', function (event) {
             toggleModal(document.querySelector('#modal'), document.querySelector('[aria-controls=modal]'), true);
         });
+        var edit2 = document.getElementById("editwo");
+        edit2.addEventListener('click', function (event) {
+            toggleModal(document.querySelector('#modalwo'), document.querySelector('[aria-controls=modalwo]'), true);
+        });
     })();
 </script>
 
 <script>
     window.addEventListener("load", function()
     {
-        function sendData()
+        function sendData(form)
         {
             const $xhr = new XMLHttpRequest();
             const formData = new FormData(form);
@@ -469,7 +505,13 @@ $App->renderHtml(Core::HTML_HEADER);
         form.addEventListener("submit", function (event)
         {
             event.preventDefault();
-            sendData();
+            sendData(form);
+        });
+        let workoutForm = document.getElementById('workoutSettingsForm');
+        workoutForm.addEventListener("submit", function (event)
+        {
+            event.preventDefault();
+            sendData(workoutForm);
         });
     });
 </script>

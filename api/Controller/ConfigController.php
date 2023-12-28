@@ -10,9 +10,11 @@
 
 namespace api\Controller;
 
+use api\Core\Database\Database;
 use api\Core\Http\Request;
 use api\Core\Http\Response;
 use api\Form\UserSettingsForm;
+use api\Form\WorkoutSettingsForm;
 use api\Model\User;
 use api\Rpc;
 
@@ -28,6 +30,27 @@ class ConfigController
             $updatedUser = new User($request);
             $updatedUser->fields["id"] = $user->fields["id"];
             $updatedUser->save();
+
+            return Response::sendOk();
+        }
+
+        return Response::sendOkWithWarning("validation failed");
+    }
+
+    public function saveWorkoutSettings()
+    {
+        $request = Request::post();
+        $form = new WorkoutSettingsForm();
+        $user = Rpc::getUser();
+        if ($form->validate($request))
+        {
+            Database::update(
+                "system_config",
+                ["data"],
+                [$request["rep_rest_default"]],
+                "user_id = ".$user->fields["id"].
+                " and reference = 'rep_rest_default'"
+            );
 
             return Response::sendOk();
         }

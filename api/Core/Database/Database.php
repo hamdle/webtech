@@ -78,9 +78,14 @@ class Database {
         return $results;
     }
 
-    public static function config($key)
+    public static function config($key, $userId = null)
     {
-        return self::execute("system-config.sql", ["ref" => $key])[0]["data"];
+        if (is_null($userId))
+        {
+            // TODO default to logged in user id
+            $userId = 1; // System user
+        }
+        return self::execute("system-config.sql", ["ref" => $key, "userId" => $userId])[0]["data"];
     }
 
     public static function log($message, $type, $user)

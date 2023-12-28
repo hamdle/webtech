@@ -32,6 +32,9 @@ class AuthController {
         $form = new LoginForm();
         $user = new User($request);
         $session = new Session();
+        // TODO session_set_save_handler
+        //if ($form->validate($request) &&
+        //    $session["$user"])
         if ($form->validate($request) &&
             $user->loadFromDatabase() &&
             $session->authenticateLogin($user))
