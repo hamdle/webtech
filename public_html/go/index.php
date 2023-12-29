@@ -38,7 +38,7 @@ $App->renderHtml(Core::HTML_HEADER);
         <div class="row">
             <div class="u-align--center">
                 <div class="opt__title">
-                    <h3>Exercise list</h3>
+                    <h3>Exercises</h3>
                 </div>
                 <span>
                     <button id="exercise__button--add" class="p-button">Add</button>
