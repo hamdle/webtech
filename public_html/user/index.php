@@ -105,12 +105,17 @@ $App->renderHtml(Core::HTML_HEADER);
                                         <tr>
                                             <th>Seconds Between Reps</th>
                                             <th><?php echo Database::config("rep_rest_default", $App->user->id) ?></th>
-                                            <th>System Default</th>
+                                            <th>User Default</th>
                                         </tr>
                                         <tr>
                                             <th>Seconds Between Sets</th>
                                             <th><?php echo Database::config("set_rest_default", $App->user->id) ?></th>
-                                            <th>System Default</th>
+                                            <th>User Default</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Workouts Pagination</th>
+                                            <th><?php echo Database::config("pagination_default", $App->user->id) ?></th>
+                                            <th>User Default</th>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -215,6 +220,10 @@ $App->renderHtml(Core::HTML_HEADER);
                 <p class="u-clearfix">
                     <label class="login__title">Seconds Between Sets:</label>
                     <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Sets (seconds)" value="<?php echo Database::config("set_rest_default", $App->user->id) ?>"  name="set_rest_default" />
+                </p>
+                <p class="u-clearfix">
+                    <label class="login__title">Workouts Pagination:</label>
+                    <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Pagination" value="<?php echo Database::config("pagination_default", $App->user->id) ?>"  name="pagination_default" />
                 </p>
                 <p class="u-clearfix">
                     <input type="hidden" name="method" value="Config.saveWorkoutSettings">

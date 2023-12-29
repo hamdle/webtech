@@ -52,6 +52,20 @@ class ConfigController
                 "user_id = ".$user->fields["id"].
                 " and reference = 'rep_rest_default'"
             );
+            Database::update(
+                "system_config",
+                ["data"],
+                [$request["set_rest_default"]],
+                "user_id = ".$user->fields["id"].
+                " and reference = 'set_rest_default'"
+            );
+            Database::update(
+                "system_config",
+                ["data"],
+                [$request["pagination_default"]],
+                "user_id = ".$user->fields["id"].
+                " and reference = 'pagination_default'"
+            );
 
             return Response::sendOk();
         }

@@ -22,6 +22,9 @@ class WorkoutSettingsForm extends BaseForm
             "set_rest_default" => function ($entry) {
                 return true;
             },
+            "pagination_default" => function ($entry) {
+                return true;
+            },
         ];
     }
 }
