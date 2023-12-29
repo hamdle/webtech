@@ -29,7 +29,13 @@ $App->renderHtml([Core::HTML_OPEN, Core::HTML_HEADER]);
                         </button>
                         <button class="p-button--positive p-tooltip--top-center has-icon" aria-describedby="btm-cntr">
                             <i class="p-icon--success"></i>
-                            16
+                            <?php
+                            $results = Database::execute('total-workouts.sql', [
+                                'user_id' => $App->user->id
+                            ]);
+                            $totalWorkouts = $results[0]['total'];
+                            echo $totalWorkouts;
+                            ?>
                             <span class="p-tooltip__message" role="tooltip" id="btm-cntr" >Completed Workouts</span>
                         </button>
                     </a>
