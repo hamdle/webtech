@@ -44,6 +44,9 @@ $App->renderHtml([Core::HTML_OPEN, Core::HTML_HEADER]);
                     <nav class="p-pagination" aria-label="Pagination">
                         <ol class="p-pagination__items">
                             <li class="p-pagination__item">
+                                <span id="page-display" class="p-pagination__display"></span>
+                            </li>
+                            <li class="p-pagination__item">
                                 <a id="prev" class="p-pagination__link--previous" href="#" title="Previous page"><i class="p-icon--chevron-down"></i></a>
                             </li>
                             <li class="p-pagination__item">
@@ -66,7 +69,13 @@ $App->renderHtml([Core::HTML_OPEN, Core::HTML_HEADER]);
 
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/log.js"></script>
 <script>
-    Log.init(api, document.getElementById('prev'), document.getElementById('next'));
+    Log.init(api,
+        document.getElementById("prev"),
+        document.getElementById("next"),
+        document.getElementById("page-display"),
+        <?php echo $totalWorkouts ?>,
+        <?php echo Database::config("pagination_default", $App->user->fields["id"]) ?>
+    );
 </script>
 
 <?php $App->renderHtml(Core::HTML_CLOSE); ?>

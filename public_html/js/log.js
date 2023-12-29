@@ -8,6 +8,9 @@ var Log = (function() {
     var $xhr;
     var $prev;
     var $next;
+    var $display;
+    var $total;
+    var $pagination;
     var $page = 1;
 
     function buildLog(workouts) {
@@ -157,7 +160,11 @@ var Log = (function() {
 
     function onNextHandler(event) {
         $page++;
-        sendRequest();
+        if ($page > Math.ceil($total / $pagination)) {
+            $page--;
+        } else {
+            sendRequest();
+        }
     }
 
     function sendRequest() {
@@ -169,14 +176,19 @@ var Log = (function() {
             method: "Workout.all",
             page: $page
         }));
+
+        $display.innerHTML = $page + " / " + Math.ceil($total / $pagination);
     }
 
     // Public
-    function init(api, prev, next) {
+    function init(api, prev, next, display, total, pagination) {
         $prev = prev;
         $prev.addEventListener('click', onPrevHandler);
         $next = next;
         $next.addEventListener('click', onNextHandler);
+        $display = display;
+        $total = total;
+        $pagination = pagination;
 
         sendRequest();
     }
