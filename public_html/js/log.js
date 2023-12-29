@@ -151,18 +151,26 @@ var Log = (function() {
 
     function onPrevHandler(event) {
         $page--;
-        if ($page < 1) {
+        if ($page == 1) {
+            $prev.classList.add("is-disabled");
+            sendRequest();
+        } else if ($page < 1) {
             $page = 1;
         } else {
+            $next.classList.remove("is-disabled");
             sendRequest();
         }
     }
 
     function onNextHandler(event) {
         $page++;
-        if ($page > Math.ceil($total / $pagination)) {
+        if ($page == Math.ceil($total / $pagination)) {
+            $next.classList.add("is-disabled");
+            sendRequest();
+        } else if ($page > Math.ceil($total / $pagination)) {
             $page--;
         } else {
+            $prev.classList.remove("is-disabled");
             sendRequest();
         }
     }
@@ -190,6 +198,7 @@ var Log = (function() {
         $total = total;
         $pagination = pagination;
 
+        $prev.classList.add("is-disabled");
         sendRequest();
     }
 
