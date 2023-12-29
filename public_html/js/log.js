@@ -6,8 +6,15 @@
 
 var Log = (function() {
     var $xhr;
+    var $prev;
+    var $next;
+    var $page = 1;
 
     function buildLog(workouts) {
+        if (workouts === null) {
+            $page--;
+            return;
+        }
         var log = document.getElementById("log");
         var tempLog = document.createElement("div");
 
@@ -120,6 +127,7 @@ var Log = (function() {
             tempLog.appendChild(wrap);
         });
 
+        log.innerHTML = "";
         var i = 0;
         for (i = tempLog.children.length - 1; i >= 0; i--) {
             log.appendChild(tempLog.children[i])
@@ -138,15 +146,39 @@ var Log = (function() {
         }
     }
 
-    // Public
-    function init(api) {
+    function onPrevHandler(event) {
+        $page--;
+        if ($page < 1) {
+            $page = 1;
+        } else {
+            sendRequest();
+        }
+    }
+
+    function onNextHandler(event) {
+        $page++;
+        sendRequest();
+    }
+
+    function sendRequest() {
         $xhr = new XMLHttpRequest();
         $xhr.addEventListener("load", logHandler);
         $xhr.open("POST", api);
         $xhr.setRequestHeader('Content-type', 'application/json');
         $xhr.send(JSON.stringify({
-            method: "Workout.all"
+            method: "Workout.all",
+            page: $page
         }));
+    }
+
+    // Public
+    function init(api, prev, next) {
+        $prev = prev;
+        $prev.addEventListener('click', onPrevHandler);
+        $next = next;
+        $next.addEventListener('click', onNextHandler);
+
+        sendRequest();
     }
 
     return {

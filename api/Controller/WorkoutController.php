@@ -80,13 +80,24 @@ class WorkoutController
             $exerciseTypesByKey[$exerciseType["id"]] = $exerciseType;
         }
 
-        $pageNumber = 1;
+        $pageNumber = $args["page"] ?? 1;
         $limit = Database::config("pagination_default", Rpc::getUser()->fields["id"]);
         $workouts = Database::execute('user-workouts.sql', [
             'user_id' => Rpc::getUser()->fields["id"],
             'limit' => $limit,
             "offset" => $limit * ($pageNumber - 1)
         ]);
+
+        if (!$workouts)
+        {
+            $response = array_merge(
+                ["ok" => "true"],
+                ["warning" => "no results"],
+                ["workouts" => null]
+            );
+            return Response::send(Code::OK_200, $response);
+        }
+
         // TODO: change to Database::insert(sql, ids) so Database class use prepare
         $exercises = Database::run("
             select *

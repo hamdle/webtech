@@ -41,19 +41,16 @@ $App->renderHtml([Core::HTML_OPEN, Core::HTML_HEADER]);
                     </a>
                 </div>
                 <div class="u-float-right">
-                    <div class="">
-                        <?php
-                        $results = Database::execute('total-workouts.sql', [
-                            'user_id' => $App->user->id
-                        ]);
-                        $totalWorkouts = $results[0]['total'];
-                        ?>
-                        <div class="analytics__row ">
-                            <span class="analytics__title">
-                                Show: <b>ALL</b>
-                            </span>
-                        </div>
-                    </div>
+                    <nav class="p-pagination" aria-label="Pagination">
+                        <ol class="p-pagination__items">
+                            <li class="p-pagination__item">
+                                <a id="prev" class="p-pagination__link--previous" href="#" title="Previous page"><i class="p-icon--chevron-down"></i></a>
+                            </li>
+                            <li class="p-pagination__item">
+                                <a id="next" class="p-pagination__link--next" href="#" title="Next page"><i class="p-icon--chevron-down"></i></a>
+                            </li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
 
@@ -69,7 +66,7 @@ $App->renderHtml([Core::HTML_OPEN, Core::HTML_HEADER]);
 
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/log.js"></script>
 <script>
-    Log.init(api);
+    Log.init(api, document.getElementById('prev'), document.getElementById('next'));
 </script>
 
 <?php $App->renderHtml(Core::HTML_CLOSE); ?>
