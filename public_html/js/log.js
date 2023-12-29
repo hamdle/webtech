@@ -121,7 +121,7 @@ var Log = (function() {
         });
 
         var i = 0;
-        for (i = tempLog.children.length - 1; i > 0; i--) {
+        for (i = tempLog.children.length - 1; i >= 0; i--) {
             log.appendChild(tempLog.children[i])
         }
     }
