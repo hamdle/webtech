@@ -80,6 +80,10 @@ $App->renderHtml(Core::HTML_HEADER);
     }
 
     Workout.init();
+    Workout.tab(
+        document.getElementById("workout-in-progress"),
+        document.getElementById("workout-in-progress__icon"),
+    );
     RoutineBuilder.init(document.getElementById('exercise__list'), JSON.parse('<?php echo json_encode($el) ?>'));
     Startbutton.init(onStart);
 

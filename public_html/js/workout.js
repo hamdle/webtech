@@ -6,6 +6,9 @@
 var Workout = (function() {
     var $xhr
     var $workout
+    var $exerciseInProgress = null;
+    var $tab;
+    var $icon;
 
     // Public
     function init(user_id)
@@ -23,6 +26,8 @@ var Workout = (function() {
     {
         // As Linux timestamp
         $workout.start = Math.round(+new Date() / 1000);
+        localStorage.setItem("workout.start", $workout.start);
+        $icon.classList.add("u-animation--spin");
     }
 
     function get()
@@ -47,6 +52,10 @@ var Workout = (function() {
                 if (this.status == 200) {
                     payload = JSON.parse(this.responseText);
                     if (payload.ok == "true") {
+                        $icon.classList.remove("u-animation--spin");
+                        $icon.classList.remove("p-icon--spinner");
+                        $icon.classList.add("p-icon--success");
+                        $tab.innerHTML = "Workout Complete";
                         onSuccess();
                     } else {
                         onFailure();
@@ -67,23 +76,31 @@ var Workout = (function() {
 
     function addExercise(exercise)
     {
-        console.log('exercise ' + exercise.name + ' added.')
+        $exerciseInProgress = exercise.name;
+        $tab.innerHTML = $exerciseInProgress;
         delete exercise.name
         $workout.exercises.push(exercise)
+        localStorage.setItem("workout.exercises", JSON.stringify($workout.exercises));
     }
 
     function addNote(note) {
-        console.log('note ' + ' added.')
         $workout.notes = note;
+        localStorage.setItem("workout.notes", $workout.notes);
     }
 
     function addFeel(feel) {
-        console.log('feel ' + ' added.')
         $workout.feel = feel
+        localStorage.setItem("workout.feel", $workout.feel);
+    }
+
+    function tab(element, icon) {
+        $tab = element;
+        $icon = icon;
     }
 
     return {
         init: init,
+        tab: tab,
         create: create,
         get: get,
         completeAndSend: completeAndSend,

@@ -22,12 +22,8 @@
                     </li>
                     <li class="p-navigation__item <?php if ($this->onPage("/go")) { ?> is-selected <?php } ?>">
                         <a class="p-button p-navigation__link  has-icon" href="/go">
-                            <span style="margin-right:10px;"><i class="<?php if ($this->onPage("/go")) { ?> is-selected p-icon--plus<?php } else { ?> p-icon--plus<?php } ?>"></i></span>
-                            <?php if ($this->onPage("/go")) { ?>
-                                Workout
-                            <?php } else { ?>
-                                New Workout
-                            <?php } ?>
+                            <span style="margin-right:10px;"><i id="workout-in-progress__icon" class="<?php if ($this->onPage("/go")) { ?> is-selected p-icon--spinner <?php } else { ?> p-icon--plus<?php } ?>"></i></span>
+                            <span id="workout-in-progress">New</span>
                         </a>
                     </li>
                 </ul>

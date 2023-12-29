@@ -44,7 +44,7 @@ abstract class Record
     public function save()
     {
         $this->transformFields();
-        if (intval($this->fields["id"]) || intval($this->fields["user_id"]))
+        if (intval($this->fields["id"]))
         {
             $id = $this->fields["id"];
             unset($this->fields["id"]);
