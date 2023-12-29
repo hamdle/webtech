@@ -31,7 +31,7 @@ $App->renderHtml([Core::HTML_OPEN, Core::HTML_HEADER]);
                             <i class="p-icon--success"></i>
                             <?php
                             $results = Database::execute('total-workouts.sql', [
-                                'user_id' => $App->user->id
+                                'user_id' => $App->user->fields["id"]
                             ]);
                             $totalWorkouts = $results[0]['total'];
                             echo $totalWorkouts;
