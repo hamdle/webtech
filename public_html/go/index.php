@@ -70,7 +70,7 @@ $App->renderHtml(Core::HTML_HEADER);
         Startbutton.disable();
         Instructions.hide();
         Workout.create();
-        InputDisplay.init(document.getElementById('inputdisplay'), <?php echo Database::config("set_rest_default") ?>);
+        InputDisplay.init(document.getElementById('inputdisplay'), <?php echo Database::config("set_rest_default", $App->user->fields["id"]) ?>);
         InputDisplay.next();
         Timer.start();
         Countdown.start(<?php echo Database::config("set_rest_default") ?>);
@@ -86,7 +86,7 @@ $App->renderHtml(Core::HTML_HEADER);
     Timer.init(document.getElementById('timer'));
     var timer = document.getElementById('timer')
     timer.addEventListener('click', function () {
-        Countdown.start(<?php echo Database::config("rep_rest_default") ?>);
+        Countdown.start(<?php echo Database::config("rep_rest_default", $App->user->fields["id"]) ?>);
     });
 
     Countdown.init(document.getElementById('countdown'));
