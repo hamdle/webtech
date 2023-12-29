@@ -116,7 +116,9 @@ class Database {
             $stmt->bindValue($key+1, $value);
         }
 
-        return $stmt->execute();
+        $stmt->execute();
+
+        return self::$db->lastInsertId();
     }
 
     public static function update($table, $fields, $values, $where)
