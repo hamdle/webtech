@@ -56,15 +56,16 @@ var RoutineBuilder = (function() {
                         addHandler($preload[i]);
                     }
                 }
-            }
-            var routine = localStorage.getItem("routinebuilder.exercises");
-            routine = JSON.parse(routine);
-            if (routine)
-            {
-                Object.keys(routine).forEach(function(key) {
-                    var value = routine[key];
-                    addHandler(value);
-                });
+            } else {
+                var routine = localStorage.getItem("routinebuilder.exercises");
+                routine = JSON.parse(routine);
+                if (routine)
+                {
+                    Object.keys(routine).forEach(function(key) {
+                        var value = routine[key];
+                        addHandler(value);
+                    });
+                }
             }
         }
     }
