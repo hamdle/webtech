@@ -6,8 +6,10 @@
 var RoutineBuilder = (function() {
     var $xhr;
     var $element;
-    var $exercises;
-    var $preload;
+    var $routine;       // object with routine built by user
+    var $orderId;       // order of the exercise in the routine, also used as an id
+    var $exercises;     // available exercise types
+    var $preload;       // Load button pressed on workout page sent via GET
 
     // Create button to add new exercise to the routine
     function loadAdd()
@@ -55,6 +57,15 @@ var RoutineBuilder = (function() {
                     }
                 }
             }
+            var routine = localStorage.getItem("routinebuilder.exercises");
+            routine = JSON.parse(routine);
+            if (routine)
+            {
+                Object.keys(routine).forEach(function(key) {
+                    var value = routine[key];
+                    addHandler(value);
+                });
+            }
         }
     }
 
@@ -64,6 +75,8 @@ var RoutineBuilder = (function() {
         listItem.classList = 'exercise__list-item';
         var selectList = document.createElement('select');
         selectList.classList = 'exercise__select';
+        selectList.addEventListener("change", selectChangeHandler);
+        selectList.setAttribute("data-order-id", ++$orderId);
 
         $element.appendChild(listItem);
         listItem.appendChild(selectList);
@@ -79,19 +92,38 @@ var RoutineBuilder = (function() {
             }
             selectList.appendChild(option);
         });
+        $routine[$orderId] = isNaN(+id) ? 1 : id;
+        localStorage.setItem("routinebuilder.exercises", JSON.stringify($routine));
     }
 
     function removeHandler() {
+        var $removedOrderId;
         if ($element.childNodes.length > 2 &&
             $element.childNodes[$element.childNodes.length-1].nodeName === "LI") {
+            var $select = $element.childNodes[$element.childNodes.length-1].querySelector("select");
+            $removedOrderId = $select.getAttribute("data-order-id");
             $element.removeChild($element.childNodes[$element.childNodes.length-1]);
         }
+        delete $routine[$removedOrderId];
+        localStorage.setItem("routinebuilder.exercises", JSON.stringify($routine));
+    }
+
+    function selectChangeHandler(event) {
+        var select = event.target;
+        var selectedValue = select.value;
+        var exercise = $exercises.find(function(item) { return item.title === selectedValue});
+        var orderId = select.getAttribute("data-order-id");
+        $routine[orderId] = exercise.id;
+        localStorage.setItem("routinebuilder.exercises", JSON.stringify($routine));
     }
 
     // Public
     function init(element, ids) {
         $element = element;
         $preload = ids;
+        $routine = {};
+        $orderId = 0;
+
         // Get list of exercises from the Api.
         $xhr = new XMLHttpRequest();
         $xhr.addEventListener("load", exerciseHandler);
@@ -120,6 +152,10 @@ var RoutineBuilder = (function() {
             reps: null,
             feedback: null
         }
+
+        $removedOrderId = select.getAttribute("data-order-id");
+        delete $routine[$removedOrderId];
+        localStorage.setItem("routinebuilder.exercises", JSON.stringify($routine));
 
         return $exercise
     }
