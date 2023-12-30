@@ -8,13 +8,17 @@ var Startbutton = (function() {
     var $handler
 
     // Public
-    function load(clickHandler) {
-        $handler = clickHandler
-        window.addEventListener("load", startHandler)
+    function init(element, clickHandler, bypass = false) {
+        $element = element;
+        if (bypass) {
+            clickHandler(false);
+        } else {
+            $handler = clickHandler;
+            window.addEventListener("load", startHandler)
 
-        function startHandler() {
-            $element = document.getElementById('start__button')
-            $element.addEventListener('click', clickHandler)
+            function startHandler() {
+                $element.addEventListener('click', clickHandler)
+            }
         }
     }
 
@@ -25,8 +29,19 @@ var Startbutton = (function() {
         $element.removeEventListener('click', $handler, false)
     }
 
+    function press() {
+        $element = document.getElementById('start__button');
+        var event = new MouseEvent('click', {
+            bubbles: true,
+            cancelable: true,
+            view: window
+        });
+        $element.dispatchEvent(event);
+    }
+
     return {
-        init: load,
-        disable: disable
+        init: init,
+        disable: disable,
+        press: press
     };
 })();

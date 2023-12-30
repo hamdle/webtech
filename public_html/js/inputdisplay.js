@@ -272,6 +272,31 @@ var InputDisplay = (function () {
         $exercise = null
         $name = 'input-display'
         $cooldown = cooldown;
+
+        // Get next exercise
+        var rawExercises = localStorage.getItem("workout.exercises");
+        if (rawExercises) {
+            var exercises = JSON.parse(rawExercises);
+            var inProgress = localStorage.getItem("workout.exerciseInProgress");
+            console.log(exercises);
+            for (var exercise of exercises) {
+                if (exercise.name == inProgress) {
+                    $exercise = exercise;
+                }
+            }
+
+            // Update input display
+            display('clear');
+
+            if ($exercise === null) {
+                Timer.stop();
+                display('finalize');
+            } else {
+                display('exercise');
+                //Workout.addExercise($exercise);
+                Countdown.start($cooldown)
+            }
+        }
     }
 
     function next() {

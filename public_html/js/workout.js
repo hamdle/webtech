@@ -13,12 +13,13 @@ var Workout = (function() {
     // Public
     function init(user_id)
     {
+        var exercises = localStorage.getItem("workout.exercises");
         $workout = {
-            start: null,
-            end: null,
-            notes: null,
-            feel: null,
-            exercises: []
+            start: localStorage.getItem("workout.start"),
+            end: localStorage.getItem("workout.end"),
+            notes: localStorage.getItem("workout.notes"),
+            feel: localStorage.getItem("workout.feel"),
+            exercises: JSON.parse(exercises) ?? []
         }
     }
 
@@ -35,6 +36,15 @@ var Workout = (function() {
         return $workout;
     }
 
+    function clearLocalStorage()
+    {
+        localStorage.removeItem("workout.exerciseInProgress");
+        localStorage.removeItem("workout.exercises");
+        localStorage.removeItem("workout.feel");
+        localStorage.removeItem("workout.notes");
+        localStorage.removeItem("workout.start");
+    }
+
     function completeAndSend(onSuccess, onFailure)
     {
         // Linux timestamp
@@ -42,6 +52,7 @@ var Workout = (function() {
         $workout.method = "Workout.save";
 
         console.log($workout);
+        localStorage.removeItem("workout.exerciseInProgress");
 
         $xhr = new XMLHttpRequest();
         $xhr.addEventListener('load', function(event) {
@@ -52,12 +63,16 @@ var Workout = (function() {
                 if (this.status == 200) {
                     payload = JSON.parse(this.responseText);
                     if (payload.ok == "true") {
+                        clearLocalStorage();
                         $icon.classList.remove("u-animation--spin");
                         $icon.classList.remove("p-icon--spinner");
                         $icon.classList.add("p-icon--success");
                         $tab.innerHTML = "Workout Complete";
                         onSuccess();
                     } else {
+                        $icon.classList.remove("u-animation--spin");
+                        $icon.classList.remove("p-icon--spinner");
+                        $icon.classList.add("p-icon--error");
                         onFailure();
                     }
                 }
@@ -78,7 +93,8 @@ var Workout = (function() {
     {
         $exerciseInProgress = exercise.name;
         $tab.innerHTML = $exerciseInProgress;
-        delete exercise.name
+        localStorage.setItem("workout.exerciseInProgress", $exerciseInProgress);
+        //delete exercise.name
         $workout.exercises.push(exercise)
         localStorage.setItem("workout.exercises", JSON.stringify($workout.exercises));
     }

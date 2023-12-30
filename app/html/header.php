@@ -64,4 +64,14 @@
             <?php } ?>
         </nav>
     </div>
+    <script>
+        var $element = document.getElementById("workout-in-progress");
+        var $icon = document.getElementById("workout-in-progress__icon")
+        var $value = localStorage.getItem("workout.exerciseInProgress");
+        if ($value) {
+            $element.textContent = $value;
+            $icon.classList.add("p-icon--spinner");
+            $icon.classList.add("u-animation--spin");
+        }
+    </script>
 </header>

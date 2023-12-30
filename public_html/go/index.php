@@ -66,17 +66,20 @@ $App->renderHtml(Core::HTML_HEADER);
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/instructions.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/jumptoinput.js"></script>
 <script>
-    function onStart() {
+    function onStart(loadNext = true) {
         Startbutton.disable();
         Instructions.hide();
         Workout.create();
         InputDisplay.init(document.getElementById('inputdisplay'), <?php echo Database::config("set_rest_default", $App->user->fields["id"]) ?>);
-        InputDisplay.next();
+        if (loadNext) {
+            InputDisplay.next();
+        }
         Timer.start();
         Countdown.start(<?php echo Database::config("set_rest_default") ?>);
-        window.onbeforeunload = function () {
-            return "Quit workout?";
-        };
+        // Warn user before exiting workout
+        // window.onbeforeunload = function () {
+        //     return "Quit workout?";
+        // };
     }
 
     Workout.init();
@@ -85,7 +88,6 @@ $App->renderHtml(Core::HTML_HEADER);
         document.getElementById("workout-in-progress__icon"),
     );
     RoutineBuilder.init(document.getElementById('exercise__list'), JSON.parse('<?php echo json_encode($el) ?>'));
-    Startbutton.init(onStart);
 
     Timer.init(document.getElementById('timer'));
     var timer = document.getElementById('timer')
@@ -96,6 +98,15 @@ $App->renderHtml(Core::HTML_HEADER);
     Countdown.init(document.getElementById('countdown'));
     Instructions.init(document.getElementById('instructions'));
     JumpToInput.init(document.getElementById('timer'), 'inputdisplay');
+
+
+    var inProgress = localStorage.getItem("workout.exerciseInProgress");
+    var startButtonElement = document.getElementById('start__button')
+    if (inProgress) {
+        Startbutton.init(startButtonElement, onStart, true);
+    } else {
+        Startbutton.init(startButtonElement, onStart);
+    }
 </script>
 
 <?php $App->renderHtml(Core::HTML_CLOSE); ?>
