@@ -29,7 +29,7 @@ $App->renderHtml(Core::HTML_HEADER);
                 <div id="inputdisplay" class="inputdisplay"></div>
                 <div id="instructions" class="instructions">
                     <span class="start-button__wrap">
-                        <button id="start__button" class="p-button has-icon"><span class="fa fa-clock exercise__icon"></span>Start</button>
+                        <button id="start__button" class="p-button--positive has-icon"><span class="fa fa-clock exercise__icon"></span>Start</button>
                     </span>
                 </div>
             </div>
