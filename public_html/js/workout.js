@@ -114,6 +114,10 @@ var Workout = (function() {
         $icon = icon;
     }
 
+    function discard() {
+        clearLocalStorage();
+    }
+
     return {
         init: init,
         tab: tab,
@@ -122,6 +126,7 @@ var Workout = (function() {
         completeAndSend: completeAndSend,
         addExercise: addExercise,
         addNote: addNote,
-        addFeel: addFeel
+        addFeel: addFeel,
+        discard: discard
     };
 })();
