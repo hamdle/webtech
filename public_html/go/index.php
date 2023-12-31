@@ -51,6 +51,15 @@ $App->renderHtml(Core::HTML_HEADER);
             </div>
         </div>
 
+        <div class="row">
+            <div class="u-align--center">
+                <span>
+                    <button href="#" id="discard" class="p-button--negative">Discard</button>
+                </span>
+            </div>
+
+        </div>
+
     </div>
 </div>
 
@@ -107,6 +116,14 @@ $App->renderHtml(Core::HTML_HEADER);
     } else {
         Startbutton.init(startButtonElement, onStart);
     }
+</script>
+
+<script>
+    var discard = document.getElementById("discard");
+    discard.addEventListener("click", function (event) {
+        Workout.discard();
+        location.reload();
+    });
 </script>
 
 <?php $App->renderHtml(Core::HTML_CLOSE); ?>
