@@ -142,7 +142,7 @@ var InputDisplay = (function () {
         var next_button = document.createElement('button')
         next_button.id = $name + '__next-button'
         //next_button.className = $name + '__next-button'
-        next_button.className = 'p-button'
+        next_button.className = 'p-button--positive'
         next_button.innerHTML = 'Next exercise'
         next_button_wrap.appendChild(next_button)
         $element.appendChild(next_button_wrap)
