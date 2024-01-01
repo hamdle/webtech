@@ -23,7 +23,7 @@ var Log = (function() {
 
         Object.values(workouts).forEach(function (entry) {
             var wrap = document.createElement("div");
-            wrap.classList = "log__wrap";
+            wrap.classList = "p-card";
 
             var start = document.createElement("h2");
             start.classList = "log__time"
@@ -92,7 +92,7 @@ var Log = (function() {
                 tr2.appendChild(td2);
                 var td3 = document.createElement("td")
                 td3.classList = "log__table__row__item";
-                td3.textContent = "[ "+reps+" ]";
+                td3.textContent = "[ " + reps + " ]";
                 tr2.appendChild(td3);
                 var td4 = document.createElement("td")
                 td4.classList = "log__table__row__item";
@@ -112,7 +112,8 @@ var Log = (function() {
             // Workout info: notes
             var notes = document.createElement("div");
             notes.classList = "log__notes"
-            notes.innerHTML = entry.notes.replace(/\n/g, "<br />");;
+            notes.innerHTML = entry.notes.replace(/\n/g, "<br />");
+            ;
             wrap.appendChild(notes);
 
             // div.innerHTML = "<span class=\"log__title\">" +

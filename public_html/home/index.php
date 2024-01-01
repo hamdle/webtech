@@ -56,11 +56,9 @@ $App->renderHtml([Core::HTML_OPEN, Core::HTML_HEADER]);
                     </nav>
                 </div>
             </div>
-
-
-            <div class="p-card">
-                <div id="log" class="log"></div>
-            </div>
+        </div>
+        <div class="row">
+            <div id="log" class="log"></div>
         </div>
     </div>
 </div>

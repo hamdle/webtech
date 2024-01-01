@@ -146,12 +146,6 @@
     display: none;
 }
 
-.log__wrap {
-    border-top: 4px solid #000;
-    margin: 10px 0px 40px 0px;
-    padding-top: 20px;
-}
-
 .log__time__icon {
     margin: 0px 20px 0px 15px;
 }
