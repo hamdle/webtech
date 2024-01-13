@@ -6,10 +6,11 @@
 
 var Countdown = (function () {
     var $amount;
-    var element;
+    var $element;
     var start_time;
     var $interval;
-    var $ding;
+    var $sound;
+    var $playSound;
 
     const one_second = 1000;
 
@@ -22,42 +23,45 @@ var Countdown = (function () {
     }
 
     function clearDisplay(value) {
-        element.innerHTML = value;
+        $element.innerHTML = value;
     }
 
     function displayCountdown(countdown) {
         if (countdown === 0) {
-            element.classList.add('expired');
+            $element.classList.add('expired');
         } else {
-            element.classList.remove('expired');
+            $element.classList.remove('expired');
         }
 
-        element.innerHTML = Utils.formatTime(countdown, Utils.get('FLEX'), true);
+        $element.innerHTML = Utils.formatTime(countdown, Utils.get('FLEX'), true);
     }
 
     // Event handlers
     function updateHandler() {
         var countdown = calcValue();
         if (countdown == 0) {
-            $ding.play();
+            if ($playSound) {
+                $sound.play();
+            }
             clearInterval($interval);
         }
         displayCountdown(countdown);
     }
 
     // Public
-    function init(elem) {
-        element = elem;
+    function init(elem, playSound) {
+        $element = elem;
+        $playSound = playSound;
+        $sound = new Audio(site + "sound/ding.mp3")
     }
 
     function start(value) {
-        clearInterval($interval);
-        clearDisplay(value)
-        start_time = new Date()
         $amount = parseInt(value)
+        clearInterval($interval);
+        clearDisplay($amount)
+        start_time = new Date()
         updateHandler()
         $interval = setInterval(updateHandler, one_second)
-        $ding = new Audio(site + "sound/ding.mp3")
     }
 
     return {

@@ -84,7 +84,7 @@ $App->renderHtml(Core::HTML_HEADER);
             InputDisplay.next();
         }
         Timer.start();
-        Countdown.start(<?php echo Database::config("set_rest_default") ?>);
+        Countdown.start(<?php echo Database::config("set_rest_default", $App->user->fields["id"]) ?>);
         // Warn user before exiting workout
         // window.onbeforeunload = function () {
         //     return "Quit workout?";
@@ -104,7 +104,10 @@ $App->renderHtml(Core::HTML_HEADER);
         Countdown.start(<?php echo Database::config("rep_rest_default", $App->user->fields["id"]) ?>);
     });
 
-    Countdown.init(document.getElementById('countdown'));
+    Countdown.init(
+        document.getElementById('countdown'),
+        <?php echo Database::config("play_timer_sound", $App->user->fields["id"]) ?>
+    );
     Instructions.init(document.getElementById('instructions'));
     JumpToInput.init(document.getElementById('timer'), 'inputdisplay');
 

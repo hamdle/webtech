@@ -236,7 +236,8 @@ VALUES
     (1, 'pagination_default', '30', 1),
     (1, 'rep_rest_default', '60', 2),
     (1, 'set_rest_default', '120', 2),
-    (1, 'warm_up_default', '120', 2);
+    (1, 'warm_up_default', '120', 2),
+    (1, 'play_timer_sound', '0', 2);
 /*!40000 ALTER TABLE `system_config` ENABLE KEYS */;
 UNLOCK TABLES;
 

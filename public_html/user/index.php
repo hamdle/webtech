@@ -117,6 +117,11 @@ $App->renderHtml(Core::HTML_HEADER);
                                             <th><?php echo Database::config("pagination_default", $App->user->id) ?></th>
                                             <th>User Default</th>
                                         </tr>
+                                        <tr>
+                                            <th>Play Timer Sound</th>
+                                            <th><?php echo Database::config("play_timer_sound", $App->user->id) ?></th>
+                                            <th>User Default</th>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -224,6 +229,10 @@ $App->renderHtml(Core::HTML_HEADER);
                 <p class="u-clearfix">
                     <label class="login__title">Workouts Pagination:</label>
                     <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Pagination" value="<?php echo Database::config("pagination_default", $App->user->id) ?>"  name="pagination_default" />
+                </p>
+                <p class="u-clearfix">
+                    <label class="login__title">Play Timer Sound:</label>
+                    <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Play Timer Sound" value="<?php echo Database::config("play_timer_sound", $App->user->id) ?>"  name="play_timer_sound" />
                 </p>
                 <p class="u-clearfix">
                     <input type="hidden" name="method" value="Config.saveWorkoutSettings">

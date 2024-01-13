@@ -66,6 +66,13 @@ class ConfigController
                 "user_id = ".$user->fields["id"].
                 " and reference = 'pagination_default'"
             );
+            Database::update(
+                "system_config",
+                ["data"],
+                [$request["play_timer_sound"]],
+                "user_id = ".$user->fields["id"].
+                " and reference = 'play_timer_sound'"
+            );
 
             return Response::sendOk();
         }
