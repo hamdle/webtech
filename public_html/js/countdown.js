@@ -8,7 +8,8 @@ var Countdown = (function () {
     var $amount;
     var element;
     var start_time;
-    var interval;
+    var $interval;
+    var $ding;
 
     const one_second = 1000;
 
@@ -37,6 +38,10 @@ var Countdown = (function () {
     // Event handlers
     function updateHandler() {
         var countdown = calcValue();
+        if (countdown == 0) {
+            $ding.play();
+            clearInterval($interval);
+        }
         displayCountdown(countdown);
     }
 
@@ -46,12 +51,13 @@ var Countdown = (function () {
     }
 
     function start(value) {
-        clearInterval(interval);
+        clearInterval($interval);
         clearDisplay(value)
         start_time = new Date()
         $amount = parseInt(value)
         updateHandler()
-        interval = setInterval(updateHandler, one_second)
+        $interval = setInterval(updateHandler, one_second)
+        $ding = new Audio(site + "sound/ding.mp3")
     }
 
     return {
