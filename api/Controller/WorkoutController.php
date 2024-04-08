@@ -23,6 +23,7 @@ use api\Rpc;
 
 class WorkoutController
 {
+    // POST :: api/Workout/save
     public function save()
     {
         $request = Rpc::getRequest();
@@ -53,7 +54,7 @@ class WorkoutController
         return Response::sendOk();
     }
 
-    // return = \Http\Response
+    // POST :: api/workout/exerciseTypes
     public function exerciseTypes()
     {
         $exerciseTypes = new ExerciseType();
@@ -64,8 +65,7 @@ class WorkoutController
         return Response::send(Code::OK_200, $response);
     }
 
-    // Return list of workouts from most recent to ALL_WORKOUTS_LIMIT.
-    // return = \Http\Response
+    // POST :: api/workout/all
     public function all($args)
     {
         $exerciseTypes = Database::run("
@@ -136,11 +136,12 @@ class WorkoutController
 
         $response = array_merge(
             ["ok" => "true"],
-            ["workouts" => $data]
+            ["workouts" => $data],
         );
         return Response::send(Code::OK_200, $response);
     }
 
+    // POST :: api/workout/suggestedReps
     public function suggestedReps($args) {
         $results = Database::execute('last-exercise.sql', [
             'user_id' => Rpc::getUser()->fields["id"],

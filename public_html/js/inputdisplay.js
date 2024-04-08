@@ -16,6 +16,7 @@ var InputDisplay = (function () {
     var $feel;
     var $repInputElements;
     var $cooldown; // in seconds
+    var $inputState;
     const WARM_UP_ID = 1;
 
     function display(option) {
@@ -118,6 +119,7 @@ var InputDisplay = (function () {
         div_input.appendChild(div_sets)
 
         // inputs
+        // TODO: $inputState
         for (var i = 0; i < $exercise.sets; i++) {
             var input = document.createElement('input')
             input.id = $name + '__textbox--' + i
@@ -206,6 +208,7 @@ var InputDisplay = (function () {
 
     // Request handlers
     function addSetHandler(event) {
+        // TODO: $inputState
         // Get the containing div
         var div_input = document.getElementById('input-display__exercise--input')
 
@@ -233,6 +236,7 @@ var InputDisplay = (function () {
     }
 
     function removeSetHandler(event) {
+        // TODO: $inputState
         // Get the containing div
         var div_input = document.getElementById('input-display__exercise--input');
 
@@ -273,9 +277,12 @@ var InputDisplay = (function () {
         $name = 'input-display'
         $cooldown = cooldown;
 
+        // TODO: $inputState
+
         // Get next exercise
         var rawExercises = localStorage.getItem("workout.exercises");
-        if (rawExercises) {
+        if (rawExercises)
+        {
             var exercises = JSON.parse(rawExercises);
             var inProgress = localStorage.getItem("workout.exerciseInProgress");
             console.log(exercises);
@@ -288,18 +295,26 @@ var InputDisplay = (function () {
             // Update input display
             display('clear');
 
-            if ($exercise === null) {
+            if ($exercise === null)
+            {
                 Timer.stop();
                 display('finalize');
-            } else {
+            } else
+            {
                 display('exercise');
                 //Workout.addExercise($exercise);
                 Countdown.start($cooldown)
             }
         }
+        else
+        {
+            localStorage.setItem("inputdisplay.inputState", "");
+        }
     }
 
     function next() {
+        // TODO: $inputState
+        localStorage.setItem("inputdisplay.inputState", "");
         // Process last exercise
         if ($exercise !== null) {
             var reps = []

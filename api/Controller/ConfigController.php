@@ -21,11 +21,13 @@ use api\Rpc;
 
 class ConfigController
 {
+    // POST :: api/config/saveUserSettings
     public function saveUserSettings()
     {
         $request = Request::post();
         $form = new UserSettingsForm();
         $user = Rpc::getUser();
+
         if ($form->validate($request))
         {
             $updatedUser = new User($request);
@@ -38,6 +40,7 @@ class ConfigController
         return Response::sendOkWithWarning("validation failed");
     }
 
+    // POST :: api/config/saveWorkoutSettings
     public function saveWorkoutSettings()
     {
         $request = Request::post();
@@ -80,6 +83,7 @@ class ConfigController
         return Response::sendOkWithWarning("validation failed");
     }
 
+    // POST :: api/config/saveSystemSettings
     public function saveSystemSettings()
     {
         $request = Request::post();

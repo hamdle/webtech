@@ -23,6 +23,11 @@ class Session
     private Model\User $user;
     private string $cookie;
 
+    public function __construct()
+    {
+        $this->session = new Model\Session();
+        $this->user = new Model\User();
+    }
     /**
      * Authenticate the login for a user.
      *
@@ -53,7 +58,7 @@ class Session
         $this->session->save();
 
         // Now you could use the generated cookie securely with flags set properly
-        setcookie(self::COOKIE_KEY, $cookie, [
+        setcookie(self::COOKIE_KEY, bin2hex($cookie), [
             "expires" => time() + 60 * 60 * 24 * 30,    // one hour * 24 hours * 30 days
             "path" => "/",
             "secure" => getenv("DEV_MODE") ? false : true,     // cookie will only be sent over secure HTTPS connections
@@ -77,7 +82,10 @@ class Session
             if (strcmp($key, self::COOKIE_KEY) !== 0)
                 continue;
 
-            $parts = explode(":", $value);
+            $parts = explode(":", hex2bin($value));
+            // [0] = email
+            // [1] = token
+            // [2] = hash of "email:token"
             if (count($parts) !== 3)
             {
                 return false;
@@ -138,13 +146,13 @@ class Session
         setcookie(self::COOKIE_KEY, $cookie, strtotime("-30 days"), "/");
     }
 
-    public function getAuthenticatedUser(): User|null
+    public function getAuthenticatedUser(): User
     {
-        return $this->user ?? null;
+        return $this->user;
     }
 
     public function isAuthenticated(): bool
     {
-        return isset($this->user);
+        return isset($this->user->id) !== null && is_numeric($this->user->id);
     }
 }

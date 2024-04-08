@@ -16,7 +16,8 @@ class Rpc
     private static Session $session;
     private static User $user;
     private static $publicEndpoints = [
-        "Auth.login"
+        "Auth.login",
+        "Auth.logout"
     ];
     private static $method;
 
@@ -39,13 +40,14 @@ class Rpc
                     if ($controller = [new $namespace, $function])
                     {
                         self::$session = new Session();
+                        self::$session->authenticateUserFromCookie();
+                        self::$user = self::$session->getAuthenticatedUser();
                         if (in_array(self::$method, self::$publicEndpoints))
                         {
                             return $controller($args);
                         }
-                        else if (self::$session->authenticateUserFromCookie())
+                        else if (isset(self::$user->id) !== null && is_numeric(self::$user->id))
                         {
-                            self::$user = self::$session->getAuthenticatedUser();
                             return $controller($args);
                         }
                         else

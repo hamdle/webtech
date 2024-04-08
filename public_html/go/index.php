@@ -1,13 +1,15 @@
 <?php
 
+require_once dirname(__DIR__, 2) . "/autoload.php";
+
 use app\Core;
 use api\Core\Database\Database;
 
-require_once dirname(__DIR__, 2) . "/autoload.php";
-
 $App = new Core("Go");
+
 $get = isset($_GET["el"]) ? $_GET["el"] : null;
-$el = $get ? explode(",", $get) : null;
+$exerciseList = $get ? explode(",", $get) : null;
+
 $App->renderHtml(Core::HTML_OPEN);
 $App->renderHtml(Core::HTML_HEADER);
 
@@ -54,6 +56,9 @@ $App->renderHtml(Core::HTML_HEADER);
         <div class="row">
             <div class="u-align--center">
                 <span>
+                    <button href="#" id="screen-wake" class="p-button">Screen Wake</button>
+                </span>
+                <span>
                     <button href="#" id="discard" class="p-button--negative">Discard</button>
                 </span>
             </div>
@@ -74,6 +79,9 @@ $App->renderHtml(Core::HTML_HEADER);
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/inputdisplay.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/instructions.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/jumptoinput.js"></script>
+<script src="<?php echo $_ENV['ORIGIN']; ?>/js/screenwake.js"></script>
+<script src="<?php echo $_ENV['ORIGIN']; ?>/js/gamepad.js"></script>
+
 <script>
     function onStart(loadNext = true) {
         Startbutton.disable();
@@ -89,6 +97,7 @@ $App->renderHtml(Core::HTML_HEADER);
         // window.onbeforeunload = function () {
         //     return "Quit workout?";
         // };
+        Gamepad.start();
     }
 
     Workout.init();
@@ -96,7 +105,7 @@ $App->renderHtml(Core::HTML_HEADER);
         document.getElementById("workout-in-progress"),
         document.getElementById("workout-in-progress__icon"),
     );
-    RoutineBuilder.init(document.getElementById('exercise__list'), JSON.parse('<?php echo json_encode($el) ?>'));
+    RoutineBuilder.init(document.getElementById('exercise__list'), JSON.parse('<?php echo json_encode($exerciseList) ?>'));
 
     Timer.init(document.getElementById('timer'));
     var timer = document.getElementById('timer')
@@ -119,6 +128,9 @@ $App->renderHtml(Core::HTML_HEADER);
     } else {
         Startbutton.init(startButtonElement, onStart);
     }
+
+    ScreenWake.init(document.getElementById('screen-wake'));
+    Gamepad.init();
 </script>
 
 <script>

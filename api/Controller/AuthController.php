@@ -19,13 +19,7 @@ use api\Core\Authentication\Session;
 use api\Rpc;
 
 class AuthController {
-    /**
-     * Logs in a user by verifying input fields, loading user data from the database,
-     * and authenticating the user session.
-     *
-     * @return Response The response object containing the login result.
-     * @throws Exception If an error occurs during the login process.
-     */
+    // POST :: api/auth/login
     public function login()
     {
         $request = Request::post();
@@ -45,11 +39,7 @@ class AuthController {
         return Response::sendOkWithWarning("login failed");
     }
 
-    /**
-     * Logs out the user by invalidating the current session.
-     *
-     * @return Response A response indicating successful logout.
-     */
+    // POST :: api/auth/logout
     public function logout()
     {
         $session = Rpc::getAuthenticationSession();

@@ -1,17 +1,21 @@
-# Workout App
+# Introduction to Workout App
 
-The Workout App is designed to track workouts that I've been doing for the past few years. There's an accompanying API that manages all of the user and exercise data that works in collaboration with the App. The App has been designed to help enter and track exercies during a workout as well as to send the data to the API to chart workouts over time.
+The Workout App aims to assist you in tracking and charting your workout progress over time. The collaboration between the App and its accompanying API enables seamless management and tracking of user data and exercises.
 
-# API submodule
+## Understanding The App Structure
 
-The API, written in PHP, is located in the /api folder at the root of the application.
+### API Details
 
-# Pages
+The API, programmed in PHP, resides in the `/api` folder, which is at the root of the application. It serves as a central handler for user and exercise data and plays an integral part in the app's functioning.
 
-### Login page
+### User Interface and Navigation
 
-Located at '/', the login page authenticates the user and forwards them to the workout page.
+Our user interface is clean and straightforward, ensuring easy navigation through different pages.
 
-### Workout page
+#### Authentication - Login Page
 
-Located at '/go', the workout page helps the user build a workout from existing exercies and then runs the workout for the user to do.
+The app initiates at the Login Page ('/'), which authenticates your/user credentials before granting access to further app functionalities such as the Workout page.
+
+#### Workout Tracking - Workout Page
+
+The workout page (`/go`) stands at the core of the app's functionality. It not only allows you to compose a workout using available exercises but also effectively runs the workout, thereby making your workout experience smooth and personalized.
