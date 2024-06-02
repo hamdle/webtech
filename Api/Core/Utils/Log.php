@@ -33,6 +33,6 @@ class Log {
     {
         $msg = print_r($value, true);
         error_log(($tag ? "\n<----- " . $tag . " ----->" : "") . PHP_EOL . $msg . PHP_EOL);
-        Database::log($msg, $type, $user);
+        //Database::log($msg, $type, $user);
     }
 }
