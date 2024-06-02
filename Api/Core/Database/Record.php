@@ -23,7 +23,7 @@ abstract class Record
 
     abstract public function databaseTransforms();
 
-    public function __construct($fields = [], $table)
+    public function __construct($fields, $table)
     {
         $this->fields = $fields;
         $this->table = $table;
@@ -44,7 +44,7 @@ abstract class Record
     public function save()
     {
         $this->transformFields();
-        if (intval($this->fields["id"]))
+        if (array_key_exists("id", $this->fields) && $this->fields["id"])
         {
             $id = $this->fields["id"];
             unset($this->fields["id"]);
