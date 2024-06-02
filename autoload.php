@@ -11,7 +11,7 @@
 
 use api\Core\Utils\Env;
 
-require_once __DIR__ . "/api/Core/Utils/Env.php";
+require_once __DIR__ . "/Api/Core/Utils/Env.php";
 
 class Autoload {
     public static function register()

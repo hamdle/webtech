@@ -1,7 +1,7 @@
 <?php
 
-use api\Rpc;
-use api\Core\Http\Request;
+use Api\Rpc;
+use Api\Core\Http\Request;
 
 require_once dirname(__DIR__, 2) . "/autoload.php";
 

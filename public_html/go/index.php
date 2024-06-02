@@ -2,8 +2,8 @@
 
 require_once dirname(__DIR__, 2) . "/autoload.php";
 
-use app\Core;
-use api\Core\Database\Database;
+use App\Core;
+use Api\Core\Database\Database;
 
 $App = new Core("Go");
 

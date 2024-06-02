@@ -1,6 +1,6 @@
 <?php
 
-use app\Core;
+use App\Core;
 
 require_once dirname(__DIR__, 1) . "/autoload.php";
 
