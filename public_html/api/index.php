@@ -10,4 +10,5 @@ require_once dirname(__DIR__, 2) . "/autoload.php";
 //Api::post("workouts/new",   "Workouts",         "save");
 
 $request = Request::post();
-Rpc::handle($request);
+$response = Rpc::handle($request);
+$response->send2();

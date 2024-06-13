@@ -1,62 +1,57 @@
 <?php
 
-namespace Api;
+namespace Api\Core;
 
-use Api\Core\Http\Code;
+use Api\Core\Authentication\Session;
 use Api\Core\Http\Response;
 use Api\Core\Utils\Log;
-use Api\Core\Authentication\Session;
-use Api\Model\User;
 
-class Rpc
+class Router
 {
     private static $CONTROLLER_ROOT = "\\Api\\Controller\\";
+
     private static $CONTROLLER_FILE_EXT = "Controller";
-    private static $request;
-    private static Session $session;
-    private static User $user;
+
     private static $publicEndpoints = [
         "Auth.login",
         "Auth.logout",
         'Page.test'
     ];
-    private static $method;
 
-    public static function handle($request)
+    public function handle($request)
     {
-        self::$request = $request;
         $response = new Response();
         try {
             if (array_key_exists("method", $request))
             {
-                self::$method = $request["method"];
-                $parts = explode('.', self::$method);
+                $method = $request["method"];
+                $parts = explode('.', $method);
                 if (count($parts) === 2 && is_string($parts[0]) && is_string($parts[1]))
                 {
 
                     $namespace = self::$CONTROLLER_ROOT.$parts[0].self::$CONTROLLER_FILE_EXT;
                     $function = $parts[1];
                     $args = array_filter($request, function ($key) {
-                            return $key != 'method';
-                        }, ARRAY_FILTER_USE_KEY);
+                        return $key != 'method';
+                    }, ARRAY_FILTER_USE_KEY);
 
                     $controller = [new $namespace, $function];
-                    self::$session = new Session();
-                    self::$session->authenticateUserFromCookie();
-                    self::$user = self::$session->getAuthenticatedUser();
-                    if (in_array(self::$method, self::$publicEndpoints))
+                    $session = new Session();
+                    $session->authenticateUserFromCookie();
+                    $user = $session->getAuthenticatedUser();
+                    if (in_array($method, self::$publicEndpoints))
                     {
                         $response = $controller($args);
                         return $response;
                     }
-                    else if (isset(self::$user->id) !== null && is_numeric(self::$user->id))
+                    else if (isset($user->id) !== null && is_numeric($user->id))
                     {
                         $response = $controller($args);
                         return $response;
                     }
                     else
                     {
-                        throw new \Exception("Authentication required to access endpoint ".self::$method);
+                        throw new \Exception("Authentication required to access endpoint ".$method);
                     }
                 }
             }
@@ -81,20 +76,5 @@ class Rpc
 //                ]
 //            );
         }
-    }
-
-    public static function getRequest()
-    {
-        return self::$request;
-    }
-
-    public static function getUser()
-    {
-        return self::$user;
-    }
-
-    public static function getAuthenticationSession()
-    {
-        return self::$session;
     }
 }

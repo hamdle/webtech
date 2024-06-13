@@ -22,21 +22,26 @@ class AuthController {
     // POST :: api/auth/login
     public function login()
     {
-        $request = Request::post();
+        //$request = Request::post();
+        $response = new Response();
+        $response->setJson();
+
         $form = new LoginForm();
-        $user = new User($request);
+        $user = new User(Request::post());
         $session = new Session();
         // TODO session_set_save_handler
         //if ($form->validate($request) &&
         //    $session["$user"])
-        if ($form->validate($request) &&
+        if ($form->validate(Request::post()) &&
             $user->loadFromDatabase() &&
             $session->authenticateLogin($user))
         {
-            return Response::sendOk();
+            return $response;
         }
 
-        return Response::sendOkWithWarning("login failed");
+        $response->setWarn('login failed');
+        return $response;
+        //return Response::sendOkWithWarning("login failed");
     }
 
     // POST :: api/auth/logout
@@ -45,6 +50,9 @@ class AuthController {
         $session = Rpc::getAuthenticationSession();
         $session->invalidateSession();
 
-        return Response::sendOk();
+        $response = new Response();
+        $response->setJson();
+        return $response;
+        //return Response::sendOk();
     }
 }
