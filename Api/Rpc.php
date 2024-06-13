@@ -1,6 +1,6 @@
 <?php
 
-namespace api;
+namespace Api;
 
 use Api\Core\Http\Code;
 use Api\Core\Http\Response;
