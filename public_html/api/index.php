@@ -1,6 +1,6 @@
 <?php
 
-use Api\Rpc;
+use Api\Core\Router;
 use Api\Core\Http\Request;
 
 require_once dirname(__DIR__, 2) . "/autoload.php";
@@ -10,5 +10,7 @@ require_once dirname(__DIR__, 2) . "/autoload.php";
 //Api::post("workouts/new",   "Workouts",         "save");
 
 $request = Request::post();
-$response = Rpc::handle($request);
-$response->send2();
+
+$router = new Router();
+$response = $router->handle($request);
+$response->send();

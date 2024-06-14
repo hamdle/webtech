@@ -13,16 +13,16 @@
             <span class="u-off-screen">
                 <a href="#main-content">Jump to main content</a>
             </span>
-            <?php if ($this->isAuthenticated()) { ?>
+            <?php if (\Api\Core\Context::get('session')->isAuthenticated()) { ?>
                 <ul class="p-navigation__items">
-                    <li class="p-navigation__item <?php if ($this->onPage("/home")) { ?> is-selected <?php } ?>">
+                    <li class="p-navigation__item <?php if (\Api\Core\Utils\Helper::onPage("/home")) { ?> is-selected <?php } ?>">
                         <a class="p-navigation__link" href="/home">
                             Workouts
                         </a>
                     </li>
                     <li class="p-navigation__item <?php if ($this->onPage("/go")) { ?> is-selected <?php } ?>">
                         <a class="p-button p-navigation__link  has-icon" href="/go">
-                            <span style="margin-right:10px;"><i id="workout-in-progress__icon" class="<?php if ($this->onPage("/go")) { ?> is-selected p-icon--spinner <?php } else { ?> p-icon--plus<?php } ?>"></i></span>
+                            <span style="margin-right:10px;"><i id="workout-in-progress__icon" class="<?php if (\Api\Core\Utils\Helper::onPage("/go")) { ?> is-selected p-icon--spinner <?php } else { ?> p-icon--plus<?php } ?>"></i></span>
                             <span id="workout-in-progress">New</span>
                         </a>
                     </li>
@@ -37,11 +37,11 @@
                 </ul>
             <?php } ?>
 
-            <?php if ($this->isAuthenticated()) { ?>
+            <?php if (\Api\Core\Context::get('session')->isAuthenticated()) { ?>
                 <ul class="p-navigation__items">
-                    <li class="p-navigation__item--dropdown-toggle <?php if ($this->onPage("/user")) { ?> is-selected <?php } ?>" id="link-1">
+                    <li class="p-navigation__item--dropdown-toggle <?php if (\Api\Core\Utils\Helper::onPage("/user")) { ?> is-selected <?php } ?>" id="link-1">
                         <a class="p-navigation__link" aria-controls="account-menu" aria-expanded="false" href="#">
-                            <?php echo $this->user->first_name." ".$this->user->last_name; ?>
+                            <?php echo \Api\Core\Context::get('user')->first_name." ".\Api\Core\Context::get('user')->last_name; ?>
                         </a>
                         <ul class="p-navigation__dropdown--right" id="account-menu" aria-hidden="true">
                             <li>
@@ -55,8 +55,8 @@
                 </ul>
             <?php } else { ?>
                 <ul class="p-navigation__items">
-                    <li class="p-navigation__item  <?php if ($this->onPage("/login")) { ?> is-selected <?php } ?>" id="link-1">
-                        <a class="p-navigation__link" aria-controls="account-menu" aria-expanded="false" href="#">
+                    <li class="p-navigation__item  <?php if (\Api\Core\Utils\Helper::onPage("/login")) { ?> is-selected <?php } ?>" id="link-1">
+                        <a class="p-navigation__link" aria-controls="account-menu" aria-expanded="false" href="/login">
                             Login
                         </a>
                     </li>

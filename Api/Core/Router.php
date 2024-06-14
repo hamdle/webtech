@@ -5,6 +5,7 @@ namespace Api\Core;
 use Api\Core\Authentication\Session;
 use Api\Core\Http\Response;
 use Api\Core\Utils\Log;
+use Api\Core\Context;
 
 class Router
 {
@@ -15,7 +16,7 @@ class Router
     private static $publicEndpoints = [
         "Auth.login",
         "Auth.logout",
-        'Page.test'
+        'Page.login'
     ];
 
     public function handle($request)
@@ -38,7 +39,9 @@ class Router
                     $controller = [new $namespace, $function];
                     $session = new Session();
                     $session->authenticateUserFromCookie();
+                    Context::set('session', $session);
                     $user = $session->getAuthenticatedUser();
+                    Context::set('user', $user);
                     if (in_array($method, self::$publicEndpoints))
                     {
                         $response = $controller($args);

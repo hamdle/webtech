@@ -5,7 +5,7 @@ use Api\Core\Router;
 require_once dirname(__DIR__, 2) . "/autoload.php";
 
 $request = [
-    'method' => 'Page.go'
+    'method' => 'Page.dash'
 ];
 
 $get = isset($_GET["el"]) ? $_GET["el"] : null;

@@ -4,19 +4,39 @@ namespace Api\Controller;
 
 class PageController extends BaseController
 {
-    public function test()
+    public function login()
     {
         $this->response->setHtml();
-
-        //$content = $this->renderer->render(dirname(__DIR__,1) . '/Html/Page/index.php');
-
         $content = $this->renderer->renderTemplate(
             'Page.json',
-            ['page' => 'Test']
+            ['page' => 'Login']
         );
 
         $this->response->setContent($content);
+        return $this->response;
+    }
 
+    public function home()
+    {
+        $this->response->setHtml();
+        $content = $this->renderer->renderTemplate(
+            'Page.json',
+            ['page' => 'Home']
+        );
+
+        $this->response->setContent($content);
+        return $this->response;
+    }
+
+    public function go()
+    {
+        $this->response->setHtml();
+        $content = $this->renderer->renderTemplate(
+            'Page.json',
+            ['page' => 'Go']
+        );
+
+        $this->response->setContent($content);
         return $this->response;
     }
 }

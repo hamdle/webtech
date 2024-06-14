@@ -49,8 +49,8 @@
 
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/logout.js"></script>
 <script>
-    let api = "<?php echo $_ENV['API_URL']; ?>";
-    let site = "<?php echo $_ENV['ORIGIN']; ?>" + "/";
+    //let api = "<?php echo $_ENV['API_URL']; ?>";
+    //let site = "<?php echo $_ENV['ORIGIN']; ?>" + "/";
     <?php if ($this->isAuthenticated()) { ?>
     Logout.init(api, site, document.getElementById("logout"));
     <?php } ?>
