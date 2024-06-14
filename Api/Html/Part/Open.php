@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title><?php echo $this->name; ?> - <?php echo $_ENV['APP_NAME']; ?></title>
+    <title><?php echo $_ENV['APP_NAME']; ?> - <?php echo $_ENV['APP_NAME']; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="icon" type="image/x-icon" href="<?php echo $_ENV['ORIGIN']; ?>/img/favicon.ico">
