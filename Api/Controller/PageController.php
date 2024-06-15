@@ -2,41 +2,39 @@
 
 namespace Api\Controller;
 
+use Api\Core\Http\Response;
+
 class PageController extends BaseController
 {
-    public function login()
+    private function renderResponse($page): Response
     {
         $this->response->setHtml();
         $content = $this->renderer->renderTemplate(
             'Page.json',
-            ['page' => 'Login']
+            ['page' => $page]
         );
 
         $this->response->setContent($content);
         return $this->response;
     }
 
-    public function home()
+    public function login(): Response
     {
-        $this->response->setHtml();
-        $content = $this->renderer->renderTemplate(
-            'Page.json',
-            ['page' => 'Home']
-        );
-
-        $this->response->setContent($content);
-        return $this->response;
+        return $this->renderResponse('Login');
     }
 
-    public function go()
+    public function home(): Response
     {
-        $this->response->setHtml();
-        $content = $this->renderer->renderTemplate(
-            'Page.json',
-            ['page' => 'Go']
-        );
+        return $this->renderResponse('Home');
+    }
 
-        $this->response->setContent($content);
-        return $this->response;
+    public function go(): Response
+    {
+        return $this->renderResponse('Go');
+    }
+
+    public function user(): Response
+    {
+        return $this->renderResponse('User');
     }
 }
