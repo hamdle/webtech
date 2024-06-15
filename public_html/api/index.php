@@ -1,7 +1,7 @@
 <?php
 
-use Api\Core\Router;
-use Api\Core\Http\Request;
+use App\Core\Router;
+use App\Core\Http\Request;
 
 require_once dirname(__DIR__, 2) . "/autoload.php";
 

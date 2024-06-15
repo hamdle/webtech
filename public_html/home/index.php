@@ -1,6 +1,6 @@
 <?php
 
-use Api\Core\Router;
+use App\Core\Router;
 
 require_once dirname(__DIR__, 2) . "/autoload.php";
 
