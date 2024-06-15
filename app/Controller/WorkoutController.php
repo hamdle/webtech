@@ -14,6 +14,7 @@ namespace App\Controller;
 use App\Core\Database\Database;
 use App\Core\Database\Query;
 use App\Core\Http\Code;
+use App\Core\Http\Request;
 use App\Core\Http\Response;
 use App\Model\Exercise;
 use App\Model\ExerciseType;
@@ -26,16 +27,16 @@ class WorkoutController
     // POST :: api/Workout/save
     public function save()
     {
-        $request = Rpc::getRequest();
+        $request = Request::post();
         $workout = new Workout($request);
-        $workout->user_id = Rpc::getUser()->fields["id"];
+        $workout->user_id = \App\Core\Context::get('user')->fields["id"];
         $workout->save();
 
         foreach ($request["exercises"] ?? [] as $exerciseEntry)
         {
             $exercise = new Exercise($exerciseEntry);
             $exercise->workout_id = $workout->id;
-            $exercise->user_id = Rpc::getUser()->fields["id"];
+            $exercise->user_id = \App\Core\Context::get('user')->fields["id"];
             // Saving the exercise will unset `reps` since it"s not a field in
             // the `exercises` table. So we need to get the reps from this
             // exercise before saving it.
@@ -81,9 +82,9 @@ class WorkoutController
         }
 
         $pageNumber = $args["page"] ?? 1;
-        $limit = Database::config("pagination_default", Rpc::getUser()->fields["id"]);
+        $limit = Database::config("pagination_default", \App\Core\Context::get('user')->fields["id"]);
         $workouts = Database::execute('user-workouts.sql', [
-            'user_id' => Rpc::getUser()->fields["id"],
+            'user_id' => \App\Core\Context::get('user')->fields["id"],
             'limit' => $limit,
             "offset" => $limit * ($pageNumber - 1)
         ]);
@@ -144,14 +145,14 @@ class WorkoutController
     // POST :: api/workout/suggestedReps
     public function suggestedReps($args) {
         $results = Database::execute('last-exercise.sql', [
-            'user_id' => Rpc::getUser()->fields["id"],
+            'user_id' => \App\Core\Context::get('user')->fields["id"],
             'exercise_type_id' => intval($args['exerciseTypeId'])
         ]);
 
         $workoutId = $results[0]['id'];
 
         $reps = Database::execute('suggested-reps.sql', [
-            'user_id' => Rpc::getUser()->fields["id"],
+            'user_id' => \App\Core\Context::get('user')->fields["id"],
             'exercise_type_id' => intval($args['exerciseTypeId']),
             'workout_id' => $workoutId
         ]);

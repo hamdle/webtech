@@ -26,7 +26,7 @@ class ConfigController
     {
         $request = Request::post();
         $form = new UserSettingsForm();
-        $user = Rpc::getUser();
+        $user = \App\Core\Context::get('user');
 
         if ($form->validate($request))
         {
@@ -45,7 +45,7 @@ class ConfigController
     {
         $request = Request::post();
         $form = new WorkoutSettingsForm();
-        $user = Rpc::getUser();
+        $user = \App\Core\Context::get('user');
         if ($form->validate($request))
         {
             Database::update(
@@ -88,7 +88,7 @@ class ConfigController
     {
         $request = Request::post();
         $form = new SystemSettingsForm();
-        $user = Rpc::getUser();
+        $user = \App\Core\Context::get('user');
         if ($form->validate($request))
         {
             Database::update(

@@ -47,7 +47,7 @@ class AuthController {
     // POST :: api/auth/logout
     public function logout()
     {
-        $session = Rpc::getAuthenticationSession();
+        $session = \App\Core\Context::get('session');
         $session->invalidateSession();
 
         $response = new Response();
