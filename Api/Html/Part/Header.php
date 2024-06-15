@@ -20,7 +20,7 @@
                             Workouts
                         </a>
                     </li>
-                    <li class="p-navigation__item <?php if ($this->onPage("/go")) { ?> is-selected <?php } ?>">
+                    <li class="p-navigation__item <?php if (\Api\Core\Utils\Helper::onPage("/go")) { ?> is-selected <?php } ?>">
                         <a class="p-button p-navigation__link  has-icon" href="/go">
                             <span style="margin-right:10px;"><i id="workout-in-progress__icon" class="<?php if (\Api\Core\Utils\Helper::onPage("/go")) { ?> is-selected p-icon--spinner <?php } else { ?> p-icon--plus<?php } ?>"></i></span>
                             <span id="workout-in-progress">New</span>

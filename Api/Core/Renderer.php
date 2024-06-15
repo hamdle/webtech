@@ -41,7 +41,16 @@ class Renderer
                     $resolvedFile = str_replace('{' . $key . '}', $value, $resolvedFile);
                 }
 
-                $content = $this->render(dirname(__DIR__,1) . '/Html/'.$resolvedFile);
+                $fileFullPath = dirname(__DIR__,1) . '/Html/'.$resolvedFile;
+                if (file_exists($fileFullPath))
+                {
+                    $content = $this->render($fileFullPath);
+                }
+                else
+                {
+                    $this->error = true;
+                    $content = '<h1>Error Loading Page</h1><p>'.$resolvedFile.'</p>';
+                }
 
                 if ($this->error)
                 {
@@ -72,15 +81,5 @@ class Renderer
         }
 
         return true;
-    }
-
-    public static function onPage()
-    {
-        return false;
-    }
-
-    public static function isAuthenticated()
-    {
-        return false;
     }
 }

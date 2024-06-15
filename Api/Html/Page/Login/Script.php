@@ -51,7 +51,7 @@
 <script>
     //let api = "<?php echo $_ENV['API_URL']; ?>";
     //let site = "<?php echo $_ENV['ORIGIN']; ?>" + "/";
-    <?php if ($this->isAuthenticated()) { ?>
+    <?php if (\Api\Core\Context::get('session')->isAuthenticated()) { ?>
     Logout.init(api, site, document.getElementById("logout"));
     <?php } ?>
 </script>

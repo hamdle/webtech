@@ -10,10 +10,4 @@ class Helper
             ? false
             : str_contains($_SERVER["REQUEST_URI"], $uri);
     }
-
-    public static function isAuthenticated()
-    {
-        return false;
-        //return $this->session->isAuthenticated();
-    }
 }

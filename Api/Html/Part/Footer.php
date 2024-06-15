@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-9">
             <h3><span style="font-weight: 800"><?php echo $_ENV['APP_NAME']; ?></span></h3><br>
-            <?php if ($this->isAuthenticated()) {?>
+            <?php if (\Api\Core\Context::get('session')->isAuthenticated()) {?>
                 <dl>
                     <dd>
                         <span class=""><span style="margin-right:3px;" class="fa fa-connection footer__icon"></span>
@@ -18,7 +18,7 @@
         </div>
         <div class="col-3">
             <p>
-                <?php if (!$this->onPage("/login")) { ?>
+                <?php if (!\Api\Core\Utils\Helper::onPage("/login")) { ?>
                     <a class="p-link--soft" href="#">Back to top<i class="p-icon--top"></i> <span class="fa fa-arrow-up footer__icon"></span></a>
                 <?php } ?>
             </p>
@@ -79,7 +79,7 @@
 <script>
     let api = "<?php echo $_ENV['API_URL']; ?>";
     let site = "<?php echo $_ENV['ORIGIN']; ?>" + "/";
-    <?php if ($this->isAuthenticated()) { ?>
+    <?php if (\Api\Core\Context::get('session')->isAuthenticated()) { ?>
     Logout.init(api, site, document.getElementById("logout"));
     <?php } ?>
 </script>
