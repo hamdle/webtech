@@ -33,7 +33,7 @@ class Database {
         $results = null;
         if (is_null($path))
         {
-            $path = dirname(__DIR__,1).'/Sql/'.$file;
+            $path = dirname(__DIR__,2).'/Sql/'.$file;
         }
         else
         {
