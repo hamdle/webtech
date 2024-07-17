@@ -125,7 +125,7 @@ var RoutineBuilder = (function() {
         $routine = {};
         $orderId = 0;
 
-        // Get list of exercises from the Api.
+        // Get list of exercises from the app.
         $xhr = new XMLHttpRequest();
         $xhr.addEventListener("load", exerciseHandler);
         $xhr.open("POST", api);

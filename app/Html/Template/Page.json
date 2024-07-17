@@ -1,0 +1,8 @@
+{
+  "0":"/Part/Open.php",
+  "1":"/Part/Header.php",
+  "2":"/Page/{page}/Body.php",
+  "3":"/Part/Footer.php",
+  "4":"/Page/{page}/Script.php",
+  "5":"/Part/Close.php"
+}

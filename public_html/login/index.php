@@ -5,7 +5,7 @@ use App\Core\Router;
 require_once dirname(__DIR__, 2) . "/autoload.php";
 
 $request = [
-    'method' => 'Page.user'
+    'method' => 'Page.login'
 ];
 
 $router = new Router();
