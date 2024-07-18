@@ -8,6 +8,6 @@ class Helper
     {
         return $_SERVER["REQUEST_URI"] === "/"
             ? false
-            : str_contains($_SERVER["REQUEST_URI"], $uri);
+            : strpos($_SERVER["REQUEST_URI"], $uri !== false);
     }
 }
