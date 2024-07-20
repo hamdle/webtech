@@ -102,7 +102,8 @@ class Response
         if ($this->headers['Content-Type'] === 'application/json' && !empty($this->data))
         {
             header('Content-Type: ' . $this->headers['Content-Type'] . '; charset=utf-8');
-            echo json_encode($this->data);
+            // TODO: remove duplicate content data
+            echo json_encode(array_merge($this->data, $this->data['content'] ?? []));
         }
         else if (array_key_exists('content', $this->data))
         {
@@ -115,6 +116,7 @@ class Response
     {
         $this->headers['Content-Type'] = 'text/html';
     }
+
     public function setContent($content)
     {
         $this->data['content'] = $content;

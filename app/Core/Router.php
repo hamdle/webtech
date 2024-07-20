@@ -16,7 +16,8 @@ class Router
     private static $publicEndpoints = [
         "Auth.login",
         "Auth.logout",
-        'Page.login'
+        'Page.login',
+        "Picture.takepicture"
     ];
 
     public function handle($request)
@@ -32,9 +33,10 @@ class Router
 
                     $namespace = self::$CONTROLLER_ROOT.$parts[0].self::$CONTROLLER_FILE_EXT;
                     $function = $parts[1];
-                    $args = array_filter($request, function ($key) {
-                        return $key != 'method';
-                    }, ARRAY_FILTER_USE_KEY);
+//                    $args = array_filter($request, function ($key) {
+//                        return $key != 'method';
+//                    }, ARRAY_FILTER_USE_KEY);
+                    $args = $request;
 
                     $controller = [new $namespace, $function];
                     $session = new Session();
@@ -69,15 +71,6 @@ class Router
             $response->setJson();
             $response->setError('An unexpected error has occurred');
             return $response;
-//            return Response::send
-//            (
-//                Code::OK_200,
-//                [
-//                    "ok" => "false",
-//                    "error" => "true",
-//                    "message" => "An unexpected error has occurred"
-//                ]
-//            );
         }
     }
 }
