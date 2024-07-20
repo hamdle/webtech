@@ -61,6 +61,7 @@ class Router
                 }
             }
 
+            $response->setJson();
             $response->setError('Not found');
             return $response;
             //return Response::sendDefaultNotFound();
