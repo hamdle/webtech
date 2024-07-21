@@ -102,8 +102,7 @@ class Response
         if ($this->headers['Content-Type'] === 'application/json' && !empty($this->data))
         {
             header('Content-Type: ' . $this->headers['Content-Type'] . '; charset=utf-8');
-            // TODO: remove duplicate content data
-            echo json_encode(array_merge($this->data, $this->data['content'] ?? []));
+            echo json_encode($this->buildDataArray());
         }
         else if (array_key_exists('content', $this->data))
         {
@@ -120,6 +119,18 @@ class Response
     public function setContent($content)
     {
         $this->data['content'] = $content;
+    }
+
+    private function buildDataArray()
+    {
+        $data = array_filter(
+            $this->data,
+            function($item) {
+                return $item != "content";
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+        return array_merge($data, $this->data["content"] ?? []);
     }
 
     public static function sendDefaultNotFound()
