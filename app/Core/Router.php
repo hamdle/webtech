@@ -62,7 +62,7 @@ class Router
             }
 
             $response->setJson();
-            $response->setError('Not found');
+            $response->setError('Method not found.');
             return $response;
             //return Response::sendDefaultNotFound();
         }
