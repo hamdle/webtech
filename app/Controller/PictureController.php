@@ -38,4 +38,14 @@ class PictureController extends BaseController
         ]);
         return $this->response;
     }
+
+    public function ping($args): Response
+    {
+        $this->response->setJson();
+        $this->response->setContent([
+            "error" => "false",
+            "message" => "pong",
+        ]);
+        return $this->response;
+    }
 }

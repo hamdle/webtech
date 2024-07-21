@@ -17,14 +17,15 @@ class Router
         "Auth.login",
         "Auth.logout",
         'Page.login',
-        "Picture.takepicture"
+        "Picture.takepicture",
+        "Picture.ping",
     ];
 
     public function handle($request)
     {
         $response = new Response();
         try {
-            if (array_key_exists("method", $request))
+            if (null !== $request && array_key_exists("method", $request))
             {
                 $method = $request["method"];
                 $parts = explode('.', $method);
