@@ -11,7 +11,7 @@ LOCK TABLES `system_config` WRITE;
 INSERT INTO `system_config`
 (`user_id`, `reference`, `data`)
 VALUES
-    (2, 'default_timezone', '-8');
+    (2, 'default_timezone', '-6');
 /*!40000 ALTER TABLE `system_config` ENABLE KEYS */;
 UNLOCK TABLES;
 
