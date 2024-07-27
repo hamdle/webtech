@@ -26,7 +26,7 @@
                 <div class="p-table-of-contents">
                     <div class="related-information">
                         <p>
-                            <b>Welcome to <?php echo $_ENV['APP_NAME']; ?>!</b> Join today to track calisthenics and home gym workouts in real time. Build and tweak exercies to perfection. Track workout metrics powered by A.I.
+                            <b>Welcome to <?php echo $_ENV['APP_NAME']; ?>!</b> Inside contains purpose-built tools for tracking the operations of life and business. Login to continue.
                         </p>
                         <p>
                             Want to know more about <?php echo $_ENV['APP_NAME']; ?>?<br>
