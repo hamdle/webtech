@@ -1,21 +1,21 @@
-# Introduction to Workout App
+# webtech
 
-The Workout App aims to assist you in tracking and charting your workout progress over time. The collaboration between the App and its accompanying API enables seamless management and tracking of user data and exercises.
+A PHP framework and API for custom-built projects by EJM Tech.
 
-## Understanding The App Structure
+## App Structure
 
-### API Details
+### app
 
-The API, programmed in PHP, resides in the `/api` folder, which is at the root of the application. It serves as a central handler for user and exercise data and plays an integral part in the app's functioning.
+The `app` folder contains the PHP application code that can HTML and JSON responses using the core API. Entry point into API is `Core\Router\handle()`. The `Core\Router` class also contains `$publicEndpoints` which are allowed to bypass authentication. Requests resolve to controllers located in root of `app` folder. Html is rendered using `Core\Renderer.php`.
 
-### User Interface and Navigation
+### db
 
-Our user interface is clean and straightforward, ensuring easy navigation through different pages.
+The `db` folder holds database files used to install a new version of the application. Scripts with sample data as well as migration scripts are also located here. Database files are divided by application version, see git tags for version locations.
 
-#### Authentication - Login Page
+### public_html
 
-The app initiates at the Login Page ('/'), which authenticates your/user credentials before granting access to further app functionalities such as the Workout page.
+`public_html` is the web root of the application. To create a new page, create a new `index.php` file. To build a page send a request to a controller available to the API.
 
-#### Workout Tracking - Workout Page
+### tools
 
-The workout page (`/go`) stands at the core of the app's functionality. It not only allows you to compose a workout using available exercises but also effectively runs the workout, thereby making your workout experience smooth and personalized.
+The `tools` folder is for custom and shared tools helpful to the application framework. See `tools/readme.md` for more.
