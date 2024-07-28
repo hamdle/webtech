@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="<?php echo $_ENV['ORIGIN']; ?>/img/favicon.ico">
     <link href="<?php echo $_ENV['ORIGIN']; ?>/css/style.css" rel="stylesheet" type="text/css">
     <link href="<?php echo $_ENV['ORIGIN']; ?>/css/vanilla.css" rel="stylesheet" type="text/css">
-    <?php if (\App\Core\Utils\Helper::onPage("/go")) { ?>
+    <?php if (\App\Core\Utils\Helper::onPage("/workout/go")) { ?>
         <link href="<?php echo $_ENV['ORIGIN']; ?>/css/go.css" rel="stylesheet" type="text/css">
     <?php } ?>
 </head>

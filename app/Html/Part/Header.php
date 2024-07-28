@@ -15,17 +15,33 @@
             </span>
             <?php if (\App\Core\Context::get('session')->isAuthenticated()) { ?>
                 <ul class="p-navigation__items">
+                    <li class="p-navigation__item ">
+                        <a class="p-navigation__link" href="/home">
+                            <?php echo $_ENV["APP_NAME"]; ?>
+                        </a>
+                    </li>
                     <li class="p-navigation__item <?php if (\App\Core\Utils\Helper::onPage("/home")) { ?> is-selected <?php } ?>">
                         <a class="p-navigation__link" href="/home">
-                            Workouts
+                            Dashboard
                         </a>
                     </li>
-                    <li class="p-navigation__item <?php if (\App\Core\Utils\Helper::onPage("/go")) { ?> is-selected <?php } ?>">
-                        <a class="p-button p-navigation__link  has-icon" href="/go">
-                            <span style="margin-right:10px;"><i id="workout-in-progress__icon" class="<?php if (\App\Core\Utils\Helper::onPage("/go")) { ?> is-selected p-icon--spinner <?php } else { ?> p-icon--plus<?php } ?>"></i></span>
-                            <span id="workout-in-progress">New</span>
+                    <li class="p-navigation__item ">
+                        <a class="p-navigation__link" href="/takepicture">
+                            Takepicture
                         </a>
                     </li>
+                    <ul class="p-navigation__items">
+                        <li class="p-navigation__item--dropdown-toggle <?php if (\App\Core\Utils\Helper::onPage("/workout/go")) { ?> is-selected <?php } ?>" id="link-1">
+                            <a class="p-navigation__link" aria-controls="account-menu" aria-expanded="false" href="#">
+                                Workout
+                            </a>
+                            <ul class="p-navigation__dropdown--right" id="account-menu" aria-hidden="true">
+                                <li>
+                                    <a href="/workout/go" class="p-navigation__dropdown-item">New</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </ul>
             <?php } else { ?>
                 <ul class="p-navigation__items">
@@ -55,7 +71,7 @@
                 </ul>
             <?php } else { ?>
                 <ul class="p-navigation__items">
-                    <li class="p-navigation__item  <?php if (\App\Core\Utils\Helper::onPage("/login")) { ?> is-selected <?php } ?>" id="link-1">
+                    <li class="p-navigation__item <?php if (\App\Core\Utils\Helper::onPage("/login")) { ?> is-selected <?php } ?>" id="link-1">
                         <a class="p-navigation__link" aria-controls="account-menu" aria-expanded="false" href="/login">
                             Login
                         </a>
@@ -64,14 +80,4 @@
             <?php } ?>
         </nav>
     </div>
-    <script>
-        var $element = document.getElementById("workout-in-progress");
-        var $icon = document.getElementById("workout-in-progress__icon")
-        var $value = localStorage.getItem("workout.exerciseInProgress");
-        if ($value) {
-            $element.textContent = $value;
-            $icon.classList.add("p-icon--spinner");
-            $icon.classList.add("u-animation--spin");
-        }
-    </script>
 </header>
