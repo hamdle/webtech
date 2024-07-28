@@ -153,6 +153,6 @@ class Session
 
     public function isAuthenticated(): bool
     {
-        return isset($this->user->id) !== null && is_numeric($this->user->id);
+        return $this->user->id !== null && is_numeric($this->user->id);
     }
 }
