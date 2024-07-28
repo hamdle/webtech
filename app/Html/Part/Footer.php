@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-9">
             <h3><span style="font-weight: 800"><?php echo $_ENV['APP_NAME']; ?></span></h3><br>
-            <?php if (\App\Core\Context::get('session')->isAuthenticated()) {?>
+            <?php if (\App\Core\Context::get('session')->isAuthenticated()) { ?>
                 <dl>
                     <dd>
                         <span class=""><span style="margin-right:3px;" class="fa fa-connection footer__icon"></span>
@@ -80,6 +80,6 @@
     let api = "<?php echo $_ENV['API_URL']; ?>";
     let site = "<?php echo $_ENV['ORIGIN']; ?>" + "/";
     <?php if (\App\Core\Context::get('session')->isAuthenticated()) { ?>
-    Logout.init(api, site, document.getElementById("logout"));
+        Logout.init(api, site, document.getElementById("logout"));
     <?php } ?>
 </script>
