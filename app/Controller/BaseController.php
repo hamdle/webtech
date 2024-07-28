@@ -16,4 +16,14 @@ class BaseController
         $this->response = new Response();
         $this->renderer = new Renderer();
     }
+
+    protected function renderHtmlTemplate($page): void
+    {
+        $this->response->setHtml();
+        $content = $this->renderer->renderTemplate(
+            'Page.json',
+            ['page' => $page]
+        );
+        $this->response->setContent($content);
+    }
 }

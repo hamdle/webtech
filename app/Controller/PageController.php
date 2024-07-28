@@ -6,35 +6,21 @@ use App\Core\Http\Response;
 
 class PageController extends BaseController
 {
-    private function renderResponse($page): Response
-    {
-        $this->response->setHtml();
-        $content = $this->renderer->renderTemplate(
-            'Page.json',
-            ['page' => $page]
-        );
-
-        $this->response->setContent($content);
-        return $this->response;
-    }
-
     public function login(): Response
     {
-        return $this->renderResponse('Login');
-    }
-
-    public function home(): Response
-    {
-        return $this->renderResponse('Home');
-    }
-
-    public function go(): Response
-    {
-        return $this->renderResponse('Go');
+        $this->renderHtmlTemplate('Login');
+        return $this->response;
     }
 
     public function user(): Response
     {
-        return $this->renderResponse('User');
+        $this->renderHtmlTemplate('User');
+        return $this->response;
+    }
+
+    public function home(): Response
+    {
+        $this->renderHtmlTemplate('Home');
+        return $this->response;
     }
 }

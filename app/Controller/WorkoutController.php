@@ -22,8 +22,20 @@ use App\Model\Rep;
 use App\Model\Workout;
 use App\Rpc;
 
-class WorkoutController
+class WorkoutController extends BaseController
 {
+    public function home(): Response
+    {
+        $this->renderHtmlTemplate('WorkoutDash');
+        return $this->response;
+    }
+
+    public function go(): Response
+    {
+        $this->renderHtmlTemplate('WorkoutGo');
+        return $this->response;
+    }
+
     // POST :: api/Workout/save
     public function save()
     {
