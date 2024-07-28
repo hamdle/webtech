@@ -18,9 +18,9 @@ class PageController extends BaseController
         return $this->response;
     }
 
-    public function home(): Response
+    public function dashboard(): Response
     {
-        $this->renderHtmlTemplate('Home');
+        $this->renderHtmlTemplate('Dashboard');
         return $this->response;
     }
 }
