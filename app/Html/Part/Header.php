@@ -37,6 +37,9 @@
                             </a>
                             <ul class="p-navigation__dropdown--right" id="account-menu" aria-hidden="true">
                                 <li>
+                                    <a href="/workout" class="p-navigation__dropdown-item">View</a>
+                                </li>
+                                <li>
                                     <a href="/workout/go" class="p-navigation__dropdown-item">New</a>
                                 </li>
                             </ul>

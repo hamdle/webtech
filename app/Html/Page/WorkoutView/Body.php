@@ -2,14 +2,12 @@
     <section class="p-strip is-shallow u-no-padding--bottom">
         <div class="u-fixed-width">
             <h1 class="p-heading--3">
-                Dashboard
+                View all workouts
             </h1>
         </div>
     </section>
     <div class="p-stripe is-shallow">
         <div class="row">
-            <h4>Workout</h4>
-            <p>This is a section for workout</p>
             <div class="u-clearfix">
                 <div class="u-float-left">
                     <a class="dash__link" href="/workout/go">
@@ -32,21 +30,24 @@
                     </a>
                 </div>
                 <div class="u-float-right">
-
+                    <nav class="p-pagination" aria-label="Pagination">
+                        <ol class="p-pagination__items">
+                            <li class="p-pagination__item">
+                                <span id="page-display" class="p-pagination__display"></span>
+                            </li>
+                            <li class="p-pagination__item">
+                                <a id="prev" class="p-pagination__link--previous" href="#" title="Previous page"><i class="p-icon--chevron-down"></i></a>
+                            </li>
+                            <li class="p-pagination__item">
+                                <a id="next" class="p-pagination__link--next" href="#" title="Next page"><i class="p-icon--chevron-down"></i></a>
+                            </li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
         <div class="row">
-            <h4>Takepicture</h4>
-            <p>This is a section for takepicture</p>
-        </div>
-        <div class="row">
-            <h4>Timelog</h4>
-            <p>This is a section for timelog</p>
-        </div>
-        <div class="row">
-            <h4>Ping</h4>
-            <p>This is a section for ping</p>
+            <div id="log" class="log"></div>
         </div>
     </div>
 </div>

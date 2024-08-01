@@ -5,7 +5,7 @@ use App\Core\Router;
 require_once dirname(__DIR__, 2) . "/autoload.php";
 
 $request = [
-    'method' => 'Workout.home'
+    'method' => 'Workout.view'
 ];
 
 $router = new Router();

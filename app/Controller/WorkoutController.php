@@ -24,9 +24,9 @@ use App\Rpc;
 
 class WorkoutController extends BaseController
 {
-    public function home(): Response
+    public function view(): Response
     {
-        $this->renderHtmlTemplate('WorkoutDash');
+        $this->renderHtmlTemplate('WorkoutView');
         return $this->response;
     }
 
