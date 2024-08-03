@@ -155,4 +155,9 @@ class Session
     {
         return $this->user->id !== null && is_numeric($this->user->id);
     }
+
+    public function getToken(): string
+    {
+        return $this->session->fields['token'] ?? false;
+    }
 }

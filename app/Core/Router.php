@@ -16,6 +16,7 @@ class Router
     private static $publicEndpoints = [
         "Auth.login",
         "Auth.logout",
+        "Auth.token",
         'Page.login',
         "Picture.takepicture",
         "Picture.ping",

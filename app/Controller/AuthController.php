@@ -44,6 +44,28 @@ class AuthController {
         //return Response::sendOkWithWarning("login failed");
     }
 
+    public function token()
+    {
+        $response = new Response();
+        $response->setJson();
+
+        $form = new LoginForm();
+        $user = new User(Request::post());
+        $session = new Session();
+        if ($form->validate(Request::post()) &&
+            $user->loadFromDatabase() &&
+            $session->authenticateLogin($user))
+        {
+            $response->setContent([
+                "token" => $session->getToken()
+            ]);
+            return $response;
+        }
+
+        $response->setWarn('login failed');
+        return $response;
+    }
+
     // POST :: api/auth/logout
     public function logout()
     {
