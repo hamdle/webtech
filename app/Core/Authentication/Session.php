@@ -47,10 +47,6 @@ class Session
         $mac = hash_hmac("sha256", $cookie, $cookieKey);
         $cookie .= ":".$mac;
 
-        Database::execute('delete-all-session.sql', [
-            'user_id' => $user->id
-        ]);
-
         $this->session = new Model\Session([
             'user_id' => $user->id,
             'token' => $token
@@ -98,7 +94,8 @@ class Session
             }
 
             $this->session = new Model\Session([
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'token' => $parts[1]
             ]);
             if (!$this->session->loadFromDatabase())
             {
