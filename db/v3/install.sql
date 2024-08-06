@@ -186,3 +186,18 @@ VALUES
     (1, 'set_rest_default', '120', 2),
     (1, 'warm_up_default', '120', 2),
     (1, 'play_timer_sound', '0', 2);
+
+DROP TABLE IF EXISTS `timesheet`;
+
+CREATE TABLE `timesheet` (
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `user_id` int(10) unsigned NOT NULL DEFAULT 1,
+    `tag` varchar(64) NOT NULL,
+    `file` text NOT NULL,
+    `active` boolean DEFAULT 1,
+    PRIMARY KEY (`id`),
+    CONSTRAINT `fk_timesheet_user_id` FOREIGN KEY (`user_id`) REFERENCES users(`id`),
+    INDEX (`user_id`),
+    INDEX (`tag`),
+    CONSTRAINT `uq_timesheet_user_id_tag` UNIQUE(`user_id`, `tag`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
