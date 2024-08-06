@@ -67,12 +67,27 @@ class Session
         return true;
     }
 
-    /**
-     * Authenticate the user from the cookie.
-     *
-     * @return bool Returns true if the user is authenticated successfully from the cookie, false otherwise.
-     */
-    public function authenticateUserFromCookie()
+    public function authenticate($args)
+    {
+        $auth = $this->authenticateUserFromCookie();
+        if ($auth === true)
+        {
+            return true;
+        }
+
+        if ($args['token'] ?? false)
+        {
+            $auth = $this->authenticateUserFromPost($args['token']);
+            if ($auth === true)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function authenticateUserFromCookie(): bool
     {
         foreach (Request::cookie() as $key => $value) {
             if (strcmp($key, self::COOKIE_KEY) !== 0)
@@ -123,6 +138,31 @@ class Session
         }
 
         return false;
+    }
+
+    public function authenticateUserFromPost($value): bool
+    {
+        if (trim($value) === "")
+        {
+            return false;
+        }
+
+        $this->session = new Model\Session([
+            'token' => $value
+        ]);
+        if (!$this->session->loadFromDatabase())
+        {
+            return false;
+        }
+
+        $user = new User(["id" => $this->session->fields['user_id']]);
+        if (!$user->loadFromDatabase())
+        {
+            return false;
+        }
+
+        $this->user = $user;
+        return true;
     }
 
     /**

@@ -42,7 +42,7 @@ class Router
 
                     $controller = [new $namespace, $function];
                     $session = new Session();
-                    $session->authenticateUserFromCookie();
+                    $session->authenticate($args);
                     Context::set('session', $session);
                     $user = $session->getAuthenticatedUser();
                     Context::set('user', $user);
