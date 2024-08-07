@@ -1,9 +1,9 @@
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/timer/workout.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/timer/inputdisplay.js"></script>
+<script src="<?php echo $_ENV['ORIGIN']; ?>/js/timer/countdown.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/startbutton.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/utilities.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/timer.js"></script>
-<script src="<?php echo $_ENV['ORIGIN']; ?>/js/countdown.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/instructions.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/jumptoinput.js"></script>
 <script src="<?php echo $_ENV['ORIGIN']; ?>/js/screenwake.js"></script>
@@ -42,7 +42,8 @@
 
     Countdown.init(
         document.getElementById('countdown'),
-        <?php echo \App\Core\Database\Database::config("play_timer_sound", \App\Core\Context::get('user')->fields["id"]) ?>
+        true
+        <?php //echo \App\Core\Database\Database::config("play_timer_sound", \App\Core\Context::get('user')->fields["id"]) ?>
     );
     Instructions.init(document.getElementById('instructions'));
     JumpToInput.init(document.getElementById('timer'), 'inputdisplay');
