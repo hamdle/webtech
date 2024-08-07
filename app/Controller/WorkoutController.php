@@ -24,6 +24,12 @@ use App\Rpc;
 
 class WorkoutController extends BaseController
 {
+    public function timer(): Response
+    {
+        $this->renderHtmlTemplate('WorkoutTimer');
+        return $this->response;
+    }
+
     public function view(): Response
     {
         $this->renderHtmlTemplate('WorkoutView');
@@ -65,6 +71,35 @@ class WorkoutController extends BaseController
         }
 
         return Response::sendOk();
+    }
+
+    public function saveTime($args)
+    {
+        $this->response->setJson();
+
+        $start = $args["start"] ?? null;
+        $end = $args["end"] ?? null;
+        $notes = $args["notes"] ?? null;
+        $feel = $args["feel"] ?? null;
+        if (!$start || !$end || !$feel) {
+            $this->response->setContent([
+                "error" => "true",
+                "message" => "Invalid data.",
+            ]);
+            return $this->response;
+        }
+
+        $user = $user = \App\Core\Context::get('user');
+
+        $workout = new Workout($args);
+        $workout->user_id = $user->fields["id"];
+        $workout->save();
+
+        $this->response->setContent([
+            "error" => "false",
+            "message" => "Workout saved successfully.",
+        ]);
+        return $this->response;
     }
 
     // POST :: api/workout/exerciseTypes

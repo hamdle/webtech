@@ -2,7 +2,7 @@
     <div class="p-navigation__row">
         <div class="p-navigation__banner">
             <div class="p-navigation__logo w-navigation__logo">
-                <a class="p-navigation__item w-navigation__item" href="<?php echo $_ENV['ORIGIN']; ?>">
+                <a class="p-navigation__item w-navigation__item" href="<?php echo $_ENV['ORIGIN']; ?>/home">
                     <img class="p-navigation__logo-icon" src="<?php echo $_ENV['ORIGIN']; ?>/img/workout-logo-graybox.svg" alt="Workout.dev">
                 </a>
             </div>
@@ -16,7 +16,7 @@
             <?php if (\App\Core\Context::get('session')->isAuthenticated()) { ?>
                 <ul class="p-navigation__items">
                     <li class="p-navigation__item ">
-                        <a class="p-navigation__link" href="/home">
+                        <a class="p-navigation__link" href="<?php echo $_ENV["ORIGIN"]; ?>">
                             <?php echo $_ENV["APP_NAME"]; ?>
                         </a>
                     </li>
@@ -31,7 +31,7 @@
                         </a>
                     </li>
                     <ul class="p-navigation__items">
-                        <li class="p-navigation__item--dropdown-toggle <?php if (\App\Core\Utils\Helper::onPage("/workout/go")) { ?> is-selected <?php } ?>" id="link-1">
+                        <li class="p-navigation__item--dropdown-toggle <?php if (\App\Core\Utils\Helper::onPage("/workout/go") || \App\Core\Utils\Helper::onPage("/workout") || \App\Core\Utils\Helper::onPage("/workout/timer")) { ?> is-selected <?php } ?>" id="link-1">
                             <a class="p-navigation__link" aria-controls="account-menu" aria-expanded="false" href="#">
                                 Workout
                             </a>
@@ -41,6 +41,9 @@
                                 </li>
                                 <li>
                                     <a href="/workout/go" class="p-navigation__dropdown-item">New</a>
+                                </li>
+                                <li>
+                                    <a href="/workout/timer" class="p-navigation__dropdown-item">Timer</a>
                                 </li>
                             </ul>
                         </li>

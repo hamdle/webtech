@@ -27,7 +27,7 @@
                             New
                         </button>
                     </a>
-                    <a class="dash__link" href="/workout/go">
+                    <a class="dash__link" href="/workout/timer">
                         <button class="p-tooltip--top-center has-icon" aria-describedby="btn-new-workout">
                             <i class="p-icon--plus"></i>
                             Timer
