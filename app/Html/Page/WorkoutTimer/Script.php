@@ -42,8 +42,7 @@
 
     Countdown.init(
         document.getElementById('countdown'),
-        true
-        <?php //echo \App\Core\Database\Database::config("play_timer_sound", \App\Core\Context::get('user')->fields["id"]) ?>
+        <?php echo \App\Core\Database\Database::config("play_timer_sound", \App\Core\Context::get('user')->fields["id"]) ?>
     );
     Instructions.init(document.getElementById('instructions'));
     JumpToInput.init(document.getElementById('timer'), 'inputdisplay');

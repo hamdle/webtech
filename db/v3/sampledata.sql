@@ -15,6 +15,15 @@ VALUES
 /*!40000 ALTER TABLE `system_config` ENABLE KEYS */;
 UNLOCK TABLES;
 
+INSERT INTO `system_config`
+(`user_id`, `reference`, `data`, `system_config_type_id`)
+VALUES
+    (2, 'pagination_default', '30', 1),
+    (2, 'rep_rest_default', '60', 2),
+    (2, 'set_rest_default', '120', 2),
+    (2, 'warm_up_default', '120', 2),
+    (2, 'play_timer_sound', '1', 2);
+
 LOCK TABLES `exercise_types` WRITE;
 /*!40000 ALTER TABLE `exercise_types` DISABLE KEYS */;
 INSERT INTO `exercise_types`
