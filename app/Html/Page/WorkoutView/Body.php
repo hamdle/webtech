@@ -1,7 +1,7 @@
 <div id="main-content" class="l-site">
     <section class="p-strip is-shallow u-no-padding--bottom">
         <div class="u-fixed-width">
-            <h1 class="p-heading--3">
+            <h1 class="p-heading--1">
                 View all workouts
             </h1>
         </div>
