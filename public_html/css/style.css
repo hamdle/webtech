@@ -160,3 +160,8 @@
     padding: calc(.4rem - 1px) 1rem;
     text-align: center;
 }
+
+.page-number {
+    color: #9d9d9d;
+    margin-right: 8px;
+}

@@ -44,6 +44,7 @@
             <?php
                 $controller = new \App\Controller\PictureController();
                 $list = $controller->list();
+                $lineNumber = 1;
             ?>
             <table class="log__table">
                 <thead>
@@ -54,6 +55,7 @@
                 <?php foreach ($list as $picture) { ?>
                     <tr class="log__table__row log__table__row__data">
                         <td class="log__table__row__item">
+                            <span class="page-number"><?php echo $lineNumber++; ?></span>
                             <a href="<?php echo getenv("ORIGIN") . "/takepicture/" . $picture ?>">
                                 <?php echo $picture ?>
                             </a>
