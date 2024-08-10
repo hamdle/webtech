@@ -116,6 +116,8 @@ class WorkoutController extends BaseController
     // POST :: api/workout/all
     public function all($args)
     {
+        $this->response->setJson();
+
         $exerciseTypes = Database::run("
             select *
             from exercise_types
@@ -182,11 +184,17 @@ class WorkoutController extends BaseController
             }
         }
 
-        $response = array_merge(
-            ["ok" => "true"],
-            ["workouts" => $data],
-        );
-        return Response::send(Code::OK_200, $response);
+        $this->response->setContent([
+            "error" => "false",
+            "workouts" => $data,
+        ]);
+        return $this->response;
+
+//        $response = array_merge(
+//            ["ok" => "true"],
+//            ["workouts" => $data],
+//        );
+//        return Response::send(Code::OK_200, $response);
     }
 
     // POST :: api/workout/suggestedReps

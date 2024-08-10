@@ -14,7 +14,7 @@ var Log = (function() {
     var $page = 1;
 
     function buildLog(workouts) {
-        if (workouts === null) {
+        if (workouts === null || workouts === undefined) {
             $page--;
             return;
         }
@@ -59,23 +59,49 @@ var Log = (function() {
 
             // Exercises
             var exercise_ids = "";
-            Object.values(entry.exercises).forEach(function (exercise) {
-                exercise_ids += (exercise_ids === "" ? "" : ",") + exercise.exercise_type_id;
-                var reps = "";
-                var count = 0;
+            if (entry.exercises != undefined) {
+                Object.values(entry.exercises).forEach(function (exercise) {
+                    exercise_ids += (exercise_ids === "" ? "" : ",") + exercise.exercise_type_id;
+                    var reps = "";
+                    var count = 0;
 
-                if (exercise.reps == undefined) {
-                    reps = " ";
-                } else {
-                    Object.values(exercise.reps).forEach(function (rep) {
-                        reps = reps + rep.amount;
-                        if (count < Object.values(exercise.reps).length - 1) {
-                            reps = reps + " + ";
-                        }
-                        count++;
-                    })
-                }
+                    if (exercise.reps == undefined) {
+                        reps = " ";
+                    } else {
+                        Object.values(exercise.reps).forEach(function (rep) {
+                            reps = reps + rep.amount;
+                            if (count < Object.values(exercise.reps).length - 1) {
+                                reps = reps + " + ";
+                            }
+                            count++;
+                        })
+                    }
 
+                    var tr2 = document.createElement("tr");
+                    tr2.classList = "log__table__row log__table__row__data";
+
+                    var td1 = document.createElement("th")
+                    var icon = document.createElement("span");
+                    icon.classList = "fa fa-dumbbell";
+                    td1.appendChild(icon);
+                    td1.classList = "log__table__row__item log__table__row__item-title";
+                    td1.textContent = exercise.exercise_type.title;
+                    tr2.appendChild(td1);
+                    var td2 = document.createElement("td")
+                    td2.classList = "log__table__row__item";
+                    td2.textContent = exercise.sets;
+                    tr2.appendChild(td2);
+                    var td3 = document.createElement("td")
+                    td3.classList = "log__table__row__item";
+                    td3.textContent = "[ " + reps + " ]";
+                    tr2.appendChild(td3);
+                    var td4 = document.createElement("td")
+                    td4.classList = "log__table__row__item";
+                    td4.textContent = exercise.feedback
+                    //tr2.appendChild(td4);
+                    table.appendChild(tr2);
+                });
+            } else {
                 var tr2 = document.createElement("tr");
                 tr2.classList = "log__table__row log__table__row__data";
 
@@ -84,22 +110,23 @@ var Log = (function() {
                 icon.classList = "fa fa-dumbbell";
                 td1.appendChild(icon);
                 td1.classList = "log__table__row__item log__table__row__item-title";
-                td1.textContent = exercise.exercise_type.title;
+                td1.textContent = "No data";
                 tr2.appendChild(td1);
                 var td2 = document.createElement("td")
                 td2.classList = "log__table__row__item";
-                td2.textContent = exercise.sets;
+                td2.textContent = "-"; //exercise.sets;
                 tr2.appendChild(td2);
                 var td3 = document.createElement("td")
                 td3.classList = "log__table__row__item";
-                td3.textContent = "[ " + reps + " ]";
+                td3.textContent = "-"; //"[ " + reps + " ]";
                 tr2.appendChild(td3);
                 var td4 = document.createElement("td")
                 td4.classList = "log__table__row__item";
-                td4.textContent = exercise.feedback
+                td4.textContent = ""; //exercise.feedback
                 //tr2.appendChild(td4);
                 table.appendChild(tr2);
-            });
+            }
+
             load.setAttribute("data-exercise-ids", exercise_ids);
             wrap.appendChild(table);
 
@@ -140,7 +167,7 @@ var Log = (function() {
 
     function loadWorkout(event) {
         var ids = event.target.getAttribute("data-exercise-ids")
-        window.location = "/go?el=" + ids;
+        window.location = "/workout/go?el=" + ids;
     }
 
     function logHandler(event) {
