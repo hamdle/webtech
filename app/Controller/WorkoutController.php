@@ -168,10 +168,12 @@ class WorkoutController extends BaseController
 
 
         $data = [];
-
+        $sort = 0;
         foreach ($workouts as $workout)
         {
             $data[$workout["id"]] = $workout;
+            $data[$workout["id"]]['sort'] = $sort;
+            $sort++;
         }
 
         foreach ($exercises as $exercise)

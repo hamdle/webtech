@@ -21,7 +21,12 @@ var Log = (function() {
         var log = document.getElementById("log");
         var tempLog = document.createElement("div");
 
+        workoutArray = [];
         Object.values(workouts).forEach(function (entry) {
+            workoutArray[entry.sort] = entry;
+        });
+
+        workoutArray.forEach(function (entry) {
             var wrap = document.createElement("div");
             wrap.classList = "p-card";
 
