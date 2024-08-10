@@ -47,47 +47,53 @@ class ConfigController extends BaseController
         return $this->response;
     }
 
-    // POST :: api/config/saveWorkoutSettings
-    public function saveWorkoutSettings()
+    public function saveWorkoutSettings($args)
     {
-        $request = Request::post();
+        $this->response->setJson();
         $form = new WorkoutSettingsForm();
         $user = \App\Core\Context::get('user');
-        if ($form->validate($request))
+        if ($form->validate($args))
         {
             Database::update(
                 "system_config",
                 ["data"],
-                [$request["rep_rest_default"]],
+                [$args["rep_rest_default"]],
                 "user_id = ".$user->fields["id"].
                 " and reference = 'rep_rest_default'"
             );
             Database::update(
                 "system_config",
                 ["data"],
-                [$request["set_rest_default"]],
+                [$args["set_rest_default"]],
                 "user_id = ".$user->fields["id"].
                 " and reference = 'set_rest_default'"
             );
             Database::update(
                 "system_config",
                 ["data"],
-                [$request["pagination_default"]],
+                [$args["pagination_default"]],
                 "user_id = ".$user->fields["id"].
                 " and reference = 'pagination_default'"
             );
             Database::update(
                 "system_config",
                 ["data"],
-                [$request["play_timer_sound"]],
+                [$args["play_timer_sound"]],
                 "user_id = ".$user->fields["id"].
                 " and reference = 'play_timer_sound'"
             );
 
-            return Response::sendOk();
+            $this->response->setContent([
+                "error" => "false",
+            ]);
+            return $this->response;
         }
 
-        return Response::sendOkWithWarning("validation failed");
+        $this->response->setContent([
+            "error" => "false",
+            "warning" => "validation failed",
+        ]);
+        return $this->response;
     }
 
     // POST :: api/config/saveSystemSettings
