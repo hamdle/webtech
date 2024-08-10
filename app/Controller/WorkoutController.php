@@ -155,12 +155,17 @@ class WorkoutController extends BaseController
             (".implode(", ", array_column($workouts, "id")).")
         ");
         // TODO: change to Database::insert(sql, ids) so Database class use prepare
-        $reps = Database::run("
-            select *
-            from reps
-            where reps.exercise_id in
-            (".implode(", ", array_column($exercises, "id")).")
-        ");
+        $reps = [];
+        if ($exercises)
+        {
+            $reps = Database::run("
+                select *
+                from reps
+                where reps.exercise_id in
+                (".implode(", ", array_column($exercises, "id")).")
+            ");
+        }
+
 
         $data = [];
 
