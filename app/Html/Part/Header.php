@@ -25,7 +25,7 @@
                             Dashboard
                         </a>
                     </li>
-                    <li class="p-navigation__item ">
+                    <li class="p-navigation__item <?php if (\App\Core\Utils\Helper::onPage("/takepicture")) { ?> is-selected <?php } ?>">
                         <a class="p-navigation__link" href="/takepicture">
                             Takepicture
                         </a>

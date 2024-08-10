@@ -1,0 +1,3 @@
+<script>
+    // No script
+</script>

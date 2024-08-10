@@ -48,4 +48,37 @@ class PictureController extends BaseController
         ]);
         return $this->response;
     }
+
+    public function page(): Response
+    {
+        $this->renderHtmlTemplate('Takepicture');
+        return $this->response;
+    }
+
+    public function list(): array
+    {
+        $list = [];
+        $dir = $_SERVER["DOCUMENT_ROOT"] . "/takepicture/";
+        $scan = scandir($dir);
+        foreach ($scan as $file)
+        {
+            if ($file != "." && $file != ".." && $file != "index.php")
+            {
+                $list[] = $file;
+            }
+        }
+        usort($list, function ($a, $b) {
+            $part1 = explode(" - ", $a);
+            $part2 = explode("-", $part1[1]);
+            $adt = $part2[0];
+
+            $part1 = explode(" - ", $b);
+            $part2 = explode("-", $part1[1]);
+            $bdt = $part2[0];
+
+           return  strtotime($bdt) - strtotime($adt);
+        });
+
+        return $list;
+    }
 }
