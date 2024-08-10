@@ -36,7 +36,7 @@
 
                 </div>
                 <div class="u-float-right">
-                    <a class="dash__link" href="#">
+                    <a class="dash__link" href="/workout">
                         <button class="p-button--positive p-tooltip--top-center has-icon" aria-describedby="btm-cntr">
                             <i class="p-icon--success"></i>
                             <?php
@@ -78,7 +78,7 @@
 
                 </div>
                 <div class="u-float-right">
-                    <a class="dash__link" href="#">
+                    <a class="dash__link" href="/takepicture">
                         <button class="p-button--positive p-tooltip--top-center" aria-describedby="btm-cntr">
                             <?php
                             $output = shell_exec("ls | wc -l");
