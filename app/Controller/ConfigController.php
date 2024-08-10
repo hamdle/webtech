@@ -19,25 +19,32 @@ use App\Form\SystemSettingsForm;
 use App\Model\User;
 use App\Rpc;
 
-class ConfigController
+class ConfigController extends BaseController
 {
-    // POST :: api/config/saveUserSettings
-    public function saveUserSettings()
+    public function saveUserSettings($args)
     {
-        $request = Request::post();
+        $this->response->setJson();
+
         $form = new UserSettingsForm();
         $user = \App\Core\Context::get('user');
 
-        if ($form->validate($request))
+        if ($form->validate($args))
         {
-            $updatedUser = new User($request);
+            $updatedUser = new User($args);
             $updatedUser->fields["id"] = $user->fields["id"];
             $updatedUser->save();
 
-            return Response::sendOk();
+            $this->response->setContent([
+                "error" => "false",
+            ]);
+            return $this->response;
         }
 
-        return Response::sendOkWithWarning("validation failed");
+        $this->response->setContent([
+            "error" => "false",
+            "warning" => "validation failed",
+        ]);
+        return $this->response;
     }
 
     // POST :: api/config/saveWorkoutSettings

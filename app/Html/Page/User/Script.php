@@ -254,7 +254,9 @@
                 if ($xhr.readyState == XMLHttpRequest.DONE)
                 {
                     const response = JSON.parse(event.target.responseText);
-                    if (response.ok === 'false' || response.hasOwnProperty('warning') || response.hasOwnProperty('error')) {
+                    if (response.ok === 'false' || response.hasOwnProperty('warning') ||
+                        (response.hasOwnProperty('error') && response.error === 'true')) {
+                        console.log('An error occurred saving data');
                         return;
                     }
                     if (response.ok === 'true') {
@@ -264,7 +266,7 @@
             });
             $xhr.addEventListener('error', function(event)
             {
-                console.log('An error occurred while logging in.');
+                console.log('An error occurred while saving data');
             });
             $xhr.open("POST", api);
             // Specifying a header here could cause the POST data to be sent
