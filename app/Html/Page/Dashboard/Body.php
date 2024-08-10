@@ -1,7 +1,7 @@
 <div id="main-content" class="l-site">
     <section class="p-strip is-shallow u-no-padding--bottom">
         <div class="u-fixed-width">
-            <h1 class="p-heading--3">
+            <h1 class="p-heading--1">
                 Dashboard
             </h1>
         </div>
@@ -59,7 +59,8 @@
             <div class="u-clearfix">
                 <div class="u-float-left">
                     <a class="dash__link" href="/takepicture">
-                        <button class="p-button" aria-describedby="btn-new-workout">
+                        <button class="p-tooltip--top-center has-icon" aria-describedby="btn-new-workout">
+                            <i class="p-icon--share"></i>
                             View
                         </button>
                     </a>
@@ -76,19 +77,6 @@
                         </button>
                     </a>
 
-                </div>
-                <div class="u-float-right">
-                    <a class="dash__link" href="/takepicture">
-                        <button class="p-button--positive p-tooltip--top-center" aria-describedby="btm-cntr">
-                            <?php
-                            $output = shell_exec("ls | wc -l");
-                            $totalTakepictures = (int) $output - 1;
-                            echo $totalTakepictures;
-                            \App\Core\Context::set('total-takepictures', $totalTakepictures);
-                            ?>
-                            <span class="p-tooltip__message" role="tooltip" id="btm-cntr" >Total pictures</span>
-                        </button>
-                    </a>
                 </div>
             </div>
         </div>
