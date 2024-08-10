@@ -49,7 +49,6 @@
                 <thead>
                 <tr class="log__table__row">
                     <th class="log__table__row__header">Picture</th>
-                    <th class="log__table__row__header">Actions</th>
                 </tr>
                 </thead>
                 <?php foreach ($list as $picture) { ?>
@@ -58,9 +57,6 @@
                             <a href="<?php echo getenv("ORIGIN") . "/takepicture/" . $picture ?>">
                                 <?php echo $picture ?>
                             </a>
-                        </td>
-                        <td class="log__table__row__item">
-                            <i class="p-icon--share"></i>
                         </td>
                     </tr>
                 <?php } ?>
