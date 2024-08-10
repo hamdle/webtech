@@ -102,18 +102,17 @@ class WorkoutController extends BaseController
         return $this->response;
     }
 
-    // POST :: api/workout/exerciseTypes
     public function exerciseTypes()
     {
+        $this->response->setJson();
         $exerciseTypes = new ExerciseType();
-        $response = array_merge(
-            ["ok" => "true"],
-            ["exercise_types" => $exerciseTypes->all()]
-        );
-        return Response::send(Code::OK_200, $response);
+        $this->response->setContent([
+            "error" => "false",
+            "exercise_types" => $exerciseTypes->all(),
+        ]);
+        return $this->response;
     }
 
-    // POST :: api/workout/all
     public function all($args)
     {
         $this->response->setJson();
@@ -189,16 +188,11 @@ class WorkoutController extends BaseController
             "workouts" => $data,
         ]);
         return $this->response;
-
-//        $response = array_merge(
-//            ["ok" => "true"],
-//            ["workouts" => $data],
-//        );
-//        return Response::send(Code::OK_200, $response);
     }
 
-    // POST :: api/workout/suggestedReps
     public function suggestedReps($args) {
+        $this->response->setJson();
+
         $results = Database::execute('last-exercise.sql', [
             'user_id' => \App\Core\Context::get('user')->fields["id"],
             'exercise_type_id' => intval($args['exerciseTypeId'])
@@ -216,10 +210,11 @@ class WorkoutController extends BaseController
         foreach ($reps as $rep) {
             $data[] = $rep[array_key_first($rep)];
         }
-        $response = array_merge(
-            ["ok" => "true"],
-            ['suggestedReps' => $data]
-        );
-        return Response::send(Code::OK_200, $response);
+
+        $this->response->setContent([
+            "error" => "false",
+            "suggestedReps" => $data,
+        ]);
+        return $this->response;
     }
 }
