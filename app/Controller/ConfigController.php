@@ -96,25 +96,31 @@ class ConfigController extends BaseController
         return $this->response;
     }
 
-    // POST :: api/config/saveSystemSettings
-    public function saveSystemSettings()
+    public function saveSystemSettings($args)
     {
-        $request = Request::post();
+        $this->response->setJson();
         $form = new SystemSettingsForm();
         $user = \App\Core\Context::get('user');
-        if ($form->validate($request))
+        if ($form->validate($args))
         {
             Database::update(
                 "system_config",
                 ["data"],
-                [$request["default_timezone"]],
+                [$args["default_timezone"]],
                 "user_id = ".$user->fields["id"].
                 " and reference = 'default_timezone'"
             );
 
-            return Response::sendOk();
+            $this->response->setContent([
+                "error" => "false",
+            ]);
+            return $this->response;
         }
 
-        return Response::sendOkWithWarning("validation failed");
+        $this->response->setContent([
+            "error" => "false",
+            "warning" => "validation failed",
+        ]);
+        return $this->response;
     }
 }
