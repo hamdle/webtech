@@ -53,6 +53,7 @@ var Countdown = (function () {
         $element = elem;
         $playSound = playSound;
         $sound = new Audio(site + "sound/ding.mp3")
+        $sound.volume = 0.5;
     }
 
     function start(value) {
