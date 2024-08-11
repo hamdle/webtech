@@ -39,7 +39,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <?php
                 $controller = new \App\Controller\PictureController();
@@ -64,10 +63,5 @@
                 <?php } ?>
             </table>
         </div>
-
-
-
-
-
     </div>
 </div>

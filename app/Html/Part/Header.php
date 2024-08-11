@@ -25,11 +25,6 @@
                             Dashboard
                         </a>
                     </li>
-                    <li class="p-navigation__item <?php if (\App\Core\Utils\Helper::onPage("/takepicture")) { ?> is-selected <?php } ?>">
-                        <a class="p-navigation__link" href="/takepicture">
-                            Takepicture
-                        </a>
-                    </li>
                     <ul class="p-navigation__items">
                         <li class="p-navigation__item--dropdown-toggle <?php if (\App\Core\Utils\Helper::onPage("/workout/go") || \App\Core\Utils\Helper::onPage("/workout") || \App\Core\Utils\Helper::onPage("/workout/timer")) { ?> is-selected <?php } ?>" id="link-1">
                             <a class="p-navigation__link" aria-controls="account-menu" aria-expanded="false" href="#">
@@ -48,6 +43,11 @@
                             </ul>
                         </li>
                     </ul>
+                    <li class="p-navigation__item <?php if (\App\Core\Utils\Helper::onPage("/takepicture")) { ?> is-selected <?php } ?>">
+                        <a class="p-navigation__link" href="/takepicture">
+                            Takepicture
+                        </a>
+                    </li>
                 </ul>
             <?php } else { ?>
                 <ul class="p-navigation__items">

@@ -185,7 +185,9 @@ VALUES
     (1, 'rep_rest_default', '60', 2),
     (1, 'set_rest_default', '120', 2),
     (1, 'warm_up_default', '120', 2),
-    (1, 'play_timer_sound', '0', 2);
+    (1, 'play_timer_sound', '0', 2),
+    (1, 'takepicture_purge_days', '7', 1),
+    (1, 'ping_purge_days', '31', 1);
 
 DROP TABLE IF EXISTS `timesheet`;
 

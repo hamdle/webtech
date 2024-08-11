@@ -13,6 +13,9 @@
                         <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="workout-tab" id="workout" tabindex="-1">Workout</button>
                     </div>
                     <div class="p-tabs__item">
+                        <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="takepicture-tab" id="takepicture" tabindex="-1">Takepicture</button>
+                    </div>
+                    <div class="p-tabs__item">
                         <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="system-tab" id="system" tabindex="-1">System</button>
                     </div>
                 </div>
@@ -122,6 +125,49 @@
                     </div>
                 </div>
 
+                <div tabindex="0" role="tabpanel" id="takepicture-tab" aria-labelledby="takepicture" hidden="true">
+                    <div class="p-stripe is-shallow">
+                        <div class="row">
+                            <div class="p-card u-vertically-center">
+                                <div class="card">
+                                    <div class="card u-clearfix">
+                                        <div class="card u-float-left">
+                                            <h2>Takepicture Settings</h2>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="card">
+                                    <div class="p-card__content">
+                                        <img class="p-card__image" alt="" src="<?php echo $_ENV['ORIGIN']; ?>/img/p-bar.png" height="150">
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <th>Takepicture purge (days):</th>
+                                            <th><?php echo \App\Core\Database\Database::config("takepicture_purge_days", \App\Core\Context::get('user')->id) ?></th>
+                                            <th>System Default</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Ping purge (days):</th>
+                                            <th><?php echo \App\Core\Database\Database::config("ping_purge_days", \App\Core\Context::get('user')->id) ?></th>
+                                            <th>System Default</th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card">
+                                    <p class="u-clearfix">
+                                    <div id="edittp" aria-controls="modal" class="card u-float-left"><button class="p-button">Edit</button></div>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div tabindex="0" role="tabpanel" id="system-tab" aria-labelledby="system" hidden="true">
                     <div class="p-stripe is-shallow">
                         <div class="row">
@@ -143,7 +189,7 @@
                                     <table>
                                         <tbody>
                                         <tr>
-                                            <th>Timezone</th>
+                                            <th>Timezone:</th>
                                             <th><?php echo \App\Core\Database\Database::config("default_timezone", \App\Core\Context::get('user')->id) ?></th>
                                             <th>System Default</th>
                                         </tr>
@@ -179,7 +225,7 @@
                     <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="First Name" value="<?php echo \App\Core\Context::get('user')->first_name; ?>" name="first_name" />
                 </p>
                 <p class="u-clearfix">
-                    <label class="login__title">Last Name</label>
+                    <label class="login__title">Last Name:</label>
                     <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Last Name" value="<?php echo \App\Core\Context::get('user')->last_name; ?>"  name="last_name" />
                 </p>
                 <p class="u-clearfix">
@@ -223,6 +269,37 @@
                 </p>
                 <p class="u-clearfix">
                     <input type="hidden" name="method" value="Config.saveWorkoutSettings">
+                </p>
+            </div>
+            <footer class="p-modal__footer">
+                <button class="u-no-margin--bottom" aria-controls="modalwo">Cancel</button>
+                <button id="login__button" class="button p-button--positive u-no-margin--bottom has-icon" type="submit">
+                    <span class="fa fa-save footer__icon login-button__icon" style="margin-right:6px"></span>
+                    Save
+                </button>
+            </footer>
+        </form>
+    </section>
+</div>
+
+<div class="p-modal" id="modaltp" style="display: none;">
+    <section class="p-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description">
+        <header class="p-modal__header">
+            <h2 class="p-modal__title" id="modal-title">Edit Takepicture Settings</h2>
+            <button class="p-modal__close" aria-label="Close active modal" aria-controls="modaltp">Close</button>
+        </header>
+        <form id="takepictureSettingsForm" class="login__form">
+            <div class="form-box card selected-login">
+                <p class="u-clearfix">
+                    <label class="login__title">Takepicture purge (days):</label>
+                    <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Takepicture (days)" value="<?php echo \App\Core\Database\Database::config("takepicture_purge_days", \App\Core\Context::get('user')->id) ?>" name="takepicture_purge_days" />
+                </p>
+                <p class="u-clearfix">
+                    <label class="login__title">Ping purge (days):</label>
+                    <input class="input login__input" autocapitalize="off" autocorrect="off" type="text" placeholder="Ping (days)" value="<?php echo \App\Core\Database\Database::config("ping_purge_days", \App\Core\Context::get('user')->id) ?>"  name="ping_purge_days" />
+                </p>
+                <p class="u-clearfix">
+                    <input type="hidden" name="method" value="Config.saveTakepictureSettings">
                 </p>
             </div>
             <footer class="p-modal__footer">

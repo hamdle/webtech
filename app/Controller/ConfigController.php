@@ -96,6 +96,41 @@ class ConfigController extends BaseController
         return $this->response;
     }
 
+    public function saveTakepictureSettings($args)
+    {
+        $this->response->setJson();
+        $form = new WorkoutSettingsForm();
+        $user = \App\Core\Context::get('user');
+        if ($form->validate($args))
+        {
+            Database::update(
+                "system_config",
+                ["data"],
+                [$args["takepicture_purge_days"]],
+                "user_id = 1".
+                " and reference = 'takepicture_purge_days'"
+            );
+            Database::update(
+                "system_config",
+                ["data"],
+                [$args["ping_purge_days"]],
+                "user_id = 1".
+                " and reference = 'ping_purge_days'"
+            );
+
+            $this->response->setContent([
+                "error" => "false",
+            ]);
+            return $this->response;
+        }
+
+        $this->response->setContent([
+            "error" => "false",
+            "warning" => "validation failed",
+        ]);
+        return $this->response;
+    }
+
     public function saveSystemSettings($args)
     {
         $this->response->setJson();

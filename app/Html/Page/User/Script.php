@@ -223,6 +223,10 @@
         edit2.addEventListener('click', function (event) {
             toggleModal(document.querySelector('#modalwo'), document.querySelector('[aria-controls=modalwo]'), true);
         });
+        var edit4 = document.getElementById("edittp");
+        edit4.addEventListener('click', function (event) {
+            toggleModal(document.querySelector('#modaltp'), document.querySelector('[aria-controls=modaltp]'), true);
+        });
         var edit3 = document.getElementById("editsys");
         edit3.addEventListener('click', function (event) {
             toggleModal(document.querySelector('#modalsys'), document.querySelector('[aria-controls=modalsys]'), true);
@@ -286,6 +290,12 @@
         {
             event.preventDefault();
             sendData(workoutForm);
+        });
+        let takepictureForm = document.getElementById('takepictureSettingsForm');
+        takepictureForm.addEventListener("submit", function (event)
+        {
+            event.preventDefault();
+            sendData(takepictureForm);
         });
         let systemForm = document.getElementById('systemSettingsForm');
         systemForm.addEventListener("submit", function (event)

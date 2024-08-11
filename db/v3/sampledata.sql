@@ -24,6 +24,12 @@ VALUES
     (2, 'warm_up_default', '120', 2),
     (2, 'play_timer_sound', '1', 2);
 
+INSERT INTO `system_config`
+(`user_id`, `reference`, `data`, `system_config_type_id`)
+VALUES
+    (1, 'takepicture_purge_days', '7', 1),
+    (1, 'ping_purge_days', '31', 1);
+
 LOCK TABLES `exercise_types` WRITE;
 /*!40000 ALTER TABLE `exercise_types` DISABLE KEYS */;
 INSERT INTO `exercise_types`
