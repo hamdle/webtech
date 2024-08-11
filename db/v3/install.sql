@@ -201,3 +201,14 @@ CREATE TABLE `timesheet` (
     INDEX (`tag`),
     CONSTRAINT `uq_timesheet_user_id_tag` UNIQUE(`user_id`, `tag`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+DROP TABLE IF EXISTS `purgelog`;
+
+CREATE TABLE `purge_log` (
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `tag` varchar(64) NOT NULL,
+    `timestamp` datetime NOT NULL,
+    PRIMARY KEY (`id`),
+    INDEX (`tag`),
+    CONSTRAINT `uq_purgelog_id_tag` UNIQUE(`id`, `tag`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
