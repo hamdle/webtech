@@ -36,15 +36,17 @@ CREATE TABLE `exercise_types` (
 INSERT INTO `exercise_types`
 (`id`, `user_id`, `title`, `default_sets`, `default_reps`, `wait_time`)
 VALUES
-    (1, 1, 'Warm Up',     1,  1,  0),
-    (2, 1, 'Pull Ups',    3,  5,  60),
-    (3, 1, 'Dips',        3,  5,  60),
-    (4, 1, 'Push Ups',    3,  5,  60),
-    (5, 1, 'Leg Raises',  3,  5,  60),
-    (6, 1, 'Lunges',      4,  5,  60),
-    (7, 1, 'Cobras',      3,  40, 30),
-    (8, 1, 'Planks',      3,  5,  60),
-    (9, 1, 'Run',         3,  10, 60);
+    (1, 1, 'Warm Up',       1,  1,  0),
+    (2, 1, 'Pull Ups',      3,  5,  60),
+    (3, 1, 'Dips',          3,  5,  60),
+    (4, 1, 'Push Ups',      3,  5,  60),
+    (5, 1, 'Leg Raises',    3,  5,  60),
+    (6, 1, 'Lunges',        3,  5,  60),
+    (7, 1, 'Cobras',        3,  40, 30),
+    (8, 1, 'Planks',        3,  5,  60),
+    (9, 1, 'Run',           3,  10, 60),
+    (10, 1, 'Pistols',       3,  5, 60),
+    (11, 1, 'Inverted rows', 3,  5, 60);
 
 
 DROP TABLE IF EXISTS `sessions`;
