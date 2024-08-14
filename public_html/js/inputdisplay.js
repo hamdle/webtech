@@ -259,7 +259,7 @@ var InputDisplay = (function () {
         if (this.status === 200) {
             payload = JSON.parse(this.responseText);
             console.log(payload);
-            if (payload.ok === "true") {
+            if (payload.ok === "true" && payload.error === "false") {
                 var i;
                 for (i = 0; i < $repInputElements.length; i++) {
                     if (typeof payload.suggestedReps[i] !== 'undefined') {

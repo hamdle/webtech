@@ -210,13 +210,17 @@ class WorkoutController extends BaseController
             'exercise_type_id' => intval($args['exerciseTypeId'])
         ]);
 
-        $workoutId = $results[0]['id'];
+        $reps = [];
 
-        $reps = Database::execute('suggested-reps.sql', [
-            'user_id' => \App\Core\Context::get('user')->fields["id"],
-            'exercise_type_id' => intval($args['exerciseTypeId']),
-            'workout_id' => $workoutId
-        ]);
+        if ($results !== null && array_key_exists(0, $results))
+        {
+            $workoutId = $results[0]['id'];
+            $reps = Database::execute('suggested-reps.sql', [
+                'user_id' => \App\Core\Context::get('user')->fields["id"],
+                'exercise_type_id' => intval($args['exerciseTypeId']),
+                'workout_id' => $workoutId
+            ]);
+        }
 
         $data = [];
         foreach ($reps as $rep) {

@@ -83,7 +83,6 @@ var Workout = (function() {
     function addExercise(exercise)
     {
         $exerciseInProgress = exercise.name;
-        $tab.innerHTML = $exerciseInProgress;
         localStorage.setItem("workout.exerciseInProgress", $exerciseInProgress);
         //delete exercise.name
         $workout.exercises.push(exercise)

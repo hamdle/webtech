@@ -40,6 +40,7 @@ class Exercise extends Record
             "feedback" => function ($entry) {
                 // A query function to get a list of enum values for a field
                 // would be nice TODO
+                $entry = $entry === null ? "" : $entry;
                 return in_array(trim($entry), ["up", "down", "none"])
                         ? trim($entry)
                         : "none";
