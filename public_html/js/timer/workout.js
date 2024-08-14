@@ -100,7 +100,7 @@ var Workout = (function() {
         localStorage.setItem("workout.feel", $workout.feel);
     }
 
-    function tab(element, icon) {
+    function tab(element) {
         $tab = element;
     }
 

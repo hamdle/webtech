@@ -29,10 +29,7 @@
     }
 
     Workout.init();
-    Workout.tab(
-        document.getElementById("workout-in-progress"),
-        document.getElementById("workout-in-progress__icon"),
-    );
+    Workout.tab(document.getElementById("workout-in-progress"));
     RoutineBuilder.init(document.getElementById('exercise__list'), JSON.parse('<?php echo json_encode(\App\Core\Context::get('exerciseList')) ?>'));
 
     Timer.init(document.getElementById('timer'));

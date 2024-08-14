@@ -8,7 +8,6 @@ var Workout = (function() {
     var $workout
     var $exerciseInProgress = null;
     var $tab;
-    var $icon;
 
     // Public
     function init(user_id)
@@ -28,7 +27,6 @@ var Workout = (function() {
         // As Linux timestamp
         $workout.start = Math.round(+new Date() / 1000);
         localStorage.setItem("workout.start", $workout.start);
-        $icon.classList.add("u-animation--spin");
     }
 
     function get()
@@ -64,15 +62,9 @@ var Workout = (function() {
                     payload = JSON.parse(this.responseText);
                     if (payload.ok == "true") {
                         clearLocalStorage();
-                        $icon.classList.remove("u-animation--spin");
-                        $icon.classList.remove("p-icon--spinner");
-                        $icon.classList.add("p-icon--success");
                         $tab.innerHTML = "Workout Complete";
                         onSuccess();
                     } else {
-                        $icon.classList.remove("u-animation--spin");
-                        $icon.classList.remove("p-icon--spinner");
-                        $icon.classList.add("p-icon--error");
                         onFailure();
                     }
                 }
@@ -109,9 +101,8 @@ var Workout = (function() {
         localStorage.setItem("workout.feel", $workout.feel);
     }
 
-    function tab(element, icon) {
+    function tab(element) {
         $tab = element;
-        $icon = icon;
     }
 
     function discard() {

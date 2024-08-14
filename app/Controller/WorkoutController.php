@@ -43,14 +43,15 @@ class WorkoutController extends BaseController
     }
 
     // POST :: api/Workout/save
-    public function save()
+    public function save($args)
     {
-        $request = Request::post();
-        $workout = new Workout($request);
+        $this->response->setJson();
+
+        $workout = new Workout($args);
         $workout->user_id = \App\Core\Context::get('user')->fields["id"];
         $workout->save();
 
-        foreach ($request["exercises"] ?? [] as $exerciseEntry)
+        foreach ($args["exercises"] ?? [] as $exerciseEntry)
         {
             $exercise = new Exercise($exerciseEntry);
             $exercise->workout_id = $workout->id;
@@ -70,7 +71,11 @@ class WorkoutController extends BaseController
             }
         }
 
-        return Response::sendOk();
+        $this->response->setContent([
+            "error" => "false",
+            "message" => "Workout saved successfully.",
+        ]);
+        return $this->response;
     }
 
     public function saveTime($args)
