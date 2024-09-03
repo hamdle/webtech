@@ -165,3 +165,8 @@
     color: #9d9d9d;
     margin-right: 8px;
 }
+
+.w-navigation__item.w-navigation__item--override {
+    width: 130px;
+    padding: 10px 0;
+}

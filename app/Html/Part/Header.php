@@ -2,8 +2,8 @@
     <div class="p-navigation__row">
         <div class="p-navigation__banner">
             <div class="p-navigation__logo w-navigation__logo">
-                <a class="p-navigation__item w-navigation__item" href="<?php echo $_ENV['ORIGIN']; ?>/home">
-                    <img class="p-navigation__logo-icon" src="<?php echo $_ENV['ORIGIN']; ?>/img/workout-logo-graybox.svg" alt="Workout.dev">
+                <a class="p-navigation__item w-navigation__item w-navigation__item--override" href="<?php echo $_ENV['ORIGIN']; ?>">
+                    <img class="p-navigation__logo-icon" src="<?php echo $_ENV['ORIGIN']; ?>/img/ejmtech-name-logo.png" alt="ejmtech.net logo">
                 </a>
             </div>
             <a href="#navigation" class="p-navigation__toggle--open" title="menu">Menu</a>
@@ -15,11 +15,6 @@
             </span>
             <?php if (\App\Core\Context::get('session')->isAuthenticated()) { ?>
                 <ul class="p-navigation__items">
-                    <li class="p-navigation__item ">
-                        <a class="p-navigation__link" href="<?php echo $_ENV["ORIGIN"]; ?>">
-                            <?php echo $_ENV["APP_NAME"]; ?>
-                        </a>
-                    </li>
                     <li class="p-navigation__item <?php if (\App\Core\Utils\Helper::onPage("/home")) { ?> is-selected <?php } ?>">
                         <a class="p-navigation__link" href="/home">
                             Dashboard
