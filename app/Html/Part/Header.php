@@ -46,9 +46,9 @@
                 </ul>
             <?php } else { ?>
                 <ul class="p-navigation__items">
-                    <li class="p-navigation__item ">
+                    <li class="p-navigation__item  <?php if (!\App\Core\Utils\Helper::onPage("/login")) { ?> is-selected <?php } ?>">
                         <a class="p-navigation__link" href="/">
-                            <?php echo $_ENV["APP_NAME"]; ?>
+                            Home
                         </a>
                     </li>
                 </ul>
