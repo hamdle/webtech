@@ -166,7 +166,13 @@
     margin-right: 8px;
 }
 
-.w-navigation__item.w-navigation__item--override {
+.w-navigation__item.w-navigation__item--name {
     width: 130px;
     padding: 10px 0;
+}
+
+.w-navigation__item.w-navigation__item--icon {
+    width: 150px;
+    padding: 10px 0;
+    margin-right: 15px;
 }
